@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+
+
+body {
+  font-family: "Merriweather", serif;
+ 
+}
+
+@font-face {
+  font-family: 'Light';
+  src: url('/fonts/Merriweather-Light.ttf');
+}
+
+@font-face {
+  font-family: 'SemiBold';
+  src: url('/fonts/Poppins-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'ExterBold';
+  src: url('/fonts/Poppins-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: 'Regular';
+  src: url('/fonts/Merriweather-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Medium';
+  src: url('/fonts/Poppins-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'bold';
+  src: url('/fonts/Merriweather-Bold.ttf');
+}
+
+.exterBold {
+  font-family: 'ExterBold';
+  /* background-color:red; */
+}
+
+.SemiBold {
+  font-family: 'SemiBold';
+  /* background-color:red; */
+}
+
+.light {
+  font-family: 'Light';
+  /* background-color:red; */
+}
+
+.bold {
+  font-family: 'bold';
+}
+
+.Regular {
+  font-family: 'Regular';
+}
+
+.Medium {
+  font-family: 'Medium';
+}
+
+/* @media (min-width: 1024px) and (max-width: 1200px) {
+  .tables {
+    max-width: 800px;
+  }
+} */
