@@ -5,7 +5,7 @@ const background = "#ffffff";
 const background2 = "#073064";
 const background3 = "#fae62d";
 const background4 = "#cdf462";
-const error = "#FF0000";
+const error = "#9A0E20";
 const success = "#308129";
 const black = "#00000";
 const ash = "#E9E9E9";
@@ -62,9 +62,9 @@ const theme = createTheme({
       main: background2,
       contrastText: background,
     },
-    badge: {
-      main: background,
-      contrastText: error,
+    error: {
+      main: error,
+      contrastText: background,
     },
     badge1: {
       main: background,

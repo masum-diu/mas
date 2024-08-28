@@ -8,32 +8,32 @@ body {
 
 @font-face {
   font-family: 'Light';
-  src: url('/fonts/Merriweather-Light.ttf');
+  src: url('/fonts/Oswald-Light.ttf');
 }
 
 @font-face {
   font-family: 'SemiBold';
-  src: url('/fonts/Poppins-SemiBold.ttf');
+  src: url('/fonts/Oswald-SemiBold.ttf');
 }
 
 @font-face {
   font-family: 'ExterBold';
-  src: url('/fonts/Poppins-ExtraBold.ttf');
+  src: url('/fonts/Oswald-ExtraLight.ttf');
 }
 
 @font-face {
   font-family: 'Regular';
-  src: url('/fonts/Merriweather-Regular.ttf');
+  src: url('/fonts/Oswald-Regular.ttf');
 }
 
 @font-face {
   font-family: 'Medium';
-  src: url('/fonts/Poppins-Medium.ttf');
+  src: url('/fonts/Oswald-Medium.ttf');
 }
 
 @font-face {
   font-family: 'bold';
-  src: url('/fonts/Merriweather-Bold.ttf');
+  src: url('/fonts/Oswald-Bold.ttf');
 }
 
 .exterBold {
@@ -68,3 +68,43 @@ body {
     max-width: 800px;
   }
 } */
+/* Custom Swiper navigation buttons */
+.swiper-button-prev::after,
+.swiper-button-next::after {
+    display: none; /* Hides the default arrow icons */
+}
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    top: 50%;
+    width: 50px !important; /* Adjust based on your image size */
+    height: 35px !important; /* Adjust based on your image size */
+    margin-top: -25px !important; /* Center the button vertically */
+    z-index: 10 !important;
+    cursor: pointer;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: transparent; /* Hide the default arrow */
+    background-color: transparent; /* Ensure no background color interferes */
+    border: none;
+}
+
+/* Specific styles for each button using images */
+.swiper-button-prev {
+    left: 50px !important; /* Adjust positioning as needed */
+    background-image: url('/assets/Container (1).png'); /* Your custom left arrow image */
+}
+
+.swiper-button-next {
+    right: 50px !important; /* Adjust positioning as needed */
+    background-image: url('/assets/Container.png'); /* Your custom right arrow image */
+}
+/* Custom styling for the progress bar pagination */
+
+
+/* Custom progress bar color */
+.swiper-pagination-progressbar-fill {
+  background-color: #9A0E20 !important; /* Color of the progress bar fill */
+}
+
