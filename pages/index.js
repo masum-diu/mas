@@ -2,15 +2,20 @@ import React from 'react'
 import Layout from '../components/Layout'
 import Typography from '@mui/material/Typography'
 import ProgressPaginationSwiper from '../components/ProgressPaginationSwiper'
-import { Box, Button, Grid, Stack, TextField } from '@mui/material'
-
+import { Box, Button, Grid, Stack, styled, TextField } from '@mui/material'
+import ProgressPaginationSwipersider from '../components/ProgressPaginationSwipersider'
+const CustomTextField = styled(TextField)({
+    '& input[type="date"]::-webkit-calendar-picker-indicator': {
+        filter: 'invert(100%) brightness(200%)', // Adjust color to red
+    },
+});
 const Home = () => {
     return (
         <Layout>
             <ProgressPaginationSwiper />
             <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto", }}>
 
-                <Grid container spacing={0} py={6} >
+                <Grid container spacing={2} py={6} >
                     <Grid item lg={6}>
                         <Stack alignItems={"center"} justifyContent={"center"} direction={"column"} sx={{ position: "relative" }}>
                             <Typography className="Medium" fontSize={40} sx={{ display: "flex", flexDirection: "column", zIndex: 2, position: "relative" }}>
@@ -22,10 +27,9 @@ const Home = () => {
                         </Stack>
                     </Grid>
 
-                    <Grid item lg={6}>
+                    <Grid item lg={6} >
                         <Typography className="Regular" fontSize={18} color={"#bbb"} sx={{ display: "flex", flexDirection: "column", }}>
-                            MAS is your go-to source for high-quality, basic commodity clothing <span>
-                                items. We bring simplicity, comfort, and durability together, providing</span>  <span>essential apparel that meets the needs of today’s global market.</span>
+                            MAS is your go-to source for high-quality, basic commodity clothing items at an affordable price. We bring simplicity, comfort, and durability together, providing essential apparel that meets the needs of today’s global market.
                         </Typography>
 
                         <Stack direction={"row"} justifyContent={"space-between"} sx={{ maxWidth: 450 }} py={2} >
@@ -36,7 +40,7 @@ const Home = () => {
                                 600+ Outlets
                             </Typography>
                         </Stack>
-                        <Stack direction={"row"} justifyContent={"space-between"} sx={{ maxWidth: 550 }} pb={5}  >
+                        <Stack direction={"row"} spacing={2} justifyContent={"space-between"} sx={{ maxWidth: 550 }} pb={5}  >
                             <Typography className="Regular" fontSize={16} color={"#bbb"}  >
                                 Delivering quality goods since inception.
                             </Typography>
@@ -50,92 +54,81 @@ const Home = () => {
                     </Grid>
 
                 </Grid>
-                <Grid container spacing={0} py={2} >
+                <Grid container spacing={4} py={2} >
 
                     <Grid item lg={12}>
                         <Typography className="Medium" fontSize={40}   >
                             WhY CHOOSE MAS
                         </Typography>
                         <Typography className="Regular" fontSize={18} color={"#bbb"} sx={{ display: "flex", flexDirection: "column", pt: 1 }}  >
-                            Our product line includes T-shirts, Caps, Shorts, Socks, Fleece/Hoodies, <span>
-                                Thermal wear, Tank Tops, and Boxer Shorts.</span>
+                            Our product line includes T shirts, Polo shirts, Boxer shorts, Tank Tops/A <span>
+                                Shirts, Thermal Wear, Hoodies, Sweat Shirts/Pants, Socks and Caps both with</span>
+                            labels and blanks
                         </Typography>
                     </Grid>
                     <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
                         <img src="/assets/SVG.png" alt="" width={25} height={25} style={{ marginTop: 5 }} />
-                        <Stack>
+                        <Stack direction={"column"} spacing={1}>
                             <Typography className="Medium" fontSize={28} textTransform={"uppercase"}  >
                                 High-quality
                             </Typography>
                             <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                                A dui aliquam ultrices eros lorem nibh vivamus.
-                                Quis aliquam duis pharetra faucibus ultrices
-                                volutpat quisque.
+                                Experience durable and well-crafted apparel that stands the test of time
                             </Typography>
                         </Stack>
                     </Grid>
                     <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
                         <img src="/assets/Vector (3).png" alt="" width={25} height={25} style={{ marginTop: 7 }} />
-                        <Stack>
+                        <Stack direction={"column"} spacing={1}>
                             <Typography className="Medium" fontSize={28} textTransform={"uppercase"}  >
                                 ethical manufacturing
                             </Typography>
                             <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                                Viverra duis ut orci mi id. Eget ultricies facilisi
-                                elementum nec vel a gravida facilisis in. Tellus
-                                felis sapien adipiscing.
+                                Committed to responsible practices and sustainability in every step
                             </Typography>
                         </Stack>
                     </Grid>
                     <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
                         <img src="/assets/SVG (1).png" alt="" width={25} height={25} style={{ marginTop: 5 }} />
-                        <Stack>
+                        <Stack direction={"column"} spacing={1}>
                             <Typography className="Medium" fontSize={28} textTransform={"uppercase"} >
                                 Competitive pricing
                             </Typography>
                             <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                                Lorem velit parturient consectetur cursus
-                                tincidunt tristique pretium volutpat urna. Vitae
-                                scelerisque quam eget.
+                                Get premium clothing at prices that offer great value
                             </Typography>
                         </Stack>
                     </Grid>
                     <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
                         <img src="/assets/SVG (2).png" alt="" width={25} height={25} style={{ marginTop: 5 }} />
-                        <Stack>
+                        <Stack direction={"column"} spacing={1}>
                             <Typography className="Medium" fontSize={28} textTransform={"uppercase"}  >
-                                Global distribution
+                                Strong distribution
                             </Typography>
                             <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                                Dapibus ac mattis semper hendrerit eu dolor
-                                aliquam. Vitae sem orci non diam. Venenatis
-                                augue arcu mauris id eros.
+                                Reliable distribution network in national and global reach ensures your products are always within arm's reach.
                             </Typography>
                         </Stack>
                     </Grid>
                     <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
                         <img src="/assets/Vector (5).png" alt="" width={25} height={25} style={{ marginTop: 8 }} />
-                        <Stack>
+                        <Stack direction={"column"} spacing={1}>
                             <Typography className="Medium" fontSize={28} textTransform={"uppercase"}  >
-                                timely delivery
+                                Comfortable
                             </Typography>
                             <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                                Interdum tincidunt condimentum vestibulum
-                                feugiat arcu, in. Maecenas sit sem erat tellus
-                                pellentesque aliquet.
+                                Designed with materials and styles that prioritize your comfort all day long
                             </Typography>
                         </Stack>
                     </Grid>
                     <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
                         <img src="/assets/Vector (4).png" alt="" width={25} height={25} style={{ marginTop: 8 }} />
-                        <Stack>
+                        <Stack direction={"column"} spacing={1}>
                             <Typography className="Medium" fontSize={28} textTransform={"uppercase"} >
                                 Support for new brands
                             </Typography>
                             <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                                Congue pulvinar morbi pharetra tincidunt vel
-                                tincidunt. Amet, morbi neque tellus vivamus
-                                venenatis diam nisl.
+                                Partnering with emerging brands to foster growth and innovation
                             </Typography>
                         </Stack>
                     </Grid>
@@ -143,7 +136,7 @@ const Home = () => {
 
 
                 </Grid>
-                <Grid container spacing={0} py={8} >
+                <Grid container spacing={2} py={8} >
                     <Grid item lg={6} >
                         <Stack alignItems={"left"} justifyContent={"left"} direction={"column"} spacing={2} >
                             <Typography className="Medium" textTransform={"uppercase"} fontSize={28} sx={{ display: "flex", flexDirection: "column", }}>
@@ -160,37 +153,164 @@ const Home = () => {
                     </Grid>
 
                     <Grid item lg={6}>
-                        <img src="https://img.freepik.com/free-photo/shirt-mockup-concept-with-plain-clothing_23-2149448751.jpg?t=st=1724839125~exp=1724842725~hmac=4ed5cc00b445776d55c743530be031bcc87400b07d17f408e20c640addcbda4f&w=1380" alt="" width={"100%"} />
+                        <img src="/assets/bam.jpeg" alt="" width={"100%"} />
 
                     </Grid>
 
                 </Grid>
-                <Typography className="Medium" fontSize={40} textTransform={"uppercase"}  >
+                <Typography className="Medium" fontSize={40} textTransform={"uppercase"} mb={3} >
                     Our Products
                 </Typography>
-                <Grid container spacing={2} py={3} >
-
-                    <Grid item lg={4}>
-                        <img src="/assets/Margin (1).png" alt="" width={"100%"} />
-
-                    </Grid>
-                    <Grid item lg={4}>
-                        <img src="/assets/Margin.png" alt="" width={"100%"} />
-
-                    </Grid>
-                    <Grid item lg={4}>
-                        <img src="/assets/Picture → blog03.webp.png" alt="" width={"100%"} />
-
-                    </Grid>
-
-                </Grid>
-                <Typography className="Medium" fontSize={40} textTransform={"uppercase"}  >
+                <ProgressPaginationSwipersider />
+                <Typography className="Medium" fontSize={40} textTransform={"uppercase"} pt={8} >
                     Let’s talk
                 </Typography>
-                <Grid container spacing={0} py={3} >
+                <Grid container spacing={1} py={3} >
 
                     <Grid item lg={4}>
-                       
+                        <Typography className="Medium" fontSize={18} textTransform={"uppercase"}  >
+                            Email
+                        </Typography>
+                        <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                            barbercrop@example.com
+                        </Typography>
+                        <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
+                            Address
+                        </Typography>
+                        <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                            3891 Ranchview Dr. Richardson,California 62639
+                        </Typography>
+                        <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
+                            Phone
+                        </Typography>
+                        <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                            +1 234 567 890
+                        </Typography>
+                    </Grid>
+                    <Grid item lg={4} xs={12}>
+                        <Stack direction={"column"} spacing={1}>
+                            <Typography className="Medium" fontSize={16} textTransform={"uppercase"}  >
+                                Name <span style={{ color: "#9A0E20" }}>*</span>
+                            </Typography>
+                            <TextField
+                                // label="Standard warning"
+                                variant="standard"
+                                color="primary"
+                                placeholder="Enter Your Name"
+                                fullWidth
+                                focused
+                                InputProps={{
+                                    sx: {
+                                        color: '#ffffff',
+                                    },
+                                }}
+                            />
+                        </Stack>
+                        <Stack direction={"column"} spacing={1} pt={4} >
+                            <Typography className="Medium" fontSize={16} textTransform={"uppercase"}  >
+                                Phone <span style={{ color: "#9A0E20" }}>*</span>
+                            </Typography>
+                            <TextField
+                                // label="Standard warning"
+                                variant="standard"
+                                color="primary"
+                                placeholder="Enter Your Phone"
+                                fullWidth
+                                focused
+                                InputProps={{
+                                    sx: {
+                                        color: '#ffffff',
+                                    },
+                                }}
+                            />
+                        </Stack>
+                    </Grid>
+                    <Grid item lg={4} xs={12}>
+                        <Stack direction={"column"} spacing={1}>
+                            <Typography className="Medium" fontSize={16} textTransform={"uppercase"}  >
+                                Email <span style={{ color: "#9A0E20" }}>*</span>
+                            </Typography>
+                            <TextField
+                                // label="Standard warning"
+                                variant="standard"
+                                color="primary"
+                                placeholder="Enter Your Email"
+                                fullWidth
+                                focused
+                                InputProps={{
+                                    sx: {
+                                        color: '#ffffff',
+                                    },
+                                }}
+                            />
+                        </Stack>
+                        <Stack direction={"column"} spacing={1} pt={4}>
+                            <Typography className="Medium" fontSize={16} textTransform={"uppercase"}  >
+                                Choose an appointment date
+                            </Typography>
+                            <CustomTextField
+                                variant="standard"
+                                color="primary"
+                                placeholder="Enter Your Date"
+                                fullWidth
+                                type="date"
+                                focused
+                                InputProps={{
+                                    sx: {
+                                        color: '#ffffff', // Sets the text color to white
+                                    },
+                                }}
+                            />
+                        </Stack>
+                    </Grid>
+                    <Grid item lg={4} xs={12}>
+                        {/* <Stack direction={"column"} spacing={1}>
+                            <Typography className="Medium" fontSize={16} textTransform={"uppercase"}  >
+                                Email *
+                            </Typography>
+                            <TextField
+                                // label="Standard warning"
+                                variant="standard"
+                                color="primary"
+                                placeholder="Enter Your Email"
+                                multiline
+                                rows={4}
+                                fullWidth
+                                focused
+                                InputProps={{
+                                    sx: {
+                                        color: '#ffffff',
+                                    },
+                                }}
+                            />
+                        </Stack> */}
+
+                    </Grid>
+                    <Grid item lg={8} xs={12}>
+                        <Stack direction={"column"} spacing={1}>
+                            <Typography className="Medium" fontSize={16} textTransform={"uppercase"}  >
+                                Message
+                            </Typography>
+                            <TextField
+                                // label="Standard warning"
+                                variant="standard"
+                                color="primary"
+                                placeholder="Enter Your Message"
+                                multiline
+                                rows={4}
+                                fullWidth
+                                focused
+                                InputProps={{
+                                    sx: {
+                                        color: '#ffffff',
+                                    },
+                                }}
+                            />
+                            <Button variant="contained" color="error" sx={{ maxWidth: 87 }} >
+                                submit
+                            </Button>
+                        </Stack>
+
                     </Grid>
 
 
