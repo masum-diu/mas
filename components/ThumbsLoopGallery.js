@@ -22,7 +22,7 @@ export default function App() {
           '--swiper-navigation-color': '#fff',
           '--swiper-pagination-color': '#fff',
         }}
-        spaceBetween={10}
+        // spaceBetween={10}
         // navigation={true}
         // Ensure thumbsSwiper is not null before passing it to thumbs
         thumbs={thumbsSwiper ? { swiper: thumbsSwiper } : undefined}
