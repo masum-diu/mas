@@ -65,7 +65,7 @@ function ProgressPaginationSwipersider() {
                     </Typography>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <img src="/assets/ThermalWear.jpeg" alt="" width={"100%"}  />
+                    <img src="/as sets/ThermalWear.jpeg" alt="" width={"100%"}  />
                     <Typography className="Medium" fontSize={18} textTransform={"uppercase"}  pt={4} >
                     Thermal Wear
                     </Typography>
