@@ -1,6 +1,6 @@
 import axios from "axios";
 const instance = axios.create({
-  baseURL: "https://api.ryserved.com/api",
+  baseURL: "https://apimas.etherstaging.xyz/api",
 
   headers: { 
     "Content-Type": "application/json",
