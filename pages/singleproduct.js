@@ -34,11 +34,11 @@ const product = () => {
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={2} py={8}>
-          <Grid item lg={6} sm={4}>
+          <Grid item lg={6} sm={6} xs={12}>
             <ThumbsLoopGallery />
           </Grid>
 
-          <Grid item lg={6} sm={4}>
+          <Grid item lg={6} sm={6}>
             <Stack direction={"column"} spacing={1}>
               <Typography
                 className="Medium"

@@ -22,7 +22,8 @@ const product = () => {
           <Typography className="Medium" fontSize={18} textTransform={"uppercase"}  >
               Hoodies
           </Typography>
-          <Button variant="contained" color="error"  href="/singleproduct">
+          <Button variant="contained" color="error"  href="/singleproduct"
+          >
           View Details
                 </Button>
           </Grid>
