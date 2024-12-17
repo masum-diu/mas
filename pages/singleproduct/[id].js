@@ -21,6 +21,7 @@ import {
 import Layout from "../../components/Layout";
 import instance from "../api/api_instance";
 import { useRouter } from "next/router";
+import { Height } from "@mui/icons-material";
 const singleproduct = () => {
     const router = useRouter();
     const { id } = router?.query;
@@ -73,11 +74,11 @@ const singleproduct = () => {
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={2} py={8}>
-          <Grid item lg={6} sm={4} xs={12}>
+          <Grid item lg={4} sm={4} xs={12}>
             <ThumbsLoopGallery data={imageArray}/>
           </Grid>
 
-          <Grid item lg={6} sm={4}>
+          <Grid item lg={4} sm={4}>
             <Stack direction={"column"} spacing={1}>
               <Typography
                 className="Medium"
@@ -117,7 +118,7 @@ const singleproduct = () => {
                 </RadioGroup>
               </FormControl>
               <Typography className="Regular" fontSize={16} color={"#bbb"}>
-             Select Size:
+           View Size:
              </Typography>
               <Select
                 labelId="demo-simple-select-label"
@@ -147,7 +148,7 @@ const singleproduct = () => {
                 }}
               >
                 <MenuItem disabled value={10}>
-                  Select Size
+                 View Size
                 </MenuItem>
                 {products?.p_sizes.map((v,i)=> <MenuItem key={i} value={v?.size_name}>{v?.size_name}</MenuItem>)}
               </Select>

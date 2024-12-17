@@ -51,14 +51,17 @@ const Layout = ({ children }) => {
             height: 94,
           }}
         >
+        
           <Stack
             direction="row"
             width="100%"
             justifyContent="space-between"
             alignItems="center"
+            sx={{ cursor: "pointer" }}
           >
+          <Link href={"/"} >
             <img src="/assets/logo.png" alt="Logo" width={132} />
-
+       </Link>
             {/* Desktop Menu */}
             <Stack
               direction="row"
@@ -68,11 +71,13 @@ const Layout = ({ children }) => {
                 display: { xs: "none", md: "flex" },
               }}
             >
+            <Link href={"/"} >
               <Typography className="Medium" fontSize={16}>
                 HOME
               </Typography>
+              </Link>
               <Link href={"/about"} >
-                <Typography className="Medium" fontSize={16} sx={{ cursor: "pointer" }}>
+                <Typography className="Medium" fontSize={16} >
                   ABOUT
                 </Typography>
               </Link>
@@ -81,12 +86,14 @@ const Layout = ({ children }) => {
                 PRODUCTS
               </Typography>
               </Link>
-              <Typography className="Medium" fontSize={16}>
+               {/* <Typography className="Medium" fontSize={16}>
                 CONTACTS
-              </Typography>
+              </Typography>*/}
+              <Link href={"/contactus"} >
               <Button variant="contained" color="error">
                 Contact Us
               </Button>
+              </Link>
             </Stack>
 
             {/* Mobile Menu Button */}
@@ -122,24 +129,28 @@ const Layout = ({ children }) => {
         </Stack>
 
         <List sx={{ width: 250 }}>
+        <Link href={"/"} >
           <ListItem button>
             <ListItemText primary="HOME" />
           </ListItem>
+          </Link>
+          <Link href={"/about"} >
           <ListItem button>
             <ListItemText primary="ABOUT" />
           </ListItem>
+          </Link>
+          <Link href={"/product"} >
           <ListItem button>
             <ListItemText primary="PRODUCTS" />
           </ListItem>
-
-          <ListItem button>
-            <ListItemText primary="CONTACTS" />
-          </ListItem>
+          </Link>
+          <Link href={"/contactus"} >
           <ListItem button onClick={handleDrawerClose}>
             <Button variant="contained" color="error">
               Contact Us
             </Button>
           </ListItem>
+          </Link>
         </List>
       </Drawer>
       <Box>{children}</Box>
@@ -156,24 +167,24 @@ const Layout = ({ children }) => {
             pt: 5,
           }}
         >
-          <Grid item lg={4}>
-            <img src="/assets/logo.png" alt="" width={132} />
+          <Grid item lg={4} sx={{ cursor: "pointer" }}>
+          <Link href={"/"} >
+            <img src="/assets/logo.png" alt="" width={132}  />
+            </Link>
           </Grid>
           <Grid item lg={4}>
             <Stack direction={"column"} spacing={2}>
               <Stack direction={"row"} alignItems={"center"} spacing={1}>
                 <Phone sx={{ fontSize: 28 }} />
                 <Typography className="Medium" fontSize={28}>
-                  +1 234 567 890
+                +880-16852558
                 </Typography>
               </Stack>
               <Stack direction={"column"} spacing={1} color={"#bbb"}>
                 <Typography className="Regular" fontSize={16}>
-                  3891 Ranchview Dr. Richardson,
+                Level 4, House 10A, Rd No 4, Dhaka 1212
                 </Typography>
-                <Typography className="Regular" fontSize={16}>
-                  California 62639
-                </Typography>
+             
                 <Typography
                   className="Regular"
                   fontSize={16}
@@ -184,15 +195,22 @@ const Layout = ({ children }) => {
                 <Stack direction={"row"} spacing={2} color={"#ffff"} py={2}>
                   <Facebook /> <Twitter /> <Instagram />
                 </Stack>
-                <Typography className="Regular" fontSize={16}>
-                  © MAS
-                </Typography>
-                <Typography className="Regular" fontSize={16}>
-                  All rights reserved 2024
-                </Typography>
+           
+                <Link href={"/faq"} >
+                <Typography className="Regular" fontSize={16} sx={{ cursor: "pointer" }}>
+              FAQ
+              </Typography>
+              </Link>
+              <Link href={"/privacy"} >
+              <Typography className="Regular" fontSize={16} sx={{ cursor: "pointer" }}>
+             PRIVACY POLICY
+            </Typography>
+            </Link>
+             
               </Stack>
             </Stack>
           </Grid>
+         
           <Grid item lg={4}>
             <Stack direction={"column"} spacing={2}>
               <Typography
@@ -230,6 +248,10 @@ const Layout = ({ children }) => {
             </Stack>
           </Grid>
         </Grid>
+        <Grid item lg={12} textAlign={"center"} pb={'10px'}>
+        <Typography className="Regular" fontSize={13}>
+        All rights reserved 2024
+      </Typography></Grid>
         {/* <Grid container spacing={0} sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto", pb: 5,  pt: 5 }}>
                     <Grid item lg={4}>
                         <Typography className="bold" fontSize={16}>

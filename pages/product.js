@@ -38,7 +38,7 @@ const Product = () => {
             <Typography>Loading..</Typography>
           ) : (
             products?.map((product, index) => (
-              <Grid item lg={3} sm={6} key={index}>
+              <Grid item lg={3} sm={6} key={index} sx={{ cursor: "pointer" }}  onClick={() => handleNavigation(product.id)}>
                 <img src={product?.feature_image} alt="" width={"100%"} />
                 <Typography
                   className="Medium"

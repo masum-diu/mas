@@ -24,7 +24,7 @@ const about = () => {
                   position: "relative",
                 }}
               >
-                Professional Barbershop <span> For men only</span>
+                MAS <span> </span>
               </Typography>
               {/* <Typography className="Medium" fontSize={60} sx={{ position: 'absolute', left: 187, top: 80, zIndex: 1 }}>
             MAS
@@ -61,15 +61,9 @@ const about = () => {
             </Stack>
           </Grid>
         </Grid>
-        <Grid container spacing={2}>
-          <Grid item lg={12}>
-            <img
-              src="https://html.merku.love/barbercrop/img/about/about.webp"
-              alt=""
-              style={{ width: "100%", height: "100%" }}
-            />
-          </Grid>
-          <Grid item lg={6} sx={{ display: "flex", gap: 1, pt: 4 }}>
+      {/*<Grid container spacing={2}>
+         
+          <Grid item lg={12} sx={{ display: "flex", gap: 1, pt: 4 }}>
             <Typography className="Regular" fontSize={16} color={"#bbb"}>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
               illo fugit nemo eum assumenda id qui ea architecto amet libero
@@ -79,22 +73,18 @@ const about = () => {
             </Typography>
           </Grid>
 
-          <Grid item lg={6} sx={{ display: "flex", gap: 1, pt: 4 }}>
-            <Typography className="Regular" fontSize={16} color={"#bbb"}>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
-              illo fugit nemo eum assumenda id qui ea architecto amet libero
-              quas laudantium recusandae rerum minus ducimus asperiores, esse
-              quaerat vel?Lorem ipsum dolor sit amet consectetur adipisicing
-              elit.
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid item lg={6} sx={{ display: "flex", gap: 1, pt: 4 }}>
-        <img
+       
+
+        </Grid> */}
+        <Grid container spacing={2} py={6}>
+        <Grid item lg={5} sx={{ display: "flex", gap: 1, pt: 4 }}>
+            <img
             src="https://html.merku.love/barbercrop/img/about/about.webp"
             alt=""
             style={{ width: "100%", height: "100%" }}
             />
+            </Grid>
+            <Grid item lg={7} sx={{ display: "flex", gap: 1, pt: 4 }}>
             <Typography className="Regular" fontSize={16} color={"#bbb"}>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum
             illo fugit nemo eum assumenda id qui ea architecto amet libero
@@ -104,6 +94,7 @@ const about = () => {
           </Typography>
         
            
+          </Grid>
           </Grid>
         
 

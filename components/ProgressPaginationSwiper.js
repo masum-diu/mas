@@ -20,6 +20,7 @@ function ProgressPaginationSwiper() {
                 // loop={true}
                 style={{ width: '100%', height: '600px' }}
             >
+            
                 <SwiperSlide className=''>
                     <div style={{ width: '100%', height: '100%', }}>
                         <img src="/assets/Section (1).png" alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />

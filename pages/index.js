@@ -2,7 +2,7 @@ import React from 'react'
 import Layout from '../components/Layout'
 import Typography from '@mui/material/Typography'
 import ProgressPaginationSwiper from '../components/ProgressPaginationSwiper'
-import { Box, Button, Grid, Stack, styled, TextField } from '@mui/material'
+import { Box, Button, Grid, Link, Stack, styled, TextField } from '@mui/material'
 import ProgressPaginationSwipersider from '../components/ProgressPaginationSwipersider'
 const CustomTextField = styled(TextField)({
     '& input[type="date"]::-webkit-calendar-picker-indicator': {
@@ -48,9 +48,11 @@ const Home = () => {
                                 Available for customers across the regions
                             </Typography>
                         </Stack>
+                        <Link href ="/about">
                         <Button variant="contained" color="error">
                             learn more
                         </Button>
+                        </Link>
                     </Grid>
 
                 </Grid>
@@ -58,7 +60,7 @@ const Home = () => {
 
                     <Grid item lg={12}>
                         <Typography className="Medium" fontSize={40}   >
-                            WhY CHOOSE MAS
+                            WHY CHOOSE MAS
                         </Typography>
                         <Typography className="Regular" fontSize={18} color={"#bbb"} sx={{ display: "flex", flexDirection: "column", pt: 1 }}  >
                             Our product line includes T shirts, Polo shirts, Boxer shorts, Tank Tops/A <span>
@@ -145,9 +147,11 @@ const Home = () => {
                             <Typography className="Medium" fontSize={16} textAlign={"left"} >
                                 At MAS, we understand the importance of the basics. That’s why we focus on delivering essential clothing items that form the foundation of any wardrobe. From T-shirts to Tank Tops, our products are designed for comfort, quality, and versatility. As a subsidiary of Mishael International Inc., we leverage decades of industry experience to bring you the best in basic apparel.
                             </Typography>
+                            <Link href ="/faq">
                             <Button variant="contained" color="error" sx={{ maxWidth: 140 }}>
                                 learn more
                             </Button>
+                            </Link>
                         </Stack>
 
                     </Grid>
@@ -172,19 +176,19 @@ const Home = () => {
                             Email
                         </Typography>
                         <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                            barbercrop@example.com
+                            mas@gmail.com
                         </Typography>
                         <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
                             Address
                         </Typography>
                         <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                            3891 Ranchview Dr. Richardson,California 62639
+                        Level 4, House 10A, Rd No 4, Dhaka 1212
                         </Typography>
                         <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
                             Phone
                         </Typography>
                         <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                            +1 234 567 890
+                        +880-16852558
                         </Typography>
                     </Grid>
                     <Grid item lg={4} xs={12}>
