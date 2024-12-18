@@ -13,20 +13,49 @@ import {
   ListItem,
   ListItemText,
   IconButton,
+  MenuItem,
+  Menu,
 } from "@mui/material";
 import { Facebook, Instagram, Phone, Twitter } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import Cursor from "quill/blots/cursor";
+import instance from "../pages/api/api_instance";
 const menuItems = [{ id: "dashboard", text: "Dashboard" }];
 
 const Layout = ({ children }) => {
   const [openDrawer, setOpenDrawer] = useState(false);
-
+  const [anchorEl, setAnchorEl] = useState(null);
   const handleDrawerOpen = () => setOpenDrawer(true);
   const handleDrawerClose = () => setOpenDrawer(false);
+  const [products, setProducts] = useState(null);
+  console.log(products)
+  const [loading, setLoading] = useState(true);
+
+  const open = Boolean(anchorEl);
+  const handleMouseEnter = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleMouseLeave = () => {
+    setAnchorEl(null);
+  };
+  const fatchingData = async () => {
+    setLoading(true);
+    try {
+      const res = await instance.get("/category-list");
+      setProducts(res?.data?.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fatchingData();
+  }, []);
   return (
     <Box sx={{ backgroundColor: "#202020", color: "#ffff" }}>
       <AppBar
@@ -51,7 +80,7 @@ const Layout = ({ children }) => {
             height: 94,
           }}
         >
-        
+
           <Stack
             direction="row"
             width="100%"
@@ -59,9 +88,9 @@ const Layout = ({ children }) => {
             alignItems="center"
             sx={{ cursor: "pointer" }}
           >
-          <Link href={"/"} >
-            <img src="/assets/logo.png" alt="Logo" width={132} />
-       </Link>
+            <Link href={"/"} >
+              <img src="/assets/logo.png" alt="Logo" width={132} />
+            </Link>
             {/* Desktop Menu */}
             <Stack
               direction="row"
@@ -71,28 +100,66 @@ const Layout = ({ children }) => {
                 display: { xs: "none", md: "flex" },
               }}
             >
-            <Link href={"/"} >
-              <Typography className="Medium" fontSize={16}>
-                HOME
-              </Typography>
+              <Link href={"/"} >
+                <Typography className="Medium" fontSize={16}>
+                  HOME
+                </Typography>
               </Link>
               <Link href={"/about"} >
                 <Typography className="Medium" fontSize={16} >
                   ABOUT
                 </Typography>
               </Link>
-              <Link href={"/product"} >
-              <Typography className="Medium" fontSize={16} sx={{ cursor: "pointer" }}>
-                PRODUCTS
-              </Typography>
-              </Link>
-               {/* <Typography className="Medium" fontSize={16}>
+              <div
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+                style={{ display: "inline-block" }}
+              >
+                {/* Dropdown trigger */}
+                <Typography
+                  className="Medium"
+                  fontSize={16}
+                  sx={{ cursor: "pointer" }}
+                >
+                  PRODUCTS
+                </Typography>
+
+                {/* Dropdown menu */}
+                <Menu
+                  sx={{ mt: 1 }}
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleMouseLeave}
+                  MenuListProps={{
+                    onMouseLeave: handleMouseLeave,
+                  }}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                >
+                  {/* Dropdown items */}
+                  {products?.map((item, index) => <MenuItem onClick={handleMouseLeave}>
+                    <Link key={index} href={`/product-category/${item?.slug}/${item?.id}`} passHref>
+                      <Typography className="Light"
+                        fontSize={14}> {item?.cat_name || "No Category Name"}</Typography>
+                    </Link>
+
+                  </MenuItem>)}
+
+                </Menu>
+              </div>
+              {/* <Typography className="Medium" fontSize={16}>
                 CONTACTS
               </Typography>*/}
               <Link href={"/contactus"} >
-              <Button variant="contained" color="error">
-                Contact Us
-              </Button>
+                <Button variant="contained" color="error">
+                  Contact Us
+                </Button>
               </Link>
             </Stack>
 
@@ -129,27 +196,27 @@ const Layout = ({ children }) => {
         </Stack>
 
         <List sx={{ width: 250 }}>
-        <Link href={"/"} >
-          <ListItem button>
-            <ListItemText primary="HOME" />
-          </ListItem>
+          <Link href={"/"} >
+            <ListItem button>
+              <ListItemText primary="HOME" />
+            </ListItem>
           </Link>
           <Link href={"/about"} >
-          <ListItem button>
-            <ListItemText primary="ABOUT" />
-          </ListItem>
+            <ListItem button>
+              <ListItemText primary="ABOUT" />
+            </ListItem>
           </Link>
           <Link href={"/product"} >
-          <ListItem button>
-            <ListItemText primary="PRODUCTS" />
-          </ListItem>
+            <ListItem button>
+              <ListItemText primary="PRODUCTS" />
+            </ListItem>
           </Link>
           <Link href={"/contactus"} >
-          <ListItem button onClick={handleDrawerClose}>
-            <Button variant="contained" color="error">
-              Contact Us
-            </Button>
-          </ListItem>
+            <ListItem button onClick={handleDrawerClose}>
+              <Button variant="contained" color="error">
+                Contact Us
+              </Button>
+            </ListItem>
           </Link>
         </List>
       </Drawer>
@@ -168,8 +235,8 @@ const Layout = ({ children }) => {
           }}
         >
           <Grid item lg={4} sx={{ cursor: "pointer" }}>
-          <Link href={"/"} >
-            <img src="/assets/logo.png" alt="" width={132}  />
+            <Link href={"/"} >
+              <img src="/assets/logo.png" alt="" width={132} />
             </Link>
           </Grid>
           <Grid item lg={4}>
@@ -177,14 +244,14 @@ const Layout = ({ children }) => {
               <Stack direction={"row"} alignItems={"center"} spacing={1}>
                 <Phone sx={{ fontSize: 28 }} />
                 <Typography className="Medium" fontSize={28}>
-                +880-16852558
+                  +880-16852558
                 </Typography>
               </Stack>
               <Stack direction={"column"} spacing={1} color={"#bbb"}>
                 <Typography className="Regular" fontSize={16}>
-                Level 4, House 10A, Rd No 4, Dhaka 1212
+                  Level 4, House 10A, Rd No 4, Dhaka 1212
                 </Typography>
-             
+
                 <Typography
                   className="Regular"
                   fontSize={16}
@@ -195,22 +262,22 @@ const Layout = ({ children }) => {
                 <Stack direction={"row"} spacing={2} color={"#ffff"} py={2}>
                   <Facebook /> <Twitter /> <Instagram />
                 </Stack>
-           
+
                 <Link href={"/faq"} >
-                <Typography className="Regular" fontSize={16} sx={{ cursor: "pointer" }}>
-              FAQ
-              </Typography>
-              </Link>
-              <Link href={"/privacy"} >
-              <Typography className="Regular" fontSize={16} sx={{ cursor: "pointer" }}>
-             PRIVACY POLICY
-            </Typography>
-            </Link>
-             
+                  <Typography className="Regular" fontSize={16} sx={{ cursor: "pointer" }}>
+                    FAQ
+                  </Typography>
+                </Link>
+                <Link href={"/privacy"} >
+                  <Typography className="Regular" fontSize={16} sx={{ cursor: "pointer" }}>
+                    PRIVACY POLICY
+                  </Typography>
+                </Link>
+
               </Stack>
             </Stack>
           </Grid>
-         
+
           <Grid item lg={4}>
             <Stack direction={"column"} spacing={2}>
               <Typography
@@ -249,9 +316,9 @@ const Layout = ({ children }) => {
           </Grid>
         </Grid>
         <Grid item lg={12} textAlign={"center"} pb={'10px'}>
-        <Typography className="Regular" fontSize={13}>
-        All rights reserved 2024
-      </Typography></Grid>
+          <Typography className="Regular" fontSize={13}>
+            All rights reserved 2024
+          </Typography></Grid>
         {/* <Grid container spacing={0} sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto", pb: 5,  pt: 5 }}>
                     <Grid item lg={4}>
                         <Typography className="bold" fontSize={16}>

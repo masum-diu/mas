@@ -17,11 +17,9 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-
 import Layout from "../../components/Layout";
 import instance from "../api/api_instance";
 import { useRouter } from "next/router";
-import { Height } from "@mui/icons-material";
 const singleproduct = () => {
     const router = useRouter();
     const { id } = router?.query;
@@ -37,7 +35,8 @@ const singleproduct = () => {
       setLoading(true);
       setError(null); // Reset error state
       const res = await instance.get(`/product-by/${id}`);
-      setProduct(res?.data?.data);
+       setProduct(res?.data?.data);
+     
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -58,12 +57,12 @@ const singleproduct = () => {
     setAge(event.target.value);
   };
   const imageArray = [
-    products?.feature_image, 
-    products?.p_image_one, 
-    products?.p_image_two, 
-    products?.p_image_three
+    products?.
+    feature_image
+   
   ].filter(Boolean); // Removes undefined or null values
-  
+  const link=products?.img_path
+
   // Handle change event
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -75,7 +74,7 @@ const singleproduct = () => {
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={2} py={8}>
           <Grid item lg={4} sm={4} xs={12}>
-            <ThumbsLoopGallery data={imageArray}/>
+            <ThumbsLoopGallery data={imageArray} link={link}/>
           </Grid>
 
           <Grid item lg={4} sm={4}>
