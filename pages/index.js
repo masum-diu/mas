@@ -162,7 +162,7 @@ const Home = () => {
                     </Grid>
 
                 </Grid>
-                <Typography className="Medium" fontSize={40} textTransform={"uppercase"} mb={3} >
+                <Typography className="Medium" fontSize={40} textTransform={"uppercase"} mb={3}   >
                     Our Products
                 </Typography>
                 <ProgressPaginationSwipersider />
