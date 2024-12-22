@@ -206,11 +206,48 @@ const Layout = ({ children }) => {
               <ListItemText primary="ABOUT" />
             </ListItem>
           </Link>
-          <Link href={"/product"} >
-            <ListItem button>
-              <ListItemText primary="PRODUCTS" />
-            </ListItem>
-          </Link>
+          <div
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        style={{ display: "inline-block" }}
+      >
+        {/* Link for PRODUCTS list item */}
+       
+          <ListItem button>
+            <ListItemText primary="PRODUCTS" />
+          </ListItem>
+       
+
+        {/* Dropdown menu */}
+        <Menu
+          sx={{ mt: 1 }}
+          anchorEl={anchorEl}
+          open={open}
+          onClose={handleMouseLeave}
+          MenuListProps={{
+            onMouseLeave: handleMouseLeave,
+          }}
+          anchorOrigin={{
+            vertical: "bottom",
+            horizontal: "left",
+          }}
+          transformOrigin={{
+            vertical: "top",
+            horizontal: "left",
+          }}
+        >
+          {/* Dropdown items */}
+          {products?.map((item, index) => (
+            <MenuItem key={index} onClick={handleMouseLeave} >
+              <Link href={`/product-category/${item?.slug}/${item?.id}`} passHref>
+                <Typography className="Light" fontSize={14}>
+                  {item?.cat_name || "No Category Name"}
+                </Typography>
+              </Link>
+            </MenuItem>
+          ))}
+        </Menu>
+      </div>
           <Link href={"/contactus"} >
             <ListItem button onClick={handleDrawerClose}>
               <Button variant="contained" color="error">

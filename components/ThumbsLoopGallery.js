@@ -39,28 +39,24 @@ export default function App({ data, link }) {
         className="mySwiper2"
       >
         {parsedData.map((featureImages, index) => {
-          const imageUrl =
-            featureImages.length > 0
-              ? `${link}/${featureImages[0].replace(/\\/g, "")}` // Clean up any escaped characters
-              : "/placeholder.jpg"; // Fallback image
+          // Ensure `featureImages` is an array of images
+          const imageUrls = featureImages.map((image) => `${link}/${image.replace(/\\/g, "")}`);
 
-          console.log("Main Image URL:", imageUrl); // Debug log
-
-          return (
-            <SwiperSlide key={index}>
+          return imageUrls.map((imageUrl, i) => (
+            <SwiperSlide key={`${index}-${i}`}>
               <img
                 src={imageUrl}
-                alt={`Main slide ${index}`}
-                width="100%"
-                height="auto"
+                onClick={() => setActiveIndex(index)} // Set active index on click
+
               />
             </SwiperSlide>
-          );
+          ));
         })}
       </Swiper>
 
       {/* Thumbnail Swiper */}
       <Swiper
+        style={{ marginTop: 5 }}
         onSwiper={setThumbsSwiper} // Link the thumbsSwiper instance
         spaceBetween={10}
         slidesPerView={6} // Adjust the number of visible slides
@@ -74,13 +70,13 @@ export default function App({ data, link }) {
           const imageUrls = featureImages.map((image) => `${link}/${image.replace(/\\/g, "")}`);
 
           return imageUrls.map((imageUrl, i) => (
-            <SwiperSlide key={`${index}-${i}`}>
+            <SwiperSlide key={`${index}-${i}`} >
               <img
                 src={imageUrl}
                 alt={`Thumbnail ${index}-${i}`}
                 onClick={() => setActiveIndex(index)} // Set active index on click
                 style={{
-                  border: activeIndex === index ? "2px solid red" : "none", // Highlight active thumbnail
+                  border: activeIndex === index ? "2px solid #9A0E20" : "none", // Highlight active thumbnail
                   cursor: "pointer",
                 }}
               />

@@ -11,7 +11,7 @@ import Link from "next/link";
 function ProgressPaginationSwipersider() {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
-
+console.log(products)
   const fatchingData = async () => {
     setLoading(true);
     try {
