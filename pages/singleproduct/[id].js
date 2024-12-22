@@ -128,15 +128,15 @@ const singleproduct = () => {
                 sx={{
                   maxWidth: 200,
                   // Set text color
-                  color: "red", // Change to any color you want
+                  color: "#9a0e20", // Change to any color you want
                   "& .MuiSelect-icon": {
-                    color: "red", // Change icon color
+                    color: "#9a0e20", // Change icon color
                   },
                   "&.Mui-focused": {
                     borderColor: "white", // Change border color on focus
                   },
                   "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "red", // Set the border color of the select field
+                    borderColor: "#9a0e20", // Set the border color of the select field
                   },
                   "& .MuiMenuItem-root": {
                     color: "blue", // Set the color of menu items

@@ -66,6 +66,7 @@ function ProgressPaginationSwipersider() {
             <SwiperSlide
               key={index}
               style={{ background: "none", width: "200px", height: "200px" }}
+              
             >
               <Link href={`/product-category/${product?.slug}/${product?.id}`} passHref>
                 <Stack
@@ -89,14 +90,16 @@ function ProgressPaginationSwipersider() {
                   />
                   {/* Category Name displayed below the image */}
                   <Typography
+                   sx={{ cursor: "pointer" }}
                     className="Medium"
                     fontSize={18}
-                    color={"red"}
+                    color={"#9a0e20"}
                     textTransform={"uppercase"}
                     style={{
                       textAlign: "center",
                       background: "none",
-                      marginTop: "10px", // Add some spacing
+                      marginTop: "10px",
+                       // Add some spacing
                     }}
                   >
                     {product?.cat_name || "No Category Name"} {/* Fallback text if category name is missing */}

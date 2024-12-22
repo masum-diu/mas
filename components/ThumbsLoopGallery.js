@@ -71,7 +71,9 @@ export default function App({ data, link }) {
       >
         {parsedData.map((featureImages, index) => {
           // Ensure `featureImages` is an array of images
-          const imageUrls = featureImages.map((image) => `${link}/${image.replace(/\\/g, "")}`);
+          const imageUrls = featureImages.map(
+            (image) => `${link}/${image.replace(/\\/g, "")}`
+          );
 
           return imageUrls.map((imageUrl, i) => (
             <SwiperSlide key={`${index}-${i}`}>
@@ -88,8 +90,6 @@ export default function App({ data, link }) {
           ));
         })}
       </Swiper>
-
-
     </>
   );
 }
