@@ -71,6 +71,7 @@ const ProductCategory = () => {
                                         className="Medium"
                                         fontSize={18}
                                         textTransform={"uppercase"}
+                                  
                                     >
                                         {product?.p_name}
                                     </Typography>

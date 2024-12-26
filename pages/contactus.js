@@ -21,26 +21,32 @@ const contactus = () => {
                 </Typography>
                 <Grid container spacing={1} py={3} >
 
-                    <Grid item lg={4}>
-                        <Typography className="Medium" fontSize={18} textTransform={"uppercase"}  >
-                            Email
-                        </Typography>
-                        <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                           infomas@gmail.com
-                        </Typography>
-                        <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                            Address
-                        </Typography>
-                        <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                        Level 4, House 10A, Rd No 4, Dhaka 1212
-                        </Typography>
-                        <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                            Phone
-                        </Typography>
-                        <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                            +880-16852558
-                        </Typography>
-                    </Grid>
+                <Grid item lg={4}>
+                <Typography className="Medium" fontSize={18} textTransform={"uppercase"}  >
+                Canada Address
+                </Typography>
+                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                2010-2200 rue Sauvé Ouest, Montréal, Québec, H4N 0E1, Canada.
+                </Typography>
+                <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
+                Canada Phone no. 
+                </Typography>
+                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                +1 (514) 677-7730 
+                </Typography>
+                <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
+                BD Address
+                </Typography>
+                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                113/A, Plot: 08, Level: 08, Gulshan-2, Dhaka- 1212, Bangladesh. 
+                </Typography>
+                <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
+                BD Phone no.
+                </Typography>
+                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+              
+                </Typography>
+            </Grid>
                     <Grid item lg={4} xs={12}>
                         <Stack direction={"column"} spacing={1}>
                             <Typography className="Medium" fontSize={16} textTransform={"uppercase"}  >
