@@ -80,7 +80,7 @@ const Home = () => {
                         </Stack>
                     </Grid>
                     <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
-                        <img src="/assets/Vector (3).png" alt="" width={25} height={25} style={{ marginTop: 7 }} />
+                        <img src="/assets/value-chain.png" alt="" width={25} height={25} style={{ marginTop: 7 }} />
                         <Stack direction={"column"} spacing={1}>
                             <Typography className="Medium" fontSize={28} textTransform={"uppercase"}  >
                                 ethical manufacturing
@@ -91,7 +91,7 @@ const Home = () => {
                         </Stack>
                     </Grid>
                     <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
-                        <img src="/assets/SVG (1).png" alt="" width={25} height={25} style={{ marginTop: 5 }} />
+                        <img src="/assets/competitive.png" alt="" width={25} height={25} style={{ marginTop: 5 }} />
                         <Stack direction={"column"} spacing={1}>
                             <Typography className="Medium" fontSize={28} textTransform={"uppercase"} >
                                 Competitive pricing
@@ -124,7 +124,7 @@ const Home = () => {
                         </Stack>
                     </Grid>
                     <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
-                        <img src="/assets/Vector (4).png" alt="" width={25} height={25} style={{ marginTop: 8 }} />
+                        <img src="/assets/support(2).png" alt="" width={25} height={25} style={{ marginTop: 8 }} />
                         <Stack direction={"column"} spacing={1}>
                             <Typography className="Medium" fontSize={28} textTransform={"uppercase"} >
                                 Support for new brands

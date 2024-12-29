@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Navigation, Pagination, Scrollbar } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -34,13 +34,17 @@ function ProgressPaginationSwiper() {
                 <div style={{ textAlign: 'center', padding: '20px' }}>Loading slides...</div>
             ) : (
                 <Swiper
-                    modules={[Pagination, Scrollbar, Navigation]}
+                    modules={[Pagination, Scrollbar, Navigation, Autoplay]}
                     pagination={{
                         type: 'progressbar',
                     }}
                     spaceBetween={50}
                     slidesPerView={1}
                     navigation={true}
+                    autoplay={{
+                        delay: 3000, // 3 seconds delay
+                        disableOnInteraction: false, // Continue autoplay even after user interaction
+                    }}
                     style={{ width: '100%', height: '600px' }}
                 >
                     {slides.length > 0 ? (
@@ -67,7 +71,6 @@ function ProgressPaginationSwiper() {
                                             transform: 'translate(-50%, -50%)',
                                             zIndex: 2,
                                             color: '#fff',
-                     
                                             padding: '10px 20px',                          
                                             textAlign: 'left',
                                             fontWeight: 'bold',

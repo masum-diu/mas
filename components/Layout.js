@@ -311,10 +311,11 @@ const Layout = ({ children }) => {
               </Typography>
 
               <Stack direction={"column"} spacing={3} color={"#bbb"}>
-                <Typography className="Regular" fontSize={18}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Luctus interdum volutpat urna neque varius congue.
-                </Typography>
+               {/*  <Typography className="Regular" fontSize={18}>
+                 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                  // Luctus interdum volutpat urna neque varius congue. 
+
+                </Typography>*/}
                 <Stack direction={"row"}>
                   <TextField
                     //   variant="contented"
