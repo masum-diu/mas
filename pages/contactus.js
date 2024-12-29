@@ -22,27 +22,42 @@ const contactus = () => {
                 <Grid container spacing={1} py={3} >
 
                 <Grid item lg={4}>
-                <Typography className="Medium" fontSize={18} textTransform={"uppercase"}  >
-                Canada Address
+                <Typography className="Medium" fontSize={18} textTransform={"uppercase"}   >
+                Email
                 </Typography>
                 <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                2010-2200 rue Sauvé Ouest, Montréal, Québec, H4N 0E1, Canada.
+                Info@masoutfits.com 
                 </Typography>
                 <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                Canada Phone no. 
+                Canada Address
+                </Typography>
+                <Typography className="Regular" fontSize={16} color={"#bbb"} >
+                2010-2200 rue Sauvé Ouest, Montréal, Québec, H4N 0E1, Canada.
                 </Typography>
                 <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                +1 (514) 677-7730 
+                Phone no.: +1 (514) 677-7730 
+                </Typography>             
+                <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3}  >
+                USA Address
                 </Typography>
+                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                20822 San Simeon way 
+                Unit: 106 
+                Miami, Florida 33179
+                USA
+                </Typography>
+                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                Phone no.:  +1 (786) 934-6146
+                </Typography> 
                 <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
                 BD Address
                 </Typography>
                 <Typography className="Regular" fontSize={16} color={"#bbb"}   >
                 113/A, Plot: 08, Level: 08, Gulshan-2, Dhaka- 1212, Bangladesh. 
                 </Typography>
-                <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                BD Phone no.
-                </Typography>
+                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                Phone no.:   02-55049698
+                </Typography> 
                 <Typography className="Regular" fontSize={16} color={"#bbb"}   >
               
                 </Typography>

@@ -279,21 +279,7 @@ const Layout = ({ children }) => {
           <Grid item lg={4}>
             <Stack direction={"column"} spacing={2}>
               <Stack direction={"column"} spacing={1} color={"#bbb"}>
-                <Typography className="Regular" fontSize={16}>
-             <b>Canada Address:</b> 2010-2200 rue Sauvé Ouest, Montréal, <br></br>
-              Québec, H4N 0E1, Canada.
-                </Typography>
-
-              <Typography className="Regular" fontSize={16}>
-             <b>Canada Phone no. :</b> +1 (514) 677-7730            
-                </Typography>
-                       <Typography className="Regular" fontSize={16}>
-             <b>BD Address:</b> 113/A, Plot: 08, Level: 08, Gulshan-2, Dhaka- 1212, Bangladesh.
-                </Typography>
-
-              <Typography className="Regular" fontSize={16}>
-             <b>BD Phone no. :</b>        
-                </Typography>
+                
                 
                 <Stack direction={"row"} spacing={2} color={"#ffff"} py={2}>
                   <Facebook /> <Twitter /> <Instagram />

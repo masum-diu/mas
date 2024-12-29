@@ -58,14 +58,14 @@ const Home = () => {
                 </Grid>
                 <Grid container spacing={4} py={2} >
 
-                    <Grid item lg={12}>
+                    <Grid item lg={12} >
                         <Typography className="Medium" fontSize={40}   >
                             WHY CHOOSE MAS
                         </Typography>
-                        <Typography className="Regular" fontSize={18} color={"#bbb"} sx={{ display: "flex", flexDirection: "column", pt: 1 }}  >
-                            Our product line includes T shirts, Polo shirts, Boxer shorts, Tank Tops/A <span>
-                                Shirts, Thermal Wear, Hoodies, Sweat Shirts/Pants, Socks and Caps both with</span>
-                            labels and blanks
+                        <Typography className="Regular" fontSize={18} color={"#bbb"} sx={{ display: "flex", flexDirection: "column", pt:2 }}  >
+                            Our product line includes T shirts, Polo shirts, Boxer shorts, Tank Tops/A  Shirts,<span>
+                                Thermal Wear, Hoodies, Sweat Shirts/Pants, Socks and Caps both with labels and blanks</span>
+                            
                         </Typography>
                     </Grid>
                     <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
@@ -172,30 +172,43 @@ const Home = () => {
                 <Grid container spacing={1} py={3} >
 
                     <Grid item lg={4}>
-                        <Typography className="Medium" fontSize={18} textTransform={"uppercase"}  >
-                        Canada Address
-                        </Typography>
-                        <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                        2010-2200 rue Sauvé Ouest, Montréal, Québec, H4N 0E1, Canada.
-                        </Typography>
-                        <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                        Canada Phone no. 
-                        </Typography>
-                        <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                        +1 (514) 677-7730 
-                        </Typography>
-                        <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                        BD Address
-                        </Typography>
-                        <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                        113/A, Plot: 08, Level: 08, Gulshan-2, Dhaka- 1212, Bangladesh. 
-                        </Typography>
-                        <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                        BD Phone no.
-                        </Typography>
-                        <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                      
-                        </Typography>
+                    <Typography className="Medium" fontSize={18} textTransform={"uppercase"}   >
+                    Email
+                    </Typography>
+                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                    Info@masoutfits.com 
+                    </Typography>
+                    <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
+                    Canada Address
+                    </Typography>
+                    <Typography className="Regular" fontSize={16} color={"#bbb"} >
+                    2010-2200 rue Sauvé Ouest, Montréal, Québec, H4N 0E1, Canada.
+                    </Typography>
+                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                    Phone no.: +1 (514) 677-7730 
+                    </Typography>             
+                    <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3}  >
+                    USA Address
+                    </Typography>
+                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                    20822 San Simeon way 
+                    Unit: 106 
+                    Miami, Florida 33179
+                    USA
+                    </Typography>
+                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                    Phone no.:  +1 (786) 934-6146
+                    </Typography> 
+                    <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
+                    BD Address
+                    </Typography>
+                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                    113/A, Plot: 08, Level: 08, Gulshan-2, Dhaka- 1212, Bangladesh. 
+                    </Typography>
+                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                    Phone no.:   02-55049698
+                    </Typography> 
+                    
                     </Grid>
                     <Grid item lg={4} xs={12}>
                         <Stack direction={"column"} spacing={1}>
