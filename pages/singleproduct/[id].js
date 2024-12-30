@@ -30,23 +30,28 @@ const singleproduct = () => {
   const [error, setError] = useState(null);
   const [products, setProduct] = useState(null);
   // console.log(products, "products")
-  const fatchingData = async () => {
-    try {
-      setLoading(true);
-      setError(null); // Reset error state
-      const res = await instance.get(`/product-by/${id}`);
-      setProduct(res?.data?.data);
 
-      setLoading(false);
-    } catch (error) {
-      setLoading(false);
-      setError(error.response?.data?.message || "Something went wrong.");
-      console.error(
-        "Error fetching product data:",
-        error.response || error.message
-      );
+ const fatchingData = async () => {
+  try {
+    setLoading(true);
+    setError(null); // Reset error state
+    const res = await instance.get(`/product-by/${id}`);
+    const productData = res?.data?.data;
+    setProduct(productData);
+
+    // Set the first color as the default selected value
+    if (productData?.p_colours?.length > 0) {
+      setSelectedValue(productData.p_colours[0].color_name);
     }
-  };
+
+    setLoading(false);
+  } catch (error) {
+    setLoading(false);
+    setError(error.response?.data?.message || "Something went wrong.");
+    console.error("Error fetching product data:", error.response || error.message);
+  }
+};
+
 
   // Inside JSX
 
@@ -59,8 +64,12 @@ const singleproduct = () => {
   const handleChangeSelect = (event) => {
     setAge(event.target.value);
   };
-  const imageArray = [products?.feature_image].filter(Boolean); // Removes undefined or null values
-  const link = products?.img_path;
+  const imageArray = [
+    products?.
+      feature_image
+
+  ].filter(Boolean); // Removes undefined or null values
+  const link = products?.img_path
 
   // Handle change event
   const handleChange = (event) => {
@@ -85,30 +94,27 @@ const singleproduct = () => {
               >
                 {products?.p_name}
               </Typography>
-              <Typography className="Regular" color={"#bbb"}>
-                <span
+              <Typography className="Regular"  color={"#bbb"}>
+                <span 
                   dangerouslySetInnerHTML={{
-                    __html: products?.p_raw_description,
+                    __html: products?.
+                      p_raw_description
                   }}
                 />
               </Typography>
-              
-              {
-                products?.p_colours.length > 1 && (
-                <>
-                <Typography className="Regular" fontSize={18} color={"#fff"}>
+              <Typography className="Regular" fontSize={18} color={"#fff"}>
                 Color:
               </Typography>
               <FormControl component="fieldset">
+
                 <RadioGroup
                   aria-label="options"
                   name="radio-buttons-group"
-                  value={selectedValue || products?.p_colours[0]?.color_name}
+                  value={selectedValue}
                   onChange={handleChange}
                 >
-                  {console.log("Products colors: ", products?.p_colours)}
-                  <Stack direction={"row"}>
-                    {products?.p_colours.map((v, i) => (
+                  <Stack direction={"row"} >
+                  {products?.p_colours.map((v, i) => (
                       <FormControlLabel
                         key={i}
                         value={v.color_name}
@@ -127,9 +133,6 @@ const singleproduct = () => {
                   </Stack>
                 </RadioGroup>
               </FormControl>
-              </>
-                )}
-              
               <Typography className="Regular" fontSize={18} color={"#fff"}>
                 View Size:
               </Typography>
@@ -163,11 +166,7 @@ const singleproduct = () => {
                 <MenuItem disabled value={10}>
                   Select Size
                 </MenuItem>
-                {products?.p_sizes.map((v, i) => (
-                  <MenuItem key={i} value={v?.size_name}>
-                    {v?.size_name}
-                  </MenuItem>
-                ))}
+                {products?.p_sizes.map((v, i) => <MenuItem key={i} value={v?.size_name}>{v?.size_name}</MenuItem>)}
               </Select>
             </Stack>
           </Grid>
