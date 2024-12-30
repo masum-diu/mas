@@ -69,7 +69,7 @@ const Layout = ({ children }) => {
       >
         <Toolbar
           sx={{
-            width: "90%",
+            width: "70%",
             maxWidth: "1500px",
             margin: "0 auto",
             padding: "0px",

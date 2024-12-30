@@ -13,18 +13,18 @@ const Home = () => {
     return (
         <Layout>
             <ProgressPaginationSwiper />
-            <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto", }}>
+            <Box sx={{ width: "70%", maxWidth: "1500px", margin: "0 auto", }}>
 
-                <Grid container spacing={2} py={6} >
+                <Grid container spacing={4} py={6} >
                     <Grid item lg={6}>
-                        <Stack alignItems={"center"} justifyContent={"center"} direction={"column"} sx={{ position: "relative" }}>
+                       
                             <Typography className="Medium" fontSize={40} sx={{ display: "flex", flexDirection: "column", zIndex: 2, position: "relative" }}>
-                                Simple Essentials, <span> Global Impact</span>
+                            SIMPLE ESSENTIALS, GLOBAL IMPACT
                             </Typography>
                             {/* <Typography className="Medium" fontSize={60} sx={{ position: 'absolute', left: 187, top: 80, zIndex: 1 }}>
                             MAS
                         </Typography> */}
-                        </Stack>
+                        
                     </Grid>
 
                     <Grid item lg={6} >

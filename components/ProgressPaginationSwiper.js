@@ -77,6 +77,7 @@ function ProgressPaginationSwiper() {
                                             letterSpacing: '1px',
                                             textTransform: 'uppercase',
                                         }}
+                                      
                                     >
                                         {slide.title}
                                     </Typography>
