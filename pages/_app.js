@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
       {/* Add Head for favicon */}
       <Head>
         <link rel="icon" href="/assets/Masfavicon.png" />
-        <title>My App</title> {/* Optional: Add a title for the app */}
+        <title>MAS</title> {/* Optional: Add a title for the app */}
       </Head>
       <AuthProvider>
         <ThemeProvider theme={theme}>
