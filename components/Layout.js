@@ -263,7 +263,7 @@ const Layout = ({ children }) => {
           container
           spacing={0}
           sx={{
-            width: "90%",
+            width: "70%",
             color: "#ffff",
             maxWidth: "1500px",
             margin: "0 auto",
@@ -271,72 +271,51 @@ const Layout = ({ children }) => {
             pt: 5,
           }}
         >
-          <Grid item lg={4} sx={{ cursor: "pointer" }}>
+          <Grid item lg={3} sx={{ cursor: "pointer" }}>
+          
             <Link href={"/"} >
               <img src="/assets/logo.png" alt="" width={132} />
             </Link>
-          </Grid>
-          <Grid item lg={4}>
-            <Stack direction={"column"} spacing={2}>
-              <Stack direction={"column"} spacing={1} color={"#bbb"}>
-                
-                
-                <Stack direction={"row"} spacing={2} color={"#ffff"} py={2}>
+                     <Stack direction={"row"} spacing={2} color={"#ffff"} py={2}>
                   <Facebook /> <Twitter /> <Instagram />
                 </Stack>
-
-                <Link href={"/faq"} >
-                  <Typography className="Regular" fontSize={16} sx={{ cursor: "pointer" }}>
-                    FAQ
-                  </Typography>
-                </Link>
-                <Link href={"/privacy"} >
-                  <Typography className="Regular" fontSize={16} sx={{ cursor: "pointer" }}>
-                    PRIVACY POLICY
-                  </Typography>
-                </Link>
-
-              </Stack>
-            </Stack>
+          </Grid>
+          <Grid item lg={3}>
+           <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
+                           Canada Address
+                           </Typography>
+                            <Typography className="Regular" fontSize={16} color={"#bbb"} >
+                                           2010-2200 rue Sauvé Ouest, Montréal, Québec,<br/> H4N 0E1, Canada.
+                                           </Typography>
+                                            <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                                                           Phone no.: +1 (514) 677-7730 
+                                                           </Typography> 
           </Grid>
 
-          <Grid item lg={4}>
-            <Stack direction={"column"} spacing={2}>
-              <Typography
-                className="Medium"
-                fontSize={28}
-                textTransform={"uppercase"}
-              >
-                Subscribe our newsletter
-              </Typography>
-
-              <Stack direction={"column"} spacing={3} color={"#bbb"}>
-              
-               {/*<Typography className="Regular" fontSize={18}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  Luctus interdum volutpat urna neque varius congue.
-                </Typography> */}
-
-                <Stack direction={"row"}>
-                  <TextField
-                    //   variant="contented"
-                    color="primary"
-                    size="small"
-                    placeholder="Enter Your Email Address"
-                    fullWidth
-                    focused
-                    InputProps={{
-                      sx: {
-                        color: "#ffffff",
-                      },
-                    }}
-                  />
-                  <Button variant="contained" color="error">
-                    Subscribe
-                  </Button>
-                </Stack>
-              </Stack>
-            </Stack>
+          <Grid item lg={3}>
+            <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3}  >
+                           USA Address
+                           </Typography>
+                           <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                           20822 San Simeon way 
+                           Unit: 106 
+                           Miami, <br/>Florida 33179
+                           USA
+                           </Typography>
+                           <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                           Phone no.:  +1 (786) 934-6146
+                           </Typography> 
+          </Grid>
+          <Grid item lg={3}>
+           <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
+                           Bangladesh Address
+                           </Typography>
+                           <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                           113/A, Plot: 08, Level: 08, Gulshan-2,<br/> Dhaka- 1212, Bangladesh. 
+                           </Typography>
+                           <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                           Phone no.:   02-55049698
+                           </Typography> 
           </Grid>
         </Grid>
         <Grid item lg={12} textAlign={"center"} pb={'10px'}>
