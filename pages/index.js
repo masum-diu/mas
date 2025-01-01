@@ -182,7 +182,7 @@ const Home = () => {
                     Canada Address
                     </Typography>
                     <Typography className="Regular" fontSize={16} color={"#bbb"} >
-                    2010-2200 rue Sauvé Ouest, Montréal, Québec, H4N 0E1, Canada.
+                    2010-2200 rue Sauvé Ouest, Montréal, Québec,<br/> H4N 0E1, Canada.
                     </Typography>
                     <Typography className="Regular" fontSize={16} color={"#bbb"}   >
                     Phone no.: +1 (514) 677-7730 
@@ -193,17 +193,17 @@ const Home = () => {
                     <Typography className="Regular" fontSize={16} color={"#bbb"}   >
                     20822 San Simeon way 
                     Unit: 106 
-                    Miami, Florida 33179
+                    Miami, <br/>Florida 33179
                     USA
                     </Typography>
                     <Typography className="Regular" fontSize={16} color={"#bbb"}   >
                     Phone no.:  +1 (786) 934-6146
                     </Typography> 
                     <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                    BD Address
+                    Bangladesh Address
                     </Typography>
                     <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                    113/A, Plot: 08, Level: 08, Gulshan-2, Dhaka- 1212, Bangladesh. 
+                    113/A, Plot: 08, Level: 08, Gulshan-2,<br/> Dhaka- 1212, Bangladesh. 
                     </Typography>
                     <Typography className="Regular" fontSize={16} color={"#bbb"}   >
                     Phone no.:   02-55049698
