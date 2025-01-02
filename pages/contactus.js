@@ -22,40 +22,9 @@ const contactus = () => {
                 <Grid container spacing={1} py={3} >
 
                 <Grid item lg={4}>
-                <Typography className="Medium" fontSize={18} textTransform={"uppercase"}   >
-                Email
+                <Typography className="Regular" fontSize={16} textTransform={"uppercase"} color={"#bbb"} >
+                If you have any questions, feel free to <br/> email us or reach out through our <br/> contact form.
                 </Typography>
-                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                Info@masoutfits.com 
-                </Typography>
-                <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3}  >
-                USA Address
-                </Typography>
-                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                106-20822 San Simeon Way, Miami,<br/> Florida 33179, USA.
-                </Typography>
-                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                Phone no.:  +1 (786) 934-6146
-                </Typography> 
-                <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                Canada Address
-                </Typography>
-                <Typography className="Regular" fontSize={16} color={"#bbb"} >
-                2010-2200 rue Sauvé Ouest, Montréal,<br/> Québec H4N 0E1, Canada.
-                </Typography>
-                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                Phone no.: +1 (514) 677-7730 
-                </Typography>             
-               
-                <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                Bangladesh Address
-                </Typography>
-                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                113/A, Plot: 08, Level: 08, Gulshan 2,<br/>Dhaka 1212, Bangladesh.
-                </Typography>
-                <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                Phone no.:  +88-02-55049698
-                </Typography> 
                 
                 </Grid>
                     <Grid item lg={4} xs={12}>

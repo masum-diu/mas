@@ -184,7 +184,7 @@ const Home = () => {
 
                     <Grid item lg={4} >
                     <Typography className="Regular" fontSize={16} textTransform={"uppercase"} color={"#bbb"} >
-                    "If you have any questions, feel free to <br/> email us or reach out through our <br/> contact form."
+                    If you have any questions, feel free to <br/> email us or reach out through our <br/> contact form.
                     </Typography>
                    
                     <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3}   >
