@@ -56,7 +56,7 @@ const Home = () => {
                     </Grid>
 
                 </Grid>
-                <Grid container spacing={4} py={2} >
+                <Grid container spacing={4} py={8} >
 
                     <Grid item lg={12} >
                         <Typography className="Medium" fontSize={40}   >
@@ -79,28 +79,29 @@ const Home = () => {
                         </Typography>
                     </Stack>
                 </Grid>
+                <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
+                <img src="/assets/Vector (5).png" alt="" width={25} height={25} style={{ marginTop: 8 }} />
+                <Stack direction={"column"} spacing={1}>
+                    <Typography className="Medium" fontSize={28} textTransform={"uppercase"}  >
+                    Premium-Comfort
+                    </Typography>
+                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                    Discover premium, durable, and meticulously crafted apparel built to last, offering unmatched comfort for all-day wear
+                    </Typography>
+                </Stack>
+            </Grid>
                     <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
                         <img src="/assets/SVG.png" alt="" width={25} height={25} style={{ marginTop: 5 }} />
                         <Stack direction={"column"} spacing={1}>
                             <Typography className="Medium" fontSize={28} textTransform={"uppercase"}  >
-                                High-quality
+                            ONGOING INNOVATION
                             </Typography>
                             <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                                Experience durable and well-crafted apparel that stands the test of time
+                              
                             </Typography>
                         </Stack>
                     </Grid>
-                    <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
-                    <img src="/assets/Vector (5).png" alt="" width={25} height={25} style={{ marginTop: 8 }} />
-                    <Stack direction={"column"} spacing={1}>
-                        <Typography className="Medium" fontSize={28} textTransform={"uppercase"}  >
-                            Comfortable
-                        </Typography>
-                        <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                        Crafted using materials and designs that put your comfort first throughout the day.
-                        </Typography>
-                    </Stack>
-                </Grid>
+               
                 <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
                 <img src="/assets/SVG (2).png" alt="" width={25} height={25} style={{ marginTop: 5 }} />
                 <Stack direction={"column"} spacing={1}>
@@ -144,10 +145,11 @@ const Home = () => {
                 <Grid container spacing={2} py={8} >
                     <Grid item lg={6} >
                         <Stack alignItems={"left"} justifyContent={"left"} direction={"column"} spacing={2} >
-                            <Typography className="Medium" textTransform={"uppercase"} fontSize={28} sx={{ display: "flex", flexDirection: "column", }}>
+                            <Typography className="Medium" textTransform={"uppercase"} fontSize={40} sx={{ display: "flex", flexDirection: "column", }}>
                                 Team of professionals <span>is waiting for you</span>
                             </Typography>
-                            <Typography className="Medium" fontSize={16} textAlign={"left"} >
+                         
+                            <Typography className="Regular" fontSize={16} textAlign={"left"}  color={"#bbb"} >
                                 At MAS, we understand the importance of the basics. That’s why we focus on delivering essential clothing items that form the foundation of any wardrobe. From T-shirts to Tank Tops, our products are designed for comfort, quality, and versatility. As a subsidiary of Mishael International Inc., we leverage decades of industry experience to bring you the best in basic apparel.
                             </Typography>
                             <Link href ="/faq">
@@ -165,50 +167,32 @@ const Home = () => {
                     </Grid>
 
                 </Grid>
+                <Grid container spacing={2} py={8} >
                 <Typography className="Medium" fontSize={40} textTransform={"uppercase"} mb={3}   >
                     Our Products
                 </Typography>
                 <ProgressPaginationSwipersider />
-                <Typography className="Medium" fontSize={40} textTransform={"uppercase"} pt={8} >
+                </Grid>
+                <Grid container spacing={2}  >
+                <Typography className="Medium" fontSize={40} textTransform={"uppercase"} pt={2}  >
                     Let’s talk
                 </Typography>
-                <Grid container spacing={1} py={3} >
+                </Grid>
+                  <Grid container spacing={1} py={3} style={{
+                    marginLeft: "-22px"
+                  }}> 
 
-                    <Grid item lg={4}>
-                    <Typography className="Medium" fontSize={18} textTransform={"uppercase"}   >
+                    <Grid item lg={4} >
+                    <Typography className="Regular" fontSize={16} textTransform={"uppercase"} color={"#bbb"} >
+                    "If you have any questions, feel free to <br/> email us or reach out through our <br/> contact form."
+                    </Typography>
+                   
+                    <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3}   >
                     Email
                     </Typography>
                     <Typography className="Regular" fontSize={16} color={"#bbb"}   >
                     Info@masoutfits.com 
                     </Typography>
-                    <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3}  >
-                    USA Address
-                    </Typography>
-                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                    106-20822 San Simeon Way, Miami,<br/> Florida 33179, USA.
-                    </Typography>
-                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                    Phone no.:  +1 (786) 934-6146
-                    </Typography> 
-                    <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                    Canada Address
-                    </Typography>
-                    <Typography className="Regular" fontSize={16} color={"#bbb"} >
-                    2010-2200 rue Sauvé Ouest, Montréal,<br/> Québec H4N 0E1, Canada.
-                    </Typography>
-                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                    Phone no.: +1 (514) 677-7730 
-                    </Typography>             
-                   
-                    <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                    Bangladesh Address
-                    </Typography>
-                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                    113/A, Plot: 08, Level: 08, Gulshan 2,<br/>Dhaka 1212, Bangladesh.
-                    </Typography>
-                    <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                    Phone no.:  +88-02-55049698
-                    </Typography> 
                     
                     </Grid>
                     
@@ -339,6 +323,7 @@ const Home = () => {
                     </Grid>
 
 
+               
                 </Grid>
             </Box>
 
@@ -348,3 +333,23 @@ const Home = () => {
 }
 
 export default Home
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
