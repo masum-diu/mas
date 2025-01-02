@@ -276,31 +276,25 @@ const Layout = ({ children }) => {
             <Link href={"/"} >
               <img src="/assets/logo.png" alt="" width={132} />
             </Link>
-                     <Stack direction={"row"} spacing={2} color={"#ffff"} py={2}>
-                  <Facebook /> <Twitter /> <Instagram />
-                </Stack>
+                    <Stack direction={"row"} spacing={2}  py={2}>
+                    <a href="" target="_blank"  >
+                    <Facebook sx={{ color: "#fff" }}/>
+                    </a>
+                    <a href="" target="_blank" >
+                    <Twitter sx={{ color: "#fff" }} />
+                    </a> 
+                    <a href="" target="_blank" >
+                    <Instagram sx={{ color: "#fff" }}/>
+                    </a>
+                    </Stack>
           </Grid>
-          <Grid item lg={3}>
-           <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                           Canada Address
-                           </Typography>
-                            <Typography className="Regular" fontSize={16} color={"#bbb"} >
-                                           2010-2200 rue Sauvé Ouest, Montréal, Québec,<br/> H4N 0E1, Canada.
-                                           </Typography>
-                                            <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                                                           Phone no.: +1 (514) 677-7730 
-                                                           </Typography> 
-          </Grid>
-
+          
           <Grid item lg={3}>
             <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3}  >
                            USA Address
                            </Typography>
                            <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                           20822 San Simeon way 
-                           Unit: 106 
-                           Miami, <br/>Florida 33179
-                           USA
+                          106-20822 San Simeon Way, Miami, <br/>Florida 33179, USA.
                            </Typography>
                            <Typography className="Regular" fontSize={16} color={"#bbb"}   >
                            Phone no.:  +1 (786) 934-6146
@@ -308,13 +302,25 @@ const Layout = ({ children }) => {
           </Grid>
           <Grid item lg={3}>
            <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
+                           Canada Address
+                           </Typography>
+                            <Typography className="Regular" fontSize={16} color={"#bbb"} >
+                                           2010-2200 rue Sauvé Ouest, Montréal,<br/>Québec H4N 0E1, Canada.
+                                           </Typography>
+                                            <Typography className="Regular" fontSize={16} color={"#bbb"}   >
+                                                           Phone no.: +1 (514) 677-7730 
+                                                           </Typography> 
+          </Grid>
+
+          <Grid item lg={3}>
+           <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
                            Bangladesh Address
                            </Typography>
                            <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                           113/A, Plot: 08, Level: 08, Gulshan-2,<br/> Dhaka- 1212, Bangladesh. 
+                           113/A, Plot: 08, Level: 08, Gulshan 2,<br/> Dhaka- 1212, Bangladesh. 
                            </Typography>
                            <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                           Phone no.:   02-55049698
+                           Phone no.:  +88-02-55049698
                            </Typography> 
           </Grid>
         </Grid>
