@@ -97,7 +97,7 @@ const Home = () => {
                             ONGOING INNOVATION
                             </Typography>
                             <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                              
+                            By seeing areas for development and reacting to changes in the market and consumer demands, we continuously enhance and modify our goods to remain competitive and expand.
                             </Typography>
                         </Stack>
                     </Grid>
