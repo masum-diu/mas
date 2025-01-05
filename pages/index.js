@@ -169,7 +169,7 @@ const Home = () => {
                 </Grid>
                 <Grid container spacing={2} py={8} >
                 <Typography className="Medium" fontSize={40} textTransform={"uppercase"} mb={3}   >
-                    Our Products
+                    Our Products new
                 </Typography>
                 <ProgressPaginationSwipersider />
                 </Grid>
