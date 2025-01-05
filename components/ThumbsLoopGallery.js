@@ -63,17 +63,17 @@ export default function App({ data, link }) {
           return imageUrls.map((imageUrl, i) => (
             <SwiperSlide key={`${index}-${i}`}>
               <div
+                style={{ height: "100%" }}
                 className="magnifying-container"
                 onMouseEnter={() => setIsMagnifying(true)}
                 onMouseLeave={() => setIsMagnifying(false)}
               >
-                <Image
+                <img
                   src={imageUrl}
                   onMouseMove={(e) => handleMouseMove(e, e.target)}
                   onClick={() => setActiveIndex(index)} // Set active index on click
                   alt={`Image ${index}-${i}`}
                   width={500}
-                  height={850}
                   objectFit="cover"
                 />
                 {isMagnifying && (
