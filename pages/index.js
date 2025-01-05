@@ -152,11 +152,11 @@ const Home = () => {
                             <Typography className="Regular" fontSize={16} textAlign={"left"}  color={"#bbb"} >
                                 At MAS, we understand the importance of the basics. That’s why we focus on delivering essential clothing items that form the foundation of any wardrobe. From T-shirts to Tank Tops, our products are designed for comfort, quality, and versatility. As a subsidiary of Mishael International Inc., we leverage decades of industry experience to bring you the best in basic apparel.
                             </Typography>
-                            <Link href ="/faq">
+                         
                             <Button variant="contained" color="error" sx={{ maxWidth: 140 }}>
                                 learn more
                             </Button>
-                            </Link>
+                          
                         </Stack>
 
                     </Grid>
@@ -167,13 +167,17 @@ const Home = () => {
                     </Grid>
 
                 </Grid>
+               
                 <Grid container spacing={2} py={8} >
+                <Grid item lg={12} xs={12}>
                 <Typography className="Medium" fontSize={40} textTransform={"uppercase"} mb={3}   >
-                    Our Products new
+                    Our Products
                 </Typography>
                 <ProgressPaginationSwipersider />
                 </Grid>
+                </Grid>
                 <Grid container spacing={2}  >
+                
                 <Typography className="Medium" fontSize={40} textTransform={"uppercase"} pt={2}  >
                     Let’s talk
                 </Typography>
