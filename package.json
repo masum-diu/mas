@@ -17,6 +17,7 @@
     "chart.js": "^4.4.3",
     "chartjs-adapter-date-fns": "^3.0.0",
     "date-fns": "^3.6.0",
+    "easy-magnify": "^1.1.4",
     "next": "^12.3.4",
     "quill": "^2.0.2",
     "react": "18.2.0",
@@ -25,7 +26,7 @@
     "react-loader-spinner": "^6.1.6",
     "react-quill": "^2.0.0",
     "react-toastify": "^10.0.5",
-    "swiper": "^11.1.15"
+    "swiper": "^11.2.0"
   },
   "devDependencies": {
     "eslint": "8.57.0",

@@ -10,10 +10,13 @@ import "swiper/css/thumbs";
 
 // Import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import Image from "next/image";
 
 export default function App({ data, link }) {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const [activeIndex, setActiveIndex] = useState(0); // Track the active index
+  const [isMagnifying, setIsMagnifying] = useState(false);
+  const [magnifierPosition, setMagnifierPosition] = useState({ x: 0, y: 0 });
 
   // Parse the data properly to ensure consistency
   const parsedData = data.map((item, index) => {
@@ -24,6 +27,19 @@ export default function App({ data, link }) {
       return []; // Return an empty array for invalid data
     }
   });
+
+  const handleMouseMove = (e, img) => {
+    if (isMagnifying) {
+      const { left, top, width, height } = img.getBoundingClientRect();
+      const offsetX = e.clientX - left;
+      const offsetY = e.clientY - top;
+
+      const x = (offsetX / width) * 100;
+      const y = (offsetY / height) * 100;
+
+      setMagnifierPosition({ x, y });
+    }
+  };
 
   return (
     <>
@@ -40,15 +56,39 @@ export default function App({ data, link }) {
       >
         {parsedData.map((featureImages, index) => {
           // Ensure `featureImages` is an array of images
-          const imageUrls = featureImages.map((image) => `${link}/${image.replace(/\\/g, "")}`);
+          const imageUrls = featureImages.map(
+            (image) => `${link}/${image.replace(/\\/g, "")}`
+          );
 
           return imageUrls.map((imageUrl, i) => (
             <SwiperSlide key={`${index}-${i}`}>
-              <img
-                src={imageUrl}
-                onClick={() => setActiveIndex(index)} // Set active index on click
-
-              />
+              <div
+                className="magnifying-container"
+                onMouseEnter={() => setIsMagnifying(true)}
+                onMouseLeave={() => setIsMagnifying(false)}
+              >
+                <Image
+                  src={imageUrl}
+                  onMouseMove={(e) => handleMouseMove(e, e.target)}
+                  onClick={() => setActiveIndex(index)} // Set active index on click
+                  alt={`Image ${index}-${i}`}
+                  width={500}
+                  height={850}
+                  objectFit="cover"
+                />
+                {isMagnifying && (
+                  <div
+                    className="magnifier"
+                    style={{
+                      backgroundImage: `url(${imageUrl})`,
+                      backgroundSize: "800%", // Zoom level (increase size to zoom more)
+                      backgroundPosition: `${magnifierPosition.x}% ${magnifierPosition.y}%`, // Show the specific part under the cursor
+                      left: `${magnifierPosition.x}%`,
+                      top: `${magnifierPosition.y}%`,
+                    }}
+                  />
+                )}
+              </div>
             </SwiperSlide>
           ));
         })}
@@ -72,7 +112,7 @@ export default function App({ data, link }) {
           );
 
           return imageUrls.map((imageUrl, i) => (
-            <SwiperSlide key={`${index}-${i}`} >
+            <SwiperSlide key={`${index}-${i}`}>
               <img
                 src={imageUrl}
                 alt={`Thumbnail ${index}-${i}`}
@@ -86,6 +126,32 @@ export default function App({ data, link }) {
           ));
         })}
       </Swiper>
+
+      {/* Add the necessary styles for magnification */}
+      <style jsx>{`
+        .magnifying-container {
+          position: relative;
+          display: inline-block;
+        }
+
+        .magnifier {
+          position: absolute;
+          border-radius: 50%;
+          width: 100px; /* Size of the magnifying glass */
+          height: 100px;
+          border: 3px solid #9a0e20;
+          pointer-events: none;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 200%; /* Zoom level */
+          display: none;
+          transform: translate(-50%, -50%);
+        }
+
+        .magnifying-container:hover .magnifier {
+          display: block;
+        }
+      `}</style>
     </>
   );
 }
