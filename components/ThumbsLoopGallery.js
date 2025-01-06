@@ -97,12 +97,12 @@ export default function App({ data, link }) {
       {/* Thumbnail Swiper */}
       <Swiper
         style={{ marginTop: 5 }}
-        onSwiper={setThumbsSwiper} // Link the thumbsSwiper instance
+        onSwiper={setThumbsSwiper} 
         spaceBetween={10}
-        slidesPerView={6} // Adjust the number of visible slides
-        freeMode={true}
+        slidesPerView={6} 
+        // freeMode={true}
         watchSlidesProgress={true}
-        modules={[FreeMode, Navigation, Thumbs]}
+        modules={[ Navigation, Thumbs]}
         className="mySwiper"
       >
         {parsedData.map((featureImages, index) => {
