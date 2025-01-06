@@ -65,15 +65,13 @@ console.log(products)
           {products?.map((product, index) => (
             <SwiperSlide
               key={index}
-              style={{ background: "none", width: "200px", height: "200px" }}
-              
             >
               <Link href={`/product-category/${product?.slug}/${product?.id}`} passHref>
                 <Stack
                   direction={"column"}
                   spacing={1}
                   alignItems="center"
-                  style={{ width: "100%", height: "100%" }}
+                 
                 >
                   {/* Image with fallback in case of error */}
                   <img
@@ -98,7 +96,7 @@ console.log(products)
                     style={{
                       textAlign: "center",
                       background: "none",
-                      marginTop: "10px",
+                      marginTop: "20px",
                        // Add some spacing
                     }}
                   >

@@ -1,6 +1,10 @@
 import { useState, useEffect } from "react";
 import { Box, Card, CardMedia, Stack } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  GlassMagnifier,
+  Magnifier,
+} from "react-image-magnifiers";
 import 'swiper/css';
 const ThumbsLoopGallery = ({ data, link }) => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -28,12 +32,13 @@ const ThumbsLoopGallery = ({ data, link }) => {
       {/* Main Image */}
       {selectedImage && (
         <Card sx={{ marginBottom: 2 }}>
-          <CardMedia
-            component="img"
-            image={`${link}/${selectedImage}`}
-            alt="Selected Image"
-          />
-        </Card>
+        <GlassMagnifier
+          imageSrc={`${link}/${selectedImage}`}
+          imageAlt="Selected Image"
+          largeImageSrc={`${link}/${selectedImage}`} 
+  
+        />
+      </Card>
       )}
 
       {/* Swiper Thumbnails */}
