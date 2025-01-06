@@ -271,10 +271,6 @@ const Home = () => {
                 a subsidiary of Mishael International Inc., we leverage decades
                 of industry experience to bring you the best in basic apparel.
               </Typography>
-
-              <Button variant="contained" color="error" sx={{ maxWidth: 140 }}>
-                learn more
-              </Button>
             </Stack>
           </Grid>
 
