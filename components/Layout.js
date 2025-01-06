@@ -31,7 +31,7 @@ const Layout = ({ children }) => {
   const handleDrawerOpen = () => setOpenDrawer(true);
   const handleDrawerClose = () => setOpenDrawer(false);
   const [products, setProducts] = useState(null);
-  console.log(products)
+  console.log(products);
   const [loading, setLoading] = useState(true);
 
   const open = Boolean(anchorEl);
@@ -80,7 +80,6 @@ const Layout = ({ children }) => {
             height: 94,
           }}
         >
-
           <Stack
             direction="row"
             width="100%"
@@ -88,7 +87,7 @@ const Layout = ({ children }) => {
             alignItems="center"
             sx={{ cursor: "pointer" }}
           >
-            <Link href={"/"} >
+            <Link href={"/"}>
               <img src="/assets/logo.png" alt="Logo" width={132} />
             </Link>
             {/* Desktop Menu */}
@@ -100,13 +99,13 @@ const Layout = ({ children }) => {
                 display: { xs: "none", md: "flex" },
               }}
             >
-              <Link href={"/"} >
+              <Link href={"/"}>
                 <Typography className="Medium" fontSize={16}>
                   HOME
                 </Typography>
               </Link>
-              <Link href={"/about"} >
-                <Typography className="Medium" fontSize={16} >
+              <Link href={"/about"}>
+                <Typography className="Medium" fontSize={16}>
                   ABOUT
                 </Typography>
               </Link>
@@ -143,20 +142,26 @@ const Layout = ({ children }) => {
                   }}
                 >
                   {/* Dropdown items */}
-                  {products?.map((item, index) => <MenuItem onClick={handleMouseLeave}>
-                    <Link key={index} href={`/product-category/${item?.slug}/${item?.id}`} passHref>
-                      <Typography className="Light"
-                        fontSize={14}> {item?.cat_name || "No Category Name"}</Typography>
-                    </Link>
-
-                  </MenuItem>)}
-
+                  {products?.map((item, index) => (
+                    <MenuItem onClick={handleMouseLeave}>
+                      <Link
+                        key={index}
+                        href={`/product-category/${item?.slug}/${item?.id}`}
+                        passHref
+                      >
+                        <Typography className="Light" fontSize={14}>
+                          {" "}
+                          {item?.cat_name || "No Category Name"}
+                        </Typography>
+                      </Link>
+                    </MenuItem>
+                  ))}
                 </Menu>
               </div>
               {/* <Typography className="Medium" fontSize={16}>
                 CONTACTS
               </Typography>*/}
-              <Link href={"/contactus"} >
+              <Link href={"/contactus"}>
                 <Button variant="contained" color="error">
                   Contact Us
                 </Button>
@@ -196,59 +201,61 @@ const Layout = ({ children }) => {
         </Stack>
 
         <List sx={{ width: 250 }}>
-          <Link href={"/"} >
+          <Link href={"/"}>
             <ListItem button>
               <ListItemText primary="HOME" />
             </ListItem>
           </Link>
-          <Link href={"/about"} >
+          <Link href={"/about"}>
             <ListItem button>
               <ListItemText primary="ABOUT" />
             </ListItem>
           </Link>
           <div
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-        style={{ display: "inline-block" }}
-      >
-        {/* Link for PRODUCTS list item */}
-       
-          <ListItem button>
-            <ListItemText primary="PRODUCTS" />
-          </ListItem>
-       
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            style={{ display: "inline-block" }}
+          >
+            {/* Link for PRODUCTS list item */}
 
-        {/* Dropdown menu */}
-        <Menu
-          sx={{ mt: 1 }}
-          anchorEl={anchorEl}
-          open={open}
-          onClose={handleMouseLeave}
-          MenuListProps={{
-            onMouseLeave: handleMouseLeave,
-          }}
-          anchorOrigin={{
-            vertical: "bottom",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-        >
-          {/* Dropdown items */}
-          {products?.map((item, index) => (
-            <MenuItem key={index} onClick={handleMouseLeave} >
-              <Link href={`/product-category/${item?.slug}/${item?.id}`} passHref>
-                <Typography className="Light" fontSize={14}>
-                  {item?.cat_name || "No Category Name"}
-                </Typography>
-              </Link>
-            </MenuItem>
-          ))}
-        </Menu>
-      </div>
-          <Link href={"/contactus"} >
+            <ListItem button>
+              <ListItemText primary="PRODUCTS" />
+            </ListItem>
+
+            {/* Dropdown menu */}
+            <Menu
+              sx={{ mt: 1 }}
+              anchorEl={anchorEl}
+              open={open}
+              onClose={handleMouseLeave}
+              MenuListProps={{
+                onMouseLeave: handleMouseLeave,
+              }}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+            >
+              {/* Dropdown items */}
+              {products?.map((item, index) => (
+                <MenuItem key={index} onClick={handleMouseLeave}>
+                  <Link
+                    href={`/product-category/${item?.slug}/${item?.id}`}
+                    passHref
+                  >
+                    <Typography className="Light" fontSize={14}>
+                      {item?.cat_name || "No Category Name"}
+                    </Typography>
+                  </Link>
+                </MenuItem>
+              ))}
+            </Menu>
+          </div>
+          <Link href={"/contactus"}>
             <ListItem button onClick={handleDrawerClose}>
               <Button variant="contained" color="error">
                 Contact Us
@@ -272,62 +279,82 @@ const Layout = ({ children }) => {
           }}
         >
           <Grid item lg={3} sx={{ cursor: "pointer" }}>
-          
-            <Link href={"/"} >
+            <Link href={"/"}>
               <img src="/assets/logo.png" alt="" width={132} />
             </Link>
-                    <Stack direction={"row"} spacing={2}  py={2}>
-                    <a href="" target="_blank"  >
-                    <Facebook sx={{ color: "#fff" }}/>
-                    </a>
-                    <a href="" target="_blank" >
-                    <Twitter sx={{ color: "#fff" }} />
-                    </a> 
-                    <a href="" target="_blank" >
-                    <Instagram sx={{ color: "#fff" }}/>
-                    </a>
-                    </Stack>
-          </Grid>
-          
-          <Grid item lg={3}>
-            <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3}  >
-                           USA Address
-                           </Typography>
-                           <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                          106-20822 San Simeon Way, Miami, <br/>Florida 33179, USA.
-                           </Typography>
-                           <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                           Phone no.:  +1 (786) 934-6146
-                           </Typography> 
-          </Grid>
-          <Grid item lg={3}>
-           <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                           Canada Address
-                           </Typography>
-                            <Typography className="Regular" fontSize={16} color={"#bbb"} >
-                                           2010-2200 rue Sauvé Ouest, Montréal,<br/>Québec H4N 0E1, Canada.
-                                           </Typography>
-                                            <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                                                           Phone no.: +1 (514) 677-7730 
-                                                           </Typography> 
+            <Stack direction={"row"} spacing={2} py={2}>
+              <a href="" target="_blank">
+                <Facebook sx={{ color: "#fff" }} />
+              </a>
+              <a href="" target="_blank">
+                <Twitter sx={{ color: "#fff" }} />
+              </a>
+              <a href="" target="_blank">
+                <Instagram sx={{ color: "#fff" }} />
+              </a>
+            </Stack>
           </Grid>
 
           <Grid item lg={3}>
-           <Typography className="Medium" fontSize={18} textTransform={"uppercase"} pt={3} >
-                           Bangladesh Address
-                           </Typography>
-                           <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                           113/A, Plot: 08, Level: 08, Gulshan 2,<br/> Dhaka- 1212, Bangladesh. 
-                           </Typography>
-                           <Typography className="Regular" fontSize={16} color={"#bbb"}   >
-                           Phone no.:  +88-02-55049698
-                           </Typography> 
+            <Typography
+              className="Medium"
+              fontSize={18}
+              textTransform={"uppercase"}
+              pt={3}
+            >
+              USA Address
+            </Typography>
+            <Typography className="Regular" fontSize={16} color={"#bbb"}>
+              106-20822 San Simeon Way, Miami, <br />
+              Florida 33179, USA.
+            </Typography>
+            <Typography className="Regular" fontSize={16} color={"#bbb"}>
+              Phone no.: +1 (786) 934-6146
+            </Typography>
+          </Grid>
+          <Grid item lg={3}>
+            <Typography
+              className="Medium"
+              fontSize={18}
+              textTransform={"uppercase"}
+              pt={3}
+            >
+              Canada Address
+            </Typography>
+            <Typography className="Regular" fontSize={16} color={"#bbb"}>
+              2010-2200 rue Sauvé Ouest, Montréal,
+              <br />
+              Québec H4N 0E1, Canada.
+            </Typography>
+            <Typography className="Regular" fontSize={16} color={"#bbb"}>
+              Phone no.: +1 (514) 677-7730
+            </Typography>
+          </Grid>
+
+          <Grid item lg={3}>
+            <Typography
+              className="Medium"
+              fontSize={18}
+              textTransform={"uppercase"}
+              pt={3}
+            >
+              Bangladesh Address
+            </Typography>
+            <Typography className="Regular" fontSize={16} color={"#bbb"}>
+              Plot: 08, ABM Tower, Level: 08, Road: 113/A, Gulshan 2,
+              <br />
+              Dhaka 1212, Bangladesh.
+            </Typography>
+            <Typography className="Regular" fontSize={16} color={"#bbb"}>
+              Phone no.: +88-02-55049698
+            </Typography>
           </Grid>
         </Grid>
-        <Grid item lg={12} textAlign={"center"} pb={'10px'}>
+        <Grid item lg={12} textAlign={"center"} pb={"10px"}>
           <Typography className="Regular" fontSize={13}>
             All rights reserved 2024
-          </Typography></Grid>
+          </Typography>
+        </Grid>
         {/* <Grid container spacing={0} sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto", pb: 5,  pt: 5 }}>
                     <Grid item lg={4}>
                         <Typography className="bold" fontSize={16}>
