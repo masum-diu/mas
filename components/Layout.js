@@ -162,7 +162,7 @@ const Layout = ({ children }) => {
                 CONTACTS
               </Typography>*/}
               <Link href={"/contactus"}>
-                <Button variant="contained" color="error">
+                <Button variant="contained" color="error" className="Medium">
                   Contact Us
                 </Button>
               </Link>
@@ -257,7 +257,7 @@ const Layout = ({ children }) => {
           </div>
           <Link href={"/contactus"}>
             <ListItem button onClick={handleDrawerClose}>
-              <Button variant="contained" color="error">
+              <Button variant="contained" color="error" className="Light">
                 Contact Us
               </Button>
             </ListItem>

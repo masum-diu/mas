@@ -107,11 +107,9 @@ const Home = () => {
               color={"#bbb"}
               sx={{ display: "flex", flexDirection: "column", pt: 2 }}
             >
-              Our product line includes T-Shirts, Polo Shirts, Boxer Shorts,
-              Tank Tops/A Shirts,
+              Our product line includes T-Shirts, Polo Shirts, Boxer Shorts, Tank Tops/A Shirts, Thermal Wear, 
               <span>
-                Thermal Wear, Hoodies, Sweat Shirts/Pants, Socks and Caps Will
-                both mas label and blank.
+              Hoodies, Sweat Shirts/Pants, Socks and Caps will be under both “MAS” label and tear up label.
               </span>
             </Typography>
           </Grid>
