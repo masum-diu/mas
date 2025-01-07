@@ -39,25 +39,15 @@ const About = () => {
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={2} py={6}>
           <Grid item lg={6}>
-            <Stack
-              alignItems={"center"}
-              justifyContent={"center"}
-              direction={"column"}
-              sx={{ position: "relative" }}
-            >
+           
               <Typography
                 className="Medium"
                 fontSize={40}
-                sx={{
-                  display: "flex",
-                  flexDirection: "column",
-                  zIndex: 2,
-                  position: "relative",
-                }}
+            
               >
                 {aboutData?.title}
               </Typography>
-            </Stack>
+        
           </Grid>
       
           </Grid>

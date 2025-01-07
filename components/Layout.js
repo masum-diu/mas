@@ -295,7 +295,7 @@ const Layout = ({ children }) => {
             </Stack>
           </Grid>
 
-          <Grid item lg={3}>
+          <Grid item lg={3} xs={12}>
             <Typography
               className="Medium"
               fontSize={18}
@@ -312,7 +312,7 @@ const Layout = ({ children }) => {
               Phone no.: +1 (786) 934-6146
             </Typography>
           </Grid>
-          <Grid item lg={3}>
+          <Grid item lg={3} xs={12}>
             <Typography
               className="Medium"
               fontSize={18}
@@ -331,7 +331,7 @@ const Layout = ({ children }) => {
             </Typography>
           </Grid>
 
-          <Grid item lg={3}>
+          <Grid item lg={3} xs={12}>
             <Typography
               className="Medium"
               fontSize={18}
