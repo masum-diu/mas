@@ -69,7 +69,7 @@ const Layout = ({ children }) => {
       >
         <Toolbar
           sx={{
-            width: "70%",
+            width: "90%",
             maxWidth: "1500px",
             margin: "0 auto",
             padding: "0px",
@@ -174,8 +174,8 @@ const Layout = ({ children }) => {
                 display: { xs: "flex", md: "none" },
               }}
             >
-              <IconButton color="inherit" onClick={handleDrawerOpen}>
-                <MenuIcon />
+              <IconButton color="inherit"  onClick={handleDrawerOpen} >
+                <MenuIcon style={{fontSize:"33px"}} />
               </IconButton>
             </Box>
           </Stack>
@@ -270,7 +270,7 @@ const Layout = ({ children }) => {
           container
           spacing={0}
           sx={{
-            width: "70%",
+            width: "90%",
             color: "#ffff",
             maxWidth: "1500px",
             margin: "0 auto",
@@ -341,7 +341,7 @@ const Layout = ({ children }) => {
               Bangladesh Address
             </Typography>
             <Typography className="Regular" fontSize={16} color={"#bbb"}>
-              Plot: 08, ABM Tower, Level: 08, Road: 113/A, Gulshan 2,
+              Plot: 08, ABM Tower, Level: 08, <br />Road: 113/A, Gulshan 2,
               <br />
               Dhaka 1212, Bangladesh.
             </Typography>

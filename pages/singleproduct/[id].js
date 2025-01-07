@@ -79,8 +79,8 @@ const singleproduct = () => {
   if (error) return <Typography color="error">{error}</Typography>;
   return (
     <Layout>
-      <Box sx={{ width: "69%", maxWidth: "1500px", margin: "0 auto" }}>
-        <Grid container spacing={2} py={8}>
+      <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
+        <Grid container spacing={2} py={6}>
           <Grid item lg={4} sm={4} xs={12}>
             <ThumbsLoopGallery data={imageArray} link={link} />
           </Grid>

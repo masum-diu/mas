@@ -21,7 +21,7 @@ const Home = () => {
   return (
     <Layout>
       <ProgressPaginationSwiper />
-      <Box sx={{ width: "70%", maxWidth: "1500px", margin: "0 auto" }}>
+      <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={4} py={6}>
           <Grid item lg={6}>
             <Typography
@@ -57,30 +57,38 @@ const Home = () => {
             <Stack
               direction={"row"}
               justifyContent={"space-between"}
-              sx={{ maxWidth: 450 }}
-              py={2}
+              sx={{ maxWidth: 550 }}
+
+              py={5}
             >
-              <Typography className="Medium" fontSize={28}>
-                Since 2015
-              </Typography>
-              <Typography className="Medium" fontSize={28}>
-                600+ Outlets
-              </Typography>
+
+              <Stack direction={"column"} spacing={1}>
+                <Typography className="Medium" fontSize={28}>
+                  Since 2015
+                </Typography>
+                <Typography className="Regular" fontSize={16} color={"#bbb"}>
+                  Delivering quality goods since inception.
+                </Typography>
+              </Stack>
+              <Stack direction={"column"} spacing={1}>
+                <Typography className="Medium" fontSize={28}>
+                  600+ Outlets
+                </Typography>
+                <Typography className="Regular" fontSize={16} color={"#bbb"}>
+                  Available for customers across the regions
+                </Typography>
+              </Stack>
             </Stack>
-            <Stack
+            {/* <Stack
               direction={"row"}
               spacing={2}
               justifyContent={"space-between"}
-              sx={{ maxWidth: 550 }}
+              // sx={{ maxWidth: 550 }}
               pb={5}
             >
-              <Typography className="Regular" fontSize={16} color={"#bbb"}>
-                Delivering quality goods since inception.
-              </Typography>
-              <Typography className="Regular" fontSize={16} color={"#bbb"}>
-                Available for customers across the regions
-              </Typography>
-            </Stack>
+              */}
+
+            {/* </Stack> */}
             <Link href="/about">
               <Button variant="contained" color="error">
                 learn more
@@ -292,23 +300,20 @@ const Home = () => {
             <ProgressPaginationSwipersider />
           </Grid>
         </Grid>
-        <Grid container spacing={2}>
-          <Typography
-            className="Medium"
-            fontSize={40}
-            textTransform={"uppercase"}
-            pt={2}
-          >
-            Let’s talk
-          </Typography>
-        </Grid>
+        <Typography
+          className="Medium"
+          fontSize={40}
+          textTransform={"uppercase"}
+          pt={2}
+        >
+          Let’s talk
+        </Typography>
         <Grid
           container
           spacing={1}
+
           py={3}
-          style={{
-            marginLeft: "-22px",
-          }}
+
         >
           <Grid item lg={4}>
             <Typography
@@ -346,6 +351,7 @@ const Home = () => {
               <TextField
                 // label="Standard warning"
                 variant="standard"
+                className="Light"
                 color="primary"
                 placeholder="Enter Your Name"
                 fullWidth

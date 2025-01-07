@@ -13,10 +13,10 @@ const contactus = () => {
     return (
         <Layout>
            
-            <Box sx={{ width: "70%", maxWidth: "1500px", margin: "0 auto", }}>
+            <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto", }}>
 
 
-                <Typography className="Medium" fontSize={40} textTransform={"uppercase"} pt={8} >
+                <Typography className="Medium" fontSize={40} textTransform={"uppercase"} pt={5} >
                     Let’s talk
                 </Typography>
                 <Grid container spacing={1} py={3} >

@@ -5,7 +5,7 @@ import { Box, Button, Grid, Stack, styled, TextField } from "@mui/material";
 const faq = () => {
     return (
       <Layout>
-        <Box sx={{ width: "70%", maxWidth: "1500px", margin: "0 auto" }}>
+        <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={2} py={6} >
         <Grid item lg={12}>
             <Stack alignItems={"center"} justifyContent={"center"} direction={"column"} sx={{ position: "relative" }}>
