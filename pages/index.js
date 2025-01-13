@@ -58,16 +58,15 @@ const Home = () => {
               direction={"row"}
               justifyContent={"space-between"}
               sx={{ maxWidth: 550 }}
-
               py={5}
+              spacing={2}
             >
-
               <Stack direction={"column"} spacing={1}>
                 <Typography className="Medium" fontSize={28}>
                   Since 2015
                 </Typography>
                 <Typography className="Regular" fontSize={16} color={"#bbb"}>
-                  Delivering quality goods since inception.
+                  Delivering quality goods since 2024 inception.
                 </Typography>
               </Stack>
               <Stack direction={"column"} spacing={1}>
@@ -107,19 +106,35 @@ const Home = () => {
               color={"#bbb"}
               sx={{ display: "flex", flexDirection: "column", pt: 2 }}
             >
-              Our product line includes T-Shirts, Polo Shirts, Boxer Shorts, Tank Tops/A Shirts, Thermal Wear, 
+              Our product line includes T-Shirts, Polo Shirts, Boxer Shorts,
+              Tank Tops/A Shirts, Thermal Wear,
               <span>
-              Hoodies, Sweat Shirts/Pants, Socks and Caps will be under both “MAS” label and tear up label.
+                Hoodies, Sweat Shirts/Pants, Socks and Caps will be under both
+                “MAS” label and tear up label.
               </span>
             </Typography>
           </Grid>
-          <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
+          <Grid
+            item
+            lg={4}
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "column", lg: "row" },
+              alignItems: "flex-start",
+              textAlign: "left",
+              gap: 1,
+              pt: 4,
+            }}
+          >
             <img
               src="/assets/competitive.png"
               alt=""
               width={25}
               height={25}
-              style={{ marginTop: 5 }}
+              style={{
+                marginTop: 5,
+                marginBottom: { xs: 8, sm: 8, lg: 0 },
+              }}
             />
             <Stack direction={"column"} spacing={1}>
               <Typography
@@ -134,13 +149,29 @@ const Home = () => {
               </Typography>
             </Stack>
           </Grid>
-          <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
+
+          {/* Premium Comfort */}
+          <Grid
+            item
+            lg={4}
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "column", lg: "row" },
+              alignItems: "flex-start",
+              textAlign: "left",
+              gap: 1,
+              pt: 4,
+            }}
+          >
             <img
               src="/assets/Vector (5).png"
               alt=""
               width={25}
               height={25}
-              style={{ marginTop: 8 }}
+              style={{
+                marginTop: 8,
+                marginBottom: { xs: 8, sm: 8, lg: 0 },
+              }}
             />
             <Stack direction={"column"} spacing={1}>
               <Typography
@@ -148,21 +179,37 @@ const Home = () => {
                 fontSize={28}
                 textTransform={"uppercase"}
               >
-                Premium-Comfort
+                Premium Comfort
               </Typography>
               <Typography className="Regular" fontSize={16} color={"#bbb"}>
                 Discover premium, durable, and meticulously crafted apparel
-                built to last, offering unmatched comfort for all-day wear
+                built to last, offering unmatched comfort for all-day wear.
               </Typography>
             </Stack>
           </Grid>
-          <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
+
+          {/* Ongoing Innovation */}
+          <Grid
+            item
+            lg={4}
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "column", lg: "row" },
+              alignItems: "flex-start",
+              textAlign: "left",
+              gap: 1,
+              pt: 4,
+            }}
+          >
             <img
               src="/assets/SVG.png"
               alt=""
               width={25}
               height={25}
-              style={{ marginTop: 5 }}
+              style={{
+                marginTop: 5,
+                marginBottom: { xs: 8, sm: 8, lg: 0 },
+              }}
             />
             <Stack direction={"column"} spacing={1}>
               <Typography
@@ -170,7 +217,7 @@ const Home = () => {
                 fontSize={28}
                 textTransform={"uppercase"}
               >
-                ONGOING INNOVATION
+                Ongoing Innovation
               </Typography>
               <Typography className="Regular" fontSize={16} color={"#bbb"}>
                 By seeing areas for development and reacting to changes in the
@@ -180,13 +227,28 @@ const Home = () => {
             </Stack>
           </Grid>
 
-          <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
+          {/* Strong Distribution */}
+          <Grid
+            item
+            lg={4}
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "column", lg: "row" },
+              alignItems: "flex-start",
+              textAlign: "left",
+              gap: 1,
+              pt: 4,
+            }}
+          >
             <img
-              src="/assets/SVG (2).png"
+              src="/assets/SVGst.png"
               alt=""
               width={25}
               height={25}
-              style={{ marginTop: 5 }}
+              style={{
+                marginTop: 5,
+                marginBottom: { xs: 8, sm: 8, lg: 0 },
+              }}
             />
             <Stack direction={"column"} spacing={1}>
               <Typography
@@ -194,7 +256,7 @@ const Home = () => {
                 fontSize={28}
                 textTransform={"uppercase"}
               >
-                Strong distribution
+                Strong Distribution
               </Typography>
               <Typography className="Regular" fontSize={16} color={"#bbb"}>
                 Reliable distribution network in national and global reach
@@ -202,13 +264,29 @@ const Home = () => {
               </Typography>
             </Stack>
           </Grid>
-          <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
+
+          {/* Ethical Manufacturing */}
+          <Grid
+            item
+            lg={4}
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "column", lg: "row" },
+              alignItems: "flex-start",
+              textAlign: "left",
+              gap: 1,
+              pt: 4,
+            }}
+          >
             <img
               src="/assets/value-chain.png"
               alt=""
               width={25}
               height={25}
-              style={{ marginTop: 7 }}
+              style={{
+                marginTop: 7,
+                marginBottom: { xs: 8, sm: 8, lg: 0 },
+              }}
             />
             <Stack direction={"column"} spacing={1}>
               <Typography
@@ -216,22 +294,37 @@ const Home = () => {
                 fontSize={28}
                 textTransform={"uppercase"}
               >
-                ethical manufacturing
+                Ethical Manufacturing
               </Typography>
               <Typography className="Regular" fontSize={16} color={"#bbb"}>
                 Committed to responsible practices and sustainability in every
-                step
+                step.
               </Typography>
             </Stack>
           </Grid>
 
-          <Grid item lg={4} sx={{ display: "flex", gap: 1, pt: 4 }}>
+          {/* Support for New Brands */}
+          <Grid
+            item
+            lg={4}
+            sx={{
+              display: "flex",
+              flexDirection: { xs: "column", sm: "column", lg: "row" },
+              alignItems: "flex-start",
+              textAlign: "left",
+              gap: 1,
+              pt: 4,
+            }}
+          >
             <img
               src="/assets/support(2).png"
               alt=""
               width={25}
               height={25}
-              style={{ marginTop: 8 }}
+              style={{
+                marginTop: 7,
+                marginBottom: { xs: 8, sm: 8, lg: 0 },
+              }}
             />
             <Stack direction={"column"} spacing={1}>
               <Typography
@@ -239,10 +332,10 @@ const Home = () => {
                 fontSize={28}
                 textTransform={"uppercase"}
               >
-                Support for new brands
+                Support for New Brands
               </Typography>
               <Typography className="Regular" fontSize={16} color={"#bbb"}>
-                Partnering with emerging brands to foster growth and innovation
+                Partnering with emerging brands to foster growth and innovation.
               </Typography>
             </Stack>
           </Grid>
@@ -306,13 +399,7 @@ const Home = () => {
         >
           Let’s talk
         </Typography>
-        <Grid
-          container
-          spacing={1}
-
-          py={3}
-
-        >
+        <Grid container spacing={1} py={3}>
           <Grid item lg={4}>
             <Typography
               className="Regular"
@@ -337,7 +424,7 @@ const Home = () => {
             </Typography>
           </Grid>
 
-          <Grid item lg={4} xs={12}>
+          <Grid item lg={4} xs={12} pt={2}>
             <Stack direction={"column"} spacing={1}>
               <Typography
                 className="Medium"
@@ -361,7 +448,7 @@ const Home = () => {
                 }}
               />
             </Stack>
-            <Stack direction={"column"} spacing={1} pt={4}>
+            <Stack direction={"column"} spacing={1} pt={2}>
               <Typography
                 className="Medium"
                 fontSize={16}
@@ -407,7 +494,7 @@ const Home = () => {
                 }}
               />
             </Stack>
-            <Stack direction={"column"} spacing={1} pt={4}>
+            <Stack direction={"column"} spacing={1} pt={2}>
               <Typography
                 className="Medium"
                 fontSize={16}

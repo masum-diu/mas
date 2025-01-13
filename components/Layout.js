@@ -125,7 +125,12 @@ const Layout = ({ children }) => {
 
                 {/* Dropdown menu */}
                 <Menu
-                  sx={{ mt: 1 }}
+                  sx={{
+                    mt: 1,
+                    "& .MuiPaper-root": {
+                      backgroundColor: "#000000", // Black background for the menu
+                    },
+                  }}
                   anchorEl={anchorEl}
                   open={open}
                   onClose={handleMouseLeave}
@@ -143,14 +148,31 @@ const Layout = ({ children }) => {
                 >
                   {/* Dropdown items */}
                   {products?.map((item, index) => (
-                    <MenuItem onClick={handleMouseLeave}>
+                    <MenuItem
+                      key={index}
+                      onClick={handleMouseLeave}
+                      sx={{
+                        backgroundColor: "#000000", // Black background for the item
+                        "&:hover": {
+                          backgroundColor: "#333333", // Slightly lighter black on hover
+                        },
+                      }}
+                    >
                       <Link
-                        key={index}
                         href={`/product-category/${item?.slug}/${item?.id}`}
                         passHref
+                        style={{ textDecoration: "none" }}
                       >
-                        <Typography className="Light" fontSize={14}>
-                          {" "}
+                        <Typography
+                          className="Medium"
+                          fontSize={14}
+                          sx={{
+                            color: "#ffffff", // White text color
+                            "&:hover": {
+                              color: "#cccccc", // Slightly lighter white on hover
+                            },
+                          }}
+                        >
                           {item?.cat_name || "No Category Name"}
                         </Typography>
                       </Link>
@@ -167,15 +189,15 @@ const Layout = ({ children }) => {
                 </Button>
               </Link>
             </Stack>
-{/* fsdfsd */}
+            {/* fsdfsd */}
             {/* Mobile Menu Button */}
             <Box
               sx={{
                 display: { xs: "flex", md: "none" },
               }}
             >
-              <IconButton color="inherit"  onClick={handleDrawerOpen} >
-                <MenuIcon style={{fontSize:"33px"}} />
+              <IconButton color="inherit" onClick={handleDrawerOpen}>
+                <MenuIcon style={{ fontSize: "33px" }} />
               </IconButton>
             </Box>
           </Stack>
@@ -183,7 +205,14 @@ const Layout = ({ children }) => {
       </AppBar>
 
       {/* Side Drawer */}
-      <Drawer anchor="left" open={openDrawer} onClose={handleDrawerClose}>
+      <Drawer
+        anchor="left"
+        open={openDrawer}
+        onClose={handleDrawerClose}
+        sx={{
+          "& .MuiDrawer-paper": { backgroundColor: "#000000", color: "#fff" },
+        }}
+      >
         <Stack
           direction={"row"}
           alignItems={"flex-end"}
@@ -194,7 +223,7 @@ const Layout = ({ children }) => {
             size="small"
             aria-label=""
             onClick={handleDrawerClose}
-            sx={{ border: "1px solid #9A0E20" }}
+            sx={{ border: "1px solid #9A0E20", color: "#9A0E20" }}
           >
             <CloseIcon sx={{ fontSize: 15 }} />
           </IconButton>
@@ -203,12 +232,16 @@ const Layout = ({ children }) => {
         <List sx={{ width: 250 }}>
           <Link href={"/"}>
             <ListItem button>
-              <ListItemText primary="HOME" />
+              <ListItemText
+                primary={<Typography className="Medium">HOME</Typography>}
+              />
             </ListItem>
           </Link>
           <Link href={"/about"}>
             <ListItem button>
-              <ListItemText primary="ABOUT" />
+              <ListItemText
+                primary={<Typography className="Medium">ABOUT</Typography>}
+              />
             </ListItem>
           </Link>
           <div
@@ -219,12 +252,19 @@ const Layout = ({ children }) => {
             {/* Link for PRODUCTS list item */}
 
             <ListItem button>
-              <ListItemText primary="PRODUCTS" />
+              <ListItemText
+                primary={<Typography className="Medium">PRODUCTS</Typography>}
+              />
             </ListItem>
 
             {/* Dropdown menu */}
             <Menu
-              sx={{ mt: 1 }}
+              sx={{
+                mt: 1,
+                "& .MuiPaper-root": {
+                  backgroundColor: "#000000", // Black background for the menu
+                },
+              }}
               anchorEl={anchorEl}
               open={open}
               onClose={handleMouseLeave}
@@ -242,12 +282,31 @@ const Layout = ({ children }) => {
             >
               {/* Dropdown items */}
               {products?.map((item, index) => (
-                <MenuItem key={index} onClick={handleMouseLeave}>
+                <MenuItem
+                  key={index}
+                  onClick={handleMouseLeave}
+                  sx={{
+                    backgroundColor: "#000000", // Black background for items
+                    "&:hover": {
+                      backgroundColor: "#333333", // Slightly lighter black on hover
+                    },
+                  }}
+                >
                   <Link
                     href={`/product-category/${item?.slug}/${item?.id}`}
                     passHref
+                    style={{ textDecoration: "none" }}
                   >
-                    <Typography className="Light" fontSize={14}>
+                    <Typography
+                      className="Medium" // Changed from "Light" to "Medium"
+                      fontSize={14}
+                      sx={{
+                        color: "#ffffff", // White font color
+                        "&:hover": {
+                          color: "#cccccc", // Slightly lighter white on hover
+                        },
+                      }}
+                    >
                       {item?.cat_name || "No Category Name"}
                     </Typography>
                   </Link>
@@ -256,16 +315,21 @@ const Layout = ({ children }) => {
             </Menu>
           </div>
           <Link href={"/contactus"}>
-            <ListItem button onClick={handleDrawerClose}>
+            <ListItem button>
+              <ListItemText
+                primary={<Typography className="Medium">CONTACT US</Typography>}
+              />
+            </ListItem>
+            {/* <ListItem button onClick={handleDrawerClose}>
               <Button variant="contained" color="error" className="Light">
                 Contact Us
               </Button>
-            </ListItem>
+            </ListItem> }*/}
           </Link>
         </List>
       </Drawer>
       <Box>{children}</Box>
-      <Box sx={{ backgroundColor: "#202020", color: "#ffff" }}>
+      <Box sx={{ backgroundColor: "#000000", color: "#ffff" }}>
         <Grid
           container
           spacing={0}
@@ -341,7 +405,8 @@ const Layout = ({ children }) => {
               Bangladesh Address
             </Typography>
             <Typography className="Regular" fontSize={16} color={"#bbb"}>
-              Plot: 08, ABM Tower, Level: 08, <br />Road: 113/A, Gulshan 2,
+              Plot: 08, ABM Tower, Level: 08, <br />
+              Road: 113/A, Gulshan 2,
               <br />
               Dhaka 1212, Bangladesh.
             </Typography>

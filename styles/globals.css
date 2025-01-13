@@ -1,68 +1,65 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
 
 body {
   font-family: "Merriweather", serif;
- 
-}
-
-
-
-@font-face {
-  font-family: 'Light';
-  src: url('/fonts/Oswald-Light.ttf');
 }
 
 @font-face {
-  font-family: 'SemiBold';
-  src: url('/fonts/Oswald-SemiBold.ttf');
+  font-family: "Light";
+  src: url("/fonts/Oswald-Light.ttf");
 }
 
 @font-face {
-  font-family: 'ExterBold';
-  src: url('/fonts/Oswald-ExtraLight.ttf');
+  font-family: "SemiBold";
+  src: url("/fonts/Oswald-SemiBold.ttf");
 }
 
 @font-face {
-  font-family: 'Regular';
-  src: url('/fonts/Oswald-Regular.ttf');
+  font-family: "ExterBold";
+  src: url("/fonts/Oswald-ExtraLight.ttf");
 }
 
 @font-face {
-  font-family: 'Medium';
-  src: url('/fonts/Oswald-Medium.ttf');
+  font-family: "Regular";
+  src: url("/fonts/Oswald-Regular.ttf");
 }
 
 @font-face {
-  font-family: 'bold';
-  src: url('/fonts/Oswald-Bold.ttf');
+  font-family: "Medium";
+  src: url("/fonts/Oswald-Medium.ttf");
+}
+
+@font-face {
+  font-family: "bold";
+  src: url("/fonts/Oswald-Bold.ttf");
 }
 
 .exterBold {
-  font-family: 'ExterBold';
+  font-family: "ExterBold";
   /* background-color:red; */
 }
 
 .SemiBold {
-  font-family: 'SemiBold';
+  font-family: "SemiBold";
   /* background-color:red; */
 }
 
 .light {
-  font-family: 'Light';
+  font-family: "Light";
   /* background-color:red; */
 }
 
 .bold {
-  font-family: 'bold';
+  font-family: "bold";
 }
 
 .Regular {
-  font-family: 'Regular';
+  font-family: "Regular";
+  letter-spacing: 0.9px;
 }
 
 .Medium {
-  font-family: 'Medium';
+  font-family: "Medium";
 }
 
 /* @media (min-width: 1024px) and (max-width: 1200px) {
@@ -73,41 +70,40 @@ body {
 /* Custom Swiper navigation buttons */
 .swiper-button-prev::after,
 .swiper-button-next::after {
-    display: none; /* Hides the default arrow icons */
+  display: none; /* Hides the default arrow icons */
 }
 .swiper-button-prev,
 .swiper-button-next {
-    position: absolute;
-    top: 50%;
-    width: 50px !important; /* Adjust based on your image size */
-    height: 35px !important; /* Adjust based on your image size */
-    margin-top: -25px !important; /* Center the button vertically */
-    z-index: 10 !important;
-    cursor: pointer;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    color: transparent; /* Hide the default arrow */
-    background-color: transparent; /* Ensure no background color interferes */
-    border: none;
+  position: absolute;
+  top: 50%;
+  width: 50px !important; /* Adjust based on your image size */
+  height: 35px !important; /* Adjust based on your image size */
+  margin-top: -25px !important; /* Center the button vertically */
+  z-index: 10 !important;
+  cursor: pointer;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: transparent; /* Hide the default arrow */
+  background-color: transparent; /* Ensure no background color interferes */
+  border: none;
 }
 
 /* Specific styles for each button using images */
 .swiper-button-prev {
-    left: 50px !important; /* Adjust positioning as needed */
-    background-image: url('/assets/Container (1).png'); /* Your custom left arrow image */
+  left: 50px !important; /* Adjust positioning as needed */
+  background-image: url("/assets/Container (1).png"); /* Your custom left arrow image */
 }
 
 .swiper-button-next {
-    right: 50px !important; /* Adjust positioning as needed */
-    background-image: url('/assets/Container.png'); /* Your custom right arrow image */
+  right: 50px !important; /* Adjust positioning as needed */
+  background-image: url("/assets/Container.png"); /* Your custom right arrow image */
 }
 /* Custom styling for the progress bar pagination */
 
-
 /* Custom progress bar color */
 .swiper-pagination-progressbar-fill {
-  background-color: #9A0E20 !important; /* Color of the progress bar fill */
+  background-color: #9a0e20 !important; /* Color of the progress bar fill */
 }
 
 #app {
@@ -128,18 +124,16 @@ body {
   padding: 0;
 }
 
-
-
-
-
 body {
   background: #000;
   color: #000;
 }
 
-
-
-
-
-
-
+@media (max-width: 768px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    display: none !important; /* Ensure they are displayed */
+    width: 30px; /* Adjust size for smaller screens */
+    height: 30px;
+  }
+}
