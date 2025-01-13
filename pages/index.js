@@ -359,7 +359,7 @@ const Home = () => {
 
               <Typography
                 className="Regular"
-                fontSize={16}
+                fontSize={18}
                 textAlign={"left"}
                 color={"#bbb"}
               >
@@ -403,7 +403,7 @@ const Home = () => {
           <Grid item lg={4}>
             <Typography
               className="Regular"
-              fontSize={16}
+              fontSize={18}
               textTransform={"uppercase"}
               color={"#bbb"}
             >
@@ -419,7 +419,7 @@ const Home = () => {
             >
               Email
             </Typography>
-            <Typography className="Regular" fontSize={16} color={"#bbb"}>
+            <Typography className="Regular" fontSize={18} color={"#bbb"}>
               Info@masoutfits.com
             </Typography>
           </Grid>
@@ -428,13 +428,14 @@ const Home = () => {
             <Stack direction={"column"} spacing={1}>
               <Typography
                 className="Medium"
-                fontSize={16}
+                fontSize={18}
                 textTransform={"uppercase"}
               >
                 Name <span style={{ color: "#9A0E20" }}>*</span>
               </Typography>
               <TextField
                 // label="Standard warning"
+
                 variant="standard"
                 className="Light"
                 color="primary"
@@ -444,6 +445,7 @@ const Home = () => {
                 InputProps={{
                   sx: {
                     color: "#ffffff",
+                    fontSize: 18,
                   },
                 }}
               />
@@ -451,7 +453,7 @@ const Home = () => {
             <Stack direction={"column"} spacing={1} pt={2}>
               <Typography
                 className="Medium"
-                fontSize={16}
+                fontSize={18}
                 textTransform={"uppercase"}
               >
                 Phone <span style={{ color: "#9A0E20" }}>*</span>
@@ -466,6 +468,7 @@ const Home = () => {
                 InputProps={{
                   sx: {
                     color: "#ffffff",
+                    fontSize: 18,
                   },
                 }}
               />
@@ -475,7 +478,7 @@ const Home = () => {
             <Stack direction={"column"} spacing={1}>
               <Typography
                 className="Medium"
-                fontSize={16}
+                fontSize={18}
                 textTransform={"uppercase"}
               >
                 Email <span style={{ color: "#9A0E20" }}>*</span>
@@ -490,6 +493,7 @@ const Home = () => {
                 InputProps={{
                   sx: {
                     color: "#ffffff",
+                    fontSize: 18,
                   },
                 }}
               />
@@ -497,7 +501,7 @@ const Home = () => {
             <Stack direction={"column"} spacing={1} pt={2}>
               <Typography
                 className="Medium"
-                fontSize={16}
+                fontSize={18}
                 textTransform={"uppercase"}
               >
                 Choose an appointment date
@@ -511,7 +515,8 @@ const Home = () => {
                 focused
                 InputProps={{
                   sx: {
-                    color: "#ffffff", // Sets the text color to white
+                    color: "#ffffff",
+                    fontSize: 18, // Sets the text color to white
                   },
                 }}
               />
@@ -543,7 +548,7 @@ const Home = () => {
             <Stack direction={"column"} spacing={1}>
               <Typography
                 className="Medium"
-                fontSize={16}
+                fontSize={18}
                 textTransform={"uppercase"}
               >
                 Message
@@ -560,6 +565,7 @@ const Home = () => {
                 InputProps={{
                   sx: {
                     color: "#ffffff",
+                    fontSize: 18,
                   },
                 }}
               />

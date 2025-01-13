@@ -54,7 +54,7 @@ const About = () => {
             />
           </Grid>
           <Grid item lg={7} sx={{ display: "flex", gap: 1, pt: 4 }}>
-            <Typography className="Regular" fontSize={16} color={"#bbb"}>
+            <Typography className="Regular" fontSize={18} color={"#bbb"}>
               <div
                 dangerouslySetInnerHTML={{ __html: aboutData?.description }}
               />
