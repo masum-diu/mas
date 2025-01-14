@@ -378,7 +378,7 @@ const Home = () => {
           </Grid>
         </Grid>
 
-        <Grid container spacing={2} py={8}>
+        <Grid container spacing={2} py={7}>
           <Grid item lg={12} xs={12}>
             <Typography
               className="Medium"
@@ -396,10 +396,11 @@ const Home = () => {
           fontSize={40}
           textTransform={"uppercase"}
           pt={2}
+          py={7}
         >
           Let’s talk
         </Typography>
-        <Grid container spacing={1} py={3}>
+        <Grid container spacing={1} py={2}>
           <Grid item lg={4}>
             <Typography
               className="Regular"
