@@ -11,7 +11,7 @@ import Link from "next/link";
 function ProgressPaginationSwipersider() {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(true);
-console.log(products)
+  console.log(products);
   const fatchingData = async () => {
     setLoading(true);
     try {
@@ -27,7 +27,6 @@ console.log(products)
   useEffect(() => {
     fatchingData();
   }, []);
-
 
   const fallbackImage = "https://via.placeholder.com/200";
 
@@ -63,21 +62,15 @@ console.log(products)
           }}
         >
           {products?.map((product, index) => (
-            <SwiperSlide
-              key={index}
-            >
-              <Link href={`/product-category/${product?.slug}/${product?.id}`} passHref>
-                <Stack
-                  direction={"column"}
-                  spacing={1}
-                  alignItems="center"
-                 
-                >
+            <SwiperSlide key={index}>
+              <Link
+                href={`/product-category/${product?.slug}/${product?.id}`}
+                passHref
+              >
+                <Stack direction={"column"} spacing={1} alignItems="center">
                   {/* Image with fallback in case of error */}
                   <img
-                    src={product?.
-                      category_feature_image
-                      || fallbackImage} // Use fallback if no image is found
+                    src={product?.category_feature_image || fallbackImage} // Use fallback if no image is found
                     alt={product?.cat_name || "Category"} // Alt text for missing category name
                     style={{
                       width: "100%",
@@ -88,7 +81,7 @@ console.log(products)
                   />
                   {/* Category Name displayed below the image */}
                   <Typography
-                   sx={{ cursor: "pointer" }}
+                    sx={{ cursor: "pointer" }}
                     className="Medium"
                     fontSize={18}
                     color={"#9a0e20"}
@@ -97,10 +90,11 @@ console.log(products)
                       textAlign: "center",
                       background: "none",
                       marginTop: "20px",
-                       // Add some spacing
+                      // Add some spacing
                     }}
                   >
-                    {product?.cat_name || "No Category Name"} {/* Fallback text if category name is missing */}
+                    {product?.cat_name || "No Category Name"}{" "}
+                    {/* Fallback text if category name is missing */}
                   </Typography>
                 </Stack>
               </Link>
