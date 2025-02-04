@@ -114,9 +114,6 @@ const Layout = ({ children }) => {
               alignItems="center"
               sx={{ display: { xs: "none", md: "flex" } }}
             >
-              <IconButton onClick={toggleTheme} color="inherit">
-                {darkMode ? <Brightness7 /> : <Brightness4 />}
-              </IconButton>
               <Link href={"/"}>
                 <Typography
                   className="Medium"
@@ -202,6 +199,9 @@ const Layout = ({ children }) => {
                   Contact Us
                 </Button>
               </Link>
+              <IconButton onClick={toggleTheme} color="inherit">
+                {darkMode ? <Brightness7 /> : <Brightness4 />}
+              </IconButton>
             </Stack>
 
             <Box sx={{ display: { xs: "flex", md: "none" } }}>
