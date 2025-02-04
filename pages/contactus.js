@@ -27,7 +27,6 @@ const contactus = () => {
               className="Regular"
               fontSize={16}
               textTransform={"uppercase"}
-              color={"#bbb"}
             >
               If you have any questions, feel free to <br /> email us or reach
               out through our <br /> contact form.
@@ -40,7 +39,7 @@ const contactus = () => {
             >
               Email
             </Typography>
-            <Typography className="Regular" fontSize={18} color={"#bbb"}>
+            <Typography className="Regular" fontSize={18}>
               Info@masoutfits.com
             </Typography>
           </Grid>
@@ -62,7 +61,7 @@ const contactus = () => {
                 focused
                 InputProps={{
                   sx: {
-                    color: "#ffffff",
+                    color: "#bbb",
                     fontSize: 18,
                   },
                 }}
@@ -85,7 +84,7 @@ const contactus = () => {
                 focused
                 InputProps={{
                   sx: {
-                    color: "#ffffff",
+                    color: "#bbb",
                     fontSize: 18,
                   },
                 }}
@@ -110,7 +109,7 @@ const contactus = () => {
                 focused
                 InputProps={{
                   sx: {
-                    color: "#ffffff",
+                    color: "#bbb",
                     fontSize: 18,
                   },
                 }}
@@ -133,7 +132,7 @@ const contactus = () => {
                 focused
                 InputProps={{
                   sx: {
-                    color: "#ffffff",
+                    color: "#bbb",
                     fontSize: 18, // Sets the text color to white
                   },
                 }}
@@ -182,7 +181,7 @@ const contactus = () => {
                 focused
                 InputProps={{
                   sx: {
-                    color: "#ffffff",
+                    color: "#bbb",
                     fontSize: 18,
                   },
                 }}

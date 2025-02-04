@@ -6,32 +6,36 @@ body {
 
 @font-face {
   font-family: "Light";
-  src: url("/fonts/Oswald-Light.ttf");
+  /* src: url("/fonts/Oswald-Light.ttf"); */
+  src: url("/fonts/Poppins-Light.ttf");
 }
 
 @font-face {
   font-family: "SemiBold";
-  src: url("/fonts/Oswald-SemiBold.ttf");
+  /* src: url("/fonts/Oswald-SemiBold.ttf"); */
+  src: url("/fonts/Poppins-SemiBold.ttf");
 }
 
 @font-face {
   font-family: "ExterBold";
-  src: url("/fonts/Oswald-ExtraLight.ttf");
+  /* src: url("/fonts/Oswald-ExtraLight.ttf"); */
+  src: url("/fonts/Poppins-ExtraLight.ttf");
 }
 
 @font-face {
   font-family: "Regular";
-  src: url("/fonts/Oswald-Regular.ttf");
+  /* src: url("/fonts/Oswald-Regular.ttf"); */
+  src: url("/fonts/Poppins-Regular.ttf");
 }
 
 @font-face {
   font-family: "Medium";
-  src: url("/fonts/Oswald-Medium.ttf");
+  src: url("/fonts/Poppins-Medium.ttf");
 }
 
 @font-face {
   font-family: "bold";
-  src: url("/fonts/Oswald-Bold.ttf");
+  src: url("/fonts/Poppins-Bold.ttf");
 }
 
 .exterBold {

@@ -93,7 +93,7 @@ const singleproduct = () => {
               >
                 {products?.p_name}
               </Typography>
-              <Typography className="Regular" fontSize={18} color={"#fff"}>
+              <Typography className="Regular" fontSize={18}>
                 Color:
               </Typography>
               <FormControl component="fieldset">
@@ -129,7 +129,7 @@ const singleproduct = () => {
                 </RadioGroup>
               </FormControl>
 
-              <Typography className="Regular" fontSize={18} color={"#fff"}>
+              <Typography className="Regular" fontSize={18}>
                 Size:
               </Typography>
               <Select
@@ -173,7 +173,7 @@ const singleproduct = () => {
                   Contact Us
                 </Button>
               </Link>
-              <Typography className="Regular" color={"#bbb"}>
+              <Typography className="Regular">
                 <span
                   dangerouslySetInnerHTML={{
                     __html: products?.psh_raw_description,
@@ -181,7 +181,7 @@ const singleproduct = () => {
                 />
               </Typography>
 
-              <Typography className="Regular" color={"#bbb"}>
+              <Typography className="Regular">
                 <span
                   dangerouslySetInnerHTML={{
                     __html: products?.p_raw_description,
@@ -195,7 +195,7 @@ const singleproduct = () => {
             </Typography>
             <Grid container py={2} spacing={4}>
               <Grid item lg={6} sm={12} xs={12}>
-                <Typography className="Regular" fontSize={18} color={"#bbb"}>
+                <Typography className="Regular" fontSize={18}>
                   Material
                 </Typography>
                 <Typography
@@ -207,7 +207,7 @@ const singleproduct = () => {
                 </Typography>
               </Grid>
               <Grid item lg={6} sm={12} xs={12}>
-                <Typography className="Regular" fontSize={18} color={"#bbb"}>
+                <Typography className="Regular" fontSize={18}>
                   Weight
                 </Typography>
                 <Typography
@@ -219,7 +219,7 @@ const singleproduct = () => {
                 </Typography>
               </Grid>
               <Grid item lg={6} sm={12} xs={12}>
-                <Typography className="Regular" fontSize={18} color={"#bbb"}>
+                <Typography className="Regular" fontSize={18}>
                   Fit
                 </Typography>
                 <Typography
@@ -231,7 +231,7 @@ const singleproduct = () => {
                 </Typography>
               </Grid>
               <Grid item lg={6} sm={12} xs={12}>
-                <Typography className="Regular" fontSize={18} color={"#bbb"}>
+                <Typography className="Regular" fontSize={18}>
                   Care
                 </Typography>
                 <Typography
