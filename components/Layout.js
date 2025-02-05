@@ -39,6 +39,14 @@ const Layout = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [darkMode, setDarkMode] = useState(true); // Dark mode state
 
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("darkMode");
+    if (savedTheme !== null) {
+      setDarkMode(JSON.parse(savedTheme));
+    }
+    fatchingData();
+  }, []);
+
   const handleDrawerOpen = () => setOpenDrawer(true);
   const handleDrawerClose = () => setOpenDrawer(false);
   const open = Boolean(anchorEl);
@@ -62,11 +70,11 @@ const Layout = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    fatchingData();
-  }, []);
-
-  const toggleTheme = () => setDarkMode(!darkMode); // Toggle dark mode
+  const toggleTheme = () => {
+    const newTheme = !darkMode;
+    setDarkMode(newTheme);
+    localStorage.setItem("darkMode", JSON.stringify(newTheme));
+  };
 
   return (
     <Box
@@ -421,7 +429,7 @@ const Layout = ({ children }) => {
         </Grid>
         <Grid item lg={12} textAlign={"center"} pb={"10px"}>
           <Typography className="Regular" fontSize={13}>
-            All rights reserved 2024
+            All rights reserved 2025
           </Typography>
         </Grid>
       </Box>

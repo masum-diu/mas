@@ -21,16 +21,15 @@ import Layout from "../../components/Layout";
 import instance from "../api/api_instance";
 import Link from "next/link";
 import { useRouter } from "next/router";
+
 const singleproduct = () => {
   const router = useRouter();
   const { id } = router?.query;
-  // console.log(id)
   const [selectedValue, setSelectedValue] = useState("option1");
   const [age, setAge] = React.useState(10);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [products, setProduct] = useState(null);
-  // console.log(products, "products")
 
   const fatchingData = async () => {
     try {
@@ -56,8 +55,6 @@ const singleproduct = () => {
     }
   };
 
-  // Inside JSX
-
   useEffect(() => {
     if (id) {
       fatchingData();
@@ -70,12 +67,13 @@ const singleproduct = () => {
   const imageArray = [products?.feature_image].filter(Boolean); // Removes undefined or null values
   const link = products?.img_path;
 
-  // Handle change event
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
+
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
+
   return (
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
@@ -119,7 +117,7 @@ const singleproduct = () => {
                               "& .MuiSvgIcon-root": { display: "none" }, // Hide default radio circle
                               "&.Mui-checked": {
                                 backgroundColor: v.color_code,
-                              }, // Keep the color when selected
+                              },
                             }}
                           />
                         }
@@ -140,22 +138,21 @@ const singleproduct = () => {
                 onChange={handleChangeSelect}
                 sx={{
                   maxWidth: { lg: "100%", xs: "100%" },
-                  // Set text color
-                  color: "#fff", // Change to any color you want
+                  color: "inherit", // Inherit text color
                   "& .MuiSelect-icon": {
-                    color: "gray", // Change icon color
+                    color: "inherit", // Inherit icon color
                   },
                   "&.Mui-focused": {
-                    borderColor: "gray", // Change border color on focus
+                    borderColor: "inherit", // Inherit border color on focus
                   },
                   "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "gray", // Set the border color of the select field
+                    borderColor: "inherit", // Inherit border color
                   },
                   "& .MuiMenuItem-root": {
-                    color: "blue", // Set the color of menu items
+                    color: "inherit", // Inherit menu item color
                   },
                   "&:hover": {
-                    backgroundColor: "gray", // Change background color on hover
+                    backgroundColor: "inherit", // Inherit background color on hover
                   },
                 }}
               >
@@ -190,7 +187,7 @@ const singleproduct = () => {
               </Typography>
             </Stack>
 
-            <Typography className="Regular" fontSize={18} color={"#fff"}>
+            <Typography className="Regular" fontSize={18} color={"inherit"}>
               Specifications
             </Typography>
             <Grid container py={2} spacing={4}>
@@ -239,7 +236,7 @@ const singleproduct = () => {
                   fontSize={16}
                   borderBottom={"1px solid #5a5858"}
                 >
-                  Mahchine wash cold, tumble dry low
+                  Machine wash cold, tumble dry low
                 </Typography>
               </Grid>
             </Grid>
