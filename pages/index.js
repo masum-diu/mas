@@ -62,7 +62,7 @@ const Home = () => {
             >
               <Stack direction={"column"} spacing={1}>
                 <Typography className="Medium" fontSize={28}>
-                  Since 2015
+                  Since 2024
                 </Typography>
                 <Typography className="Regular" fontSize={16}>
                   Delivering quality goods since 2024 inception.
