@@ -62,14 +62,10 @@ const ProductCategoryRetail = () => {
               ?.filter((product) => product.cat_id === tabId) // 🔥 Filter by selected tab/category
               .map((product, index) => {
                 console.log(product, "product");
-                const featureImages = product?.feature_image
-                  ? JSON.parse(product.feature_image)
-                  : [];
 
-                const imageUrl =
-                  featureImages.length > 0
-                    ? `${product.img_path}/${featureImages[0]}`
-                    : "/placeholder.jpg";
+                const imageUrl = product?.feature_static_images
+                  ? product?.feature_static_images[0]
+                  : "/placeholder.jpg";
 
                 return (
                   <Grid

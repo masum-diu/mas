@@ -22,20 +22,31 @@ const Checkout = () => {
   };
 
   const handleLogin = () => {
-    // Simulate login validation
-    if (!loginData.email || !loginData.password) {
-      setError("Email and password are required.");
-      return;
-    }
+    // Simulated credentials for validation
+    const validCredentials = {
+      email: "user@example.com",
+      password: "password123",
+    };
 
-    // Simulate successful login
-    console.log("User logged in:", loginData);
-    router.push("/checkout-form"); // Redirect to the checkout form
+    // Check if the entered credentials match the valid credentials
+    if (
+      loginData.email === validCredentials.email &&
+      loginData.password === validCredentials.password
+    ) {
+      console.log("User logged in:", loginData);
+      router.push("/checkout-form"); // Redirect to the checkout form
+    } else {
+      setError("Invalid email or password."); // Show error message
+    }
   };
 
   const handleGuestCheckout = () => {
     setIsGuest(true); // Set guest mode
     router.push("/checkout-form"); // Redirect to the checkout form
+  };
+
+  const handleSignIn = () => {
+    router.push("/sign-in"); // Redirect to the sign-in page
   };
 
   return (
@@ -136,6 +147,18 @@ const Checkout = () => {
             >
               Continue as Guest
             </Button>
+
+            <Typography textAlign="center" mt={4}>
+              Don't have an account?{" "}
+              <Button
+                variant="text"
+                color="primary"
+                onClick={handleSignIn}
+                sx={{ textTransform: "none" }}
+              >
+                Sign In
+              </Button>
+            </Typography>
           </Box>
         ) : (
           <Typography textAlign="center">

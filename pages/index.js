@@ -21,8 +21,18 @@ const CustomTextField = styled(TextField)({
 
 const ImageContainer = styled(Box)({
   position: "relative",
+  overflow: "hidden", // Ensure content stays within bounds
+  boxShadow: "0px 8px 20px rgba(0, 0, 0, 0.5)", // Always show shadow
+  "& img": {
+    transition: "opacity 0.3s ease, transform 0.3s ease", // Smooth transition for image
+  },
+  "&:hover img": {
+    opacity: 0.5, // Dim the image on hover
+    transform: "scale(1.05)", // Optional: Slight zoom effect
+  },
   "&:hover .overlay": {
-    opacity: 1,
+    opacity: 1, // Show overlay on hover
+    transform: "scale(1)", // Scale back to normal size
   },
 });
 
@@ -32,13 +42,14 @@ const Overlay = styled(Box)({
   left: 0,
   width: "100%",
   height: "100%",
-  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  backgroundColor: "rgba(0, 0, 0, 0.5)", // Default background
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
   alignItems: "center",
-  opacity: 0,
-  transition: "opacity 0.3s ease",
+  opacity: 0, // Initially hidden
+  transition: "opacity 0.3s ease, transform 0.3s ease", // Smooth transition
+  transform: "scale(0.95)", // Slightly shrink initially
 });
 
 const Home = () => {
@@ -47,34 +58,56 @@ const Home = () => {
       <ProgressPaginationSwiper />
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={4} py={6}>
-          <Grid item lg={6}>
+          <Grid
+            item
+            lg={2}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+
+              justifyContent: "center",
+              verticalAlign: "center", // Center vertically and horizontally
+            }}
+          >
+            <Typography variant="h4" color="white">
+              Retail
+            </Typography>
+            <Link href="/retail">
+              <Button variant="contained" color="error">
+                learn more
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item lg={4}>
             <ImageContainer>
-              <img src="/assets/Coover_2.png" alt="" width={"100%"} />
-              <Overlay className="overlay">
-                <Typography variant="h4" color="white">
-                  Retail
-                </Typography>
-                <Link href="/retail">
-                  <Button variant="contained" color="error">
-                    learn more
-                  </Button>
-                </Link>
-              </Overlay>
+              <img src="/assets/retail(1).png" alt="" width={"100%"} />
+              <Overlay className="overlay"></Overlay>
             </ImageContainer>
           </Grid>
-          <Grid item lg={6}>
+          <Grid
+            item
+            lg={2}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+
+              justifyContent: "center", // Center vertically and horizontally
+              verticalAlign: "center",
+            }}
+          >
+            <Typography variant="h4" color="white">
+              WholeSale
+            </Typography>
+            <Link href="/wholesale">
+              <Button variant="contained" color="error">
+                learn more
+              </Button>
+            </Link>
+          </Grid>
+          <Grid item lg={4}>
             <ImageContainer>
-              <img src="/assets/Coover_2.png" alt="" width={"100%"} />
-              <Overlay className="overlay">
-                <Typography variant="h4" color="white">
-                  WholeSale
-                </Typography>
-                <Link href="/wholesale">
-                  <Button variant="contained" color="error">
-                    learn more
-                  </Button>
-                </Link>
-              </Overlay>
+              <img src="/assets/whole2.png" alt="" width={"100%"} />
+              <Overlay className="overlay"></Overlay>
             </ImageContainer>
           </Grid>
         </Grid>

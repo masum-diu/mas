@@ -36,7 +36,13 @@ const About = () => {
 
   return (
     <Layout>
-      <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
+      <Box
+        sx={{
+          width: "90%",
+          maxWidth: "1500px",
+          margin: "0 auto",
+        }}
+      >
         <Grid container spacing={1} py={2}>
           <Grid item lg={6}>
             <Typography className="Medium" fontSize={40}>

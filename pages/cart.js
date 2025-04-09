@@ -3,6 +3,7 @@ import { useCart } from "../src/context/CartContext";
 import { Box, Button, Grid, Typography, Stack } from "@mui/material";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
+import CloseIcon from "@mui/icons-material/Close"; // Import the Close icon
 
 const Cart = () => {
   const { cart, clearCart } = useCart();
@@ -20,6 +21,17 @@ const Cart = () => {
     router.push("/checkout");
   };
 
+  const handleRemoveProduct = (productId) => {
+    // Filter out the product with the matching id
+    const updatedCart = localCart.filter((item) => item.id !== productId);
+
+    // Update the local cart state
+    setLocalCart(updatedCart);
+
+    // Update localStorage with the updated cart
+    localStorage.setItem("cart", JSON.stringify(updatedCart));
+  };
+
   return (
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto", py: 6 }}>
@@ -31,11 +43,8 @@ const Cart = () => {
           <Grid container spacing={4}>
             <Grid item lg={8} sm={12}>
               {localCart.map((item, index) => {
-                const featureImages = item?.image ? JSON.parse(item.image) : [];
-                const imageUrl =
-                  featureImages.length > 0
-                    ? `${item.img_path}/${featureImages[0]}`
-                    : "/placeholder.jpg";
+                const featureImages = item?.images ? item?.images[0] : [];
+                const imageUrl = featureImages;
 
                 return (
                   <Box
@@ -60,6 +69,13 @@ const Cart = () => {
                         </Typography>
                         <Typography>Color: {item.color}</Typography>
                         <Typography>Size: {item.size}</Typography>
+                        <Button
+                          variant="outlined"
+                          color="error"
+                          onClick={() => handleRemoveProduct(item.id)} // Remove button
+                        >
+                          Remove
+                        </Button>
                       </Grid>
                     </Grid>
                   </Box>

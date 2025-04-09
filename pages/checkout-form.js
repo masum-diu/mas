@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCart } from "../src/context/CartContext";
 import {
   Box,
@@ -14,39 +14,66 @@ import {
 } from "@mui/material";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
-
 const CheckoutForm = () => {
-  const { cart, clearCart } = useCart(); // Access cart and clearCart from CartContext
+  const { cart, clearCart } = useCart();
   const router = useRouter();
-  // Calculate total price
-  // Calculate total price including 10% VAT
-  const totalPrice = cart.reduce(
-    (sum, item) => sum + item.price * 1.1 * (item.quantity || 1),
-    0
-  );
+
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    firstName: "",
+    lastName: "",
+    country: "",
     town: "",
     thana: "",
     postCode: "",
+    area: "",
+    streetAddress: "",
+    apartmentAddress: "",
+    phone: "",
+    email: "",
+    orderNotes: "",
   });
 
   const [error, setError] = useState("");
 
-  // Example data for towns, thanas, and post codes
-  const townData = {
-    Dhaka: {
-      thanas: ["Gulshan", "Banani", "Dhanmondi"],
-      postCodes: ["1212", "1213", "1209"],
+  const countryData = {
+    Bangladesh: {
+      towns: ["Dhaka", "Chittagong", "Sylhet"],
+      thanas: {
+        Dhaka: ["Gulshan", "Banani", "Dhanmondi"],
+        Chittagong: ["Pahartali", "Kotwali", "Halishahar"],
+        Sylhet: ["Zindabazar", "Ambarkhana", "Shibganj"],
+      },
+      postCodes: {
+        Dhaka: ["1212", "1213", "1209"],
+        Chittagong: ["4202", "4000", "4216"],
+        Sylhet: ["3100", "3101", "3102"],
+      },
     },
-    Chittagong: {
-      thanas: ["Pahartali", "Kotwali", "Halishahar"],
-      postCodes: ["4202", "4000", "4216"],
+    USA: {
+      towns: ["New York", "Los Angeles", "Chicago"],
+      thanas: {
+        "New York": ["Manhattan", "Brooklyn"],
+        "Los Angeles": ["Hollywood", "Downtown"],
+        Chicago: ["North Side", "South Side"],
+      },
+      postCodes: {
+        "New York": ["10001", "10002"],
+        "Los Angeles": ["90001", "90002"],
+        Chicago: ["60601", "60602"],
+      },
     },
-    Sylhet: {
-      thanas: ["Zindabazar", "Ambarkhana", "Shibganj"],
-      postCodes: ["3100", "3101", "3102"],
+    Canada: {
+      towns: ["Toronto", "Vancouver", "Montreal"],
+      thanas: {
+        Toronto: ["North York", "Scarborough"],
+        Vancouver: ["Downtown", "Richmond"],
+        Montreal: ["Old Montreal", "Plateau"],
+      },
+      postCodes: {
+        Toronto: ["M1B", "M1C"],
+        Vancouver: ["V5K", "V5L"],
+        Montreal: ["H1A", "H1B"],
+      },
     },
   };
 
@@ -58,33 +85,45 @@ const CheckoutForm = () => {
     }));
   };
 
+  const handleCountryChange = (e) => {
+    const selectedCountry = e.target.value;
+    setFormData((prevData) => ({
+      ...prevData,
+      country: selectedCountry,
+      town: "",
+      thana: "",
+      postCode: "",
+    }));
+  };
+
   const handleTownChange = (e) => {
     const selectedTown = e.target.value;
     setFormData((prevData) => ({
       ...prevData,
       town: selectedTown,
-      thana: "", // Reset thana when town changes
-      postCode: "", // Reset post code when town changes
+      thana: "",
+      postCode: "",
     }));
   };
 
   const handlePlaceOrder = () => {
-    // Validate form data
     if (
-      !formData.name ||
-      !formData.email ||
+      !formData.firstName ||
+      !formData.lastName ||
+      !formData.country ||
       !formData.town ||
       !formData.thana ||
-      !formData.postCode
+      !formData.postCode ||
+      !formData.area ||
+      !formData.streetAddress ||
+      !formData.phone ||
+      !formData.email
     ) {
-      setError("All fields are required.");
+      setError("All required fields must be filled.");
       return;
     }
 
-    // Simulate order submission
     console.log("Order placed:", { formData, cart });
-
-    // Clear the cart and redirect to a success page
     clearCart();
     router.push("/order-success");
   };
@@ -100,114 +139,154 @@ const CheckoutForm = () => {
           {/* User Details Form */}
           <Grid item lg={6} sm={12}>
             <Typography variant="h6" mb={2}>
-              Guest Details
+              Billing Details
             </Typography>
             <Stack spacing={2}>
+              {/* First Name */}
               <TextField
-                label="Name"
-                name="name"
-                value={formData.name}
+                label="First Name"
+                name="firstName"
+                value={formData.firstName}
                 onChange={handleInputChange}
                 fullWidth
                 required
-                InputLabelProps={{
-                  shrink: true,
-                }}
                 sx={{
-                  "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "#787878",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "#787878",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "#787878",
-                    },
-                    color: "#f0f8ff",
-                  },
                   "& .MuiInputBase-input": {
-                    color: "#f0f8ff",
+                    color: "#ffffff", // Input text color
                   },
                   "& .MuiInputLabel-root": {
-                    color: "#f0f8ff",
+                    color: "#ffffff", // Label text color
                   },
-                  "& .Mui-focused": {
-                    color: "#f0f8ff",
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#9e9e9e", // Border color
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#9e9e9e", // Border color on hover
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#9e9e9e", // Border color when focused
+                    },
                   },
                 }}
               />
+
+              {/* Last Name */}
               <TextField
-                label="Email"
-                name="email"
-                type="email"
-                value={formData.email}
+                label="Last Name"
+                name="lastName"
+                value={formData.lastName}
                 onChange={handleInputChange}
                 fullWidth
                 required
-                InputLabelProps={{
-                  shrink: true,
-                }}
                 sx={{
-                  "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "#787878",
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "#787878",
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "#787878",
-                    },
-                    color: "#f0f8ff",
-                  },
                   "& .MuiInputBase-input": {
-                    color: "#f0f8ff",
+                    color: "#ffffff", // Input text color
                   },
                   "& .MuiInputLabel-root": {
-                    color: "#f0f8ff",
+                    color: "#ffffff", // Label text color
                   },
-                  "& .Mui-focused": {
-                    color: "#f0f8ff",
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#9e9e9e", // Border color
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#9e9e9e", // Border color on hover
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#9e9e9e", // Border color when focused
+                    },
                   },
                 }}
               />
+
+              {/* Country Dropdown */}
+              <FormControl
+                fullWidth
+                required
+                sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#ffffff", // Input text color
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "#ffffff", // Label text color
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#9e9e9e", // Border color
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#9e9e9e", // Border color on hover
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#9e9e9e", // Border color when focused
+                    },
+                  },
+                }}
+              >
+                <InputLabel>Country</InputLabel>
+                <Select
+                  name="country"
+                  value={formData.country}
+                  onChange={handleCountryChange}
+                >
+                  {Object.keys(countryData).map((country) => (
+                    <MenuItem key={country} value={country}>
+                      {country}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
 
               {/* Town Dropdown */}
               <FormControl
                 fullWidth
                 required
                 sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#ffffff", // Input text color
+                  },
                   "& .MuiInputLabel-root": {
-                    color: "#f0f8ff", // Label text color
+                    color: "#ffffff", // Label text color
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
                   },
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
-                      borderColor: "#787878", // Border color
+                      borderColor: "#9e9e9e", // Border color
                     },
                     "&:hover fieldset": {
-                      borderColor: "#787878", // Hover border color
+                      borderColor: "#9e9e9e", // Border color on hover
                     },
                     "&.Mui-focused fieldset": {
-                      borderColor: "#787878", // Focused border color
+                      borderColor: "#9e9e9e", // Border color when focused
                     },
-                  },
-                  "& .MuiSelect-select": {
-                    color: "#f0f8ff", // Dropdown text color
                   },
                 }}
               >
-                <InputLabel shrink>Town</InputLabel>
+                <InputLabel>Town/City</InputLabel>
                 <Select
                   name="town"
                   value={formData.town}
                   onChange={handleTownChange}
+                  disabled={!formData.country}
                 >
-                  {Object.keys(townData).map((town) => (
-                    <MenuItem key={town} value={town}>
-                      {town}
-                    </MenuItem>
-                  ))}
+                  {formData.country &&
+                    countryData[formData.country]?.towns.map((town) => (
+                      <MenuItem key={town} value={town}>
+                        {town}
+                      </MenuItem>
+                    ))}
                 </Select>
               </FormControl>
 
@@ -216,41 +295,43 @@ const CheckoutForm = () => {
                 fullWidth
                 required
                 sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#ffffff", // Input text color
+                  },
                   "& .MuiInputLabel-root": {
-                    color: "#f0f8ff", // Label text color
+                    color: "#ffffff", // Label text color
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
                   },
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
-                      borderColor: "#787878", // Border color
+                      borderColor: "#9e9e9e", // Border color
                     },
                     "&:hover fieldset": {
-                      borderColor: "#787878", // Hover border color
+                      borderColor: "#9e9e9e", // Border color on hover
                     },
                     "&.Mui-focused fieldset": {
-                      borderColor: "#787878", // Focused border color
+                      borderColor: "#9e9e9e", // Border color when focused
                     },
-                  },
-                  "& .MuiSelect-select": {
-                    color: "#f0f8ff", // Dropdown text color
                   },
                 }}
               >
-                <InputLabel shrink>Thana</InputLabel>
+                <InputLabel>Thana</InputLabel>
                 <Select
                   name="thana"
                   value={formData.thana}
                   onChange={handleInputChange}
-                  disabled={!formData.town} // Disable if no town is selected
+                  disabled={!formData.town}
                 >
-                  {formData.town ? (
-                    townData[formData.town]?.thanas.map((thana) => (
-                      <MenuItem key={thana} value={thana}>
-                        {thana}
-                      </MenuItem>
-                    ))
-                  ) : (
-                    <MenuItem value="">Select a town first</MenuItem>
-                  )}
+                  {formData.town &&
+                    countryData[formData.country]?.thanas[formData.town]?.map(
+                      (thana) => (
+                        <MenuItem key={thana} value={thana}>
+                          {thana}
+                        </MenuItem>
+                      )
+                    )}
                 </Select>
               </FormControl>
 
@@ -259,51 +340,241 @@ const CheckoutForm = () => {
                 fullWidth
                 required
                 sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#ffffff", // Input text color
+                  },
                   "& .MuiInputLabel-root": {
-                    color: "#f0f8ff", // Label text color
+                    color: "#ffffff", // Label text color
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
                   },
                   "& .MuiOutlinedInput-root": {
                     "& fieldset": {
-                      borderColor: "#787878", // Border color
+                      borderColor: "#9e9e9e", // Border color
                     },
                     "&:hover fieldset": {
-                      borderColor: "#787878", // Hover border color
+                      borderColor: "#9e9e9e", // Border color on hover
                     },
                     "&.Mui-focused fieldset": {
-                      borderColor: "#787878", // Focused border color
+                      borderColor: "#9e9e9e", // Border color when focused
                     },
-                  },
-                  "& .MuiSelect-select": {
-                    color: "#f0f8ff", // Dropdown text color
                   },
                 }}
               >
-                <InputLabel shrink>Post Code</InputLabel>
+                <InputLabel>Post Code</InputLabel>
                 <Select
                   name="postCode"
                   value={formData.postCode}
                   onChange={handleInputChange}
-                  disabled={!formData.town} // Disable if no town is selected
+                  disabled={!formData.town}
                 >
-                  {formData.town ? (
-                    townData[formData.town]?.postCodes.map((postCode) => (
+                  {formData.town &&
+                    countryData[formData.country]?.postCodes[
+                      formData.town
+                    ]?.map((postCode) => (
                       <MenuItem key={postCode} value={postCode}>
                         {postCode}
                       </MenuItem>
-                    ))
-                  ) : (
-                    <MenuItem value="">Select a town first</MenuItem>
-                  )}
+                    ))}
                 </Select>
               </FormControl>
 
+              {/* Area */}
+              <TextField
+                label="Area"
+                name="area"
+                value={formData.area}
+                onChange={handleInputChange}
+                fullWidth
+                required
+                sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#ffffff", // Input text color
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "#ffffff", // Label text color
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#9e9e9e", // Border color
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#9e9e9e", // Border color on hover
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#9e9e9e", // Border color when focused
+                    },
+                  },
+                }}
+              />
+
+              {/* Street Address */}
+              <TextField
+                label="Street Address"
+                name="streetAddress"
+                value={formData.streetAddress}
+                onChange={handleInputChange}
+                fullWidth
+                required
+                sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#ffffff", // Input text color
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "#ffffff", // Label text color
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#9e9e9e", // Border color
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#9e9e9e", // Border color on hover
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#9e9e9e", // Border color when focused
+                    },
+                  },
+                }}
+              />
+
+              {/* Apartment Address */}
+              <TextField
+                label="Apartment Address (Optional)"
+                name="apartmentAddress"
+                value={formData.apartmentAddress}
+                onChange={handleInputChange}
+                fullWidth
+                sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#ffffff", // Input text color
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "#ffffff", // Label text color
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#9e9e9e", // Border color
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#9e9e9e", // Border color on hover
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#9e9e9e", // Border color when focused
+                    },
+                  },
+                }}
+              />
+
+              {/* Phone */}
+              <TextField
+                label="Phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                fullWidth
+                required
+                sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#ffffff", // Input text color
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "#ffffff", // Label text color
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#9e9e9e", // Border color
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#9e9e9e", // Border color on hover
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#9e9e9e", // Border color when focused
+                    },
+                  },
+                }}
+              />
+
+              {/* Email Address */}
+              <TextField
+                label="Email Address"
+                name="email"
+                type="email"
+                value={formData.email}
+                onChange={handleInputChange}
+                fullWidth
+                required
+                sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#ffffff", // Input text color
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "#ffffff", // Label text color
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#9e9e9e", // Border color
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#9e9e9e", // Border color on hover
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#9e9e9e", // Border color when focused
+                    },
+                  },
+                }}
+              />
+
+              {/* Order Notes */}
+              <TextField
+                label="Order Notes (Optional)"
+                name="orderNotes"
+                value={formData.orderNotes}
+                onChange={handleInputChange}
+                fullWidth
+                multiline
+                rows={4}
+                sx={{
+                  "& .MuiInputBase-input": {
+                    color: "#ffffff", // Input text color
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "#ffffff", // Label text color
+                  },
+                  "& .MuiInputLabel-root.Mui-focused": {
+                    color: "#ffffff", // Label color when focused
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#9e9e9e", // Border color
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#9e9e9e", // Border color on hover
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#9e9e9e", // Border color when focused
+                    },
+                  },
+                }}
+              />
+
               {error && (
-                <Typography
-                  color="error"
-                  variant="body2"
-                  textAlign="center"
-                  mt={2}
-                >
+                <Typography color="error" variant="body2" textAlign="center">
                   {error}
                 </Typography>
               )}
@@ -325,14 +596,21 @@ const CheckoutForm = () => {
                     padding: 2,
                   }}
                 >
-                  <Typography variant="h6">{item.name}</Typography>
+                  <Typography>{item.name}</Typography>
                   <Typography>Price: BDT {item.price}</Typography>
                   <Typography>Quantity: {item.quantity || 1}</Typography>
                 </Box>
               ))}
-              <Typography variant="h6">Total Items: {cart.length}</Typography>
-              <Typography variant="h6">
-                Total Price (with 10% VAT): BDT {totalPrice.toFixed(2)}
+              <Typography variant="h5">Total Items: {cart.length}</Typography>
+              <Typography variant="h5">
+                Total Price (with 10% VAT): BDT{" "}
+                {cart
+                  .reduce(
+                    (sum, item) =>
+                      sum + item.price * 1.1 * (item.quantity || 1),
+                    0
+                  )
+                  .toFixed(2)}
               </Typography>
             </Stack>
           </Grid>

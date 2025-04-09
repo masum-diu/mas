@@ -5,7 +5,7 @@ import { GlassMagnifier, Magnifier } from "react-image-magnifiers";
 import "swiper/css";
 import { useRouter } from "next/router";
 
-const ThumbsLoopGallery = ({ data, link }) => {
+const ThumbsLoopGallery = ({ data, link, id = 1 }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [parsedData, setParsedData] = useState([]);
   const [isClient, setIsClient] = useState(false); // New state to track if we're on the client
@@ -14,12 +14,11 @@ const ThumbsLoopGallery = ({ data, link }) => {
   // Parse the data array
   useEffect(() => {
     setIsClient(true); // Once the component is mounted, set isClient to true
-
-    if (data && typeof data[0] === "string") {
+    // console.log("ssdfsdf", data, link);
+    if (data) {
       try {
-        const parsed = JSON.parse(data[0]);
-
-        if (router?.asPath === "/wholesale") {
+        if (router?.asPath.includes("/wholesale")) {
+          const parsed = JSON.parse(data[0]);
           setParsedData(parsed);
           setSelectedImage(parsed[0]);
         } else {
@@ -30,27 +29,32 @@ const ThumbsLoopGallery = ({ data, link }) => {
         console.error("Error parsing data:", error);
       }
     }
-  }, []);
-
-  // const handleImageClick = (image) => {
-  //   setSelectedImage(image);
-  // };
+  }, [data]);
+  // console.log("your log output", data[0]);
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
 
   if (!isClient) return null; // Wait until we're on the client
 
   return (
     <Box sx={{ maxWidth: 700, margin: 1 }}>
       {/* Main Image */}
+
       {selectedImage && (
         <Card sx={{ marginBottom: 2 }}>
           <GlassMagnifier
             imageSrc={`${
               router.asPath.includes("wholesale")
                 ? `${link}/${selectedImage}`
-                : `${selectedImage}`
+                : selectedImage
             }`}
             imageAlt="Selected Image"
-            largeImageSrc={`${link}/${selectedImage}`}
+            largeImageSrc={`${
+              router.asPath.includes("wholesale")
+                ? `${link}/${selectedImage}`
+                : selectedImage
+            }`}
           />
         </Card>
       )}
@@ -74,7 +78,7 @@ const ThumbsLoopGallery = ({ data, link }) => {
                     ? "2px solid #9A0E20"
                     : "2px solid transparent",
               }}
-              // onClick={() => handleImageClick(image)}
+              onClick={() => handleImageClick(image)}
             >
               <CardMedia
                 component="img"

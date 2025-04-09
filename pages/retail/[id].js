@@ -21,7 +21,7 @@ import staticData from "../../public/data/static_product_data.json";
 
 const SingleProduct = () => {
   const router = useRouter();
-  const id = parseInt(router.query.id);
+  const { id } = router.query;
   const { addToCart } = useCart(); // Access addToCart from CartContext
 
   const [selectedValue, setSelectedValue] = useState("");
@@ -30,12 +30,8 @@ const SingleProduct = () => {
   const [error, setError] = useState(null);
   const [isClient, setIsClient] = useState(false);
   const products = router.isReady
-    ? staticData?.filter((item) => parseInt(item.id) === parseInt(id)) // Ensure id is parsed correctly
-    : [];
-  console.log(products, "ssdfsdf");
-  if (!products.length) {
-    return <div>Product not found</div>;
-  }
+    ? staticData?.find((item) => parseInt(item.id) === parseInt(id)) // Ensure id is parsed correctly
+    : {};
 
   const handleChangeSelect = (event) => {
     setAge(event.target.value);
@@ -44,7 +40,18 @@ const SingleProduct = () => {
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
-  const handleAddToCart = () => {};
+  console.log("your log output", products);
+  const handleAddToCart = () => {
+    const cartData = {
+      id: products?.id,
+      name: products?.p_name,
+      price: products?.p_price,
+      color: selectedValue,
+      size: age,
+      images: products?.feature_static_images,
+    };
+    addToCart(cartData); // Call addToCart from CartContext
+  };
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
 
@@ -54,8 +61,9 @@ const SingleProduct = () => {
         <Grid container py={6} spacing={0}>
           <Grid item lg={6} sm={4} xs={12}>
             <ThumbsLoopGallery
-              data={[products?.feature_image].filter(Boolean)}
+              data={products?.feature_static_images}
               link={products?.img_path}
+              id={id}
             />
           </Grid>
 
