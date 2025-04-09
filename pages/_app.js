@@ -3,6 +3,7 @@ import Head from "next/head";
 import "../styles/globals.css";
 import theme from "../components/theme"; // Your existing theme
 import { AuthProvider } from "../authcontext/AuthContext";
+import { CartProvider } from "../src/context/CartContext"; // Import CartProvider
 import { useState, useMemo } from "react";
 import { createTheme } from "@mui/material/styles";
 
@@ -29,17 +30,20 @@ function MyApp({ Component, pageProps }) {
         <link rel="icon" href="/assets/Masfavicon.png" />
         <title>MAS</title>
       </Head>
-      <AuthProvider>
-        <ThemeProvider theme={themeWithMode}>
-          <CssBaseline />
-          {/* Pass toggleTheme and darkMode to the component */}
-          <Component
-            {...pageProps}
-            toggleTheme={() => setDarkMode((prev) => !prev)} // Toggle theme
-            darkMode={darkMode} // Current mode (dark/light)
-          />
-        </ThemeProvider>
-      </AuthProvider>
+      {/* Wrap the application with CartProvider */}
+      <CartProvider>
+        <AuthProvider>
+          <ThemeProvider theme={themeWithMode}>
+            <CssBaseline />
+            {/* Pass toggleTheme and darkMode to the component */}
+            <Component
+              {...pageProps}
+              toggleTheme={() => setDarkMode((prev) => !prev)} // Toggle theme
+              darkMode={darkMode} // Current mode (dark/light)
+            />
+          </ThemeProvider>
+        </AuthProvider>
+      </CartProvider>
     </>
   );
 }

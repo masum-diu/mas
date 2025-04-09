@@ -80,29 +80,29 @@ body {
 .swiper-button-next {
   position: absolute;
   top: 50%;
-  width: 50px !important; /* Adjust based on your image size */
-  height: 35px !important; /* Adjust based on your image size */
-  margin-top: -25px !important; /* Center the button vertically */
+  width: 50px !important;
+  height: 35px !important;
+  margin-top: -25px !important;
   z-index: 10 !important;
   cursor: pointer;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  color: transparent; /* Hide the default arrow */
-  background-color: transparent; /* Ensure no background color interferes */
+  color: transparent;
+  background-color: transparent;
   border: none;
 }
 
 /* Specific styles for each button using images */
-.swiper-button-prev {
-  left: 50px !important; /* Adjust positioning as needed */
-  background-image: url("/assets/Container (1).png"); /* Your custom left arrow image */
-}
-
+/* .swiper-button-prev {
+  left: 50px !important; 
+  background-image: url("/assets/Container (1).png"); 
+} */
+/* 
 .swiper-button-next {
-  right: 50px !important; /* Adjust positioning as needed */
-  background-image: url("/assets/Container.png"); /* Your custom right arrow image */
-}
+  right: 50px !important; 
+  background-image: url("/assets/Container.png"); 
+} */
 /* Custom styling for the progress bar pagination */
 
 /* Custom progress bar color */

@@ -5,9 +5,6 @@ import {
   Toolbar,
   Typography,
   Button,
-  Grid,
-  TextField,
-  InputAdornment,
   Drawer,
   List,
   ListItem,
@@ -23,28 +20,56 @@ import {
   Twitter,
   Brightness4,
   Brightness7,
+  ShoppingCart,
 } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import instance from "../pages/api/api_instance";
+import { useCart } from "../src/context/CartContext";
+import { useRouter } from "next/router";
 
-const menuItems = [{ id: "dashboard", text: "Dashboard" }];
-
-const Layout = ({ children }) => {
-  const [openDrawer, setOpenDrawer] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [products, setProducts] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [darkMode, setDarkMode] = useState(true); // Dark mode state
+// Custom hook to handle dark mode with localStorage
+const useDarkMode = () => {
+  const [darkMode, setDarkMode] = useState(false); // Default to light mode initially
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("darkMode");
     if (savedTheme !== null) {
       setDarkMode(JSON.parse(savedTheme));
     }
+  }, []);
+
+  const toggleTheme = () => {
+    const newTheme = !darkMode;
+    setDarkMode(newTheme);
+    localStorage.setItem("darkMode", JSON.stringify(newTheme));
+  };
+
+  return [darkMode, toggleTheme];
+};
+
+const Layout = ({ children }) => {
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [darkMode, toggleTheme] = useDarkMode(); // Using custom hook
+  const [cart, setCart] = useState([]);
+  // const { cart } = useCart();
+  const router = useRouter();
+  console.log(cart, "cart");
+
+  useEffect(() => {
     fatchingData();
+  }, []);
+
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
   }, []);
 
   const handleDrawerOpen = () => setOpenDrawer(true);
@@ -62,7 +87,7 @@ const Layout = ({ children }) => {
     setLoading(true);
     try {
       const res = await instance.get("/category-list");
-      setProducts(res?.data?.data);
+      setProducts(res?.data?.data || []);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -70,10 +95,8 @@ const Layout = ({ children }) => {
     }
   };
 
-  const toggleTheme = () => {
-    const newTheme = !darkMode;
-    setDarkMode(newTheme);
-    localStorage.setItem("darkMode", JSON.stringify(newTheme));
+  const handleCartClick = () => {
+    router.push("/cart");
   };
 
   return (
@@ -81,6 +104,7 @@ const Layout = ({ children }) => {
       sx={{
         backgroundColor: darkMode ? "#202020" : "#fff",
         color: darkMode ? "#fff" : "#000",
+        minHeight: "100vh",
       }}
     >
       <AppBar
@@ -88,7 +112,7 @@ const Layout = ({ children }) => {
         sx={{
           padding: "0px",
           color: "#ffff",
-          bgcolor: darkMode ? "#000000" : "#f5f5f5", // Background color based on dark mode
+          bgcolor: darkMode ? "#000000" : "#f5f5f5",
           boxShadow: "none",
         }}
       >
@@ -112,7 +136,7 @@ const Layout = ({ children }) => {
             alignItems="center"
             sx={{ cursor: "pointer" }}
           >
-            <Link href={"/"}>
+            <Link href={"/"} passHref>
               <img src="/assets/logo.png" alt="Logo" width={132} />
             </Link>
 
@@ -122,7 +146,7 @@ const Layout = ({ children }) => {
               alignItems="center"
               sx={{ display: { xs: "none", md: "flex" } }}
             >
-              <Link href={"/"}>
+              <Link href={"/"} passHref>
                 <Typography
                   className="Medium"
                   fontSize={16}
@@ -131,7 +155,7 @@ const Layout = ({ children }) => {
                   HOME
                 </Typography>
               </Link>
-              <Link href={"/about"}>
+              <Link href={"/about"} passHref>
                 <Typography
                   className="Medium"
                   fontSize={16}
@@ -150,8 +174,9 @@ const Layout = ({ children }) => {
                   fontSize={16}
                   sx={{ cursor: "pointer", color: darkMode ? "#fff" : "#000" }}
                 >
-                  PRODUCTS
+                  RETAIL
                 </Typography>
+
                 <Menu
                   sx={{
                     mt: 1,
@@ -174,39 +199,69 @@ const Layout = ({ children }) => {
                     horizontal: "left",
                   }}
                 >
-                  {products?.map((item, index) => (
-                    <MenuItem
-                      key={index}
-                      onClick={handleMouseLeave}
-                      sx={{
-                        backgroundColor: darkMode ? "#000000" : "#f5f5f5",
-                        "&:hover": {
-                          backgroundColor: darkMode ? "#333333" : "#e0e0e0",
-                        },
-                      }}
-                    >
-                      <Link
-                        href={`/product-category/${item?.slug}/${item?.id}`}
-                        passHref
-                        style={{ textDecoration: "none" }}
+                  {products?.length > 0 &&
+                    products?.map((item, index) => (
+                      <MenuItem
+                        key={index}
+                        onClick={handleMouseLeave}
+                        sx={{
+                          backgroundColor: darkMode ? "#000000" : "#f5f5f5",
+                          "&:hover": {
+                            backgroundColor: darkMode ? "#333333" : "#e0e0e0",
+                          },
+                        }}
                       >
-                        <Typography
-                          className="Medium"
-                          fontSize={14}
-                          sx={{ color: darkMode ? "#fff" : "#000" }}
+                        <Link
+                          href={`/product-category/${item?.slug}/${item?.id}`}
+                          passHref
+                          style={{ textDecoration: "none" }}
                         >
-                          {item?.cat_name || "No Category Name"}
-                        </Typography>
-                      </Link>
-                    </MenuItem>
-                  ))}
+                          <Typography
+                            className="Medium"
+                            fontSize={14}
+                            sx={{ color: darkMode ? "#fff" : "#000" }}
+                          >
+                            {item?.cat_name || "No Category Name"}
+                          </Typography>
+                        </Link>
+                      </MenuItem>
+                    ))}
                 </Menu>
               </div>
-              <Link href={"/contactus"}>
+
+              <Link href={"/product-category/wholesale/1"} passHref>
+                <Typography
+                  className="Medium"
+                  fontSize={16}
+                  sx={{ color: darkMode ? "#fff" : "#000" }}
+                >
+                  WHOLESALE
+                </Typography>
+              </Link>
+
+              <Stack
+                direction="row"
+                alignItems="center"
+                spacing={1}
+                onClick={() => handleCartClick()}
+                sx={{ cursor: "pointer" }}
+              >
+                <ShoppingCart sx={{ color: darkMode ? "#fff" : "#000" }} />
+                <Typography
+                  className="Medium"
+                  fontSize={16}
+                  sx={{ color: darkMode ? "#fff" : "#000" }}
+                >
+                  {cart.length}
+                </Typography>
+              </Stack>
+
+              <Link href={"/contactus"} passHref>
                 <Button variant="contained" color="error" className="Medium">
                   Contact Us
                 </Button>
               </Link>
+
               <IconButton onClick={toggleTheme} color="inherit">
                 {darkMode ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
@@ -220,13 +275,11 @@ const Layout = ({ children }) => {
                 <MenuIcon style={{ fontSize: "33px" }} />
               </IconButton>
             </Box>
-
-            {/* Dark Mode Toggle */}
           </Stack>
         </Toolbar>
       </AppBar>
 
-      {/* Side Drawer */}
+      {/* Mobile Drawer */}
       <Drawer
         anchor="left"
         open={openDrawer}
@@ -255,14 +308,14 @@ const Layout = ({ children }) => {
         </Stack>
 
         <List sx={{ width: 250 }}>
-          <Link href={"/"}>
+          <Link href={"/"} passHref>
             <ListItem button>
               <ListItemText
                 primary={<Typography className="Medium">HOME</Typography>}
               />
             </ListItem>
           </Link>
-          <Link href={"/about"}>
+          <Link href={"/about"} passHref>
             <ListItem button>
               <ListItemText
                 primary={<Typography className="Medium">ABOUT</Typography>}
@@ -285,7 +338,9 @@ const Layout = ({ children }) => {
               anchorEl={anchorEl}
               open={open}
               onClose={handleMouseLeave}
-              MenuListProps={{ onMouseLeave: handleMouseLeave }}
+              MenuListProps={{
+                onMouseLeave: handleMouseLeave,
+              }}
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "left",
@@ -295,144 +350,40 @@ const Layout = ({ children }) => {
                 horizontal: "left",
               }}
             >
-              {products?.map((item, index) => (
-                <MenuItem
-                  key={index}
-                  onClick={handleMouseLeave}
-                  sx={{
-                    backgroundColor: darkMode ? "#000000" : "#f5f5f5",
-                    "&:hover": {
-                      backgroundColor: darkMode ? "#333333" : "#e0e0e0",
-                    },
-                  }}
-                >
-                  <Link
-                    href={`/product-category/${item?.slug}/${item?.id}`}
-                    passHref
-                    style={{ textDecoration: "none" }}
-                  >
-                    <Typography
-                      className="Medium"
-                      fontSize={14}
-                      sx={{ color: darkMode ? "#fff" : "#000" }}
+              {products?.length > 0 &&
+                products?.map((item, index) => (
+                  <MenuItem key={index} onClick={handleMouseLeave}>
+                    <Link
+                      href={`/product-category/${item?.slug}/${item?.id}`}
+                      passHref
+                      style={{ textDecoration: "none" }}
                     >
-                      {item?.cat_name || "No Category Name"}
-                    </Typography>
-                  </Link>
-                </MenuItem>
-              ))}
+                      <Typography className="Medium">
+                        {item?.cat_name}
+                      </Typography>
+                    </Link>
+                  </MenuItem>
+                ))}
             </Menu>
           </div>
-          <Link href={"/contactus"}>
+          <Link href={"/product-category/wholesale/1"} passHref>
             <ListItem button>
               <ListItemText
-                primary={<Typography className="Medium">CONTACT US</Typography>}
+                primary={<Typography className="Medium">WHOLESALE</Typography>}
+              />
+            </ListItem>
+          </Link>
+          <Link href={"/contactus"} passHref>
+            <ListItem button>
+              <ListItemText
+                primary={<Typography className="Medium">Contact Us</Typography>}
               />
             </ListItem>
           </Link>
         </List>
       </Drawer>
 
-      <Box>{children}</Box>
-
-      {/* Footer */}
-      <Box
-        sx={{
-          backgroundColor: darkMode ? "#000000" : "#f5f5f5",
-          color: darkMode ? "#fff" : "#000",
-        }}
-      >
-        <Grid
-          container
-          spacing={0}
-          sx={{
-            width: "90%",
-            // color: "#fff",
-            maxWidth: "1500px",
-            margin: "0 auto",
-            pb: 5,
-            pt: 5,
-          }}
-        >
-          <Grid item lg={3} sx={{ cursor: "pointer" }}>
-            <Link href={"/"}>
-              <img src="/assets/logo.png" alt="" width={132} />
-            </Link>
-            <Stack direction={"row"} spacing={2} py={2}>
-              <a href="" target="_blank">
-                <Facebook sx={{ color: darkMode ? "#fff" : "#000" }} />
-              </a>
-              <a href="" target="_blank">
-                <Twitter sx={{ color: darkMode ? "#fff" : "#000" }} />
-              </a>
-              <a href="" target="_blank">
-                <Instagram sx={{ color: darkMode ? "#fff" : "#000" }} />
-              </a>
-            </Stack>
-          </Grid>
-
-          <Grid item lg={3} xs={12}>
-            <Typography
-              className="Medium"
-              fontSize={18}
-              textTransform={"uppercase"}
-              pt={3}
-            >
-              USA Address
-            </Typography>
-            <Typography className="Regular" fontSize={16}>
-              106-20822 San Simeon Way, Miami, <br />
-              Florida 33179, USA.
-            </Typography>
-            <Typography className="Regular" fontSize={16}>
-              Phone no.: +1 (786) 934-6146
-            </Typography>
-          </Grid>
-          <Grid item lg={3} xs={12}>
-            <Typography
-              className="Medium"
-              fontSize={18}
-              textTransform={"uppercase"}
-              pt={3}
-            >
-              Canada Address
-            </Typography>
-            <Typography className="Regular" fontSize={16}>
-              2010-2200 rue Sauvé Ouest, Montréal,
-              <br />
-              Québec H4N 0E1, Canada.
-            </Typography>
-            <Typography className="Regular" fontSize={16}>
-              Phone no.: +1 (514) 677-7730
-            </Typography>
-          </Grid>
-
-          <Grid item lg={3} xs={12}>
-            <Typography
-              className="Medium"
-              fontSize={18}
-              textTransform={"uppercase"}
-              pt={3}
-            >
-              Bangladesh Address
-            </Typography>
-            <Typography className="Regular" fontSize={16}>
-              Plot: 08, ABM Tower, Level: 08, <br />
-              Road: 113/A, Gulshan 2,
-              <br />
-              Dhaka 1212, Bangladesh.
-            </Typography>
-            <Typography className="Regular" fontSize={16}>
-              Phone no.: +88-02-55049698
-            </Typography>
-          </Grid>
-        </Grid>
-        <Grid item lg={12} textAlign={"center"} pb={"10px"}>
-          <Typography className="Regular" fontSize={13}>
-            All rights reserved 2025
-          </Typography>
-        </Grid>
-      </Box>
+      {children}
     </Box>
   );
 };

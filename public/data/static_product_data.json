@@ -1,0 +1,2805 @@
+[
+  {
+    "id": 289,
+    "p_name": "Cotton R/Nss Tee",
+    "cat_id": 1,
+    "p_category": {
+      "id": 1,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1736166104_677bcad8256fb.jpg\",\"images\\/products\\/1736166104_677bcad825a96.jpg\",\"images\\/products\\/1736166104_677bcad825d4e.jpg\",\"images\\/products\\/1736166104_677bcad82608c.jpg\",\"images\\/products\\/1736166104_677bcad82637f.jpg\",\"images\\/products\\/1736166104_677bcad842217.jpg\",\"images\\/products\\/1736166104_677bcad85f6f0.jpg\"]",
+    "feature_static_images": [
+      "/assets/static_images/1736166104_677bcad8256fb.jpg",
+      "/assets/static_images/1736166104_677bcad82608c.jpg",
+      "/assets/static_images/1736166104_677bcad825a96.jpg",
+      "/assets/static_images/1736166104_677bcad825d4e.jpg"
+    ],
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 289,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:21:44.000000Z",
+          "updated_at": "2025-01-06T12:21:44.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 289,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:21:44.000000Z",
+          "updated_at": "2025-01-06T12:21:44.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 289,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:21:44.000000Z",
+          "updated_at": "2025-01-06T12:21:44.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 289,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:21:44.000000Z",
+          "updated_at": "2025-01-06T12:21:44.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 289,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:21:44.000000Z",
+          "updated_at": "2025-01-06T12:21:44.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 289,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:21:44.000000Z",
+          "updated_at": "2025-01-06T12:21:44.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 289,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:21:44.000000Z",
+          "updated_at": "2025-01-06T12:21:44.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 289,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:21:44.000000Z",
+          "updated_at": "2025-01-06T12:21:44.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 289,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:21:44.000000Z",
+          "updated_at": "2025-01-06T12:21:44.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 289,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:06:56.000000Z",
+          "updated_at": "2025-01-09T06:06:56.000000Z"
+        }
+      }
+    ],
+    "p_price": 1200,
+    "p_colours": [
+      {
+        "id": 10,
+        "color_name": "Grey",
+        "color_code": "#808080",
+        "slug": "grey",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T05:58:02.000000Z",
+        "updated_at": "2024-12-19T05:58:02.000000Z",
+        "pivot": {
+          "product_id": 289,
+          "colour_id": 10,
+          "created_at": "2025-01-06T12:21:44.000000Z",
+          "updated_at": "2025-01-06T12:21:44.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  },
+  {
+    "id": 288,
+    "p_name": "Yellow",
+    "cat_id": 2,
+    "p_category": {
+      "id": 2,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1739555961_67af8479db843.jpg\"]",
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 288,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:20:27.000000Z",
+          "updated_at": "2025-01-06T12:20:27.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 288,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:20:27.000000Z",
+          "updated_at": "2025-01-06T12:20:27.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 288,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:20:27.000000Z",
+          "updated_at": "2025-01-06T12:20:27.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 288,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:20:27.000000Z",
+          "updated_at": "2025-01-06T12:20:27.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 288,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:20:27.000000Z",
+          "updated_at": "2025-01-06T12:20:27.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 288,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:20:27.000000Z",
+          "updated_at": "2025-01-06T12:20:27.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 288,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:20:27.000000Z",
+          "updated_at": "2025-01-06T12:20:27.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 288,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:20:27.000000Z",
+          "updated_at": "2025-01-06T12:20:27.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 288,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:20:27.000000Z",
+          "updated_at": "2025-01-06T12:20:27.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 288,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:07:26.000000Z",
+          "updated_at": "2025-01-09T06:07:26.000000Z"
+        }
+      }
+    ],
+    "p_colours": [
+      {
+        "id": 18,
+        "color_name": "Yellow",
+        "color_code": "#ffff00",
+        "slug": "yellow",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:04:29.000000Z",
+        "updated_at": "2024-12-19T06:04:29.000000Z",
+        "pivot": {
+          "product_id": 288,
+          "colour_id": 18,
+          "created_at": "2025-01-06T12:20:27.000000Z",
+          "updated_at": "2025-01-06T12:20:27.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  },
+  {
+    "id": 287,
+    "p_name": "O.Green",
+    "cat_id": 3,
+    "p_category": {
+      "id": 3,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1739555917_67af844dbee68.jpg\"]",
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 287,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:18:46.000000Z",
+          "updated_at": "2025-01-06T12:18:46.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 287,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:18:46.000000Z",
+          "updated_at": "2025-01-06T12:18:46.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 287,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:18:46.000000Z",
+          "updated_at": "2025-01-06T12:18:46.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 287,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:18:46.000000Z",
+          "updated_at": "2025-01-06T12:18:46.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 287,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:18:46.000000Z",
+          "updated_at": "2025-01-06T12:18:46.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 287,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:18:46.000000Z",
+          "updated_at": "2025-01-06T12:18:46.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 287,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:18:46.000000Z",
+          "updated_at": "2025-01-06T12:18:46.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 287,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:18:46.000000Z",
+          "updated_at": "2025-01-06T12:18:46.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 287,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:18:46.000000Z",
+          "updated_at": "2025-01-06T12:18:46.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 287,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:08:09.000000Z",
+          "updated_at": "2025-01-09T06:08:09.000000Z"
+        }
+      }
+    ],
+    "p_colours": [
+      {
+        "id": 20,
+        "color_name": "O. Green",
+        "color_code": "#008000",
+        "slug": "o-green",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:02.000000Z",
+        "updated_at": "2024-12-19T06:06:02.000000Z",
+        "pivot": {
+          "product_id": 287,
+          "colour_id": 20,
+          "created_at": "2025-01-06T12:18:46.000000Z",
+          "updated_at": "2025-01-06T12:18:46.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  },
+  {
+    "id": 286,
+    "p_name": "Cotton V/Nss Tee",
+    "cat_id": 1,
+    "p_category": {
+      "id": 1,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1739555868_67af841c7a337.jpg\"]",
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 286,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:17:24.000000Z",
+          "updated_at": "2025-01-06T12:17:24.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 286,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:17:24.000000Z",
+          "updated_at": "2025-01-06T12:17:24.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 286,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:17:24.000000Z",
+          "updated_at": "2025-01-06T12:17:24.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 286,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:17:24.000000Z",
+          "updated_at": "2025-01-06T12:17:24.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 286,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:17:24.000000Z",
+          "updated_at": "2025-01-06T12:17:24.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 286,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:17:24.000000Z",
+          "updated_at": "2025-01-06T12:17:24.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 286,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:17:24.000000Z",
+          "updated_at": "2025-01-06T12:17:24.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 286,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:17:24.000000Z",
+          "updated_at": "2025-01-06T12:17:24.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 286,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:17:24.000000Z",
+          "updated_at": "2025-01-06T12:17:24.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 286,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:12:08.000000Z",
+          "updated_at": "2025-01-09T06:12:08.000000Z"
+        }
+      }
+    ],
+    "p_colours": [
+      {
+        "id": 13,
+        "color_name": "Sky Blue",
+        "color_code": "#87ceeb",
+        "slug": "sky-blue",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:00:36.000000Z",
+        "updated_at": "2024-12-19T06:00:36.000000Z",
+        "pivot": {
+          "product_id": 286,
+          "colour_id": 13,
+          "created_at": "2025-01-06T12:17:24.000000Z",
+          "updated_at": "2025-01-06T12:17:24.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  },
+  {
+    "id": 285,
+    "p_name": "C.Brown",
+    "cat_id": 2,
+    "p_category": {
+      "id": 2,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1739555804_67af83dc58d01.jpg\"]",
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 285,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:16:00.000000Z",
+          "updated_at": "2025-01-06T12:16:00.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 285,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:16:00.000000Z",
+          "updated_at": "2025-01-06T12:16:00.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 285,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:16:00.000000Z",
+          "updated_at": "2025-01-06T12:16:00.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 285,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:16:00.000000Z",
+          "updated_at": "2025-01-06T12:16:00.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 285,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:16:00.000000Z",
+          "updated_at": "2025-01-06T12:16:00.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 285,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:16:00.000000Z",
+          "updated_at": "2025-01-06T12:16:00.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 285,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:16:00.000000Z",
+          "updated_at": "2025-01-06T12:16:00.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 285,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:16:00.000000Z",
+          "updated_at": "2025-01-06T12:16:00.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 285,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:16:00.000000Z",
+          "updated_at": "2025-01-06T12:16:00.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 285,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:12:36.000000Z",
+          "updated_at": "2025-01-09T06:12:36.000000Z"
+        }
+      }
+    ],
+    "p_colours": [
+      {
+        "id": 17,
+        "color_name": "C. Brown",
+        "color_code": "#411900",
+        "slug": "c-brown",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:03:25.000000Z",
+        "updated_at": "2024-12-19T06:03:25.000000Z",
+        "pivot": {
+          "product_id": 285,
+          "colour_id": 17,
+          "created_at": "2025-01-06T12:16:00.000000Z",
+          "updated_at": "2025-01-06T12:16:00.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  },
+  {
+    "id": 284,
+    "p_name": "Burgundy",
+    "cat_id": 3,
+    "p_category": {
+      "id": 3,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1739555728_67af8390b8acf.jpg\"]",
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 284,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:14:46.000000Z",
+          "updated_at": "2025-01-06T12:14:46.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 284,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:14:46.000000Z",
+          "updated_at": "2025-01-06T12:14:46.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 284,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:14:46.000000Z",
+          "updated_at": "2025-01-06T12:14:46.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 284,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:14:46.000000Z",
+          "updated_at": "2025-01-06T12:14:46.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 284,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:14:46.000000Z",
+          "updated_at": "2025-01-06T12:14:46.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 284,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:14:46.000000Z",
+          "updated_at": "2025-01-06T12:14:46.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 284,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:14:46.000000Z",
+          "updated_at": "2025-01-06T12:14:46.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 284,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:14:46.000000Z",
+          "updated_at": "2025-01-06T12:14:46.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 284,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:14:46.000000Z",
+          "updated_at": "2025-01-06T12:14:46.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 284,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:13:07.000000Z",
+          "updated_at": "2025-01-09T06:13:07.000000Z"
+        }
+      }
+    ],
+    "p_colours": [
+      {
+        "id": 15,
+        "color_name": "Burgundy",
+        "color_code": "#800020",
+        "slug": "burgundy",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:01:44.000000Z",
+        "updated_at": "2024-12-19T06:01:44.000000Z",
+        "pivot": {
+          "product_id": 284,
+          "colour_id": 15,
+          "created_at": "2025-01-06T12:14:46.000000Z",
+          "updated_at": "2025-01-06T12:14:46.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  },
+  {
+    "id": 283,
+    "p_name": "Royal Blue",
+    "cat_id": 2,
+    "p_category": {
+      "id": 2,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1739555639_67af833795432.jpg\"]",
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 283,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:13:21.000000Z",
+          "updated_at": "2025-01-06T12:13:21.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 283,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:13:21.000000Z",
+          "updated_at": "2025-01-06T12:13:21.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 283,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:13:21.000000Z",
+          "updated_at": "2025-01-06T12:13:21.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 283,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:13:21.000000Z",
+          "updated_at": "2025-01-06T12:13:21.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 283,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:13:21.000000Z",
+          "updated_at": "2025-01-06T12:13:21.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 283,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:13:21.000000Z",
+          "updated_at": "2025-01-06T12:13:21.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 283,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:13:21.000000Z",
+          "updated_at": "2025-01-06T12:13:21.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 283,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:13:21.000000Z",
+          "updated_at": "2025-01-06T12:13:21.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 283,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:13:21.000000Z",
+          "updated_at": "2025-01-06T12:13:21.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 283,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:13:39.000000Z",
+          "updated_at": "2025-01-09T06:13:39.000000Z"
+        }
+      }
+    ],
+    "p_colours": [
+      {
+        "id": 19,
+        "color_name": "Royal Blue",
+        "color_code": "#305cde",
+        "slug": "royal-blue",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:05:29.000000Z",
+        "updated_at": "2024-12-19T06:05:29.000000Z",
+        "pivot": {
+          "product_id": 283,
+          "colour_id": 19,
+          "created_at": "2025-01-06T12:13:21.000000Z",
+          "updated_at": "2025-01-06T12:13:21.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  },
+  {
+    "id": 282,
+    "p_name": "Red",
+    "cat_id": 2,
+    "p_category": {
+      "id": 2,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1739555555_67af82e3e43eb.jpg\"]",
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 282,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:11:44.000000Z",
+          "updated_at": "2025-01-06T12:11:44.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 282,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:11:44.000000Z",
+          "updated_at": "2025-01-06T12:11:44.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 282,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:11:44.000000Z",
+          "updated_at": "2025-01-06T12:11:44.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 282,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:11:44.000000Z",
+          "updated_at": "2025-01-06T12:11:44.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 282,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:11:44.000000Z",
+          "updated_at": "2025-01-06T12:11:44.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 282,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:11:44.000000Z",
+          "updated_at": "2025-01-06T12:11:44.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 282,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:11:44.000000Z",
+          "updated_at": "2025-01-06T12:11:44.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 282,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:11:44.000000Z",
+          "updated_at": "2025-01-06T12:11:44.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 282,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:11:44.000000Z",
+          "updated_at": "2025-01-06T12:11:44.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 282,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:14:09.000000Z",
+          "updated_at": "2025-01-09T06:14:09.000000Z"
+        }
+      }
+    ],
+    "p_colours": [
+      {
+        "id": 2,
+        "color_name": "RED",
+        "color_code": "#f43434",
+        "slug": "red",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:16:40.000000Z",
+        "updated_at": "2024-12-16T19:16:40.000000Z",
+        "pivot": {
+          "product_id": 282,
+          "colour_id": 2,
+          "created_at": "2025-01-06T12:11:44.000000Z",
+          "updated_at": "2025-01-06T12:11:44.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  },
+  {
+    "id": 281,
+    "p_name": "L.Green",
+    "cat_id": 2,
+    "p_category": {
+      "id": 2,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1739555432_67af8268a00be.jpg\"]",
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 281,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:10:07.000000Z",
+          "updated_at": "2025-01-06T12:10:07.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 281,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:10:07.000000Z",
+          "updated_at": "2025-01-06T12:10:07.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 281,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:10:07.000000Z",
+          "updated_at": "2025-01-06T12:10:07.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 281,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:10:07.000000Z",
+          "updated_at": "2025-01-06T12:10:07.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 281,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:10:07.000000Z",
+          "updated_at": "2025-01-06T12:10:07.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 281,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:10:07.000000Z",
+          "updated_at": "2025-01-06T12:10:07.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 281,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:10:07.000000Z",
+          "updated_at": "2025-01-06T12:10:07.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 281,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:10:07.000000Z",
+          "updated_at": "2025-01-06T12:10:07.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 281,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:10:07.000000Z",
+          "updated_at": "2025-01-06T12:10:07.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 281,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:16:40.000000Z",
+          "updated_at": "2025-01-09T06:16:40.000000Z"
+        }
+      }
+    ],
+    "p_colours": [
+      {
+        "id": 5,
+        "color_name": "L.Green",
+        "color_code": "#adf802",
+        "slug": "lgreen",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T05:53:56.000000Z",
+        "updated_at": "2024-12-19T05:53:56.000000Z",
+        "pivot": {
+          "product_id": 281,
+          "colour_id": 5,
+          "created_at": "2025-01-06T12:10:07.000000Z",
+          "updated_at": "2025-01-06T12:10:07.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  },
+  {
+    "id": 280,
+    "p_name": "Navy",
+    "cat_id": 2,
+    "p_category": {
+      "id": 2,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1736165289_677bc7a9600ed.jpg\",\"images\\/products\\/1736165289_677bc7a960462.jpg\",\"images\\/products\\/1736165289_677bc7a960661.jpg\",\"images\\/products\\/1736165289_677bc7a960904.jpg\",\"images\\/products\\/1736165289_677bc7a960b67.jpg\",\"images\\/products\\/1736165289_677bc7a960da4.jpg\",\"images\\/products\\/1736165289_677bc7a96100b.jpg\"]",
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 280,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:08:09.000000Z",
+          "updated_at": "2025-01-06T12:08:09.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 280,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:08:09.000000Z",
+          "updated_at": "2025-01-06T12:08:09.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 280,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:08:09.000000Z",
+          "updated_at": "2025-01-06T12:08:09.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 280,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:08:09.000000Z",
+          "updated_at": "2025-01-06T12:08:09.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 280,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:08:09.000000Z",
+          "updated_at": "2025-01-06T12:08:09.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 280,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:08:09.000000Z",
+          "updated_at": "2025-01-06T12:08:09.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 280,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:08:09.000000Z",
+          "updated_at": "2025-01-06T12:08:09.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 280,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:08:09.000000Z",
+          "updated_at": "2025-01-06T12:08:09.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 280,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:08:09.000000Z",
+          "updated_at": "2025-01-06T12:08:09.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 280,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:17:13.000000Z",
+          "updated_at": "2025-01-09T06:17:13.000000Z"
+        }
+      }
+    ],
+    "p_colours": [
+      {
+        "id": 7,
+        "color_name": "Navy",
+        "color_code": "#000080",
+        "slug": "navy",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T05:55:31.000000Z",
+        "updated_at": "2024-12-19T05:55:31.000000Z",
+        "pivot": {
+          "product_id": 280,
+          "colour_id": 7,
+          "created_at": "2025-01-06T12:08:09.000000Z",
+          "updated_at": "2025-01-06T12:08:09.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  },
+  {
+    "id": 279,
+    "p_name": "Khaki",
+    "cat_id": 2,
+    "p_category": {
+      "id": 2,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1739555197_67af817d24b0c.jpg\"]",
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 279,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:06:44.000000Z",
+          "updated_at": "2025-01-06T12:06:44.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 279,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:06:44.000000Z",
+          "updated_at": "2025-01-06T12:06:44.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 279,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:06:44.000000Z",
+          "updated_at": "2025-01-06T12:06:44.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 279,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:06:44.000000Z",
+          "updated_at": "2025-01-06T12:06:44.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 279,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:06:44.000000Z",
+          "updated_at": "2025-01-06T12:06:44.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 279,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:06:44.000000Z",
+          "updated_at": "2025-01-06T12:06:44.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 279,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:06:44.000000Z",
+          "updated_at": "2025-01-06T12:06:44.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 279,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:06:44.000000Z",
+          "updated_at": "2025-01-06T12:06:44.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 279,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:06:44.000000Z",
+          "updated_at": "2025-01-06T12:06:44.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 279,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:17:43.000000Z",
+          "updated_at": "2025-01-09T06:17:43.000000Z"
+        }
+      }
+    ],
+    "p_colours": [
+      {
+        "id": 16,
+        "color_name": "Khaki",
+        "color_code": "#d5c58a",
+        "slug": "khaki",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:02:29.000000Z",
+        "updated_at": "2024-12-19T06:02:29.000000Z",
+        "pivot": {
+          "product_id": 279,
+          "colour_id": 16,
+          "created_at": "2025-01-06T12:06:44.000000Z",
+          "updated_at": "2025-01-06T12:06:44.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  },
+  {
+    "id": 278,
+    "p_name": "Purple",
+    "cat_id": 2,
+    "p_category": {
+      "id": 2,
+      "cat_name": "12 Color",
+      "slug": "12-color",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "p_subcategory": {
+      "id": 0,
+      "cat_name": "unknown",
+      "slug": "unknown",
+      "parent_cat": null,
+      "cat_img_one": null,
+      "type_one": null,
+      "img_path": "https://apimas.etherstaging.xyz",
+      "cat_img_two": null,
+      "type_two": null,
+      "cat_img_three": null,
+      "type_three": null,
+      "category_feature_image": "https://apimas.etherstaging.xyz/",
+      "status": null,
+      "whats_new": false,
+      "status_text": "Active",
+      "precedence": null
+    },
+    "subcat_id": 0,
+    "p_description": "Short Sleeve Round Neck (12 Color):Composition: 60% Cotton 40% PolyesterGSM: 185Features:Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.",
+    "p_raw_description": "<p>Short Sleeve Round Neck (12 Color):</p><p>Composition: 60% Cotton 40% Polyester</p><p>GSM: 185</p><p>Features:</p><ol><li>Material: 60% Cotton, 40% Polyester - Combines the softness of cotton with the durability and wrinkle resistance of polyester.</li><li>Fabric Weight: 185 GSM (Grams per Square Meter) - Medium-weight fabric offering a balance of comfort and durability and a premium feel.</li><li>Comfort: Moisture-wicking blend keeps you dry during physical activities. Breathable and soft fabric ensures all-day comfort. Skin-friendly for reduced irritation.</li><li>Design: Classic round neck style with short sleeves, suitable for everyday wear. Tube body construction with seamless sides for a polished, irritation-free fit.</li><li>Fit: Available in a wide size range to accommodate various body types. Designed for casual outings, activewear, or as part of a uniform.</li><li>Durability: Pilling-resistant fabric ensures longevity. Reinforced stitching and polyester blend reduce shrinkage and maintain shape.</li><li>Care: Machine washable at a gentle cycle. Avoid bleach to preserve fabric quality. Tumble dry on low heat or air dry for extended durability.</li></ol>",
+    "feature_image": "[\"images\\/products\\/1739555151_67af814f6a6ff.jpg\"]",
+    "img_path": "https://apimas.etherstaging.xyz",
+    "p_image_one": null,
+    "is_new": false,
+    "has_variation": 0,
+    "p_sizes": [
+      {
+        "id": 2,
+        "size_name": "S",
+        "slug": "s",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:13.000000Z",
+        "updated_at": "2024-12-16T19:18:13.000000Z",
+        "pivot": {
+          "product_id": 278,
+          "size_id": 2,
+          "created_at": "2025-01-06T12:04:59.000000Z",
+          "updated_at": "2025-01-06T12:04:59.000000Z"
+        }
+      },
+      {
+        "id": 3,
+        "size_name": "M",
+        "slug": "m",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:18.000000Z",
+        "updated_at": "2024-12-16T19:18:18.000000Z",
+        "pivot": {
+          "product_id": 278,
+          "size_id": 3,
+          "created_at": "2025-01-06T12:04:59.000000Z",
+          "updated_at": "2025-01-06T12:04:59.000000Z"
+        }
+      },
+      {
+        "id": 1,
+        "size_name": "L",
+        "slug": "l",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:09.000000Z",
+        "updated_at": "2024-12-16T19:18:09.000000Z",
+        "pivot": {
+          "product_id": 278,
+          "size_id": 1,
+          "created_at": "2025-01-06T12:04:59.000000Z",
+          "updated_at": "2025-01-06T12:04:59.000000Z"
+        }
+      },
+      {
+        "id": 4,
+        "size_name": "XL",
+        "slug": "xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:25.000000Z",
+        "updated_at": "2024-12-16T19:18:25.000000Z",
+        "pivot": {
+          "product_id": 278,
+          "size_id": 4,
+          "created_at": "2025-01-06T12:04:59.000000Z",
+          "updated_at": "2025-01-06T12:04:59.000000Z"
+        }
+      },
+      {
+        "id": 5,
+        "size_name": "2XL",
+        "slug": "2xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-16T19:18:36.000000Z",
+        "updated_at": "2024-12-29T10:19:50.000000Z",
+        "pivot": {
+          "product_id": 278,
+          "size_id": 5,
+          "created_at": "2025-01-06T12:04:59.000000Z",
+          "updated_at": "2025-01-06T12:04:59.000000Z"
+        }
+      },
+      {
+        "id": 6,
+        "size_name": "3XL",
+        "slug": "3xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T06:06:25.000000Z",
+        "updated_at": "2024-12-29T10:19:42.000000Z",
+        "pivot": {
+          "product_id": 278,
+          "size_id": 6,
+          "created_at": "2025-01-06T12:04:59.000000Z",
+          "updated_at": "2025-01-06T12:04:59.000000Z"
+        }
+      },
+      {
+        "id": 7,
+        "size_name": "4XL",
+        "slug": "4xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:09.000000Z",
+        "updated_at": "2024-12-29T10:19:09.000000Z",
+        "pivot": {
+          "product_id": 278,
+          "size_id": 7,
+          "created_at": "2025-01-06T12:04:59.000000Z",
+          "updated_at": "2025-01-06T12:04:59.000000Z"
+        }
+      },
+      {
+        "id": 8,
+        "size_name": "5XL",
+        "slug": "5xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:19:56.000000Z",
+        "updated_at": "2024-12-29T10:19:56.000000Z",
+        "pivot": {
+          "product_id": 278,
+          "size_id": 8,
+          "created_at": "2025-01-06T12:04:59.000000Z",
+          "updated_at": "2025-01-06T12:04:59.000000Z"
+        }
+      },
+      {
+        "id": 9,
+        "size_name": "6XL",
+        "slug": "6xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-29T10:20:03.000000Z",
+        "updated_at": "2024-12-29T10:20:03.000000Z",
+        "pivot": {
+          "product_id": 278,
+          "size_id": 9,
+          "created_at": "2025-01-06T12:04:59.000000Z",
+          "updated_at": "2025-01-06T12:04:59.000000Z"
+        }
+      },
+      {
+        "id": 10,
+        "size_name": "1XL",
+        "slug": "1xl",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2025-01-09T05:51:17.000000Z",
+        "updated_at": "2025-01-09T05:51:17.000000Z",
+        "pivot": {
+          "product_id": 278,
+          "size_id": 10,
+          "created_at": "2025-01-09T06:19:10.000000Z",
+          "updated_at": "2025-01-09T06:19:10.000000Z"
+        }
+      }
+    ],
+    "p_colours": [
+      {
+        "id": 8,
+        "color_name": "Purple",
+        "color_code": "#a020f0",
+        "slug": "purple",
+        "precedence": null,
+        "status": 1,
+        "deleted_at": null,
+        "created_at": "2024-12-19T05:56:35.000000Z",
+        "updated_at": "2024-12-19T05:56:35.000000Z",
+        "pivot": {
+          "product_id": 278,
+          "colour_id": 8,
+          "created_at": "2025-01-06T12:04:59.000000Z",
+          "updated_at": "2025-01-06T12:04:59.000000Z"
+        }
+      }
+    ],
+    "status": 1,
+    "status_text": "Active",
+    "created_date": "6 Jan 2025"
+  }
+]

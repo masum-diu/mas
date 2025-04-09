@@ -4,23 +4,22 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Typography, CircularProgress, Stack } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import instance from "../pages/api/api_instance";
 import Link from "next/link";
+import static_category_list from "../public/data/static_category_list.json";
+import { useRouter } from "next/router";
 
-function ProgressPaginationSwipersider() {
+function ProgressPaginationSwipersider({ setTabId }) {
   const [products, setProducts] = useState(null);
-  const [loading, setLoading] = useState(true);
-  console.log(products);
+  const router = useRouter(); // Initialize useRouter
+
   const fatchingData = async () => {
-    setLoading(true);
     try {
       const res = await instance.get("/category-list");
       setProducts(res?.data?.data);
     } catch (error) {
       console.error("Error fetching data:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -28,81 +27,59 @@ function ProgressPaginationSwipersider() {
     fatchingData();
   }, []);
 
+  let conditionalProducts =
+    router?.asPath === "/wholesale" ? products : static_category_list;
+
   const fallbackImage = "https://via.placeholder.com/200";
 
   return (
-    <>
-      {loading ? (
-        <div className="loading-container">
-          <CircularProgress />
-        </div>
-      ) : (
-        <Swiper
-          modules={[Pagination, Scrollbar, Navigation]}
-          spaceBetween={20}
-          slidesPerView={4}
-          navigation={true}
-          breakpoints={{
-            320: {
-              slidesPerView: 1,
-              spaceBetween: 10,
-            },
-            480: {
-              slidesPerView: 2,
-              spaceBetween: 15,
-            },
-            768: {
-              slidesPerView: 3,
-              spaceBetween: 20,
-            },
-            1024: {
-              slidesPerView: 4,
-              spaceBetween: 20,
-            },
-          }}
-        >
-          {products?.map((product, index) => (
-            <SwiperSlide key={index}>
-              <Link
-                href={`/product-category/${product?.slug}/${product?.id}`}
-                passHref
-              >
-                <Stack direction={"column"} spacing={1} alignItems="center">
-                  {/* Image with fallback in case of error */}
-                  <img
-                    src={product?.category_feature_image || fallbackImage} // Use fallback if no image is found
-                    alt={product?.cat_name || "Category"} // Alt text for missing category name
-                    style={{
-                      width: "100%",
-                      height: "100%", // Adjust image height
-                      objectFit: "cover",
-                      background: "none",
-                    }}
-                  />
-                  {/* Category Name displayed below the image */}
-                  <Typography
-                    sx={{ cursor: "pointer" }}
-                    className="Medium"
-                    fontSize={18}
-                    color={"#9a0e20"}
-                    textTransform={"uppercase"}
-                    style={{
-                      textAlign: "center",
-                      background: "none",
-                      marginTop: "20px",
-                      // Add some spacing
-                    }}
-                  >
-                    {product?.cat_name || "No Category Name"}{" "}
-                    {/* Fallback text if category name is missing */}
-                  </Typography>
-                </Stack>
-              </Link>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      )}
-    </>
+    <Swiper
+      modules={[Pagination, Scrollbar, Navigation]}
+      spaceBetween={20}
+      slidesPerView={6}
+      navigation={true}
+      breakpoints={{
+        320: {
+          slidesPerView: 1,
+          spaceBetween: 10,
+        },
+        480: {
+          slidesPerView: 2,
+          spaceBetween: 15,
+        },
+        768: {
+          slidesPerView: 3,
+          spaceBetween: 20,
+        },
+        1024: {
+          slidesPerView: 6,
+          spaceBetween: 20,
+        },
+      }}
+    >
+      {conditionalProducts?.map((product, index) => (
+        <SwiperSlide key={product?.id} onClick={() => setTabId(product?.id)}>
+          <Stack direction={"column"} spacing={1} alignItems="left">
+            {/* Category Name displayed below the image */}
+            <Typography
+              sx={{ cursor: "pointer" }}
+              className="Medium"
+              fontSize={18}
+              color={"#fffff"}
+              textTransform={"uppercase"}
+              style={{
+                textAlign: "left",
+                background: "none",
+                marginTop: "10px",
+              }}
+            >
+              {product?.cat_name || "No Category Name"}{" "}
+              {/* Fallback text if category name is missing */}
+            </Typography>
+          </Stack>
+        </SwiperSlide>
+      ))}
+    </Swiper>
   );
 }
 

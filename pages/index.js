@@ -12,16 +12,73 @@ import {
   TextField,
 } from "@mui/material";
 import ProgressPaginationSwipersider from "../components/ProgressPaginationSwipersider";
+
 const CustomTextField = styled(TextField)({
   '& input[type="date"]::-webkit-calendar-picker-indicator': {
     filter: "invert(100%) brightness(200%)", // Adjust color to red
   },
 });
+
+const ImageContainer = styled(Box)({
+  position: "relative",
+  "&:hover .overlay": {
+    opacity: 1,
+  },
+});
+
+const Overlay = styled(Box)({
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  opacity: 0,
+  transition: "opacity 0.3s ease",
+});
+
 const Home = () => {
   return (
     <Layout>
       <ProgressPaginationSwiper />
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
+        <Grid container spacing={4} py={6}>
+          <Grid item lg={6}>
+            <ImageContainer>
+              <img src="/assets/Coover_2.png" alt="" width={"100%"} />
+              <Overlay className="overlay">
+                <Typography variant="h4" color="white">
+                  Retail
+                </Typography>
+                <Link href="/retail">
+                  <Button variant="contained" color="error">
+                    learn more
+                  </Button>
+                </Link>
+              </Overlay>
+            </ImageContainer>
+          </Grid>
+          <Grid item lg={6}>
+            <ImageContainer>
+              <img src="/assets/Coover_2.png" alt="" width={"100%"} />
+              <Overlay className="overlay">
+                <Typography variant="h4" color="white">
+                  WholeSale
+                </Typography>
+                <Link href="/wholesale">
+                  <Button variant="contained" color="error">
+                    learn more
+                  </Button>
+                </Link>
+              </Overlay>
+            </ImageContainer>
+          </Grid>
+        </Grid>
+
         <Grid container spacing={4} py={6}>
           <Grid item lg={6}>
             <Typography
@@ -36,9 +93,6 @@ const Home = () => {
             >
               SIMPLE ESSENTIALS, GLOBAL IMPACT
             </Typography>
-            {/* <Typography className="Medium" fontSize={60} sx={{ position: 'absolute', left: 187, top: 80, zIndex: 1 }}>
-                            MAS
-                        </Typography> */}
           </Grid>
 
           <Grid item lg={6}>
@@ -77,16 +131,6 @@ const Home = () => {
                 </Typography>
               </Stack>
             </Stack>
-            {/* <Stack
-              direction={"row"}
-              spacing={2}
-              justifyContent={"space-between"}
-              // sx={{ maxWidth: 550 }}
-              pb={5}
-            >
-              */}
-
-            {/* </Stack> */}
             <Link href="/about">
               <Button variant="contained" color="error">
                 learn more
@@ -94,6 +138,7 @@ const Home = () => {
             </Link>
           </Grid>
         </Grid>
+
         <Grid container spacing={4} py={8}>
           <Grid item lg={12}>
             <Typography className="Medium" fontSize={40}>
@@ -371,19 +416,6 @@ const Home = () => {
           </Grid>
         </Grid>
 
-        <Grid container spacing={2} py={7}>
-          <Grid item lg={12} xs={12}>
-            <Typography
-              className="Medium"
-              fontSize={40}
-              textTransform={"uppercase"}
-              mb={3}
-            >
-              Our Products
-            </Typography>
-            <ProgressPaginationSwipersider />
-          </Grid>
-        </Grid>
         <Typography
           className="Medium"
           fontSize={40}
@@ -427,8 +459,6 @@ const Home = () => {
                 Name <span style={{ color: "#9A0E20" }}>*</span>
               </Typography>
               <TextField
-                // label="Standard warning"
-
                 variant="standard"
                 className="Light"
                 color="primary"
@@ -452,7 +482,6 @@ const Home = () => {
                 Phone <span style={{ color: "#9A0E20" }}>*</span>
               </Typography>
               <TextField
-                // label="Standard warning"
                 variant="standard"
                 color="primary"
                 placeholder="Enter Your Phone"
@@ -477,7 +506,6 @@ const Home = () => {
                 Email <span style={{ color: "#9A0E20" }}>*</span>
               </Typography>
               <TextField
-                // label="Standard warning"
                 variant="standard"
                 color="primary"
                 placeholder="Enter Your Email"
@@ -509,34 +537,13 @@ const Home = () => {
                 InputProps={{
                   sx: {
                     color: "#bbb",
-                    fontSize: 18, // Sets the text color to white
+                    fontSize: 18,
                   },
                 }}
               />
             </Stack>
           </Grid>
-          <Grid item lg={4} xs={12}>
-            {/* <Stack direction={"column"} spacing={1}>
-                            <Typography className="Medium" fontSize={16} textTransform={"uppercase"}  >
-                                Email *
-                            </Typography>
-                            <TextField
-                                // label="Standard warning"
-                                variant="standard"
-                                color="primary"
-                                placeholder="Enter Your Email"
-                                multiline
-                                rows={4}
-                                fullWidth
-                                focused
-                                InputProps={{
-                                    sx: {
-                                        color: '#ffffff',
-                                    },
-                                }}
-                            />
-                        </Stack> */}
-          </Grid>
+          <Grid item lg={4} xs={12}></Grid>
           <Grid item lg={8} xs={12}>
             <Stack direction={"column"} spacing={1}>
               <Typography
@@ -547,7 +554,6 @@ const Home = () => {
                 Message
               </Typography>
               <TextField
-                // label="Standard warning"
                 variant="standard"
                 color="primary"
                 placeholder="Enter Your Message"
