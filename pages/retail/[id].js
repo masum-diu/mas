@@ -167,14 +167,21 @@ const SingleProduct = () => {
               </Select>
 
               {/* Size Guide Button */}
-              <Button
-                variant="text"
-                color="primary"
-                onClick={handleOpenSizeGuide}
-                sx={{ marginTop: 1 }}
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginTop: 1,
+                }}
               >
-                Size Guide
-              </Button>
+                <Button
+                  variant="text"
+                  color="primary"
+                  onClick={handleOpenSizeGuide}
+                >
+                  Size Guide
+                </Button>
+              </Box>
 
               {/* Size Guide Dialog */}
               <Dialog
