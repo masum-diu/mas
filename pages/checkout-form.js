@@ -137,7 +137,7 @@ const CheckoutForm = () => {
 
         <Grid container spacing={4}>
           {/* User Details Form */}
-          <Grid item lg={6} sm={12}>
+          <Grid item lg={8} sm={12}>
             <Typography variant="h6" mb={2}>
               Billing Details
             </Typography>
@@ -582,18 +582,27 @@ const CheckoutForm = () => {
           </Grid>
 
           {/* Cart Summary */}
-          <Grid item lg={6} sm={12}>
+          {/* Order Summary */}
+          <Grid item lg={4} sm={12}>
             <Typography variant="h6" mb={2}>
               Order Summary
             </Typography>
-            <Stack spacing={2}>
+            <Box
+              sx={{
+                border: "1px solid #ccc", // Border color
+                borderRadius: "8px", // Rounded corners
+                padding: 3, // Padding inside the box
+                backgroundColor: "inherit", // Keep the background color as it is
+              }}
+            >
               {cart.map((item, index) => (
                 <Box
                   key={index}
                   sx={{
-                    border: "1px solid #ccc",
-                    borderRadius: "8px",
-                    padding: 2,
+                    marginBottom: 2,
+                    paddingBottom: 2,
+                    borderBottom:
+                      index !== cart.length - 1 ? "1px solid #ddd" : "none", // Add a divider between items
                   }}
                 >
                   <Typography>{item.name}</Typography>
@@ -601,7 +610,9 @@ const CheckoutForm = () => {
                   <Typography>Quantity: {item.quantity || 1}</Typography>
                 </Box>
               ))}
-              <Typography variant="h5">Total Items: {cart.length}</Typography>
+              <Typography variant="h5" mt={2}>
+                Total Items: {cart.length}
+              </Typography>
               <Typography variant="h5">
                 Total Price (with 10% VAT): BDT{" "}
                 {cart
@@ -612,7 +623,7 @@ const CheckoutForm = () => {
                   )
                   .toFixed(2)}
               </Typography>
-            </Stack>
+            </Box>
           </Grid>
         </Grid>
 

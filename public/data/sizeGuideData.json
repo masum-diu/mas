@@ -1,0 +1,196 @@
+{
+  "sizeGuide": [
+    {
+      "style": "Short Sleeve - Cotton",
+      "description": "Body Length",
+      "sizes": {
+        "S": 68,
+        "M": 72,
+        "L": 76,
+        "XL": 80,
+        "1XL": 82,
+        "2XL": 84,
+        "3XL": 86,
+        "4XL": 88,
+        "5XL": 90,
+        "6XL": 92
+      }
+    },
+    {
+      "style": "Short Sleeve - Cotton",
+      "description": "1/2 Chest",
+      "sizes": {
+        "S": 48.5,
+        "M": 52.5,
+        "L": 57,
+        "XL": 61,
+        "1XL": 63,
+        "2XL": 64.5,
+        "3XL": 66.5,
+        "4XL": 68.5,
+        "5XL": 71.5,
+        "6XL": 75.5
+      }
+    },
+    {
+      "style": "Long Sleeve - Cotton",
+      "description": "Body Length",
+      "sizes": {
+        "S": 71,
+        "M": 74,
+        "L": 77,
+        "XL": 80,
+        "1XL": 83,
+        "2XL": 86,
+        "3XL": 88,
+        "4XL": 90,
+        "5XL": 92,
+        "6XL": 92
+      }
+    },
+    {
+      "style": "Long Sleeve - Cotton",
+      "description": "1/2 Chest",
+      "sizes": {
+        "S": 49,
+        "M": 53,
+        "L": 57,
+        "XL": 61,
+        "1XL": 65,
+        "2XL": 68,
+        "3XL": 71,
+        "4XL": 73,
+        "5XL": 75,
+        "6XL": 75
+      }
+    },
+    {
+      "style": "Long Sleeve - Dry Fit",
+      "description": "Body Length",
+      "sizes": {
+        "S": 70,
+        "M": 73,
+        "L": 76,
+        "XL": 79,
+        "1XL": 82,
+        "2XL": 85,
+        "3XL": 86,
+        "4XL": 88,
+        "5XL": 90,
+        "6XL": 92
+      }
+    },
+    {
+      "style": "Long Sleeve - Dry Fit",
+      "description": "1/2 Chest",
+      "sizes": {
+        "S": 45,
+        "M": 48,
+        "L": 52,
+        "XL": 56,
+        "1XL": 60,
+        "2XL": 64,
+        "3XL": 67,
+        "4XL": 71,
+        "5XL": 73,
+        "6XL": 75
+      }
+    },
+    {
+      "style": "Long Sleeve - Thermal",
+      "description": "Body Length",
+      "sizes": {
+        "S": 72,
+        "M": 75,
+        "L": 78,
+        "XL": 81,
+        "1XL": 84,
+        "2XL": 87,
+        "3XL": 89,
+        "4XL": 91,
+        "5XL": 93,
+        "6XL": 93
+      }
+    },
+    {
+      "style": "Long Sleeve - Thermal",
+      "description": "1/2 Chest",
+      "sizes": {
+        "S": 49,
+        "M": 52,
+        "L": 55,
+        "XL": 57,
+        "1XL": 59,
+        "2XL": 61,
+        "3XL": 63,
+        "4XL": 65,
+        "5XL": 67,
+        "6XL": 67
+      }
+    },
+    {
+      "style": "Tank Top/ A Shirt",
+      "description": "Body Length",
+      "sizes": {
+        "S": 76,
+        "M": 79,
+        "L": 82,
+        "XL": 86,
+        "1XL": 88,
+        "2XL": 90,
+        "3XL": 90,
+        "4XL": 90,
+        "5XL": 90,
+        "6XL": 90
+      }
+    },
+    {
+      "style": "Tank Top/ A Shirt",
+      "description": "1/2 Chest",
+      "sizes": {
+        "S": 28,
+        "M": 30,
+        "L": 32,
+        "XL": 36,
+        "1XL": 38,
+        "2XL": 40,
+        "3XL": 40,
+        "4XL": 40,
+        "5XL": 40,
+        "6XL": 40
+      }
+    },
+    {
+      "style": "Boxer",
+      "description": "Side Length",
+      "sizes": {
+        "S": 30,
+        "M": 32,
+        "L": 40,
+        "XL": 42,
+        "1XL": 44,
+        "2XL": 46,
+        "3XL": 46,
+        "4XL": 46,
+        "5XL": 46,
+        "6XL": 46
+      }
+    },
+    {
+      "style": "Boxer",
+      "description": "1/2 Waist",
+      "sizes": {
+        "S": 34,
+        "M": 37,
+        "L": 39,
+        "XL": 42,
+        "1XL": 45,
+        "2XL": 47,
+        "3XL": 49,
+        "4XL": 49,
+        "5XL": 49,
+        "6XL": 49
+      }
+    }
+  ]
+}

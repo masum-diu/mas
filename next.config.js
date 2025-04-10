@@ -1,10 +1,9 @@
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
-  output: "export", // Ensure this is set
+  trailingSlash: true, // ✅ Correct property name
   images: {
-    unoptimized: true, // Disable image optimization for static export
+    unoptimized: true, // ✅ For static image compatibility
   },
 };
 

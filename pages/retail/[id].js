@@ -12,12 +12,17 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
 import Layout from "../../components/Layout";
 import instance from "../api/api_instance";
 import { useRouter } from "next/router";
 import { useCart } from "../../src/context/CartContext"; // Import CartContext
 import staticData from "../../public/data/static_product_data.json";
+import sizeGuideData from "../../public/data/sizeGuideData.json"; // Import Size Guide Data
 
 const SingleProduct = () => {
   const router = useRouter();
@@ -28,7 +33,8 @@ const SingleProduct = () => {
   const [age, setAge] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isClient, setIsClient] = useState(false);
+  const [openSizeGuide, setOpenSizeGuide] = useState(false); // State for Size Guide popup
+
   const products = router.isReady
     ? staticData?.find((item) => parseInt(item.id) === parseInt(id)) // Ensure id is parsed correctly
     : {};
@@ -40,7 +46,7 @@ const SingleProduct = () => {
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
-  console.log("your log output", products);
+
   const handleAddToCart = () => {
     const cartData = {
       id: products?.id,
@@ -52,6 +58,15 @@ const SingleProduct = () => {
     };
     addToCart(cartData); // Call addToCart from CartContext
   };
+
+  const handleOpenSizeGuide = () => {
+    setOpenSizeGuide(true); // Open Size Guide popup
+  };
+
+  const handleCloseSizeGuide = () => {
+    setOpenSizeGuide(false); // Close Size Guide popup
+  };
+
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
 
@@ -151,6 +166,134 @@ const SingleProduct = () => {
                 ))}
               </Select>
 
+              {/* Size Guide Button */}
+              <Button
+                variant="text"
+                color="primary"
+                onClick={handleOpenSizeGuide}
+                sx={{ marginTop: 1 }}
+              >
+                Size Guide
+              </Button>
+
+              {/* Size Guide Dialog */}
+              <Dialog
+                open={openSizeGuide}
+                onClose={handleCloseSizeGuide}
+                maxWidth="lg"
+                fullWidth
+              >
+                <DialogTitle>Size Guide</DialogTitle>
+                <DialogContent>
+                  <Typography variant="body1" mb={2}>
+                    All Style Measurements in CM
+                  </Typography>
+                  <table
+                    style={{
+                      width: "100%",
+                      borderCollapse: "collapse",
+                    }}
+                  >
+                    <thead>
+                      <tr>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          Style
+                        </th>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          Description
+                        </th>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          S
+                        </th>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          M
+                        </th>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          L
+                        </th>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          XL
+                        </th>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          1XL
+                        </th>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          2XL
+                        </th>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          3XL
+                        </th>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          4XL
+                        </th>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          5XL
+                        </th>
+                        <th
+                          style={{ border: "1px solid #ddd", padding: "8px" }}
+                        >
+                          6XL
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {sizeGuideData.sizeGuide.map((item, index) => (
+                        <tr key={index}>
+                          <td
+                            style={{ border: "1px solid #ddd", padding: "8px" }}
+                          >
+                            {item.style}
+                          </td>
+                          <td
+                            style={{ border: "1px solid #ddd", padding: "8px" }}
+                          >
+                            {item.description}
+                          </td>
+                          {Object.keys(item.sizes).map((sizeKey) => (
+                            <td
+                              key={sizeKey}
+                              style={{
+                                border: "1px solid #ddd",
+                                padding: "8px",
+                              }}
+                            >
+                              {item.sizes[sizeKey]}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleCloseSizeGuide} color="primary">
+                    Close
+                  </Button>
+                </DialogActions>
+              </Dialog>
+
               <Stack direction={"row"} spacing={2} py={2}>
                 <Typography className="Regular">
                   Price: <span className="Medium">BDT {products?.p_price}</span>
@@ -180,60 +323,6 @@ const SingleProduct = () => {
                 />
               </Typography>
             </Stack>
-
-            <Typography className="Regular" fontSize={18} color={"inherit"}>
-              Specifications
-            </Typography>
-            <Grid container py={2} spacing={4}>
-              <Grid item lg={6} sm={12} xs={12}>
-                <Typography className="Regular" fontSize={18}>
-                  Material
-                </Typography>
-                <Typography
-                  className="Regular"
-                  fontSize={16}
-                  borderBottom={"1px solid #5a5858"}
-                >
-                  100% organic cotton
-                </Typography>
-              </Grid>
-              <Grid item lg={6} sm={12} xs={12}>
-                <Typography className="Regular" fontSize={18}>
-                  Weight
-                </Typography>
-                <Typography
-                  className="Regular"
-                  fontSize={16}
-                  borderBottom={"1px solid #5a5858"}
-                >
-                  180 GSM (Medium Weight)
-                </Typography>
-              </Grid>
-              <Grid item lg={6} sm={12} xs={12}>
-                <Typography className="Regular" fontSize={18}>
-                  Fit
-                </Typography>
-                <Typography
-                  className="Regular"
-                  fontSize={16}
-                  borderBottom={"1px solid #5a5858"}
-                >
-                  Regular Fit
-                </Typography>
-              </Grid>
-              <Grid item lg={6} sm={12} xs={12}>
-                <Typography className="Regular" fontSize={18}>
-                  Care
-                </Typography>
-                <Typography
-                  className="Regular"
-                  fontSize={16}
-                  borderBottom={"1px solid #5a5858"}
-                >
-                  Machine wash cold, tumble dry low
-                </Typography>
-              </Grid>
-            </Grid>
           </Grid>
         </Grid>
       </Box>
