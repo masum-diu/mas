@@ -177,16 +177,6 @@ const Layout = ({ children }) => {
                 </Typography>
               </Link>
 
-              <Link href={"/wholesale"} passHref>
-                <Typography
-                  className="Medium"
-                  fontSize={16}
-                  sx={{ color: darkMode ? "#fff" : "#000" }}
-                >
-                  WHOLESALE
-                </Typography>
-              </Link>
-
               <Stack
                 direction="row"
                 alignItems="center"

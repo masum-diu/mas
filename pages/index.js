@@ -79,10 +79,12 @@ const Home = () => {
             </Link>
           </Grid>
           <Grid item lg={4}>
-            <ImageContainer>
-              <img src="/assets/retail(1).png" alt="" width={"100%"} />
-              <Overlay className="overlay"></Overlay>
-            </ImageContainer>
+            <Link href="/retail">
+              <ImageContainer>
+                <img src="/assets/retail(1).png" alt="" width={"100%"} />
+                <Overlay className="overlay"></Overlay>
+              </ImageContainer>
+            </Link>
           </Grid>
           <Grid
             item
@@ -105,10 +107,12 @@ const Home = () => {
             </Link>
           </Grid>
           <Grid item lg={4}>
-            <ImageContainer>
-              <img src="/assets/whole2.png" alt="" width={"100%"} />
-              <Overlay className="overlay"></Overlay>
-            </ImageContainer>
+            <Link href="/wholesale">
+              <ImageContainer>
+                <img src="/assets/whole2.png" alt="" width={"100%"} />
+                <Overlay className="overlay"></Overlay>
+              </ImageContainer>
+            </Link>
           </Grid>
         </Grid>
 
@@ -183,7 +187,7 @@ const Home = () => {
               sx={{ display: "flex", flexDirection: "column", pt: 2 }}
             >
               Our product line includes T-Shirts, Polo Shirts, Boxer Shorts,
-              Tank Tops/A Shirts, Thermal Wear,
+              Tank Tops, A Shirts, Thermal Wear,
               <span>
                 Hoodies, Sweat Shirts/Pants, Socks and Caps will be under both
                 “MAS” label and tear up label.
@@ -445,7 +449,7 @@ const Home = () => {
           </Grid>
 
           <Grid item lg={6}>
-            <img src="/assets/bam.jpeg" alt="" width={"100%"} />
+            <img src="/assets/team.jpg" alt="" width={"100%"} />
           </Grid>
         </Grid>
 

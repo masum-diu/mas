@@ -79,6 +79,7 @@ const ProductCategoryRetail = () => {
                       src={imageUrl}
                       alt={product?.p_name || "Product Image"}
                       width="100%"
+                      onClick={() => handleNavigation(product.id)}
                     />
                     <Typography
                       className="Medium"

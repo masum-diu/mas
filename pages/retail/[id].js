@@ -329,6 +329,49 @@ const SingleProduct = () => {
                   }}
                 />
               </Typography>
+              {/* Specifications Section */}
+              <Typography
+                className="Regular"
+                fontSize={18}
+                color={"inherit"}
+                mt={4}
+              >
+                Specifications
+              </Typography>
+              <Grid container py={2} spacing={4}>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={16}>
+                    Material
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    100% Organic Cotton
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={16}>
+                    Weight
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    180 GSM (Medium Weight)
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={16}>
+                    Fit
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    Regular Fit
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={16}>
+                    Care
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    Machine wash cold, tumble dry low
+                  </Typography>
+                </Grid>
+              </Grid>
             </Stack>
           </Grid>
         </Grid>

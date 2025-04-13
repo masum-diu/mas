@@ -27,8 +27,9 @@ function ProgressPaginationSwipersider({ setTabId }) {
     fatchingData();
   }, []);
 
-  let conditionalProducts =
-    router?.asPath === "/wholesale" ? products : static_category_list;
+  let conditionalProducts = router?.asPath.includes("/wholesale")
+    ? products
+    : static_category_list;
 
   const fallbackImage = "https://via.placeholder.com/200";
 
