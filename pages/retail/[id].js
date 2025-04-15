@@ -66,6 +66,11 @@ const SingleProduct = () => {
   const handleCloseSizeGuide = () => {
     setOpenSizeGuide(false); // Close Size Guide popup
   };
+  const getFilteredSizeGuide = () => {
+    return sizeGuideData.sizeGuide.filter((item) =>
+      products?.p_name?.toLowerCase().includes(item.style.toLowerCase())
+    );
+  };
 
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
@@ -184,6 +189,7 @@ const SingleProduct = () => {
               </Box>
 
               {/* Size Guide Dialog */}
+              {/* Size Guide Dialog */}
               <Dialog
                 open={openSizeGuide}
                 onClose={handleCloseSizeGuide}
@@ -266,31 +272,48 @@ const SingleProduct = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      {sizeGuideData.sizeGuide.map((item, index) => (
-                        <tr key={index}>
-                          <td
-                            style={{ border: "1px solid #ddd", padding: "8px" }}
-                          >
-                            {item.style}
-                          </td>
-                          <td
-                            style={{ border: "1px solid #ddd", padding: "8px" }}
-                          >
-                            {item.description}
-                          </td>
-                          {Object.keys(item.sizes).map((sizeKey) => (
+                      {getFilteredSizeGuide().length > 0 ? (
+                        getFilteredSizeGuide().map((item, index) => (
+                          <tr key={index}>
                             <td
-                              key={sizeKey}
                               style={{
                                 border: "1px solid #ddd",
                                 padding: "8px",
                               }}
                             >
-                              {item.sizes[sizeKey]}
+                              {item.style}
                             </td>
-                          ))}
+                            <td
+                              style={{
+                                border: "1px solid #ddd",
+                                padding: "8px",
+                              }}
+                            >
+                              {item.description}
+                            </td>
+                            {Object.keys(item.sizes).map((sizeKey) => (
+                              <td
+                                key={sizeKey}
+                                style={{
+                                  border: "1px solid #ddd",
+                                  padding: "8px",
+                                }}
+                              >
+                                {item.sizes[sizeKey]}
+                              </td>
+                            ))}
+                          </tr>
+                        ))
+                      ) : (
+                        <tr>
+                          <td
+                            colSpan="12"
+                            style={{ textAlign: "center", padding: "8px" }}
+                          >
+                            No size guide available for this product.
+                          </td>
                         </tr>
-                      ))}
+                      )}
                     </tbody>
                   </table>
                 </DialogContent>
@@ -300,7 +323,6 @@ const SingleProduct = () => {
                   </Button>
                 </DialogActions>
               </Dialog>
-
               <Stack direction={"row"} spacing={2} py={2}>
                 <Typography className="Regular">
                   Price: <span className="Medium">BDT {products?.p_price}</span>
