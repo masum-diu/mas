@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Typography from "@mui/material/Typography";
 import instance from "../pages/api/api_instance";
+import axios from "axios";
 
 function ProgressPaginationSwiper() {
   const [slides, setSlides] = useState([]);
@@ -15,7 +16,7 @@ function ProgressPaginationSwiper() {
   const fetchingData = async () => {
     try {
       setLoading(true);
-      const res = await instance.get("/sustainability?no_paginate=yes");
+      const res = await axios.get("https://apimas.etherstaging.xyz/api/sustainability?no_paginate=yes");
       setSlides(res?.data?.data);
       setLoading(false);
     } catch (error) {

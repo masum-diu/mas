@@ -12,12 +12,13 @@ import { useRouter } from "next/router";
 
 function ProgressPaginationSwipersider({ setTabId }) {
   const [products, setProducts] = useState(null);
+  console.log(products, "products");
   const router = useRouter(); // Initialize useRouter
-
+  const id = localStorage.getItem("selectedItemId")
   const fatchingData = async () => {
     try {
-      const res = await instance.get("/category-list");
-      setProducts(res?.data?.data);
+      const res = await instance.get(`/v1/sub-category?category=${id}`);
+      setProducts(res?.data?.data?.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -25,11 +26,11 @@ function ProgressPaginationSwipersider({ setTabId }) {
 
   useEffect(() => {
     fatchingData();
-  }, []);
+  }, [id]);
 
   let conditionalProducts = router?.asPath.includes("/wholesale")
     ? products
-    : static_category_list;
+    : products;
 
   const fallbackImage = "https://via.placeholder.com/200";
 
@@ -78,7 +79,7 @@ function ProgressPaginationSwipersider({ setTabId }) {
                   marginTop: "10px",
                 }}
               >
-                {product?.cat_name || "No Category Name"}{" "}
+                {product?.name || "No Category Name"}{" "}
                 {/* Fallback text if category name is missing */}
               </Typography>
             </Stack>

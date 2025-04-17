@@ -28,7 +28,7 @@ import catData from "../../public/data/static_category_list"; // Import category
 const SingleProduct = () => {
   const router = useRouter();
   const { id, name } = router.query;
-  // console.log(name, "router query"); // Log the router query
+   console.log(id, "router query"); // Log the router query
 
   const { addToCart } = useCart(); // Access addToCart from CartContext
 

@@ -16,13 +16,13 @@ const ProductCategoryRetail = () => {
   const [tabId, setTabId] = useState(1);
   const [isMounted, setIsMounted] = useState(false); // Track if the component has mounted
   const [tabName, setTabName] = useState("");
-  console.log(tabName, "tabName");
+  console.log(tabId, "tabName");
 
   // Fetch product data
   const fetchingData = async () => {
     try {
       setLoading(true);
-      const res = await instance.get(`/product/${tabId}`);
+      const res = await instance.get(`/v1/product?sub_category/${tabId}`);
       setProducts(res?.data?.data);
       setLoading(false);
     } catch (error) {
@@ -69,14 +69,13 @@ const ProductCategoryRetail = () => {
               <CircularProgress />
             </div>
           ) : (
-            staticData
-              ?.filter((product) => product.cat_id === tabId) // 🔥 Filter by selected tab/category
+            products
+              ?.filter((product) => product.id === tabId) // 🔥 Filter by selected tab/category
               .map((product, index) => {
                 // console.log(product, "product");
 
-                const imageUrl = product?.feature_static_images
-                  ? product?.feature_static_images[0]
-                  : "/placeholder.jpg";
+                const imageUrl = product?.images?.[0] || "/placeholder.jpg";
+
 
                 return (
                   <Grid
