@@ -260,61 +260,18 @@ const Layout = ({ children }) => {
               />
             </ListItem>
           </Link>
-          <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+
+          <Link href={"/retail"} passHref>
             <ListItem button>
               <ListItemText
-                primary={<Typography className="Medium">PRODUCTS</Typography>}
-              />
-            </ListItem>
-            <Menu
-              sx={{
-                mt: 1,
-                "& .MuiPaper-root": {
-                  backgroundColor: darkMode ? "#000000" : "#f5f5f5",
-                },
-              }}
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleMouseLeave}
-              MenuListProps={{
-                onMouseLeave: handleMouseLeave,
-              }}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-            >
-              {products?.length > 0 &&
-                products?.map((item, index) => (
-                  <MenuItem key={index} onClick={handleMouseLeave}>
-                    <Link
-                      href={`/product-category/${item?.slug}/${item?.id}`}
-                      passHref
-                      style={{ textDecoration: "none" }}
-                    >
-                      <Typography className="Medium">
-                        {item?.cat_name}
-                      </Typography>
-                    </Link>
-                  </MenuItem>
-                ))}
-            </Menu>
-          </div>
-          <Link href={"/product-category/wholesale/1"} passHref>
-            <ListItem button>
-              <ListItemText
-                primary={<Typography className="Medium">WHOLESALE</Typography>}
+                primary={<Typography className="Medium">RETAIL</Typography>}
               />
             </ListItem>
           </Link>
           <Link href={"/contactus"} passHref>
             <ListItem button>
               <ListItemText
-                primary={<Typography className="Medium">Contact Us</Typography>}
+                primary={<Typography className="Medium">CONTACT US</Typography>}
               />
             </ListItem>
           </Link>

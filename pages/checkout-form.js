@@ -137,7 +137,7 @@ const CheckoutForm = () => {
 
         <Grid container spacing={4}>
           {/* User Details Form */}
-          <Grid item lg={8} sm={12}>
+          <Grid item lg={8} sm={12} xs={12}>
             <Typography variant="h6" mb={2}>
               Billing Details
             </Typography>
