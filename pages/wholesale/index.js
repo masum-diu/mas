@@ -13,6 +13,7 @@ const ProductCategoryRetail = () => {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(false);
   const [tabId, setTabId] = useState(1);
+
   const [isMounted, setIsMounted] = useState(false); // Track if component is mounted
 
   const { slug, id } = router.query;

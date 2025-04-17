@@ -15,6 +15,8 @@ const ProductCategoryRetail = () => {
   const { slug, id } = router.query; // Access dynamic parameters
   const [tabId, setTabId] = useState(1);
   const [isMounted, setIsMounted] = useState(false); // Track if the component has mounted
+  const [tabName, setTabName] = useState("");
+  console.log(tabName, "tabName");
 
   // Fetch product data
   const fetchingData = async () => {
@@ -40,16 +42,25 @@ const ProductCategoryRetail = () => {
   // If not mounted yet, don't render anything (to avoid hydration mismatch)
   if (!isMounted) return null;
 
-  const handleNavigation = (productId) => {
-    router.push(`/retail/${productId}`);
+  const handleNavigation = (product) => {
+    const productId = product?.id;
+
+    router.push({
+      pathname: `/retail/${productId}`,
+      query: { name: tabName },
+    });
   };
 
+  const handleSetTab = (id, name) => {
+    setTabId(id);
+    setTabName(name);
+  };
   return (
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={1} py={4}>
           <Grid item lg={12} xs={12}>
-            <ProgressPaginationSwipersider setTabId={setTabId} />
+            <ProgressPaginationSwipersider setTabId={handleSetTab} />
           </Grid>
         </Grid>
         <Grid container spacing={2} pb={6}>
@@ -61,7 +72,7 @@ const ProductCategoryRetail = () => {
             staticData
               ?.filter((product) => product.cat_id === tabId) // 🔥 Filter by selected tab/category
               .map((product, index) => {
-                console.log(product, "product");
+                // console.log(product, "product");
 
                 const imageUrl = product?.feature_static_images
                   ? product?.feature_static_images[0]
@@ -79,7 +90,7 @@ const ProductCategoryRetail = () => {
                       src={imageUrl}
                       alt={product?.p_name || "Product Image"}
                       width="100%"
-                      onClick={() => handleNavigation(product.id)}
+                      onClick={() => handleNavigation(product)}
                     />
                     <Typography
                       className="Medium"
@@ -91,7 +102,7 @@ const ProductCategoryRetail = () => {
                     <Button
                       variant="contained"
                       color="error"
-                      onClick={() => handleNavigation(product.id)}
+                      onClick={() => handleNavigation(product)}
                     >
                       View Details
                     </Button>

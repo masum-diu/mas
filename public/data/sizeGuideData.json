@@ -1,7 +1,7 @@
 {
   "sizeGuide": [
     {
-      "style": "Short Sleeve - Cotton",
+      "style": "Short Sleeve Tee",
       "description": "Body Length",
       "sizes": {
         "S": 68,
@@ -33,7 +33,7 @@
       }
     },
     {
-      "style": "Long Sleeve - Cotton",
+      "style": "Long Sleeve Tee",
       "description": "Body Length",
       "sizes": {
         "S": 71,
@@ -129,7 +129,7 @@
       }
     },
     {
-      "style": "Tank Top/ A Shirt",
+      "style": "Tank Top",
       "description": "Body Length",
       "sizes": {
         "S": 76,
@@ -161,7 +161,7 @@
       }
     },
     {
-      "style": "Boxer",
+      "style": "Boxer Shorts",
       "description": "Side Length",
       "sizes": {
         "S": 36,

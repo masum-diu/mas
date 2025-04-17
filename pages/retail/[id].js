@@ -22,11 +22,14 @@ import instance from "../api/api_instance";
 import { useRouter } from "next/router";
 import { useCart } from "../../src/context/CartContext"; // Import CartContext
 import staticData from "../../public/data/static_product_data.json";
-import sizeGuideData from "../../public/data/sizeGuideData.json"; // Import Size Guide Data
+import sizeGuideData from "../../public/data/sizeGuideData.json";
+import catData from "../../public/data/static_category_list"; // Import category data
 
 const SingleProduct = () => {
   const router = useRouter();
-  const { id } = router.query;
+  const { id, name } = router.query;
+  // console.log(name, "router query"); // Log the router query
+
   const { addToCart } = useCart(); // Access addToCart from CartContext
 
   const [selectedValue, setSelectedValue] = useState("");
@@ -67,9 +70,11 @@ const SingleProduct = () => {
     setOpenSizeGuide(false); // Close Size Guide popup
   };
   const getFilteredSizeGuide = () => {
-    return sizeGuideData.sizeGuide.filter((item) =>
-      products?.p_name?.toLowerCase().includes(item.style.toLowerCase())
-    );
+    return sizeGuideData.sizeGuide.filter((item) => {
+      console.log("Item in size guide:", item); // Log the item
+      console.log("Product name:", products?.p_name); // Log the product name
+      return name?.toLowerCase().includes(item.style.toLowerCase());
+    });
   };
 
   if (loading) return <Typography>Loading...</Typography>;
@@ -281,7 +286,7 @@ const SingleProduct = () => {
                                 padding: "8px",
                               }}
                             >
-                              {item.style}
+                              {name}
                             </td>
                             <td
                               style={{
