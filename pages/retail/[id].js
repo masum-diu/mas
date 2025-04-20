@@ -32,7 +32,9 @@ const SingleProduct = () => {
   const { addToCart } = useCart(); // Access addToCart from CartContext
   const [product, setProduct] = useState(null);
   const [sizegruid, setSizegruid] = useState(null);
-  console.log(sizegruid, "sizegruid");
+  // console.log(sizegruid?.
+  //   size_guide
+  //   , "sizegruid");
   const [selectedValue, setSelectedValue] = useState("");
   const [age, setAge] = useState("");
   const [loading, setLoading] = useState(false);
@@ -102,7 +104,7 @@ const SingleProduct = () => {
     fatchingData();
     fatchingDataSize()
   }, [id]);
-  const decodedHtml = product?.size_guide
+  const decodedHtml = sizegruid?.size_guide
   ?.replace(/&lt;/g, '<')
   ?.replace(/&gt;/g, '>')
   ?.replace(/&quot;/g, '"');

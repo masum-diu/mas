@@ -31,7 +31,7 @@ const SingleProduct = () => {
   const [error, setError] = useState(null);
   const [products, setProduct] = useState(null);
   const [isClient, setIsClient] = useState(false); // Flag to indicate client-side render
-
+  const [sizegruid, setSizegruid] = useState(null);
   const fetchProductData = async () => {
     try {
       setLoading(true);
@@ -53,11 +53,20 @@ const SingleProduct = () => {
       );
     }
   };
+  const fatchingDataSize = async () => {
+      try {
+        const res = await instance.get(`https://apimas.etherstaging.xyz/public/api/product-by/${id}`);
+        setSizegruid(res?.data?.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
   useEffect(() => {
     if (router.isReady && id) {
       setIsClient(true); // Mark as client-side render
       fetchProductData();
+      fatchingDataSize()
     }
   }, [id, router.isReady]); // Only run when id or router is ready
 
@@ -76,7 +85,7 @@ const SingleProduct = () => {
   const handleCloseSizeGuide = () => {
     setOpenSizeGuide(false); // Close Size Guide popup
   };
-  const decodedHtml = products?.size_guide
+  const decodedHtml = sizegruid?.size_guide
     ?.replace(/&lt;/g, '<')
     ?.replace(/&gt;/g, '>')
     ?.replace(/&quot;/g, '"');
