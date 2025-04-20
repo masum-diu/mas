@@ -14,10 +14,12 @@ function ProgressPaginationSwipersider({ setTabId }) {
   const [products, setProducts] = useState(null);
   const router = useRouter(); // Initialize useRouter
   const id = localStorage.getItem("selectedItemId");
+  // console.log(products, "id");
+  // const id = router.query.id; // Access dynamic parameters
   const fatchingData = async () => {
     try {
-      const res = await instance.get(`/v1/sub-category?category=${id}`);
-      setProducts(res?.data?.data?.data);
+      const res = await instance.get(`/sub-categories/${id}`);
+      setProducts(res?.data?.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -75,7 +77,7 @@ function ProgressPaginationSwipersider({ setTabId }) {
                   marginTop: "10px",
                 }}
               >
-                {product?.name || "No Category Name"}{" "}
+                {product?.category_name || "No Category Name"}{" "}
                 {/* Fallback text if category name is missing */}
               </Typography>
             </Stack>

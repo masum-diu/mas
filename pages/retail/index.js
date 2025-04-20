@@ -13,15 +13,15 @@ const ProductCategoryRetail = () => {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(false);
   const { slug, id } = router.query; // Access dynamic parameters
-  const [tabId, setTabId] = useState(10);
+  const [tabId, setTabId] = useState(31);
   const [isMounted, setIsMounted] = useState(false); // Track if the component has mounted
   const [tabName, setTabName] = useState("");
-  console.log(tabId, "prod");
+  console.log(tabId, "sds");
   // Fetch product data
   const fetchingData = async () => {
     try {
       setLoading(true);
-      const res = await instance.get(`/v1/product?sub_category/${tabId}`);
+      const res = await instance.get(`/product?sub_category=${tabId}`);
       setProducts(res?.data?.data);
       setLoading(false);
     } catch (error) {
@@ -68,12 +68,21 @@ const ProductCategoryRetail = () => {
               <CircularProgress />
             </div>
           ) : (
-            products
-              ?.filter((product) => product?.sub_category_id === tabId) // 🔥 Filter by selected tab/category
-              .map((product, index) => {
-                // console.log(product, "product");
+            
+            products?.map((product, index) => {
+              console.log(product, "p");
+              const featureImages = product?.feature_image
+                ? JSON.parse(product.feature_image)
+                : [];
+              const imageUrl =
+                featureImages.length > 0
+                  ? `${product.img_path}/${featureImages[0]}`
+                  : "/placeholder.jpg";
+              // ?.filter((product) => product?.sub_category_id === tabId) // 🔥 Filter by selected tab/category
+              // .map((product, index) => {
+              //   // console.log(product, "product");
 
-                const imageUrl = product?.images?.[0] || "/placeholder.jpg";
+              //   const imageUrl = product?.images?.[0] || "/placeholder.jpg";
 
                 return (
                   <Grid

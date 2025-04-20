@@ -60,7 +60,7 @@ const Home = () => {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await instance.get('/v1/category');
+      const response = await instance.get('/category-list');
       setData(response?.data?.data);
       setLoading(false);
     } catch (error) {
@@ -90,10 +90,10 @@ const Home = () => {
               }}
             >
               <Typography variant="h4" color="white">
-                {item?.name}
+                {item?.cat_name}
               </Typography>
               <Link
-                href={`/${item?.name=="Retail"?"retail":"wholesale"}`} onClick={() => {
+                href={item?.slug} onClick={() => {
                   if (item?.id) {
                     localStorage.setItem('selectedItemId', item.id);
                   }
@@ -104,13 +104,14 @@ const Home = () => {
               </Link>
             </Grid>
             <Grid item lg={4}>
-              <Link href={`/${item?.name}`} onClick={() => {
+              <Link href={item?.slug} onClick={() => {
                 if (item?.id) {
                   localStorage.setItem('selectedItemId', item.id);
                 }
               }} >
                 <ImageContainer>
-                  <img src={item?.image} alt="" width={"100%"} />
+                  {item.id === 27 ? <img src={"/assets/retail(1).png"} alt="" width={"100%"} /> : <img src={"/assets/whole2.png"
+                  } alt="" width={"100%"} />}
                   <Overlay className="overlay"></Overlay>
                 </ImageContainer>
               </Link>

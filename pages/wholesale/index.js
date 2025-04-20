@@ -12,8 +12,8 @@ const ProductCategoryRetail = () => {
   const router = useRouter();
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [tabId, setTabId] = useState(1);
-
+  const [tabId, setTabId] = useState(29);
+  // console.log(tabId, "prod");
   const [isMounted, setIsMounted] = useState(false); // Track if component is mounted
 
   const { slug, id } = router.query;
@@ -22,7 +22,7 @@ const ProductCategoryRetail = () => {
   const fetchingData = async () => {
     try {
       setLoading(true);
-      const res = await instance.get(`/product/${tabId}`);
+      const res = await instance.get(`/product?sub_category=${tabId}`);
       setProducts(res?.data?.data);
       setLoading(false);
     } catch (error) {
@@ -64,6 +64,7 @@ const ProductCategoryRetail = () => {
             </div>
           ) : (
             products?.map((product, index) => {
+              console.log(product, "p");
               const featureImages = product?.feature_image
                 ? JSON.parse(product.feature_image)
                 : [];

@@ -6,18 +6,19 @@ import "swiper/css";
 import { useRouter } from "next/router";
 
 const ThumbsLoopGallery = ({ data, link, id = 1 }) => {
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [parsedData, setParsedData] = useState([]);
   const [isClient, setIsClient] = useState(false); // New state to track if we're on the client
   const router = useRouter();
-
+  // console.log(router, "data");
   // Parse the data array
   useEffect(() => {
     setIsClient(true); // Once the component is mounted, set isClient to true
     // console.log("ssdfsdf", data, link);
     if (data) {
       try {
-        if (router?.asPath.includes("/wholesale")) {
+        if (router?.asPath) {
           const parsed = JSON.parse(data[0]);
           setParsedData(parsed);
           setSelectedImage(parsed[0]);
@@ -45,13 +46,13 @@ const ThumbsLoopGallery = ({ data, link, id = 1 }) => {
         <Card sx={{ marginBottom: 2 }}>
           <GlassMagnifier
             imageSrc={`${
-              router.asPath.includes("wholesale")
+              router.asPath
                 ? `${link}/${selectedImage}`
                 : selectedImage
             }`}
             imageAlt="Selected Image"
             largeImageSrc={`${
-              router.asPath.includes("wholesale")
+              router.asPath
                 ? `${link}/${selectedImage}`
                 : selectedImage
             }`}
@@ -83,7 +84,7 @@ const ThumbsLoopGallery = ({ data, link, id = 1 }) => {
               <CardMedia
                 component="img"
                 image={`${
-                  router.asPath.includes("wholesale")
+                  router.asPath
                     ? `${link}/${image}`
                     : `${image}`
                 }`}
