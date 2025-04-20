@@ -12,6 +12,10 @@ import {
   Radio,
   RadioGroup,
   FormControlLabel,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
 } from "@mui/material";
 import Layout from "../../components/Layout";
 import instance from "../api/api_instance";
@@ -20,6 +24,7 @@ import { useRouter } from "next/router";
 
 const SingleProduct = () => {
   const router = useRouter();
+  const [openSizeGuide, setOpenSizeGuide] = useState(false);
   const { id } = router.query; // Get dynamic route parameter (id)
   const [selectedValue, setSelectedValue] = useState("option1");
   const [loading, setLoading] = useState(false);
@@ -64,6 +69,17 @@ const SingleProduct = () => {
 
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
+  const handleOpenSizeGuide = () => {
+    setOpenSizeGuide(true); // Open Size Guide popup
+  };
+
+  const handleCloseSizeGuide = () => {
+    setOpenSizeGuide(false); // Close Size Guide popup
+  };
+  const decodedHtml = products?.size_guide
+    ?.replace(/&lt;/g, '<')
+    ?.replace(/&gt;/g, '>')
+    ?.replace(/&quot;/g, '"');
 
   const imageArray = [products?.feature_image].filter(Boolean);
   const link = products?.img_path;
@@ -140,6 +156,41 @@ const SingleProduct = () => {
                   </MenuItem>
                 ))}
               </Select>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                  marginTop: 1,
+                }}
+              >
+                <Button
+                  variant="text"
+                  color="primary"
+                  onClick={handleOpenSizeGuide}
+                >
+                  Size Guide
+                </Button>
+              </Box>
+              <Dialog
+                open={openSizeGuide}
+                onClose={handleCloseSizeGuide}
+                maxWidth="lg"
+
+              >
+                <DialogTitle>Size Guide</DialogTitle>
+                <DialogContent>
+                  <Typography variant="body1" mb={2}>
+                    All Style Measurements in CM
+                  </Typography>
+                  <Stack width={"100%"}>
+                    <div dangerouslySetInnerHTML={{ __html: decodedHtml }} /></Stack>
+                </DialogContent>
+                <DialogActions>
+                  <Button onClick={handleCloseSizeGuide} color="primary">
+                    Close
+                  </Button>
+                </DialogActions>
+              </Dialog>
 
               <Link href={"/contactus"}>
                 <Button variant="contained" color="error" className="Medium">

@@ -31,6 +31,8 @@ const SingleProduct = () => {
 
   const { addToCart } = useCart(); // Access addToCart from CartContext
   const [product, setProduct] = useState(null);
+  const [sizegruid, setSizegruid] = useState(null);
+  console.log(sizegruid, "sizegruid");
   const [selectedValue, setSelectedValue] = useState("");
   const [age, setAge] = useState("");
   const [loading, setLoading] = useState(false);
@@ -87,9 +89,18 @@ const SingleProduct = () => {
       console.error("Error fetching data:", error);
     }
   };
+  const fatchingDataSize = async () => {
+    try {
+      const res = await instance.get(`https://apimas.etherstaging.xyz/public/api/product-by/${id}`);
+      setSizegruid(res?.data?.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
     fatchingData();
+    fatchingDataSize()
   }, [id]);
   const decodedHtml = product?.size_guide
   ?.replace(/&lt;/g, '<')
