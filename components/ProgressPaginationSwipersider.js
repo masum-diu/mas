@@ -12,9 +12,8 @@ import { useRouter } from "next/router";
 
 function ProgressPaginationSwipersider({ setTabId }) {
   const [products, setProducts] = useState(null);
-  console.log(products, "products");
   const router = useRouter(); // Initialize useRouter
-  const id = localStorage.getItem("selectedItemId")
+  const id = localStorage.getItem("selectedItemId");
   const fatchingData = async () => {
     try {
       const res = await instance.get(`/v1/sub-category?category=${id}`);
@@ -28,9 +27,9 @@ function ProgressPaginationSwipersider({ setTabId }) {
     fatchingData();
   }, [id]);
 
-  let conditionalProducts = router?.asPath.includes("/wholesale")
-    ? products
-    : products;
+  // let conditionalProducts = router?.asPath.includes("/wholesale")
+  //   ? products
+  //   : products;
 
   const fallbackImage = "https://via.placeholder.com/200";
 
@@ -59,12 +58,9 @@ function ProgressPaginationSwipersider({ setTabId }) {
         },
       }}
     >
-      {conditionalProducts?.map((product, index) => {
+      {products?.map((product, index) => {
         return (
-          <SwiperSlide
-            key={product?.id}
-            onClick={() => setTabId(product?.id, product?.cat_name)}
-          >
+          <SwiperSlide key={product?.id} onClick={() => setTabId(product?.id)}>
             <Stack direction={"column"} spacing={1} alignItems="left">
               {/* Category Name displayed below the image */}
               <Typography

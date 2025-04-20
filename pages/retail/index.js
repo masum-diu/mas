@@ -13,11 +13,10 @@ const ProductCategoryRetail = () => {
   const [products, setProducts] = useState(null);
   const [loading, setLoading] = useState(false);
   const { slug, id } = router.query; // Access dynamic parameters
-  const [tabId, setTabId] = useState(1);
+  const [tabId, setTabId] = useState(10);
   const [isMounted, setIsMounted] = useState(false); // Track if the component has mounted
   const [tabName, setTabName] = useState("");
-  console.log(tabId, "tabName");
-
+  console.log(tabId, "prod");
   // Fetch product data
   const fetchingData = async () => {
     try {
@@ -47,20 +46,20 @@ const ProductCategoryRetail = () => {
 
     router.push({
       pathname: `/retail/${productId}`,
-      query: { name: tabName },
+      // query: { name: tabName },
     });
   };
 
-  const handleSetTab = (id, name) => {
-    setTabId(id);
-    setTabName(name);
-  };
+  // const handleSetTab = (id, name) => {
+  //   setTabId(id);
+  //   setTabName(name);
+  // };
   return (
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={1} py={4}>
           <Grid item lg={12} xs={12}>
-            <ProgressPaginationSwipersider setTabId={handleSetTab} />
+            <ProgressPaginationSwipersider setTabId={setTabId} />
           </Grid>
         </Grid>
         <Grid container spacing={2} pb={6}>
@@ -70,12 +69,11 @@ const ProductCategoryRetail = () => {
             </div>
           ) : (
             products
-              ?.filter((product) => product.id === tabId) // 🔥 Filter by selected tab/category
+              ?.filter((product) => product?.sub_category_id === tabId) // 🔥 Filter by selected tab/category
               .map((product, index) => {
                 // console.log(product, "product");
 
                 const imageUrl = product?.images?.[0] || "/placeholder.jpg";
-
 
                 return (
                   <Grid

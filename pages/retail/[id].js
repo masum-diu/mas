@@ -27,21 +27,20 @@ import catData from "../../public/data/static_category_list"; // Import category
 
 const SingleProduct = () => {
   const router = useRouter();
-  const { id, name } = router.query;
-   console.log(id, "router query"); // Log the router query
+  const { id } = router.query;
 
   const { addToCart } = useCart(); // Access addToCart from CartContext
-
+  const [product, setProduct] = useState(null);
   const [selectedValue, setSelectedValue] = useState("");
   const [age, setAge] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [openSizeGuide, setOpenSizeGuide] = useState(false); // State for Size Guide popup
-
+  console.log(product, "router"); // Log the router query
   const products = router.isReady
     ? staticData?.find((item) => parseInt(item.id) === parseInt(id)) // Ensure id is parsed correctly
     : {};
-
+  console.log(product, "res");
   const handleChangeSelect = (event) => {
     setAge(event.target.value);
   };
@@ -73,9 +72,22 @@ const SingleProduct = () => {
     return sizeGuideData.sizeGuide.filter((item) => {
       console.log("Item in size guide:", item); // Log the item
       console.log("Product name:", products?.p_name); // Log the product name
-      return name?.toLowerCase().includes(item.style.toLowerCase());
+      // return name?.toLowerCase().includes(item.style.toLowerCase());
     });
   };
+
+  const fatchingData = async () => {
+    try {
+      const res = await instance.get(`/v1/product/${id}`);
+      setProduct(res?.data?.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fatchingData();
+  }, [id]);
 
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
