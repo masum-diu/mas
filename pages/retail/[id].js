@@ -40,7 +40,7 @@ const SingleProduct = () => {
   const products = router.isReady
     ? staticData?.find((item) => parseInt(item.id) === parseInt(id)) // Ensure id is parsed correctly
     : {};
-  // console.log(product, "res");
+   console.log(product, "res");
   const handleChangeSelect = (event) => {
     setAge(event.target.value);
   };
@@ -55,7 +55,7 @@ const SingleProduct = () => {
     const cartData = {
       id: product?.id,
       name: product?.p_name,
-      price: product?.p_price,
+      price: product?.price,
       color: selectedValue,
       size: age,
       images: imageArray,
@@ -91,7 +91,10 @@ const SingleProduct = () => {
   useEffect(() => {
     fatchingData();
   }, [id]);
-
+  const decodedHtml = product?.size_guide
+  ?.replace(/&lt;/g, '<')
+  ?.replace(/&gt;/g, '>')
+  ?.replace(/&quot;/g, '"');
   
 // console.log(imageArray, "imageArray");
   if (loading) return <Typography>Loading...</Typography>;
@@ -216,128 +219,15 @@ const SingleProduct = () => {
                 open={openSizeGuide}
                 onClose={handleCloseSizeGuide}
                 maxWidth="lg"
-                fullWidth
+                
               >
                 <DialogTitle>Size Guide</DialogTitle>
                 <DialogContent>
                   <Typography variant="body1" mb={2}>
                     All Style Measurements in CM
                   </Typography>
-                  <table
-                    style={{
-                      width: "100%",
-                      borderCollapse: "collapse",
-                    }}
-                  >
-                    <thead>
-                      <tr>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          Style
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          Description
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          S
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          M
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          L
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          1XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          2XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          3XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          4XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          5XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          6XL
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {getFilteredSizeGuide().length > 0 ? (
-                        getFilteredSizeGuide().map((item, index) => (
-                          <tr key={index}>
-                            <td
-                              style={{
-                                border: "1px solid #ddd",
-                                padding: "8px",
-                              }}
-                            >
-                              {name}
-                            </td>
-                            <td
-                              style={{
-                                border: "1px solid #ddd",
-                                padding: "8px",
-                              }}
-                            >
-                              {item.description}
-                            </td>
-                            {Object.keys(item.sizes).map((sizeKey) => (
-                              <td
-                                key={sizeKey}
-                                style={{
-                                  border: "1px solid #ddd",
-                                  padding: "8px",
-                                }}
-                              >
-                                {item.sizes[sizeKey]}
-                              </td>
-                            ))}
-                          </tr>
-                        ))
-                      ) : (
-                        <tr>
-                          <td
-                            colSpan="12"
-                            style={{ textAlign: "center", padding: "8px" }}
-                          >
-                            No size guide available for this product.
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
+                  <Stack width={"100%"}>
+                   <div  dangerouslySetInnerHTML={{ __html: decodedHtml }} /></Stack>
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={handleCloseSizeGuide} color="primary">
@@ -347,7 +237,7 @@ const SingleProduct = () => {
               </Dialog>
               <Stack direction={"row"} spacing={2} py={2}>
                 <Typography className="Regular">
-                  Price: <span className="Medium">USD {product?.p_price}</span>
+                  Price: <span className="Medium">USD {product?.price}</span>
                 </Typography>
               </Stack>
               <Button
