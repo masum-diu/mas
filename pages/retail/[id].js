@@ -27,21 +27,20 @@ import catData from "../../public/data/static_category_list"; // Import category
 
 const SingleProduct = () => {
   const router = useRouter();
-  const { id, name } = router.query;
-  // console.log(name, "router query"); // Log the router query
+  const { id } = router.query;
 
   const { addToCart } = useCart(); // Access addToCart from CartContext
-
+  const [product, setProduct] = useState(null);
   const [selectedValue, setSelectedValue] = useState("");
   const [age, setAge] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [openSizeGuide, setOpenSizeGuide] = useState(false); // State for Size Guide popup
-
+  // console.log(product, "router"); 
   const products = router.isReady
     ? staticData?.find((item) => parseInt(item.id) === parseInt(id)) // Ensure id is parsed correctly
     : {};
-
+  // console.log(product, "res");
   const handleChangeSelect = (event) => {
     setAge(event.target.value);
   };
@@ -49,15 +48,18 @@ const SingleProduct = () => {
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
+  const imageArray = [product?.feature_image].filter(Boolean);
+  const link = product?.img_path;
 
   const handleAddToCart = () => {
     const cartData = {
-      id: products?.id,
-      name: products?.p_name,
-      price: products?.p_price,
+      id: product?.id,
+      name: product?.p_name,
+      price: product?.p_price,
       color: selectedValue,
       size: age,
-      images: products?.feature_static_images,
+      images: imageArray,
+      link: link,
     };
     addToCart(cartData); // Call addToCart from CartContext
   };
@@ -71,12 +73,27 @@ const SingleProduct = () => {
   };
   const getFilteredSizeGuide = () => {
     return sizeGuideData.sizeGuide.filter((item) => {
-      console.log("Item in size guide:", item); // Log the item
-      console.log("Product name:", products?.p_name); // Log the product name
-      return name?.toLowerCase().includes(item.style.toLowerCase());
+      // console.log("Item in size guide:", item); // Log the item
+      // console.log("Product name:", products?.p_name); // Log the product name
+      // return name?.toLowerCase().includes(item.style.toLowerCase());
     });
   };
 
+  const fatchingData = async () => {
+    try {
+      const res = await instance.get(`/product-by/${id}`);
+      setProduct(res?.data?.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fatchingData();
+  }, [id]);
+
+  
+// console.log(imageArray, "imageArray");
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
 
@@ -86,8 +103,8 @@ const SingleProduct = () => {
         <Grid container py={6} spacing={0}>
           <Grid item lg={6} sm={4} xs={12}>
             <ThumbsLoopGallery
-              data={products?.feature_static_images}
-              link={products?.img_path}
+              data={imageArray}
+              link={link}
               id={id}
             />
           </Grid>
@@ -99,7 +116,7 @@ const SingleProduct = () => {
                 fontSize={28}
                 textTransform={"uppercase"}
               >
-                {products?.p_name}
+                {product?.p_name}
               </Typography>
               <Typography className="Regular" fontSize={18}>
                 Color:
@@ -112,7 +129,7 @@ const SingleProduct = () => {
                   onChange={handleChange}
                 >
                   <Stack direction="row" spacing={1}>
-                    {products?.p_colours?.map((v, i) => (
+                    {product?.p_colours?.map((v, i) => (
                       <FormControlLabel
                         key={i}
                         value={v.color_name}
@@ -169,7 +186,7 @@ const SingleProduct = () => {
                 <MenuItem disabled value={10}>
                   View Size
                 </MenuItem>
-                {products?.p_sizes?.map((v, i) => (
+                {product?.p_sizes?.map((v, i) => (
                   <MenuItem key={i} value={v?.size_name}>
                     {v?.size_name}
                   </MenuItem>
@@ -330,7 +347,7 @@ const SingleProduct = () => {
               </Dialog>
               <Stack direction={"row"} spacing={2} py={2}>
                 <Typography className="Regular">
-                  Price: <span className="Medium">BDT {products?.p_price}</span>
+                  Price: <span className="Medium">USD {product?.p_price}</span>
                 </Typography>
               </Stack>
               <Button
@@ -341,18 +358,18 @@ const SingleProduct = () => {
               >
                 Add to Cart
               </Button>
-              <Typography className="Regular">
+              <Typography className="Regular" style={{ marginTop: "30px" }}>
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: products?.psh_raw_description,
+                    __html: product?.p_description,
                   }}
                 />
               </Typography>
 
-              <Typography className="Regular">
+              <Typography className="Regular" >
                 <span
                   dangerouslySetInnerHTML={{
-                    __html: products?.p_raw_description,
+                    __html: product?.p_raw_description,
                   }}
                 />
               </Typography>

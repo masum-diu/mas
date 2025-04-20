@@ -13,10 +13,12 @@ import { useRouter } from "next/router";
 function ProgressPaginationSwipersider({ setTabId }) {
   const [products, setProducts] = useState(null);
   const router = useRouter(); // Initialize useRouter
-
+  const id = localStorage.getItem("selectedItemId");
+  // console.log(products, "id");
+  // const id = router.query.id; // Access dynamic parameters
   const fatchingData = async () => {
     try {
-      const res = await instance.get("/category-list");
+      const res = await instance.get(`/sub-categories/${id}`);
       setProducts(res?.data?.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -25,11 +27,11 @@ function ProgressPaginationSwipersider({ setTabId }) {
 
   useEffect(() => {
     fatchingData();
-  }, []);
+  }, [id]);
 
-  let conditionalProducts = router?.asPath.includes("/wholesale")
-    ? products
-    : static_category_list;
+  // let conditionalProducts = router?.asPath.includes("/wholesale")
+  //   ? products
+  //   : products;
 
   const fallbackImage = "https://via.placeholder.com/200";
 
@@ -58,12 +60,9 @@ function ProgressPaginationSwipersider({ setTabId }) {
         },
       }}
     >
-      {conditionalProducts?.map((product, index) => {
+      {products?.map((product, index) => {
         return (
-          <SwiperSlide
-            key={product?.id}
-            onClick={() => setTabId(product?.id, product?.cat_name)}
-          >
+          <SwiperSlide key={product?.id} onClick={() => setTabId(product?.id)}>
             <Stack direction={"column"} spacing={1} alignItems="left">
               {/* Category Name displayed below the image */}
               <Typography
@@ -78,7 +77,7 @@ function ProgressPaginationSwipersider({ setTabId }) {
                   marginTop: "10px",
                 }}
               >
-                {product?.cat_name || "No Category Name"}{" "}
+                {product?.category_name || "No Category Name"}{" "}
                 {/* Fallback text if category name is missing */}
               </Typography>
             </Stack>

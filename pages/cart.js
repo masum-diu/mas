@@ -43,8 +43,8 @@ const Cart = () => {
           <Grid container spacing={4}>
             <Grid item lg={8} sm={12}>
               {localCart.map((item, index) => {
-                const featureImages = item?.images ? item?.images[0] : [];
-                const imageUrl = featureImages;
+                 const parsedImages = item?.images?.length ? JSON.parse(item.images[0]) : [];
+                 const imageUrl = parsedImages.length ? `${item?.link}/${parsedImages[0].replace(/\\/g, '')}` : defaultImage;
 
                 return (
                   <Box
@@ -62,10 +62,10 @@ const Cart = () => {
                       </Grid>
                       <Grid item lg={8} sm={6} xs={12}>
                         <Typography variant="h6">{item.name}</Typography>
-                        <Typography>Price: BDT {item.price}</Typography>
-                        <Typography>VAT: BDT {item.vat?.toFixed(2)}</Typography>
+                        <Typography>Price: USD {item.price}</Typography>
+                        <Typography>VAT: USD {item.vat?.toFixed(2)}</Typography>
                         <Typography>
-                          Total: BDT {item.priceWithVAT?.toFixed(2)}
+                          Total: USD {item.priceWithVAT?.toFixed(2)}
                         </Typography>
                         <Typography>Color: {item.color}</Typography>
                         <Typography>Size: {item.size}</Typography>

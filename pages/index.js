@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Layout from "../components/Layout";
 import Typography from "@mui/material/Typography";
 import ProgressPaginationSwiper from "../components/ProgressPaginationSwiper";
@@ -12,6 +12,7 @@ import {
   TextField,
 } from "@mui/material";
 import ProgressPaginationSwipersider from "../components/ProgressPaginationSwipersider";
+import instance from "./api/api_instance";
 
 const CustomTextField = styled(TextField)({
   '& input[type="date"]::-webkit-calendar-picker-indicator': {
@@ -53,40 +54,70 @@ const Overlay = styled(Box)({
 });
 
 const Home = () => {
+  const [data, setData] = useState([]);
+  console.log(data)
+  const [loading, setLoading] = useState(false);
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await instance.get('/category-list');
+      setData(response?.data?.data);
+      setLoading(false);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <Layout>
       <ProgressPaginationSwiper />
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={4} py={6}>
-          <Grid
-            item
-            lg={2}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
+          {data?.map((item, index) => (<>
+            <Grid
+              key={index}
+              item
+              lg={2}
+              sx={{
+                display: "flex",
+                flexDirection: "column",
 
-              justifyContent: "center",
-              verticalAlign: "center", // Center vertically and horizontally
-            }}
-          >
-            <Typography variant="h4" color="white">
-              Retail
-            </Typography>
-            <Link href="/retail">
-              <Button variant="contained" color="error">
-                learn more
-              </Button>
-            </Link>
-          </Grid>
-          <Grid item lg={4}>
-            <Link href="/retail">
-              <ImageContainer>
-                <img src="/assets/retail(1).png" alt="" width={"100%"} />
-                <Overlay className="overlay"></Overlay>
-              </ImageContainer>
-            </Link>
-          </Grid>
-          <Grid
+                justifyContent: "center",
+                verticalAlign: "center", // Center vertically and horizontally
+              }}
+            >
+              <Typography variant="h4" color="white">
+                {item?.cat_name}
+              </Typography>
+              <Link
+                href={item?.slug} onClick={() => {
+                  if (item?.id) {
+                    localStorage.setItem('selectedItemId', item.id);
+                  }
+                }}>
+                <Button variant="contained" color="error">
+                  learn more
+                </Button>
+              </Link>
+            </Grid>
+            <Grid item lg={4}>
+              <Link href={item?.slug} onClick={() => {
+                if (item?.id) {
+                  localStorage.setItem('selectedItemId', item.id);
+                }
+              }} >
+                <ImageContainer>
+                  {item.id === 27 ? <img src={"/assets/retail(1).png"} alt="" width={"100%"} /> : <img src={"/assets/whole2.png"
+                  } alt="" width={"100%"} />}
+                  <Overlay className="overlay"></Overlay>
+                </ImageContainer>
+              </Link>
+            </Grid></>))}
+
+          {/* <Grid
             item
             lg={2}
             sx={{
@@ -113,7 +144,7 @@ const Home = () => {
                 <Overlay className="overlay"></Overlay>
               </ImageContainer>
             </Link>
-          </Grid>
+          </Grid> */}
         </Grid>
 
         <Grid container spacing={4} py={6}>
