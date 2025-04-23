@@ -68,7 +68,6 @@ const ProductCategoryRetail = () => {
               <CircularProgress />
             </div>
           ) : (
-            
             products?.map((product, index) => {
               console.log(product, "p");
               const featureImages = product?.feature_image
@@ -84,37 +83,31 @@ const ProductCategoryRetail = () => {
 
               //   const imageUrl = product?.images?.[0] || "/placeholder.jpg";
 
-                return (
-                  <Grid
-                    item
-                    lg={3}
-                    sm={6}
-                    key={index}
-                    sx={{ cursor: "pointer" }}
+              return (
+                <Grid item lg={3} sm={6} key={index} sx={{ cursor: "pointer" }}>
+                  <img
+                    src={imageUrl}
+                    alt={product?.p_name || "Product Image"}
+                    width="100%"
+                    onClick={() => handleNavigation(product)}
+                  />
+                  <Typography
+                    className="Medium"
+                    fontSize={18}
+                    textTransform="uppercase"
                   >
-                    <img
-                      src={imageUrl}
-                      alt={product?.p_name || "Product Image"}
-                      width="100%"
-                      onClick={() => handleNavigation(product)}
-                    />
-                    <Typography
-                      className="Medium"
-                      fontSize={18}
-                      textTransform="uppercase"
-                    >
-                      {product?.p_name}
-                    </Typography>
-                    <Button
-                      variant="contained"
-                      color="error"
-                      onClick={() => handleNavigation(product)}
-                    >
-                      View Details
-                    </Button>
-                  </Grid>
-                );
-              })
+                    {product?.p_name}
+                  </Typography>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    onClick={() => handleNavigation(product)}
+                  >
+                    View Details
+                  </Button>
+                </Grid>
+              );
+            })
           )}
         </Grid>
       </Box>

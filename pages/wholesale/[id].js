@@ -54,19 +54,21 @@ const SingleProduct = () => {
     }
   };
   const fatchingDataSize = async () => {
-      try {
-        const res = await instance.get(`https://apimas.etherstaging.xyz/public/api/product-by/${id}`);
-        setSizegruid(res?.data?.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+    try {
+      const res = await instance.get(
+        `https://apimas.etherstaging.xyz/public/api/product-by/${id}`
+      );
+      setSizegruid(res?.data?.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
     if (router.isReady && id) {
       setIsClient(true); // Mark as client-side render
       fetchProductData();
-      fatchingDataSize()
+      fatchingDataSize();
     }
   }, [id, router.isReady]); // Only run when id or router is ready
 
@@ -86,8 +88,8 @@ const SingleProduct = () => {
     setOpenSizeGuide(false); // Close Size Guide popup
   };
   const decodedHtml = sizegruid?.size_guide
-    ?.replace(/&lt;/g, '<')
-    ?.replace(/&gt;/g, '>')
+    ?.replace(/&lt;/g, "<")
+    ?.replace(/&gt;/g, ">")
     ?.replace(/&quot;/g, '"');
 
   const imageArray = [products?.feature_image].filter(Boolean);
@@ -184,7 +186,6 @@ const SingleProduct = () => {
                 open={openSizeGuide}
                 onClose={handleCloseSizeGuide}
                 maxWidth="lg"
-
               >
                 <DialogTitle>Size Guide</DialogTitle>
                 <DialogContent>
@@ -192,7 +193,8 @@ const SingleProduct = () => {
                     All Style Measurements in CM
                   </Typography>
                   <Stack width={"100%"}>
-                    <div dangerouslySetInnerHTML={{ __html: decodedHtml }} /></Stack>
+                    <div dangerouslySetInnerHTML={{ __html: decodedHtml }} />
+                  </Stack>
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={handleCloseSizeGuide} color="primary">
