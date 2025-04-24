@@ -3,7 +3,6 @@ import { useCart } from "../src/context/CartContext";
 import { Box, Button, Grid, Typography, Stack } from "@mui/material";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
-import CloseIcon from "@mui/icons-material/Close"; // Import the Close icon
 
 const Cart = () => {
   const { cart, clearCart } = useCart();
@@ -43,8 +42,11 @@ const Cart = () => {
           <Grid container spacing={4}>
             <Grid item lg={8} sm={12}>
               {localCart.map((item, index) => {
-                 const parsedImages = item?.images?.length ? JSON.parse(item.images[0]) : [];
-                 const imageUrl = parsedImages.length ? `${item?.link}/${parsedImages[0].replace(/\\/g, '')}` : defaultImage;
+                // Handle images properly
+                const imageUrl =
+                  item?.images?.length && typeof item.images[0] === "string"
+                    ? `${item?.link}/${item.images[0].replace(/\\/g, "")}`
+                    : defaultImage;
 
                 return (
                   <Box

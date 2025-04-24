@@ -33,7 +33,7 @@ import { useRouter } from "next/router";
 
 // Custom hook to handle dark mode with localStorage
 const useDarkMode = () => {
-  const [darkMode, setDarkMode] = useState(false); // Default to light mode initially
+  const [darkMode, setDarkMode] = useState(true); // Default to dark mode initially
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("darkMode");
@@ -60,7 +60,6 @@ const Layout = ({ children }) => {
   const [cart, setCart] = useState([]);
   const { cart: stateCart } = useCart();
   const router = useRouter();
-  console.log(stateCart, "cart");
 
   useEffect(() => {
     fatchingData();
@@ -279,7 +278,6 @@ const Layout = ({ children }) => {
       </Drawer>
 
       <Box>{children}</Box>
-
       {/* Footer */}
       <Box
         sx={{

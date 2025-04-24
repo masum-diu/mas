@@ -107,7 +107,7 @@ import { GlassMagnifier } from "react-image-magnifiers";
 import "swiper/css";
 
 const ThumbsLoopGallery = ({ data, link }) => {
-  console.log('your log output', data);
+  console.log("your log output", data);
   const [selectedImage, setSelectedImage] = useState(null); // Track the selected image
   const [parsedData, setParsedData] = useState([]); // Parsed image data
 
@@ -129,7 +129,7 @@ const ThumbsLoopGallery = ({ data, link }) => {
       {selectedImage && (
         <Card sx={{ marginBottom: 2 }}>
           <GlassMagnifier
-            imageSrc={selectedImage} 
+            imageSrc={selectedImage}
             imageAlt="Selected Image"
             largeImageSrc={selectedImage} // Magnified version of the image
           />
