@@ -64,13 +64,12 @@ const ProductCategoryRetail = () => {
             </div>
           ) : (
             products?.map((product, index) => {
-              console.log(product, "p");
               const featureImages = product?.feature_image
                 ? JSON.parse(product.feature_image)
                 : [];
               const imageUrl =
                 featureImages.length > 0
-                  ? `${product.img_path}/${featureImages[0]}`
+                  ? `${featureImages[0]}`
                   : "/placeholder.jpg";
 
               return (

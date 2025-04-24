@@ -18,81 +18,82 @@ import {
   DialogActions,
 } from "@mui/material";
 import Layout from "../../components/Layout";
-import instance from "../api/api_instance";
+import axios from "axios";
 import { useRouter } from "next/router";
-import { useCart } from "../../src/context/CartContext"; // Import CartContext
-import staticData from "../../public/data/static_product_data.json";
-import sizeGuideData from "../../public/data/sizeGuideData.json";
-import catData from "../../public/data/static_category_list"; // Import category data
+import { useCart } from "../../src/context/CartContext";
 
 const SingleProduct = () => {
   const router = useRouter();
   const { id } = router.query;
-
   const { addToCart } = useCart(); // Access addToCart from CartContext
   const [product, setProduct] = useState(null);
-  const [selectedValue, setSelectedValue] = useState("");
-  const [age, setAge] = useState("");
+  const [selectedImages, setSelectedImages] = useState([]);
+  const [selectedColor, setSelectedColor] = useState(null);
+  const [selectedSize, setSelectedSize] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [openSizeGuide, setOpenSizeGuide] = useState(false); // State for Size Guide popup
-  // console.log(product, "router");
-  const products = router.isReady
-    ? staticData?.find((item) => parseInt(item.id) === parseInt(id)) // Ensure id is parsed correctly
-    : {};
-  // console.log(product, "res");
-  const handleChangeSelect = (event) => {
-    setAge(event.target.value);
+  const [openSizeGuide, setOpenSizeGuide] = useState(false);
+
+  // Fetch product data
+  const fetchProductData = async () => {
+    try {
+      setLoading(true);
+      const res = await axios.get(
+        `https://masapi.etherstaging.xyz/api/product-by/${id}`
+      );
+      const productData = res?.data?.data;
+      setProduct(productData);
+
+      // Set default color and images
+      if (productData?.p_colours?.length > 0) {
+        const defaultColor = productData.p_colours[0];
+        setSelectedColor(defaultColor.color_name);
+        setSelectedImages(defaultColor.images || []);
+      }
+      setLoading(false);
+    } catch (error) {
+      setLoading(false);
+      setError("Failed to fetch product data.");
+      console.error("Error fetching product data:", error);
+    }
   };
 
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+  useEffect(() => {
+    if (router.isReady && id) {
+      fetchProductData();
+    }
+  }, [id, router.isReady]);
+
+  const handleColorChange = (color) => {
+    setSelectedColor(color.color_name);
+    setSelectedImages(color.images || []);
   };
-  const imageArray = [product?.feature_image].filter(Boolean);
-  const link = product?.img_path;
 
   const handleAddToCart = () => {
     const cartData = {
       id: product?.id,
       name: product?.p_name,
-      price: product?.p_price,
-      color: selectedValue,
-      size: age,
-      images: imageArray,
-      link: link,
+      price: product?.price,
+      color: selectedColor,
+      size: selectedSize,
+      images: selectedImages,
     };
-    addToCart(cartData); // Call addToCart from CartContext
+    addToCart(cartData); // Add product to cart
   };
 
   const handleOpenSizeGuide = () => {
-    setOpenSizeGuide(true); // Open Size Guide popup
+    setOpenSizeGuide(true);
   };
 
   const handleCloseSizeGuide = () => {
-    setOpenSizeGuide(false); // Close Size Guide popup
-  };
-  const getFilteredSizeGuide = () => {
-    return sizeGuideData.sizeGuide.filter((item) => {
-      // console.log("Item in size guide:", item); // Log the item
-      // console.log("Product name:", products?.p_name); // Log the product name
-      // return name?.toLowerCase().includes(item.style.toLowerCase());
-    });
+    setOpenSizeGuide(false);
   };
 
-  const fatchingData = async () => {
-    try {
-      const res = await instance.get(`/product-by/${id}`);
-      setProduct(res?.data?.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  const decodedHtml = product?.size_guide
+    ?.replace(/&lt;/g, "<")
+    ?.replace(/&gt;/g, ">")
+    ?.replace(/&quot;/g, '"');
 
-  useEffect(() => {
-    fatchingData();
-  }, [id]);
-
-  // console.log(imageArray, "imageArray");
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
 
@@ -101,7 +102,8 @@ const SingleProduct = () => {
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container py={6} spacing={0}>
           <Grid item lg={6} sm={4} xs={12}>
-            <ThumbsLoopGallery data={imageArray} link={link} id={id} />
+            {/* Display images for the selected color */}
+            <ThumbsLoopGallery data={selectedImages} />
           </Grid>
 
           <Grid item lg={6} sm={4}>
@@ -118,29 +120,32 @@ const SingleProduct = () => {
               </Typography>
               <FormControl component="fieldset">
                 <RadioGroup
-                  aria-label="options"
-                  name="radio-buttons-group"
-                  value={selectedValue}
-                  onChange={handleChange}
+                  aria-label="colors"
+                  name="color-buttons-group"
+                  value={selectedColor}
                 >
                   <Stack direction="row" spacing={1}>
-                    {product?.p_colours?.map((v, i) => (
+                    {product?.p_colours?.map((color, index) => (
                       <FormControlLabel
-                        key={i}
-                        value={v.color_name}
+                        key={index}
+                        value={color.color_name}
                         control={
                           <Radio
                             sx={{
+                              border: 1,
+                              px: 1,
+                              borderColor: "#9A0E20",
                               width: 24,
                               height: 24,
                               borderRadius: "50%",
-                              backgroundColor: v.color_code,
+                              backgroundColor: color.color_code,
                               padding: 0,
                               "& .MuiSvgIcon-root": { display: "none" },
                               "&.Mui-checked": {
-                                backgroundColor: v.color_code,
+                                backgroundColor: color.color_code,
                               },
                             }}
+                            onClick={() => handleColorChange(color)}
                           />
                         }
                       />
@@ -156,39 +161,22 @@ const SingleProduct = () => {
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 size="small"
-                value={age}
-                onChange={handleChangeSelect}
+                value={selectedSize}
+                onChange={(e) => setSelectedSize(e.target.value)}
                 sx={{
                   maxWidth: { lg: "100%", xs: "100%" },
-                  color: "inherit", // Inherit text color
-                  "& .MuiSelect-icon": {
-                    color: "inherit", // Inherit icon color
-                  },
-                  "&.Mui-focused": {
-                    borderColor: "inherit", // Inherit border color on focus
-                  },
-                  "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "inherit", // Inherit border color
-                  },
-                  "& .MuiMenuItem-root": {
-                    color: "inherit", // Inherit menu item color
-                  },
-                  "&:hover": {
-                    backgroundColor: "inherit", // Inherit background color on hover
-                  },
                 }}
               >
-                <MenuItem disabled value={10}>
-                  View Size
+                <MenuItem disabled value="">
+                  Select Size
                 </MenuItem>
-                {product?.p_sizes?.map((v, i) => (
-                  <MenuItem key={i} value={v?.size_name}>
-                    {v?.size_name}
+                {product?.p_sizes?.map((size, index) => (
+                  <MenuItem key={index} value={size?.size_name}>
+                    {size?.size_name}
                   </MenuItem>
                 ))}
               </Select>
 
-              {/* Size Guide Button */}
               <Box
                 sx={{
                   display: "flex",
@@ -205,133 +193,23 @@ const SingleProduct = () => {
                 </Button>
               </Box>
 
-              {/* Size Guide Dialog */}
               <Dialog
                 open={openSizeGuide}
                 onClose={handleCloseSizeGuide}
                 maxWidth="lg"
-                fullWidth
               >
                 <DialogTitle>Size Guide</DialogTitle>
                 <DialogContent>
                   <Typography variant="body1" mb={2}>
                     All Style Measurements in CM
                   </Typography>
-                  <table
-                    style={{
-                      width: "100%",
-                      borderCollapse: "collapse",
-                    }}
-                  >
-                    <thead>
-                      <tr>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          Style
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          Description
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          S
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          M
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          L
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          1XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          2XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          3XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          4XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          5XL
-                        </th>
-                        <th
-                          style={{ border: "1px solid #ddd", padding: "8px" }}
-                        >
-                          6XL
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {getFilteredSizeGuide().length > 0 ? (
-                        getFilteredSizeGuide().map((item, index) => (
-                          <tr key={index}>
-                            <td
-                              style={{
-                                border: "1px solid #ddd",
-                                padding: "8px",
-                              }}
-                            >
-                              {name}
-                            </td>
-                            <td
-                              style={{
-                                border: "1px solid #ddd",
-                                padding: "8px",
-                              }}
-                            >
-                              {item.description}
-                            </td>
-                            {Object.keys(item.sizes).map((sizeKey) => (
-                              <td
-                                key={sizeKey}
-                                style={{
-                                  border: "1px solid #ddd",
-                                  padding: "8px",
-                                }}
-                              >
-                                {item.sizes[sizeKey]}
-                              </td>
-                            ))}
-                          </tr>
-                        ))
-                      ) : (
-                        <tr>
-                          <td
-                            colSpan="12"
-                            style={{ textAlign: "center", padding: "8px" }}
-                          >
-                            No size guide available for this product.
-                          </td>
-                        </tr>
-                      )}
-                    </tbody>
-                  </table>
+                  <Stack width={"100%"}>
+                    {product?.size_guide ? (
+                      <div dangerouslySetInnerHTML={{ __html: decodedHtml }} />
+                    ) : (
+                      <Typography>No size guide available.</Typography>
+                    )}
+                  </Stack>
                 </DialogContent>
                 <DialogActions>
                   <Button onClick={handleCloseSizeGuide} color="primary">
@@ -339,9 +217,10 @@ const SingleProduct = () => {
                   </Button>
                 </DialogActions>
               </Dialog>
+
               <Stack direction={"row"} spacing={2} py={2}>
                 <Typography className="Regular">
-                  Price: <span className="Medium">USD {product?.p_price}</span>
+                  Price: <span className="Medium">USD {product?.price}</span>
                 </Typography>
               </Stack>
               <Button
@@ -359,57 +238,6 @@ const SingleProduct = () => {
                   }}
                 />
               </Typography>
-
-              <Typography className="Regular">
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: product?.p_raw_description,
-                  }}
-                />
-              </Typography>
-              {/* Specifications Section */}
-              <Typography
-                className="Regular"
-                fontSize={18}
-                color={"inherit"}
-                mt={4}
-              >
-                Specifications
-              </Typography>
-              <Grid container py={2} spacing={4}>
-                <Grid item xs={6}>
-                  <Typography className="Medium" fontSize={16}>
-                    Material
-                  </Typography>
-                  <Typography className="Regular" fontSize={14}>
-                    100% Organic Cotton
-                  </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography className="Medium" fontSize={16}>
-                    Weight
-                  </Typography>
-                  <Typography className="Regular" fontSize={14}>
-                    180 GSM (Medium Weight)
-                  </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography className="Medium" fontSize={16}>
-                    Fit
-                  </Typography>
-                  <Typography className="Regular" fontSize={14}>
-                    Regular Fit
-                  </Typography>
-                </Grid>
-                <Grid item xs={6}>
-                  <Typography className="Medium" fontSize={16}>
-                    Care
-                  </Typography>
-                  <Typography className="Regular" fontSize={14}>
-                    Machine wash cold, tumble dry low
-                  </Typography>
-                </Grid>
-              </Grid>
             </Stack>
           </Grid>
         </Grid>

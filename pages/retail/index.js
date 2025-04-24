@@ -1,11 +1,8 @@
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Layout from "../../components/Layout";
-import staticData from "../../public/data/static_product_data.json";
-
 import { Box, Button, CircularProgress, Grid, Typography } from "@mui/material";
 import ProgressPaginationSwipersider from "../../components/ProgressPaginationSwipersider";
-
 import instance from "../api/api_instance";
 
 const ProductCategoryRetail = () => {
@@ -16,6 +13,7 @@ const ProductCategoryRetail = () => {
   const [tabId, setTabId] = useState(31);
   const [isMounted, setIsMounted] = useState(false); // Track if the component has mounted
   const [tabName, setTabName] = useState("");
+
   console.log(tabId, "sds");
   // Fetch product data
   const fetchingData = async () => {
@@ -75,7 +73,7 @@ const ProductCategoryRetail = () => {
                 : [];
               const imageUrl =
                 featureImages.length > 0
-                  ? `${product.img_path}/${featureImages[0]}`
+                  ? `${featureImages[0]}`
                   : "/placeholder.jpg";
               // ?.filter((product) => product?.sub_category_id === tabId) // 🔥 Filter by selected tab/category
               // .map((product, index) => {
