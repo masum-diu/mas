@@ -238,6 +238,44 @@ const SingleProduct = () => {
                   }}
                 />
               </Typography>
+              {/* Specifications Section */}
+              <Typography className="Regular" color={"inherit"} fontSize={18}>
+                Specifications
+              </Typography>
+              <Grid container py={2}>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={18} spacing={2}>
+                    Material
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    {product?.product_material}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={18}>
+                    Weight
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    {product?.product_weight}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={18}>
+                    Fit
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    {product?.product_fit}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={18}>
+                    Care
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    {product?.product_care}
+                  </Typography>
+                </Grid>
+              </Grid>
             </Stack>
           </Grid>
         </Grid>

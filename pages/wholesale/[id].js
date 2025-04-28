@@ -491,6 +491,8 @@ import {
   Stack,
   FormControl,
   RadioGroup,
+  Select,
+  MenuItem,
   FormControlLabel,
   Radio,
   Dialog,
@@ -510,6 +512,7 @@ const SingleProduct = () => {
   const [error, setError] = useState(null);
   const [product, setProduct] = useState(null);
   const [selectedColor, setSelectedColor] = useState(null); // Track selected color
+  const [selectedSize, setSelectedSize] = useState("");
   const [selectedImages, setSelectedImages] = useState([]); // Track images for selected color
   const [openSizeGuide, setOpenSizeGuide] = useState(false);
 
@@ -624,6 +627,25 @@ const SingleProduct = () => {
               <Typography className="Regular" fontSize={18}>
                 Size:
               </Typography>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                size="small"
+                value={selectedSize}
+                onChange={(e) => setSelectedSize(e.target.value)}
+                sx={{
+                  maxWidth: { lg: "100%", xs: "100%" },
+                }}
+              >
+                <MenuItem disabled value="">
+                  Select Size
+                </MenuItem>
+                {product?.p_sizes?.map((size, index) => (
+                  <MenuItem key={index} value={size?.size_name}>
+                    {size?.size_name}
+                  </MenuItem>
+                ))}
+              </Select>
               <Stack direction="row" spacing={1} justifyContent={"flex-end"}>
                 <Button
                   variant="text"
@@ -665,6 +687,44 @@ const SingleProduct = () => {
                   }}
                 />
               </Typography>
+              {/* Specifications Section */}
+              <Typography className="Regular" color={"inherit"} fontSize={18}>
+                Specifications
+              </Typography>
+              <Grid container py={2}>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={18} spacing={2}>
+                    Material
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    {product?.product_material}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={18}>
+                    Weight
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    {product?.product_weight}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={18}>
+                    Fit
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    {product?.product_fit}
+                  </Typography>
+                </Grid>
+                <Grid item xs={6}>
+                  <Typography className="Medium" fontSize={18}>
+                    Care
+                  </Typography>
+                  <Typography className="Regular" fontSize={14}>
+                    {product?.product_care}
+                  </Typography>
+                </Grid>
+              </Grid>
             </Stack>
           </Grid>
         </Grid>
