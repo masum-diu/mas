@@ -272,7 +272,7 @@ const Layout = ({ children }) => {
             </ListItem>
           </Link>
 
-          <Link href={"/retail"} passHref>
+          <Link href={`/category/${retailCategoryId || 2}`} passHref>
             <ListItem button>
               <ListItemText
                 primary={<Typography className="Medium">RETAIL</Typography>}
