@@ -64,11 +64,9 @@ const Cart = () => {
                       </Grid>
                       <Grid item lg={8} sm={6} xs={12}>
                         <Typography variant="h6">{item.name}</Typography>
-                        <Typography>Price: BDT {item.price}</Typography>
+                        <Typography>Price: BDT {item.price}</Typography>{" "}
                         <Typography>VAT: BDT {item.vat?.toFixed(2)}</Typography>
-                        <Typography>
-                          Total: BDT {item.priceWithVAT?.toFixed(2)}
-                        </Typography>
+                        <Typography></Typography>
                         <Typography>Color: {item.color}</Typography>
                         <Typography>Size: {item.size}</Typography>
                         <Button

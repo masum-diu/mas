@@ -614,7 +614,7 @@ const CheckoutForm = () => {
                 Total Items: {cart.length}
               </Typography>
               <Typography variant="h5">
-                Total Price (with 10% VAT): BDT{" "}
+                Total Price : BDT{" "}
                 {cart
                   .reduce(
                     (sum, item) =>
