@@ -150,19 +150,22 @@ const SingleProduct = () => {
                   value={selectedValue}
                   onChange={handleChange}
                 >
-                  <Stack direction="row" spacing={1}>
+                  <Box
+                    display="grid"
+                    gridTemplateColumns="repeat(6, 1fr)"
+                    gap={1}
+                  >
                     {uniqueColors.map((v, i) => (
                       <Grid
                         key={i}
                         onClick={() => {
-                          setSelectedColorId(v.color?.id); // Update gallery
-                          setSelectedValue(v.color?.id); // Track selected value
-                          setSelectedColorName(v.color?.name); // Update selected color name
+                          setSelectedColorId(v.color?.id);
+                          setSelectedValue(v.color?.id);
+                          setSelectedColorName(v.color?.name);
                         }}
                         sx={{
-                          width: 100,
+                          width: "100%",
                           height: 100,
-
                           border:
                             selectedValue === v.color?.id
                               ? "3px solid #9A0E20"
@@ -181,13 +184,12 @@ const SingleProduct = () => {
                           sx={{
                             width: "90%",
                             height: "90%",
-
                             backgroundColor: v.color?.code,
                           }}
                         />
                       </Grid>
                     ))}
-                  </Stack>
+                  </Box>
                 </RadioGroup>
               </FormControl>
               <Typography className="Regular" fontSize={18}>
