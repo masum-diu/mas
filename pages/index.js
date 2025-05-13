@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 import Layout from "../components/Layout";
+import axios from "axios";
 import Typography from "@mui/material/Typography";
 import ProgressPaginationSwiper from "../components/ProgressPaginationSwiper";
 import {
@@ -55,96 +57,84 @@ const Overlay = styled(Box)({
 
 const Home = () => {
   const [data, setData] = useState([]);
-  console.log(data)
-  const [loading, setLoading] = useState(false);
+  const [sectionTitle, setSectionTitle] = useState(""); // State to store the title
+  const [loading, setLoading] = useState(false); // State to track loading
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await instance.get('/category-list');
+      const response = await instance.get("/categories");
+
       setData(response?.data?.data);
       setLoading(false);
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchSectionTitle = async () => {
+    try {
+      setLoading(true);
+      const response = await axios.get(
+        "https://msb.etherstaging.xyz/api/section-one/1"
+      );
+      setSectionTitle(response?.data?.title || ""); // Update the title from the API response
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching section title:", error);
+      setLoading(false);
     }
   };
   useEffect(() => {
     fetchData();
+    fetchSectionTitle(); // Fetch the title when the component mounts
   }, []);
+  const router = useRouter();
 
+  const handleNavigate = (id) => {
+    router.push(`/category/${id}`);
+  };
   return (
     <Layout>
       <ProgressPaginationSwiper />
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={4} py={6}>
-          {data?.map((item, index) => (<>
-            <Grid
-              key={index}
-              item
-              lg={2}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-
-                justifyContent: "center",
-                verticalAlign: "center", // Center vertically and horizontally
-              }}
-            >
-              <Typography variant="h4" color="white">
-                {item?.cat_name}
-              </Typography>
-              <Link
-                href={item?.slug} onClick={() => {
-                  if (item?.id) {
-                    localStorage.setItem('selectedItemId', item.id);
-                  }
-                }}>
-                <Button variant="contained" color="error">
-                  learn more
+          {data?.map((item, index) => (
+            <React.Fragment key={index}>
+              <Grid
+                item
+                lg={2}
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  verticalAlign: "center",
+                }}
+              >
+                <Typography variant="h4" color="white">
+                  {item?.name}
+                </Typography>
+                <Button
+                  variant="contained"
+                  color="error"
+                  onClick={() => handleNavigate(item?.id)}
+                >
+                  Learn More
                 </Button>
-              </Link>
-            </Grid>
-            <Grid item lg={4}>
-              <Link href={item?.slug} onClick={() => {
-                if (item?.id) {
-                  localStorage.setItem('selectedItemId', item.id);
-                }
-              }} >
-                <ImageContainer>
-                  {item.id === 27 ? <img src={"/assets/retail(1).png"} alt="" width={"100%"} /> : <img src={"/assets/whole2.png"
-                  } alt="" width={"100%"} />}
-                  <Overlay className="overlay"></Overlay>
+              </Grid>
+              <Grid item lg={4}>
+                <ImageContainer
+                  onClick={() => handleNavigate(item?.id)}
+                  style={{ cursor: "pointer" }}
+                >
+                  <img src={item?.image} alt="category image" width="100%" />
+                  <Overlay className="overlay" />
                 </ImageContainer>
-              </Link>
-            </Grid></>))}
-
-          {/* <Grid
-            item
-            lg={2}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-
-              justifyContent: "center", // Center vertically and horizontally
-              verticalAlign: "center",
-            }}
-          >
-            <Typography variant="h4" color="white">
-              WholeSale
-            </Typography>
-            <Link href="/wholesale">
-              <Button variant="contained" color="error">
-                learn more
-              </Button>
-            </Link>
-          </Grid>
-          <Grid item lg={4}>
-            <Link href="/wholesale">
-              <ImageContainer>
-                <img src="/assets/whole2.png" alt="" width={"100%"} />
-                <Overlay className="overlay"></Overlay>
-              </ImageContainer>
-            </Link>
-          </Grid> */}
+              </Grid>
+            </React.Fragment>
+          ))}
         </Grid>
 
         <Grid container spacing={4} py={6}>

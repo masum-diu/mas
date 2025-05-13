@@ -16,7 +16,7 @@ function ProgressPaginationSwiper() {
   const fetchingData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("https://apimas.etherstaging.xyz/api/sustainability?no_paginate=yes");
+      const res = await axios.get("https://msb.etherstaging.xyz/api/sliders");
       setSlides(res?.data?.data);
       setLoading(false);
     } catch (error) {
@@ -61,7 +61,7 @@ function ProgressPaginationSwiper() {
                   }}
                 >
                   <img
-                    src={slide.feature_image}
+                    src={slide.image}
                     alt={slide.title || `Slide ${index + 1}`}
                     style={{
                       width: "100%",

@@ -1,0 +1,16 @@
+{
+  "tags": [
+    {
+      "tag_name": "Overview",
+      "description": "This is the overview of the product. It provides general information about the product.This is the overview of the product. It provides general information about the product. This is the overview of the product. It provides general information about the product."
+    },
+    {
+      "tag_name": "Specifications",
+      "description": "These are the specifications of the product, including dimensions, weight, and materials.These are the specifications of the product, including dimensions, weight, and materials.These are the specifications of the product, including dimensions, weight, and materials."
+    },
+    {
+      "tag_name": "Care Instructions",
+      "description": "These are the care instructions for the product. Follow these to maintain the product's quality. These are the care instructions for the product. Follow these to maintain the product's quality. These are the care instructions for the product. Follow these to maintain the product's quality."
+    }
+  ]
+}

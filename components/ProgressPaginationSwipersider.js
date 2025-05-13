@@ -1,90 +1,88 @@
 import React, { useEffect, useState } from "react";
-import { Navigation, Pagination, Scrollbar } from "swiper/modules";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
-import "swiper/css/navigation";
-import { Typography, Stack } from "@mui/material";
+import {
+  Typography,
+  Grid,
+  Card,
+  CardActionArea,
+  CardMedia,
+  CardContent,
+  Box,
+} from "@mui/material";
 import instance from "../pages/api/api_instance";
-import Link from "next/link";
-import static_category_list from "../public/data/static_category_list.json";
 import { useRouter } from "next/router";
 
-function ProgressPaginationSwipersider({ setTabId }) {
-  const [products, setProducts] = useState(null);
-  const router = useRouter(); // Initialize useRouter
-  const id = localStorage.getItem("selectedItemId");
-  // console.log(products, "id");
-  // const id = router.query.id; // Access dynamic parameters
-  const fatchingData = async () => {
-    try {
-      const res = await instance.get(`/sub-categories/${id}`);
-      setProducts(res?.data?.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  useEffect(() => {
-    fatchingData();
-  }, [id]);
-
-  // let conditionalProducts = router?.asPath.includes("/wholesale")
-  //   ? products
-  //   : products;
-
+function ProgressPaginationSwipersider({ subCategories }) {
   const fallbackImage = "https://via.placeholder.com/200";
+  const router = useRouter();
 
+  const handleCardClick = (subcategoryId) => {
+    // Navigate to the subcategory page
+    router.push(`/category/subcategory/${subcategoryId}`);
+  };
   return (
-    <Swiper
-      modules={[Pagination, Scrollbar, Navigation]}
-      spaceBetween={20}
-      slidesPerView={6}
-      navigation={true}
-      breakpoints={{
-        320: {
-          slidesPerView: 1,
-          spaceBetween: 10,
-        },
-        480: {
-          slidesPerView: 2,
-          spaceBetween: 15,
-        },
-        768: {
-          slidesPerView: 3,
-          spaceBetween: 20,
-        },
-        1024: {
-          slidesPerView: 6,
-          spaceBetween: 20,
-        },
-      }}
-    >
-      {products?.map((product, index) => {
-        return (
-          <SwiperSlide key={product?.id} onClick={() => setTabId(product?.id)}>
-            <Stack direction={"column"} spacing={1} alignItems="left">
-              {/* Category Name displayed below the image */}
-              <Typography
-                sx={{ cursor: "pointer" }}
-                className="Medium"
-                fontSize={18}
-                color={"#fffff"}
-                textTransform={"uppercase"}
-                style={{
-                  textAlign: "left",
-                  background: "none",
-                  marginTop: "10px",
-                }}
-              >
-                {product?.category_name || "No Category Name"}{" "}
-                {/* Fallback text if category name is missing */}
-              </Typography>
-            </Stack>
-          </SwiperSlide>
-        );
-      })}
-    </Swiper>
+    <Box>
+      <Typography
+        variant="h6"
+        component="div"
+        textTransform="uppercase"
+        fontWeight="bold"
+        color="white"
+      >
+        {(subCategories && subCategories[0].category?.name) ||
+          "No Category Name"}
+      </Typography>
+
+      <Grid container spacing={2} justifyContent="center">
+        {subCategories.map((subcategory) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={subcategory.id}>
+            <Card
+              sx={{
+                maxWidth: 300,
+                margin: "10px auto",
+                borderRadius: "12px",
+                boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+                transition: "transform 0.3s, box-shadow 0.3s",
+                "&:hover": {
+                  transform: "scale(1.05)",
+                  boxShadow: "0 6px 15px rgba(0, 0, 0, 0.2)",
+                },
+              }}
+              onClick={() => handleCardClick(subcategory.id)}
+            >
+              <CardActionArea>
+                <CardMedia
+                  component="img"
+                  height="300"
+                  image={subcategory.image || fallbackImage}
+                  alt={subcategory.name || "No Image"}
+                  sx={{
+                    borderTopLeftRadius: "12px",
+                    borderTopRightRadius: "12px",
+                  }}
+                />
+                <CardContent
+                  sx={{
+                    backgroundColor: "#f9f9f9",
+                    textAlign: "center",
+                    padding: "16px",
+                  }}
+                >
+                  <Typography
+                    variant="h6"
+                    component="div"
+                    textTransform="uppercase"
+                    fontWeight="bold"
+                    color="#333"
+                  >
+                    {subcategory.name || "No Category Name"}
+                  </Typography>
+                </CardContent>
+              </CardActionArea>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
   );
 }
 

@@ -100,28 +100,125 @@
 
 // export default ThumbsLoopGallery;
 
+// import { useState, useEffect } from "react";
+// import { Box, Card, CardMedia } from "@mui/material";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { GlassMagnifier } from "react-image-magnifiers";
+// import "swiper/css";
+
+// const ThumbsLoopGallery = ({ images, colors }) => {
+//   const [selectedImage, setSelectedImage] = useState(null); // Track the selected image
+//   const [parsedData, setParsedData] = useState([]); // Parsed image data
+
+//   // Parse the data array and set the default selected image
+//   useEffect(() => {
+//     if (images && images.length > 0) {
+//       // Default to the first color's images
+//       const firstColorId = images[0].color_id;
+//       setSelectedColorId(firstColorId);
+//     }
+//   }, [images]);
+
+//   useEffect(() => {
+//     const filtered = images.filter((img) => img.color_id === selectedColorId);
+//     setFilteredImages(filtered);
+//     setSelectedImage(filtered[0]?.image || null);
+//   }, [selectedColorId, images]);
+
+//   const handleImageClick = (image) => {
+//     setSelectedImage(image.image);
+//   };
+//   // console.log(parsedData, "parsedData");
+
+//   return (
+//     <Box sx={{ maxWidth: 700, margin: 1 }}>
+//       {/* Main Image */}
+//       {selectedImage && (
+//         <Card sx={{ marginBottom: 2 }}>
+//           <GlassMagnifier
+//             imageSrc={selectedImage}
+//             imageAlt="Selected Image"
+//             largeImageSrc={selectedImage} // Magnified version of the image
+//           />
+//         </Card>
+//       )}
+
+//       {/* Swiper Thumbnails */}
+//       <Swiper
+//         spaceBetween={10}
+//         slidesPerView={4}
+//         freeMode={true}
+//         watchSlidesProgress={true}
+//         className="thumbsSwiper"
+//         style={{ paddingBottom: "10px" }}
+//       >
+//         {parsedData?.map((image, index) => (
+//           <SwiperSlide key={index}>
+//             <Card
+//               sx={{
+//                 cursor: "pointer",
+//                 border:
+//                   selectedImage === image?.image
+//                     ? "2px solid #9A0E20" // Highlight the selected thumbnail
+//                     : "2px solid transparent",
+//               }}
+//               onClick={() => handleImageClick(image)} // Handle thumbnail click
+//             >
+//               <CardMedia
+//                 component="img"
+//                 image={image} // Display the thumbnail image
+//                 alt={`Thumbnail ${index + 1}`}
+//               />
+//             </Card>
+//           </SwiperSlide>
+//         ))}
+//       </Swiper>
+//     </Box>
+//   );
+// };
+
+// export default ThumbsLoopGallery;
+
 import { useState, useEffect } from "react";
-import { Box, Card, CardMedia } from "@mui/material";
+import { Box, Card, CardMedia, Typography } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { GlassMagnifier } from "react-image-magnifiers";
 import "swiper/css";
 
-const ThumbsLoopGallery = ({ data, link }) => {
-  console.log("your log output", data);
-  const [selectedImage, setSelectedImage] = useState(null); // Track the selected image
-  const [parsedData, setParsedData] = useState([]); // Parsed image data
+const ThumbsLoopGallery = ({ images, selectedColorId, setSelectedColorId }) => {
+  const [groupedImages, setGroupedImages] = useState({});
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  // Parse the data array and set the default selected image
+  // Group images by color_id on load
   useEffect(() => {
-    if (data && data.length > 0) {
-      setParsedData(data); // Use the provided data directly
-      setSelectedImage(data[0]); // Set the first image as the default
+    if (images?.length) {
+      const grouped = images.reduce((acc, item) => {
+        const colorId = item.color_id;
+        if (!acc[colorId]) acc[colorId] = [];
+        acc[colorId].push(item.image);
+        return acc;
+      }, {});
+
+      setGroupedImages(grouped);
+
+      // Set default color ID and first image
+      const firstColorId = Object.keys(grouped)[0];
+      setSelectedColorId(firstColorId);
     }
-  }, [data]);
+  }, [images]);
+
+  // Update selectedImage when selectedColorId changes
+  useEffect(() => {
+    if (selectedColorId && groupedImages[selectedColorId]) {
+      setSelectedImage(groupedImages[selectedColorId][0]);
+    }
+  }, [selectedColorId, groupedImages]);
 
   const handleImageClick = (image) => {
-    setSelectedImage(image); // Update the selected image when a thumbnail is clicked
+    setSelectedImage(image);
   };
+
+  if (!selectedColorId || !groupedImages[selectedColorId]) return null;
 
   return (
     <Box sx={{ maxWidth: 700, margin: 1 }}>
@@ -131,7 +228,7 @@ const ThumbsLoopGallery = ({ data, link }) => {
           <GlassMagnifier
             imageSrc={selectedImage}
             imageAlt="Selected Image"
-            largeImageSrc={selectedImage} // Magnified version of the image
+            largeImageSrc={selectedImage}
           />
         </Card>
       )}
@@ -145,21 +242,21 @@ const ThumbsLoopGallery = ({ data, link }) => {
         className="thumbsSwiper"
         style={{ paddingBottom: "10px" }}
       >
-        {parsedData?.map((image, index) => (
+        {groupedImages[selectedColorId].map((img, index) => (
           <SwiperSlide key={index}>
             <Card
               sx={{
                 cursor: "pointer",
                 border:
-                  selectedImage === image
-                    ? "2px solid #9A0E20" // Highlight the selected thumbnail
+                  selectedImage === img
+                    ? "2px solid #9A0E20"
                     : "2px solid transparent",
               }}
-              onClick={() => handleImageClick(image)} // Handle thumbnail click
+              onClick={() => handleImageClick(img)}
             >
               <CardMedia
                 component="img"
-                image={image} // Display the thumbnail image
+                image={img}
                 alt={`Thumbnail ${index + 1}`}
               />
             </Card>

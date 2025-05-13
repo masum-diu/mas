@@ -46,7 +46,7 @@ const Cart = () => {
                 const imageUrl =
                   item?.images?.length && typeof item.images[0] === "string"
                     ? `${item?.link}/${item.images[0].replace(/\\/g, "")}`
-                    : defaultImage;
+                    : Image;
 
                 return (
                   <Box
@@ -64,10 +64,10 @@ const Cart = () => {
                       </Grid>
                       <Grid item lg={8} sm={6} xs={12}>
                         <Typography variant="h6">{item.name}</Typography>
-                        <Typography>Price: USD {item.price}</Typography>
-                        <Typography>VAT: USD {item.vat?.toFixed(2)}</Typography>
+                        <Typography>Price: BDT {item.price}</Typography>
+                        <Typography>VAT: BDT {item.vat?.toFixed(2)}</Typography>
                         <Typography>
-                          Total: USD {item.priceWithVAT?.toFixed(2)}
+                          Total: BDT {item.priceWithVAT?.toFixed(2)}
                         </Typography>
                         <Typography>Color: {item.color}</Typography>
                         <Typography>Size: {item.size}</Typography>

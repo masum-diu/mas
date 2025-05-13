@@ -13,8 +13,8 @@ const About = () => {
   const fetchAboutData = async () => {
     try {
       setLoading(true);
-      const res = await instance.get("/get-about-story"); // Use your API instance or axios directly
-      setAboutData(res?.data);
+      const res = await instance.get("/about/1"); // Use your API instance
+      setAboutData(res?.data?.data);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -54,7 +54,7 @@ const About = () => {
         <Grid container spacing={2} py={2}>
           <Grid item lg={5} sx={{ display: "flex", gap: 1, pt: 4 }}>
             <img
-              src={aboutData?.img_path + "/" + aboutData?.feature_image}
+              src={aboutData?.image}
               alt="About Image"
               style={{ width: "100%", height: "100%" }}
             />

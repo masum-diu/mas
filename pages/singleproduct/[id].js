@@ -6,80 +6,127 @@ import {
   Button,
   Grid,
   Stack,
-  styled,
-  TextField,
   Radio,
   RadioGroup,
   FormControl,
-  FormControlLabel,
-  FormLabel,
-  FormHelperText,
   Select,
   MenuItem,
+  CardMedia,
+  Tabs,
+  Tab,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
 } from "@mui/material";
 import Layout from "../../components/Layout";
 import instance from "../api/api_instance";
 import Link from "next/link";
+import { useCart } from "../../src/context/CartContext"; // Import CartContext
+
 import { useRouter } from "next/router";
 
-const singleproduct = () => {
+const SingleProduct = () => {
   const router = useRouter();
   const { id } = router?.query;
-  const [selectedValue, setSelectedValue] = useState("option1");
-  const [age, setAge] = React.useState(10);
+  const [selectedValue, setSelectedValue] = useState("");
+  const [selectedColorId, setSelectedColorId] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [products, setProduct] = useState(null);
+  const [tags, setTags] = useState([]); // State to store tags
+  const [activeTab, setActiveTab] = useState(0); // State to track the active tab
+  const [selectedColorName, setSelectedColorName] = useState(""); // State to store selected color name
+  const [sizeGuide, setSizeGuide] = useState([]);
+  const [openSizeGuide, setOpenSizeGuide] = useState(false);
+  const handleOpenSizeGuide = () => setOpenSizeGuide(true);
+  const handleCloseSizeGuide = () => setOpenSizeGuide(false);
+  const { addToCart } = useCart();
 
-  const fatchingData = async () => {
+  const handleAddToCart = () => {
+    const cartData = {
+      id: products?.id,
+      name: products?.name,
+      price: products?.price,
+      color: selectedColorName,
+      images: imageArray,
+      link: router.asPath,
+    };
+    addToCart(cartData); // from CartContext
+  };
+  const fetchProductData = async () => {
     try {
       setLoading(true);
-      setError(null); // Reset error state
-      const res = await instance.get(`/product-by/${id}`);
+      setError(null);
+
+      const res = await instance.get(`/product/${id}`);
       const productData = res?.data?.data;
+
+      // Set product details
       setProduct(productData);
 
-      // Set the first color as the default selected value
-      if (productData?.p_colours?.length > 0) {
-        setSelectedValue(productData.p_colours[0].color_name);
+      // Set tags
+      if (productData?.tags) {
+        setTags(productData.tags);
+      }
+
+      // Set default selected color
+      if (productData?.product_images?.length > 0) {
+        setSelectedValue(productData.product_images[0].color.id);
+      }
+
+      // ✅ Set size guide from API
+      if (productData?.size_guide) {
+        setSizeGuide(productData.size_guide);
       }
 
       setLoading(false);
     } catch (error) {
       setLoading(false);
       setError(error.response?.data?.message || "Something went wrong.");
-      console.error(
-        "Error fetching product data:",
-        error.response || error.message
-      );
+      console.error("Error fetching product data:", error);
     }
   };
 
   useEffect(() => {
     if (id) {
-      fatchingData();
+      fetchProductData();
     }
   }, [id]);
 
-  const handleChangeSelect = (event) => {
-    setAge(event.target.value);
+  const imageArray = products?.product_images || [];
+  const handleChange = (color_id) => {
+    setSelectedValue(color_id);
+    setSelectedColorId(color_id);
   };
-  const imageArray = [products?.feature_image].filter(Boolean); // Removes undefined or null values
-  const link = products?.img_path;
 
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+  const handleTabChange = (event, newValue) => {
+    setActiveTab(newValue);
   };
 
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
+
+  const uniqueColors = [
+    ...new Map(
+      products?.product_images?.map((img) => [img.color?.id, img])
+    ).values(),
+  ];
 
   return (
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container py={6} spacing={0}>
           <Grid item lg={6} sm={4} xs={12}>
-            <ThumbsLoopGallery data={imageArray} link={link} />
+            <ThumbsLoopGallery
+              images={imageArray}
+              selectedColorId={selectedValue}
+              setSelectedColorId={setSelectedValue}
+            />
           </Grid>
 
           <Grid item lg={6} sm={4}>
@@ -89,10 +136,12 @@ const singleproduct = () => {
                 fontSize={28}
                 textTransform={"uppercase"}
               >
-                {products?.p_name}
+                {products?.name}
               </Typography>
+
               <Typography className="Regular" fontSize={18}>
-                Color:
+                Color:{" "}
+                {selectedColorName || products?.availability[0]?.color?.name}
               </Typography>
               <FormControl component="fieldset">
                 <RadioGroup
@@ -102,141 +151,187 @@ const singleproduct = () => {
                   onChange={handleChange}
                 >
                   <Stack direction="row" spacing={1}>
-                    {products?.p_colours.map((v, i) => (
-                      <FormControlLabel
+                    {uniqueColors.map((v, i) => (
+                      <Grid
                         key={i}
-                        value={v.color_name}
-                        control={
-                          <Radio
-                            sx={{
-                              width: 24,
-                              height: 24,
-                              borderRadius: "50%",
-                              backgroundColor: v.color_code, // Filled color
-                              padding: 0,
-                              "& .MuiSvgIcon-root": { display: "none" }, // Hide default radio circle
-                              "&.Mui-checked": {
-                                backgroundColor: v.color_code,
-                              },
-                            }}
-                          />
-                        }
-                      />
+                        onClick={() => {
+                          setSelectedColorId(v.color?.id); // Update gallery
+                          setSelectedValue(v.color?.id); // Track selected value
+                          setSelectedColorName(v.color?.name); // Update selected color name
+                        }}
+                        sx={{
+                          width: 100,
+                          height: 100,
+
+                          border:
+                            selectedValue === v.color?.id
+                              ? "3px solid #9A0E20"
+                              : "1px solid #ccc",
+                          cursor: "pointer",
+                          backgroundColor: "#fff",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                        }}
+                      >
+                        <CardMedia
+                          component="img"
+                          image={v?.image}
+                          alt={`Thumbnail`}
+                          sx={{
+                            width: "90%",
+                            height: "90%",
+
+                            backgroundColor: v.color?.code,
+                          }}
+                        />
+                      </Grid>
                     ))}
                   </Stack>
                 </RadioGroup>
               </FormControl>
-
               <Typography className="Regular" fontSize={18}>
                 Size:
               </Typography>
+
               <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
                 size="small"
-                value={age}
-                onChange={handleChangeSelect}
                 sx={{
                   maxWidth: { lg: "100%", xs: "100%" },
-                  color: "inherit", // Inherit text color
-                  "& .MuiSelect-icon": {
-                    color: "inherit", // Inherit icon color
-                  },
-                  "&.Mui-focused": {
-                    borderColor: "inherit", // Inherit border color on focus
-                  },
+                  color: "inherit",
+                  "& .MuiSelect-icon": { color: "inherit" },
+                  "&.Mui-focused": { borderColor: "inherit" },
                   "& .MuiOutlinedInput-notchedOutline": {
-                    borderColor: "inherit", // Inherit border color
+                    borderColor: "inherit",
                   },
-                  "& .MuiMenuItem-root": {
-                    color: "inherit", // Inherit menu item color
-                  },
-                  "&:hover": {
-                    backgroundColor: "inherit", // Inherit background color on hover
-                  },
+                  "& .MuiMenuItem-root": { color: "inherit" },
+                  "&:hover": { backgroundColor: "inherit" },
                 }}
               >
                 <MenuItem disabled value={10}>
                   View Size
                 </MenuItem>
-                {products?.p_sizes.map((v, i) => (
-                  <MenuItem key={i} value={v?.size_name}>
-                    {v?.size_name}
-                  </MenuItem>
-                ))}
+                {products?.availability
+                  .filter((item) => item.color?.id === selectedColorId) // Filter sizes by selected color
+                  .map((v, i) => (
+                    <MenuItem key={i} value={v?.size?.name}>
+                      {v?.size?.name}
+                    </MenuItem>
+                  ))}
               </Select>
-              <Link href={"/contactus"}>
-                <Button variant="contained" color="error" className="Medium">
-                  Contact Us
-                </Button>
-              </Link>
-              <Typography className="Regular">
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: products?.psh_raw_description,
-                  }}
-                />
-              </Typography>
+              <Button
+                onClick={handleOpenSizeGuide}
+                size="small"
+                variant="text"
+                sx={{ textTransform: "none", mt: 1 }}
+              >
+                View Size Guide
+              </Button>
+              <Dialog
+                open={openSizeGuide}
+                onClose={handleCloseSizeGuide}
+                maxWidth="sm"
+                fullWidth
+              >
+                <DialogTitle>Size Guide</DialogTitle>
+                <DialogContent>
+                  {sizeGuide.length > 0 ? (
+                    <Table size="small">
+                      <TableHead>
+                        <TableRow>
+                          <TableCell>
+                            <strong>Size</strong>
+                          </TableCell>
+                          <TableCell>
+                            <strong>Chest (cm)</strong>
+                          </TableCell>
+                          <TableCell>
+                            <strong>Body Length (cm)</strong>
+                          </TableCell>
+                        </TableRow>
+                      </TableHead>
+                      <TableBody>
+                        {sizeGuide.map((guide, index) => (
+                          <TableRow key={index}>
+                            <TableCell>{guide.name}</TableCell>
+                            <TableCell>{guide.chest}</TableCell>
+                            <TableCell>{guide.body}</TableCell>
+                          </TableRow>
+                        ))}
+                      </TableBody>
+                    </Table>
+                  ) : (
+                    <Typography>No size guide available.</Typography>
+                  )}
+                </DialogContent>
+              </Dialog>
 
-              <Typography className="Regular">
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: products?.p_raw_description,
-                  }}
-                />
+              {Number(products?.category_id) === 1 && (
+                <Link href="/contactus">
+                  <Button variant="contained" color="error" className="Medium">
+                    Contact Us
+                  </Button>
+                </Link>
+              )}
+              {Number(products?.category_id) === 2 && (
+                <>
+                  <Typography className="Regular" fontSize={20} color="primary">
+                    Price: {products?.price} BDT
+                  </Typography>
+
+                  <Button
+                    variant="contained"
+                    color="error"
+                    className="Medium"
+                    onClick={handleAddToCart}
+                  >
+                    Add to Cart
+                  </Button>
+                </>
+              )}
+
+              {/* Tags Section */}
+              <Box sx={{ mt: 4 }}>
+                <Tabs
+                  value={activeTab}
+                  onChange={handleTabChange}
+                  indicatorColor="primary"
+                  variant="scrollable"
+                  scrollButtons="auto"
+                >
+                  {tags.map((tag, index) => (
+                    <Tab key={index} label={tag.name} />
+                  ))}
+                </Tabs>
+                <Box sx={{ mt: 2 }}>
+                  <Typography
+                    className="Regular"
+                    dangerouslySetInnerHTML={{
+                      __html: tags[activeTab]?.description || "",
+                    }}
+                  />
+                </Box>
+              </Box>
+              <Typography className="Regular" fontSize={18} color={"inherit"}>
+                Specifications
               </Typography>
             </Stack>
-
-            <Typography className="Regular" fontSize={18} color={"inherit"}>
-              Specifications
-            </Typography>
             <Grid container py={2} spacing={4}>
-              <Grid item lg={6} sm={12} xs={12}>
-                <Typography className="Regular" fontSize={18}>
-                  Material
-                </Typography>
-                <Typography
-                  className="Regular"
-                  fontSize={16}
-                  borderBottom={"1px solid #5a5858"}
-                >
-                  100% organic cotton
-                </Typography>
-              </Grid>
-              <Grid item lg={6} sm={12} xs={12}>
-                <Typography className="Regular" fontSize={18}>
-                  Weight
-                </Typography>
-                <Typography
-                  className="Regular"
-                  fontSize={16}
-                  borderBottom={"1px solid #5a5858"}
-                >
-                  180 GSM (Medium Weight)
-                </Typography>
-              </Grid>
               <Grid item lg={6} sm={12} xs={12}>
                 <Typography className="Regular" fontSize={18}>
                   Fit
                 </Typography>
-                <Typography
-                  className="Regular"
-                  fontSize={16}
-                  borderBottom={"1px solid #5a5858"}
-                >
-                  Regular Fit
+                <Typography className="Regular" fontSize={16}>
+                  {products?.fit}
                 </Typography>
               </Grid>
+
               <Grid item lg={6} sm={12} xs={12}>
                 <Typography className="Regular" fontSize={18}>
                   Care
                 </Typography>
-                <Typography
-                  className="Regular"
-                  fontSize={16}
-                  borderBottom={"1px solid #5a5858"}
-                >
-                  Machine wash cold, tumble dry low
+                <Typography className="Regular" fontSize={16}>
+                  {products?.care}
                 </Typography>
               </Grid>
             </Grid>
@@ -247,4 +342,4 @@ const singleproduct = () => {
   );
 };
 
-export default singleproduct;
+export default SingleProduct;

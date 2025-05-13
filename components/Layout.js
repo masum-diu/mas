@@ -85,11 +85,23 @@ const Layout = ({ children }) => {
     setAnchorEl(null);
   };
 
+  const [retailCategoryId, setRetailCategoryId] = useState(null);
+
   const fatchingData = async () => {
     setLoading(true);
     try {
       const res = await instance.get("/category-list");
-      setProducts(res?.data?.data || []);
+      const categories = res?.data?.data || [];
+
+      setProducts(categories);
+
+      // ✅ Find and set the ID of the "Retail" category
+      const retail = categories.find(
+        (cat) => cat.name?.toLowerCase() === "retail"
+      );
+      if (retail) {
+        setRetailCategoryId(retail.id); // This will be used in your Link
+      }
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -166,7 +178,7 @@ const Layout = ({ children }) => {
                   ABOUT
                 </Typography>
               </Link>
-              <Link href={"/retail"} passHref>
+              <Link href={`/category/${retailCategoryId || 2}`} passHref>
                 <Typography
                   className="Medium"
                   fontSize={16}
