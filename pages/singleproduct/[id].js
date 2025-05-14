@@ -253,20 +253,42 @@ const SingleProduct = () => {
                           <TableCell>
                             <strong>Size</strong>
                           </TableCell>
-                          <TableCell>
-                            <strong>Chest (cm)</strong>
-                          </TableCell>
-                          <TableCell>
-                            <strong>Body Length (cm)</strong>
-                          </TableCell>
+                          {products?.name === "Boxer Short" ? (
+                            <>
+                              <TableCell>
+                                <strong>Side Length (cm) </strong>
+                              </TableCell>
+                              <TableCell>
+                                <strong>½ Waist (cm)</strong>
+                              </TableCell>
+                            </>
+                          ) : (
+                            <>
+                              <TableCell>
+                                <strong>Chest (cm)</strong>
+                              </TableCell>
+                              <TableCell>
+                                <strong>Body Length (cm)</strong>
+                              </TableCell>
+                            </>
+                          )}
                         </TableRow>
                       </TableHead>
                       <TableBody>
                         {sizeGuide.map((guide, index) => (
                           <TableRow key={index}>
                             <TableCell>{guide.name}</TableCell>
-                            <TableCell>{guide.chest}</TableCell>
-                            <TableCell>{guide.body}</TableCell>
+                            {products?.name === "Boxer Short" ? (
+                              <>
+                                <TableCell>{guide.chest}</TableCell>
+                                <TableCell>{guide.body}</TableCell>
+                              </>
+                            ) : (
+                              <>
+                                <TableCell>{guide.chest}</TableCell>
+                                <TableCell>{guide.body}</TableCell>
+                              </>
+                            )}
                           </TableRow>
                         ))}
                       </TableBody>
@@ -287,7 +309,7 @@ const SingleProduct = () => {
               {Number(products?.category_id) === 2 && (
                 <>
                   <Typography className="Regular" fontSize={20} color="primary">
-                    Price: {products?.price} USD
+                    Price: 400 USD
                   </Typography>
 
                   <Button
