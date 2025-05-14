@@ -72,19 +72,23 @@ function ProgressPaginationSwiper() {
                   {/* Title Section using Typography */}
                   <Typography
                     className="Medium"
-                    fontSize={40}
                     sx={{
                       position: "absolute",
                       top: "50%",
-                      left: "40%",
+                      left: "41%",
                       transform: "translate(-50%, -50%)",
                       zIndex: 2,
                       color: "#fff",
-                      padding: "10px 20px",
                       textAlign: "left",
                       fontWeight: "bold",
                       letterSpacing: "1px",
                       textTransform: "uppercase",
+                      fontSize: {
+                        xs: 24, // for mobile
+                        sm: 24, // small screens
+                        md: 24, // medium screens
+                        lg: 50, // large screens and up
+                      },
                     }}
                   >
                     {slide.title}

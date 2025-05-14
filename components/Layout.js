@@ -196,6 +196,7 @@ const Layout = ({ children }) => {
                 sx={{ cursor: "pointer" }}
               >
                 <ShoppingCart sx={{ color: darkMode ? "#fff" : "#000" }} />
+
                 <Typography
                   className="Medium"
                   fontSize={16}
@@ -215,11 +216,25 @@ const Layout = ({ children }) => {
                 {darkMode ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
             </Stack>
-
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <Box
+              sx={{ display: { xs: "flex", md: "none" }, alignItems: "center" }}
+            >
               <IconButton onClick={toggleTheme} color="inherit">
                 {darkMode ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
+
+              {/* Cart icon for mobile */}
+              <IconButton onClick={handleCartClick} color="inherit">
+                <ShoppingCart sx={{ color: darkMode ? "#fff" : "#000" }} />
+                <Typography
+                  className="Medium"
+                  fontSize={14}
+                  sx={{ ml: 0.5, color: darkMode ? "#fff" : "#000" }}
+                >
+                  {cart.length}
+                </Typography>
+              </IconButton>
+
               <IconButton color="inherit" onClick={handleDrawerOpen}>
                 <MenuIcon style={{ fontSize: "33px" }} />
               </IconButton>

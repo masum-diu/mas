@@ -35,6 +35,8 @@ const SingleProduct = () => {
   const { id } = router?.query;
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedColorId, setSelectedColorId] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(""); // State to track selected size
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [products, setProduct] = useState(null);
@@ -53,8 +55,9 @@ const SingleProduct = () => {
       name: products?.name,
       price: products?.price,
       color: selectedColorName,
-      images: imageArray,
-      link: router.asPath,
+      size: selectedSize, // Include selected size
+      images: products?.product_images?.map((img) => img.image), // Include images
+      link: router.asPath, // Include product link
     };
     addToCart(cartData); // from CartContext
   };
@@ -152,7 +155,12 @@ const SingleProduct = () => {
                 >
                   <Box
                     display="grid"
-                    gridTemplateColumns="repeat(6, 1fr)"
+                    gridTemplateColumns={{
+                      xs: "repeat(3, 1fr)", // 2 columns on extra-small (mobile)
+                      sm: "repeat(3, 1fr)", // 3 columns on small screens
+                      md: "repeat(4, 1fr)", // 4 columns on medium screens
+                      lg: "repeat(6, 1fr)", // 6 columns on large screens
+                    }}
                     gap={1}
                   >
                     {uniqueColors.map((v, i) => (
@@ -165,7 +173,7 @@ const SingleProduct = () => {
                         }}
                         sx={{
                           width: "100%",
-                          height: 100,
+                          aspectRatio: "1", // Makes the grid square
                           border:
                             selectedValue === v.color?.id
                               ? "3px solid #9A0E20"
@@ -182,8 +190,7 @@ const SingleProduct = () => {
                           image={v?.image}
                           alt={`Thumbnail`}
                           sx={{
-                            width: "90%",
-                            height: "90%",
+                            objectFit: "contain",
                             backgroundColor: v.color?.code,
                           }}
                         />
@@ -198,6 +205,8 @@ const SingleProduct = () => {
 
               <Select
                 size="small"
+                value={selectedSize} // Bind the selectedSize state
+                onChange={(e) => setSelectedSize(e.target.value)} // Update selectedSize state
                 sx={{
                   maxWidth: { lg: "100%", xs: "100%" },
                   color: "inherit",
@@ -210,8 +219,8 @@ const SingleProduct = () => {
                   "&:hover": { backgroundColor: "inherit" },
                 }}
               >
-                <MenuItem disabled value={10}>
-                  View Size
+                <MenuItem disabled value="">
+                  Select Size
                 </MenuItem>
                 {products?.availability
                   .filter((item) => item.color?.id === selectedColorId) // Filter sizes by selected color
@@ -278,7 +287,7 @@ const SingleProduct = () => {
               {Number(products?.category_id) === 2 && (
                 <>
                   <Typography className="Regular" fontSize={20} color="primary">
-                    Price: {products?.price} BDT
+                    Price: {products?.price} USD
                   </Typography>
 
                   <Button

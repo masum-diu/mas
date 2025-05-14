@@ -72,7 +72,7 @@ const SubcategoryProducts = () => {
   return (
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
-        <Grid container spacing={1} py={4}>
+        <Grid container spacing={2} py={4}>
           {products?.map((product, index) => {
             return (
               <Grid item lg={3} sm={6} key={index} sx={{ cursor: "pointer" }}>
