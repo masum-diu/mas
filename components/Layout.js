@@ -90,7 +90,7 @@ const Layout = ({ children }) => {
   const fatchingData = async () => {
     setLoading(true);
     try {
-      const res = await instance.get("/category-list");
+      const res = await instance.get("/categories/2");
       const categories = res?.data?.data || [];
 
       setProducts(categories);

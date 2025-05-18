@@ -49,18 +49,39 @@ const SingleProduct = () => {
   const handleCloseSizeGuide = () => setOpenSizeGuide(false);
   const { addToCart } = useCart();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
+    // Find the selected size object to get its id
+    const selectedSizeObj = products?.availability.find(
+      (item) =>
+        item.color?.id === selectedColorId && item.size?.name === selectedSize
+    );
+
     const cartData = {
       id: products?.id,
       name: products?.name,
       price: products?.price,
       color: selectedColorName,
-      size: selectedSize, // Include selected size
-      images: products?.product_images?.map((img) => img.image), // Include images
-      link: router.asPath, // Include product link
+      size: selectedSize,
+      images: products?.product_images?.map((img) => img.image),
+      link: router.asPath,
     };
-    addToCart(cartData); // from CartContext
+
+    addToCart(cartData);
+
+    try {
+      await instance.post("https://msb.etherstaging.xyz/api/cart/add", {
+        product_id: products?.id,
+        color_id: selectedColorId,
+        size_id: selectedSizeObj?.size?.id,
+        quantity: 1,
+      });
+      // Optionally show a success message or redirect
+      // router.push("/cart");
+    } catch (error) {
+      console.error("Failed to add to backend cart:", error);
+    }
   };
+
   const fetchProductData = async () => {
     try {
       setLoading(true);
@@ -235,6 +256,7 @@ const SingleProduct = () => {
                 size="small"
                 variant="text"
                 sx={{ textTransform: "none", mt: 1 }}
+                color="inherit"
               >
                 View Size Guide
               </Button>
@@ -308,8 +330,8 @@ const SingleProduct = () => {
               )}
               {Number(products?.category_id) === 2 && (
                 <>
-                  <Typography className="Regular" fontSize={20} color="primary">
-                    Price: 400 USD
+                  <Typography className="Regular" fontSize={20}>
+                    Price: {products?.price} USD
                   </Typography>
 
                   <Button
@@ -329,6 +351,7 @@ const SingleProduct = () => {
                   value={activeTab}
                   onChange={handleTabChange}
                   indicatorColor="primary"
+                  textColor="inherit"
                   variant="scrollable"
                   scrollButtons="auto"
                 >
