@@ -22,6 +22,7 @@ import {
   Brightness4,
   Brightness7,
   ShoppingCart,
+  AccountCircle,
 } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -119,6 +120,8 @@ const Layout = ({ children }) => {
         backgroundColor: darkMode ? "#202020" : "#fff",
         color: darkMode ? "#fff" : "#000",
         minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <AppBar
@@ -187,6 +190,13 @@ const Layout = ({ children }) => {
                   RETAIL
                 </Typography>
               </Link>
+              <IconButton
+                color="inherit"
+                onClick={() => router.push("/sign-in")}
+                sx={{ ml: 1 }}
+              >
+                <AccountCircle sx={{ color: darkMode ? "#fff" : "#000" }} />
+              </IconButton>
 
               <Stack
                 direction="row"
@@ -310,6 +320,7 @@ const Layout = ({ children }) => {
         sx={{
           backgroundColor: darkMode ? "#000000" : "#f5f5f5",
           color: darkMode ? "#fff" : "#000",
+          mt: "auto", // Push footer to bottom
         }}
       >
         <Grid

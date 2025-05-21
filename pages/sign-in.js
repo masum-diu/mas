@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, TextField, Typography, Stack } from "@mui/material";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
+import instance from "../pages/api/api_instance"; // Add this import at the top
 
 const SignIn = () => {
   const router = useRouter();
@@ -10,6 +11,7 @@ const SignIn = () => {
     name: "",
     email: "",
     password: "",
+    role: "",
   });
   const [error, setError] = useState("");
 
@@ -21,13 +23,29 @@ const SignIn = () => {
     }));
   };
 
-  const handleSignIn = () => {
-    // Simulate user registration
+  const handleSignIn = async () => {
     if (signInData.name && signInData.email && signInData.password) {
-      console.log("User registered:", signInData);
-      router.push("/checkout"); // Redirect to the checkout page
+      try {
+        const response = await instance.post(
+          "https://msb.etherstaging.xyz/api/register",
+          {
+            name: signInData.name,
+            email: signInData.email,
+            password: signInData.password,
+            password_confirmation: signInData.password, // <-- Add this line
+            role: "user",
+          }
+        );
+        localStorage.setItem("user", JSON.stringify(response.data.data));
+        router.push("/checkout");
+      } catch (err) {
+        setError(
+          err.response?.data?.message ||
+            "Registration failed. Please try again."
+        );
+      }
     } else {
-      setError("All fields are required."); // Show error message
+      setError("All fields are required.");
     }
   };
 

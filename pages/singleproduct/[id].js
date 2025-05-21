@@ -50,6 +50,26 @@ const SingleProduct = () => {
   const { addToCart } = useCart();
 
   const handleAddToCart = async () => {
+    const user = localStorage.getItem("user");
+
+    // If not logged in, get or create a guest ID
+    let guestId = null;
+    let userId = null;
+    if (!user) {
+      guestId = localStorage.getItem("guest_id");
+      if (!guestId) {
+        guestId = "guest_" + Math.random().toString(36).substr(2, 16);
+        localStorage.setItem("guest_id", guestId);
+      }
+    } else {
+      // Parse user and get user_id (adjust according to your user object structure)
+      try {
+        userId = JSON.parse(user)?.id;
+      } catch (e) {
+        userId = null;
+      }
+    }
+
     // Find the selected size object to get its id
     const selectedSizeObj = products?.availability.find(
       (item) =>
@@ -70,10 +90,13 @@ const SingleProduct = () => {
 
     try {
       await instance.post("https://msb.etherstaging.xyz/api/cart/add", {
+        guest_id: guestId,
+        user_id: userId,
         product_id: products?.id,
         color_id: selectedColorId,
         size_id: selectedSizeObj?.size?.id,
         quantity: 1,
+        ...(userId ? { user_id: userId } : { guest_id: guestId }), // Send user_id if logged in, else guest_id
       });
       // Optionally show a success message or redirect
       // router.push("/cart");
@@ -81,7 +104,6 @@ const SingleProduct = () => {
       console.error("Failed to add to backend cart:", error);
     }
   };
-
   const fetchProductData = async () => {
     try {
       setLoading(true);
@@ -354,6 +376,11 @@ const SingleProduct = () => {
                   textColor="inherit"
                   variant="scrollable"
                   scrollButtons="auto"
+                  TabIndicatorProps={{
+                    style: {
+                      backgroundColor: "#ffffff", // Change this to your desired color (e.g. white)
+                    },
+                  }}
                 >
                   {tags.map((tag, index) => (
                     <Tab key={index} label={tag.name} />

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Box, Button, Grid, TextField, Typography, Stack } from "@mui/material";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
+import instance from "../pages/api/api_instance"; // Add this import at the top
 
 const Checkout = () => {
   const router = useRouter();
@@ -21,22 +22,28 @@ const Checkout = () => {
     }));
   };
 
-  const handleLogin = () => {
-    // Simulated credentials for validation
-    const validCredentials = {
-      email: "user@example.com",
-      password: "password123",
-    };
-
-    // Check if the entered credentials match the valid credentials
-    if (
-      loginData.email === validCredentials.email &&
-      loginData.password === validCredentials.password
-    ) {
-      console.log("User logged in:", loginData);
+  const handleLogin = async () => {
+    setError(""); // Clear previous error
+    if (!loginData.email || !loginData.password) {
+      setError("Email and password are required.");
+      return;
+    }
+    try {
+      const response = await instance.post(
+        "https://msb.etherstaging.xyz/api/login",
+        {
+          email: loginData.email,
+          password: loginData.password,
+        }
+      );
+      // Store user info in localStorage if needed
+      localStorage.setItem("user", JSON.stringify(response.data.data));
       router.push("/checkout-form"); // Redirect to the checkout form
-    } else {
-      setError("Invalid email or password."); // Show error message
+    } catch (err) {
+      setError(
+        err.response?.data?.message ||
+          "Login failed. Please check your credentials."
+      );
     }
   };
 

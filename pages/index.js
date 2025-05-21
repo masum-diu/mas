@@ -185,7 +185,7 @@ const Home = () => {
                   600+ Outlets
                 </Typography>
                 <Typography className="Regular" fontSize={16}>
-                  Available for customers across the regions
+                  Available for customers across the regions.
                 </Typography>
               </Stack>
             </Stack>
@@ -246,7 +246,7 @@ const Home = () => {
                 Competitive pricing
               </Typography>
               <Typography className="Regular" fontSize={16}>
-                Get premium clothing at prices that offer great value
+                Get premium clothing at prices that offer great value.
               </Typography>
             </Stack>
           </Grid>
