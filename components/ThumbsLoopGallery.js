@@ -228,7 +228,10 @@ const ThumbsLoopGallery = ({ images, selectedColorId, setSelectedColorId }) => {
           <GlassMagnifier
             imageSrc={selectedImage}
             imageAlt="Selected Image"
-            largeImageSrc={selectedImage}
+            largeImageSrc={selectedImage} // Make sure this is a high-res image
+            magnifierSize="40%" // Increase this for a bigger glass
+            magnifierBorderSize={2}
+            square={false} // Optional: set to true for square magnifier
           />
         </Card>
       )}

@@ -175,7 +175,7 @@ const SingleProduct = () => {
             />
           </Grid>
 
-          <Grid item lg={6} sm={4}>
+          <Grid item lg={6} sm={12} xs={12}>
             <Stack direction={"column"} spacing={1}>
               <Typography
                 className="Medium"
@@ -376,11 +376,6 @@ const SingleProduct = () => {
                   textColor="inherit"
                   variant="scrollable"
                   scrollButtons="auto"
-                  TabIndicatorProps={{
-                    style: {
-                      backgroundColor: "#ffffff", // Change this to your desired color (e.g. white)
-                    },
-                  }}
                 >
                   {tags.map((tag, index) => (
                     <Tab key={index} label={tag.name} />
