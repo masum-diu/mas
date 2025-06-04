@@ -1,35 +1,69 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useCart } from "../src/context/CartContext";
-import { Box, Button, Grid, Typography, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  Stack,
+  CircularProgress,
+} from "@mui/material";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
 
 const Cart = () => {
-  const { cart, clearCart } = useCart();
-  const [localCart, setLocalCart] = useState([]);
+  const { cart, loading, clearCart, removeFromCart, updateQuantity } =
+    useCart();
   const router = useRouter();
 
-  useEffect(() => {
-    const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setLocalCart(JSON.parse(storedCart));
+  const handleRemoveProduct = async (cartItem) => {
+    try {
+      console.log("Removing item:", cartItem);
+      await removeFromCart(cartItem.id);
+    } catch (error) {
+      console.error("Error removing product:", error);
+      alert("Failed to remove item from cart. Please try again.");
     }
-  }, [cart]);
+  };
+
+  const handleUpdateQuantity = async (cartItemId, newQuantity) => {
+    try {
+      await updateQuantity(cartItemId, newQuantity);
+    } catch (error) {
+      console.error("Error updating quantity:", error);
+      alert("Failed to update quantity. Please try again.");
+    }
+  };
+
+  const handleClearCart = async () => {
+    try {
+      await clearCart();
+    } catch (error) {
+      console.error("Error clearing cart:", error);
+      alert("Failed to clear cart. Please try again.");
+    }
+  };
 
   const handleProceedToCheckout = () => {
     router.push("/checkout");
   };
 
-  const handleRemoveProduct = (productId) => {
-    // Filter out the product with the matching id
-    const updatedCart = localCart.filter((item) => item.id !== productId);
-
-    // Update the local cart state
-    setLocalCart(updatedCart);
-
-    // Update localStorage with the updated cart
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
+  if (loading) {
+    return (
+      <Layout>
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            minHeight: "50vh",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>
@@ -37,20 +71,17 @@ const Cart = () => {
         <Typography variant="h4" textAlign="center" mb={4}>
           Your Cart
         </Typography>
-
-        {localCart.length > 0 ? (
+        {cart.length > 0 ? (
           <Grid container spacing={4}>
             <Grid item lg={8} sm={12}>
-              {localCart.map((item, index) => {
-                // Handle images properly
+              {cart.map((item) => {
+                const product = item.product || {};
                 const imageUrl =
-                  item?.images?.length && typeof item.images[0] === "string"
-                    ? item.images[0]
-                    : "/placeholder-image.png"; // Fallback image if none exists
-
+                  product?.product_images?.[0]?.image ||
+                  "/placeholder-image.png";
                 return (
                   <Box
-                    key={index}
+                    key={item.id}
                     sx={{
                       border: "1px solid #ccc",
                       borderRadius: "8px",
@@ -60,21 +91,62 @@ const Cart = () => {
                   >
                     <Grid container spacing={2}>
                       <Grid item lg={4} sm={6} xs={12}>
-                        <img src={imageUrl} alt={item.name} width="100%" />
+                        <img
+                          src={imageUrl}
+                          alt={product.name}
+                          width="100%"
+                          style={{ objectFit: "contain" }}
+                        />
                       </Grid>
                       <Grid item lg={8} sm={6} xs={12}>
-                        <Typography variant="h6">{item.name}</Typography>
-                        <Typography>Price: {item.price} USD </Typography>
+                        <Typography variant="h6">{product.name}</Typography>
+                        <Typography>Price: {product.price} USD</Typography>
                         <Typography>
-                          Color: {item.color || "N/A"}
-                        </Typography>{" "}
-                        {/* Display color */}
-                        <Typography>Size: {item.size || "N/A"}</Typography>{" "}
-                        {/* Display size */}
+                          Color: {item.color?.name || "N/A"}
+                        </Typography>
+                        <Typography>
+                          Size: {item.size?.name || "N/A"}
+                        </Typography>
+
+                        {/* Quantity Controls */}
+                        <Box
+                          sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            mt: 2,
+                            mb: 2,
+                          }}
+                        >
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            onClick={() =>
+                              item.quantity > 1 &&
+                              handleUpdateQuantity(item.id, item.quantity - 1)
+                            }
+                            disabled={item.quantity <= 1}
+                          >
+                            -
+                          </Button>
+                          <Typography sx={{ mx: 2 }}>
+                            {item.quantity}
+                          </Typography>
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            onClick={() =>
+                              handleUpdateQuantity(item.id, item.quantity + 1)
+                            }
+                          >
+                            +
+                          </Button>
+                        </Box>
+
                         <Button
                           variant="outlined"
                           color="error"
-                          onClick={() => handleRemoveProduct(item.id)} // Remove button
+                          onClick={() => handleRemoveProduct(item)}
+                          sx={{ mt: 2 }}
                         >
                           Remove
                         </Button>
@@ -84,7 +156,6 @@ const Cart = () => {
                 );
               })}
             </Grid>
-
             <Grid item lg={4} sm={12}>
               <Stack
                 spacing={2}
@@ -95,7 +166,16 @@ const Cart = () => {
                 }}
               >
                 <Typography variant="h6">Order Summary</Typography>
-                <Typography>Total Items: {localCart.length}</Typography>
+                <Typography>Total Items: {cart.length}</Typography>
+                <Typography>
+                  Total Amount:{" "}
+                  {cart.reduce(
+                    (sum, item) =>
+                      sum + (item.product?.price || 0) * item.quantity,
+                    0
+                  )}{" "}
+                  USD
+                </Typography>
                 <Button
                   variant="contained"
                   color="primary"
@@ -106,7 +186,7 @@ const Cart = () => {
                 <Button
                   variant="outlined"
                   color="error"
-                  onClick={() => clearCart()}
+                  onClick={handleClearCart}
                 >
                   Clear Cart
                 </Button>

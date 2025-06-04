@@ -78,7 +78,7 @@ const Home = () => {
     try {
       setLoading(true);
       const response = await axios.get(
-        "https://msb.etherstaging.xyz/api/section-one/1"
+        "https://tst.etherstaging.xyz/api/section-one/1"
       );
       setSectionTitle(response?.data?.title || ""); // Update the title from the API response
       setLoading(false);

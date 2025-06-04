@@ -6,8 +6,6 @@ import {
   Button,
   Grid,
   Stack,
-  Radio,
-  RadioGroup,
   FormControl,
   Select,
   MenuItem,
@@ -25,9 +23,7 @@ import {
 } from "@mui/material";
 import Layout from "../../components/Layout";
 import instance from "../api/api_instance";
-import Link from "next/link";
-import { useCart } from "../../src/context/CartContext"; // Import CartContext
-
+import { useCart } from "../../src/context/CartContext";
 import { useRouter } from "next/router";
 
 const SingleProduct = () => {
@@ -35,14 +31,13 @@ const SingleProduct = () => {
   const { id } = router?.query;
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedColorId, setSelectedColorId] = useState(null);
-  const [selectedSize, setSelectedSize] = useState(""); // State to track selected size
-
+  const [selectedSize, setSelectedSize] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [products, setProduct] = useState(null);
-  const [tags, setTags] = useState([]); // State to store tags
-  const [activeTab, setActiveTab] = useState(0); // State to track the active tab
-  const [selectedColorName, setSelectedColorName] = useState(""); // State to store selected color name
+  const [tags, setTags] = useState([]);
+  const [activeTab, setActiveTab] = useState(0);
+  const [selectedColorName, setSelectedColorName] = useState("");
   const [sizeGuide, setSizeGuide] = useState([]);
   const [openSizeGuide, setOpenSizeGuide] = useState(false);
   const handleOpenSizeGuide = () => setOpenSizeGuide(true);
@@ -50,60 +45,37 @@ const SingleProduct = () => {
   const { addToCart } = useCart();
 
   const handleAddToCart = async () => {
-    const user = localStorage.getItem("user");
-
-    // If not logged in, get or create a guest ID
-    let guestId = null;
-    let userId = null;
-    if (!user) {
-      guestId = localStorage.getItem("guest_id");
-      if (!guestId) {
-        guestId = "guest_" + Math.random().toString(36).substr(2, 16);
-        localStorage.setItem("guest_id", guestId);
-      }
-    } else {
-      // Parse user and get user_id (adjust according to your user object structure)
-      try {
-        userId = JSON.parse(user)?.id;
-      } catch (e) {
-        userId = null;
-      }
+    if (!selectedColorId || !selectedSize) {
+      alert("Please select both color and size");
+      return;
     }
 
-    // Find the selected size object to get its id
     const selectedSizeObj = products?.availability.find(
-      (item) =>
-        item.color?.id === selectedColorId && item.size?.name === selectedSize
+      (item) => item.color === selectedColorId && item.size === selectedSize
     );
 
-    const cartData = {
-      id: products?.id,
-      name: products?.name,
-      price: products?.price,
-      color: selectedColorName,
-      size: selectedSize,
-      images: products?.product_images?.map((img) => img.image),
-      link: router.asPath,
-    };
+    if (!selectedSizeObj) {
+      console.error("Selected size configuration not found");
+      return;
+    }
 
-    addToCart(cartData);
+    const cartData = {
+      product_id: products?.id,
+      color_id: selectedColorId,
+      size_id: selectedSize,
+      quantity: 1,
+    };
+    console.log(cartData, "cartData");
 
     try {
-      await instance.post("https://msb.etherstaging.xyz/api/cart/add", {
-        guest_id: guestId,
-        user_id: userId,
-        product_id: products?.id,
-        color_id: selectedColorId,
-        size_id: selectedSizeObj?.size?.id,
-        quantity: 1,
-        ...(userId ? { user_id: userId } : { guest_id: guestId }), // Send user_id if logged in, else guest_id
-      });
-      // Optionally show a success message or redirect
-      // router.push("/cart");
+      await addToCart(cartData);
+      alert("Product added to cart successfully!");
     } catch (error) {
-      console.error("Failed to add to backend cart:", error);
+      console.error("Failed to add to cart:", error);
+      alert("Failed to add product to cart. Please try again.");
     }
   };
+
   const fetchProductData = async () => {
     try {
       setLoading(true);
@@ -112,22 +84,20 @@ const SingleProduct = () => {
       const res = await instance.get(`/product/${id}`);
       const productData = res?.data?.data;
 
-      // Set product details
       setProduct(productData);
 
-      // Set tags
       if (productData?.tags) {
         setTags(productData.tags);
       }
 
-      // Set default selected color
-      if (productData?.product_images?.length > 0) {
-        setSelectedValue(productData.product_images[0].color.id);
+      if (productData?.productImages?.length > 0) {
+        setSelectedValue(productData.productImages[0].color);
+        setSelectedColorId(productData.productImages[0].color);
+        setSelectedColorName(productData.productImages[0].color);
       }
 
-      // ✅ Set size guide from API
-      if (productData?.size_guide) {
-        setSizeGuide(productData.size_guide);
+      if (productData?.sizeGuides) {
+        setSizeGuide(productData.sizeGuides);
       }
 
       setLoading(false);
@@ -144,11 +114,16 @@ const SingleProduct = () => {
     }
   }, [id]);
 
-  const imageArray = products?.product_images || [];
-  const handleChange = (color_id) => {
-    setSelectedValue(color_id);
-    setSelectedColorId(color_id);
-  };
+  const imageArray = products?.productImages || [];
+  const uniqueColors = [
+    ...new Map(
+      products?.productImages?.map((img) => [img.color, img])
+    ).values(),
+  ];
+  const filteredImages =
+    selectedValue && products?.productImages
+      ? products.productImages.filter((img) => img.color === selectedValue)
+      : products?.productImages || [];
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
@@ -157,19 +132,13 @@ const SingleProduct = () => {
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
 
-  const uniqueColors = [
-    ...new Map(
-      products?.product_images?.map((img) => [img.color?.id, img])
-    ).values(),
-  ];
-
   return (
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container py={6} spacing={0}>
           <Grid item lg={6} sm={4} xs={12}>
             <ThumbsLoopGallery
-              images={imageArray}
+              images={filteredImages}
               selectedColorId={selectedValue}
               setSelectedColorId={setSelectedValue}
             />
@@ -184,72 +153,62 @@ const SingleProduct = () => {
               >
                 {products?.name}
               </Typography>
-
               <Typography className="Regular" fontSize={18}>
-                Color:{" "}
-                {selectedColorName || products?.availability[0]?.color?.name}
+                Color: {selectedColorName || products?.availability[0]?.color}
               </Typography>
               <FormControl component="fieldset">
-                <RadioGroup
-                  aria-label="options"
-                  name="radio-buttons-group"
-                  value={selectedValue}
-                  onChange={handleChange}
+                <Box
+                  display="grid"
+                  gridTemplateColumns={{
+                    xs: "repeat(3, 1fr)",
+                    sm: "repeat(3, 1fr)",
+                    md: "repeat(4, 1fr)",
+                    lg: "repeat(6, 1fr)",
+                  }}
+                  gap={1}
                 >
-                  <Box
-                    display="grid"
-                    gridTemplateColumns={{
-                      xs: "repeat(3, 1fr)", // 2 columns on extra-small (mobile)
-                      sm: "repeat(3, 1fr)", // 3 columns on small screens
-                      md: "repeat(4, 1fr)", // 4 columns on medium screens
-                      lg: "repeat(6, 1fr)", // 6 columns on large screens
-                    }}
-                    gap={1}
-                  >
-                    {uniqueColors.map((v, i) => (
-                      <Grid
-                        key={i}
-                        onClick={() => {
-                          setSelectedColorId(v.color?.id);
-                          setSelectedValue(v.color?.id);
-                          setSelectedColorName(v.color?.name);
-                        }}
+                  {uniqueColors.map((v, i) => (
+                    <Grid
+                      key={i}
+                      onClick={() => {
+                        setSelectedColorId(v.color);
+                        setSelectedValue(v.color);
+                        setSelectedColorName(v.color);
+                      }}
+                      sx={{
+                        width: "100%",
+                        aspectRatio: "1",
+                        border:
+                          selectedValue === v.color
+                            ? "3px solid #9A0E20"
+                            : "1px solid #ccc",
+                        cursor: "pointer",
+                        backgroundColor: "#fff",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        transition: "border 0.2s",
+                      }}
+                    >
+                      <CardMedia
+                        component="img"
+                        image={v?.image}
+                        alt={`Thumbnail`}
                         sx={{
-                          width: "100%",
-                          aspectRatio: "1", // Makes the grid square
-                          border:
-                            selectedValue === v.color?.id
-                              ? "3px solid #9A0E20"
-                              : "1px solid #ccc",
-                          cursor: "pointer",
-                          backgroundColor: "#fff",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
+                          objectFit: "contain",
                         }}
-                      >
-                        <CardMedia
-                          component="img"
-                          image={v?.image}
-                          alt={`Thumbnail`}
-                          sx={{
-                            objectFit: "contain",
-                            backgroundColor: v.color?.code,
-                          }}
-                        />
-                      </Grid>
-                    ))}
-                  </Box>
-                </RadioGroup>
+                      />
+                    </Grid>
+                  ))}
+                </Box>
               </FormControl>
               <Typography className="Regular" fontSize={18}>
                 Size:
               </Typography>
-
               <Select
                 size="small"
-                value={selectedSize} // Bind the selectedSize state
-                onChange={(e) => setSelectedSize(e.target.value)} // Update selectedSize state
+                value={selectedSize}
+                onChange={(e) => setSelectedSize(e.target.value)}
                 sx={{
                   maxWidth: { lg: "100%", xs: "100%" },
                   color: "inherit",
@@ -266,10 +225,10 @@ const SingleProduct = () => {
                   Select Size
                 </MenuItem>
                 {products?.availability
-                  .filter((item) => item.color?.id === selectedColorId) // Filter sizes by selected color
+                  .filter((item) => item.color === selectedColorId)
                   .map((v, i) => (
-                    <MenuItem key={i} value={v?.size?.name}>
-                      {v?.size?.name}
+                    <MenuItem key={i} value={v?.size}>
+                      {v?.size}
                     </MenuItem>
                   ))}
               </Select>
@@ -342,20 +301,11 @@ const SingleProduct = () => {
                   )}
                 </DialogContent>
               </Dialog>
-
-              {Number(products?.category_id) === 1 && (
-                <Link href="/contactus">
-                  <Button variant="contained" color="error" className="Medium">
-                    Contact Us
-                  </Button>
-                </Link>
-              )}
-              {Number(products?.category_id) === 2 && (
+              {products?.category?.id === 1 && (
                 <>
                   <Typography className="Regular" fontSize={20}>
                     Price: {products?.price} USD
                   </Typography>
-
                   <Button
                     variant="contained"
                     color="error"
@@ -366,8 +316,6 @@ const SingleProduct = () => {
                   </Button>
                 </>
               )}
-
-              {/* Tags Section */}
               <Box sx={{ mt: 4 }}>
                 <Tabs
                   value={activeTab}
@@ -403,7 +351,6 @@ const SingleProduct = () => {
                   {products?.fit}
                 </Typography>
               </Grid>
-
               <Grid item lg={6} sm={12} xs={12}>
                 <Typography className="Regular" fontSize={18}>
                   Care

@@ -17,7 +17,6 @@ import {
 import {
   Facebook,
   Instagram,
-  Phone,
   Twitter,
   Brightness4,
   Brightness7,
@@ -31,10 +30,9 @@ import Link from "next/link";
 import instance from "../pages/api/api_instance";
 import { useCart } from "../src/context/CartContext";
 import { useRouter } from "next/router";
-
-// Custom hook to handle dark mode with localStorage
+import { useAuth } from "../authcontext/AuthContext";
 const useDarkMode = () => {
-  const [darkMode, setDarkMode] = useState(true); // Default to dark mode initially
+  const [darkMode, setDarkMode] = useState(true);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("darkMode");
@@ -57,10 +55,12 @@ const Layout = ({ children }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [darkMode, toggleTheme] = useDarkMode(); // Using custom hook
+  const [darkMode, toggleTheme] = useDarkMode();
   const [cart, setCart] = useState([]);
   const { cart: stateCart } = useCart();
   const router = useRouter();
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const { user, signOut } = useAuth();
 
   useEffect(() => {
     fatchingData();
@@ -96,12 +96,12 @@ const Layout = ({ children }) => {
 
       setProducts(categories);
 
-      // ✅ Find and set the ID of the "Retail" category
+      //"Retail"
       const retail = categories.find(
         (cat) => cat.name?.toLowerCase() === "retail"
       );
       if (retail) {
-        setRetailCategoryId(retail.id); // This will be used in your Link
+        setRetailCategoryId(retail.id);
       }
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -112,6 +112,29 @@ const Layout = ({ children }) => {
 
   const handleCartClick = () => {
     router.push("/cart");
+  };
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
+
+  const handleProfileClick = () => {
+    handleCloseUserMenu();
+    router.push("/profile");
+  };
+
+  const handleLoginClick = () => {
+    handleCloseUserMenu();
+    router.push("/sign-in");
+  };
+
+  const handleLogoutClick = async () => {
+    handleCloseUserMenu();
+    await signOut();
   };
 
   return (
@@ -192,12 +215,42 @@ const Layout = ({ children }) => {
               </Link>
               <IconButton
                 color="inherit"
-                onClick={() => router.push("/sign-in")}
+                onClick={handleOpenUserMenu}
                 sx={{ ml: 1 }}
               >
                 <AccountCircle sx={{ color: darkMode ? "#fff" : "#000" }} />
               </IconButton>
-
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                {user ? (
+                  [
+                    <MenuItem key="profile" onClick={handleProfileClick}>
+                      <Typography textAlign="center">Profile</Typography>
+                    </MenuItem>,
+                    <MenuItem key="logout" onClick={handleLogoutClick}>
+                      <Typography textAlign="center">Logout</Typography>
+                    </MenuItem>,
+                  ]
+                ) : (
+                  <MenuItem onClick={handleLoginClick}>
+                    <Typography textAlign="center">Login</Typography>
+                  </MenuItem>
+                )}
+              </Menu>
               <Stack
                 direction="row"
                 alignItems="center"
@@ -233,7 +286,6 @@ const Layout = ({ children }) => {
                 {darkMode ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
 
-              {/* Cart icon for mobile */}
               <IconButton onClick={handleCartClick} color="inherit">
                 <ShoppingCart sx={{ color: darkMode ? "#fff" : "#000" }} />
                 <Typography
@@ -313,14 +365,14 @@ const Layout = ({ children }) => {
           </Link>
         </List>
       </Drawer>
-
       <Box>{children}</Box>
+
       {/* Footer */}
       <Box
         sx={{
           backgroundColor: darkMode ? "#000000" : "#f5f5f5",
           color: darkMode ? "#fff" : "#000",
-          mt: "auto", // Push footer to bottom
+          mt: "auto",
         }}
       >
         <Grid
@@ -328,7 +380,6 @@ const Layout = ({ children }) => {
           spacing={0}
           sx={{
             width: "90%",
-            // color: "#fff",
             maxWidth: "1500px",
             margin: "0 auto",
             pb: 5,
@@ -351,7 +402,6 @@ const Layout = ({ children }) => {
               </a>
             </Stack>
           </Grid>
-
           <Grid item lg={3} xs={12}>
             <Typography
               className="Medium"
@@ -387,7 +437,6 @@ const Layout = ({ children }) => {
               Phone no.: +1 (514) 677-7730
             </Typography>
           </Grid>
-
           <Grid item lg={3} xs={12}>
             <Typography
               className="Medium"
@@ -417,5 +466,4 @@ const Layout = ({ children }) => {
     </Box>
   );
 };
-
 export default Layout;

@@ -1,13 +1,21 @@
 import React, { useState } from "react";
-import { Box, Button, Grid, TextField, Typography, Stack } from "@mui/material";
+import {
+  Box,
+  Button,
+  TextField,
+  Typography,
+  Stack,
+  CircularProgress,
+} from "@mui/material";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
-import instance from "../pages/api/api_instance"; // Add this import at the top
+import { useAuth } from "../authcontext/AuthContext";
 
 const Checkout = () => {
   const router = useRouter();
+  const { signIn, user } = useAuth();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [isGuest, setIsGuest] = useState(false); // Track if the user is a guest
   const [loginData, setLoginData] = useState({
     email: "",
     password: "",
@@ -20,158 +28,245 @@ const Checkout = () => {
       ...prevData,
       [name]: value,
     }));
+    setError("");
   };
 
   const handleLogin = async () => {
-    setError(""); // Clear previous error
+    setError("");
     if (!loginData.email || !loginData.password) {
-      setError("Email and password are required.");
+      setError("Please fill in all fields");
       return;
     }
+
+    setIsLoading(true);
     try {
-      const response = await instance.post(
-        "https://msb.etherstaging.xyz/api/login",
-        {
-          email: loginData.email,
-          password: loginData.password,
-        }
-      );
-      // Store user info in localStorage if needed
-      localStorage.setItem("user", JSON.stringify(response.data.data));
-      router.push("/checkout-form"); // Redirect to the checkout form
+      const result = await signIn(loginData.email, loginData.password);
+      if (result.success) {
+        router.push("/checkout-form");
+      } else {
+        setError(result.error);
+      }
     } catch (err) {
-      setError(
-        err.response?.data?.message ||
-          "Login failed. Please check your credentials."
-      );
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleGuestCheckout = () => {
-    setIsGuest(true); // Set guest mode
-    router.push("/checkout-form"); // Redirect to the checkout form
+    router.push("/checkout-form");
   };
 
   const handleSignIn = () => {
-    router.push("/sign-in"); // Redirect to the sign-in page
+    router.push("/sign-in");
   };
 
   return (
     <Layout>
-      <Box sx={{ width: "90%", maxWidth: "600px", margin: "0 auto", py: 6 }}>
-        <Typography variant="h4" textAlign="center" mb={4}>
-          Proceed to Checkout
+      <Box
+        sx={{
+          width: "100%",
+          maxWidth: "400px",
+          margin: "0 auto",
+          py: 8,
+          px: 3,
+        }}
+      >
+        <Typography
+          variant="h4"
+          textAlign="center"
+          mb={4}
+          sx={{
+            fontSize: "2rem",
+            fontWeight: 600,
+            color: "white",
+          }}
+        >
+          Login
         </Typography>
 
-        {!isGuest ? (
-          <Box>
-            <Typography variant="h6" mb={2}>
-              Login to Continue
-            </Typography>
-            <Stack spacing={2}>
-              <TextField
-                label="Email"
-                name="email"
-                type="email"
-                value={loginData.email}
-                onChange={handleLoginInputChange}
-                fullWidth
-                required
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "#787878", // Default border color
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "#787878", // Hover border color
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "#787878", // Focused border color
-                    },
+        <Box
+          sx={{
+            backgroundColor: "rgba(255, 255, 255, 0.1)",
+            borderRadius: "8px",
+            padding: "32px",
+            backdropFilter: "blur(10px)",
+            border: "1px solid rgba(255, 255, 255, 0.2)",
+          }}
+        >
+          <Stack spacing={3}>
+            <TextField
+              label="Email"
+              name="email"
+              type="email"
+              value={loginData.email}
+              onChange={handleLoginInputChange}
+              fullWidth
+              variant="outlined"
+              InputProps={{
+                sx: {
+                  color: "white",
+                  "&::placeholder": {
+                    color: "#999",
                   },
-                  "& .MuiInputBase-input": {
-                    color: "#f0f8ff", // Input text color
+                },
+              }}
+              InputLabelProps={{
+                sx: {
+                  color: "#999",
+                },
+              }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "rgba(255, 255, 255, 0.2)",
+                    borderRadius: "4px",
                   },
-                  "& .MuiInputLabel-root": {
-                    color: "#f0f8ff", // Label text color
+                  "&:hover fieldset": {
+                    borderColor: "rgba(255, 255, 255, 0.3)",
                   },
-                  "& .Mui-focused": {
-                    color: "#f0f8ff", // Focused label text color
+                  "&.Mui-focused fieldset": {
+                    borderColor: "rgba(255, 255, 255, 0.5)",
                   },
-                }}
-              />
-              <TextField
-                label="Password"
-                name="password"
-                type="password"
-                value={loginData.password}
-                onChange={handleLoginInputChange}
-                fullWidth
-                required
-                sx={{
-                  "& .MuiOutlinedInput-root": {
-                    "& fieldset": {
-                      borderColor: "#787878", // Default border color
-                    },
-                    "&:hover fieldset": {
-                      borderColor: "#787878", // Hover border color
-                    },
-                    "&.Mui-focused fieldset": {
-                      borderColor: "#787878", // Focused border color
-                    },
-                  },
-                  "& .MuiInputBase-input": {
-                    color: "#f0f8ff", // Input text color
-                  },
-                  "& .MuiInputLabel-root": {
-                    color: "#f0f8ff", // Label text color
-                  },
-                  "& .Mui-focused": {
-                    color: "#f0f8ff", // Focused label text color
-                  },
-                }}
-              />
-              {error && (
-                <Typography color="error" variant="body2">
-                  {error}
-                </Typography>
-              )}
-              <Button variant="contained" color="primary" onClick={handleLogin}>
-                Login
-              </Button>
-            </Stack>
+                },
+              }}
+            />
 
-            <Typography textAlign="center" mt={4}>
-              OR
+            <TextField
+              label="Password"
+              name="password"
+              type="password"
+              value={loginData.password}
+              onChange={handleLoginInputChange}
+              fullWidth
+              variant="outlined"
+              InputProps={{
+                sx: {
+                  color: "#fff",
+                  "&::placeholder": {
+                    color: "#999",
+                  },
+                },
+              }}
+              InputLabelProps={{
+                sx: {
+                  color: "#999",
+                },
+              }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "rgba(255, 255, 255, 0.2)",
+                    borderRadius: "4px",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "rgba(255, 255, 255, 0.3)",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "rgba(255, 255, 255, 0.5)",
+                  },
+                },
+              }}
+            />
+
+            {error && (
+              <Typography
+                color="error"
+                variant="body2"
+                textAlign="center"
+                sx={{
+                  backgroundColor: "rgba(255,0,0,0.1)",
+                  padding: "8px",
+                  borderRadius: "4px",
+                }}
+              >
+                {error}
+              </Typography>
+            )}
+
+            <Button
+              variant="contained"
+              onClick={handleLogin}
+              disabled={isLoading}
+              sx={{
+                backgroundColor: "#9A0E20",
+                color: "#fff",
+                py: 1.5,
+                textTransform: "none",
+                fontSize: "1rem",
+                "&:hover": {
+                  backgroundColor: "#7a0b19",
+                },
+              }}
+            >
+              {isLoading ? (
+                <CircularProgress size={24} color="inherit" />
+              ) : (
+                "Login"
+              )}
+            </Button>
+
+            <Typography
+              textAlign="center"
+              sx={{
+                color: "#999",
+                position: "relative",
+                "&::before, &::after": {
+                  content: '""',
+                  position: "absolute",
+                  top: "50%",
+                  width: "80px",
+                  height: "1px",
+                  backgroundColor: "rgba(255, 255, 255, 0.2)",
+                },
+                "&::before": {
+                  left: 0,
+                },
+                "&::after": {
+                  right: 0,
+                },
+              }}
+            >
+              or
             </Typography>
 
             <Button
               variant="outlined"
-              color="error"
-              fullWidth
               onClick={handleGuestCheckout}
-              sx={{ mt: 2 }}
+              sx={{
+                borderColor: "rgba(255, 255, 255, 0.2)",
+                color: "#fff",
+                py: 1.5,
+                textTransform: "none",
+                fontSize: "1rem",
+                "&:hover": {
+                  borderColor: "rgba(255, 255, 255, 0.5)",
+                  backgroundColor: "rgba(255, 255, 255, 0.05)",
+                },
+              }}
             >
               Continue as Guest
             </Button>
 
-            <Typography textAlign="center" mt={4}>
+            <Typography textAlign="center" sx={{ color: "#999" }}>
               Don't have an account?{" "}
               <Button
                 variant="text"
-                color="primary"
                 onClick={handleSignIn}
-                sx={{ textTransform: "none" }}
+                sx={{
+                  color: "#9A0E20",
+                  textTransform: "none",
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                    textDecoration: "underline",
+                  },
+                }}
               >
-                Sign In
+                Sign Up
               </Button>
             </Typography>
-          </Box>
-        ) : (
-          <Typography textAlign="center">
-            Redirecting to checkout form...
-          </Typography>
-        )}
+          </Stack>
+        </Box>
       </Box>
     </Layout>
   );

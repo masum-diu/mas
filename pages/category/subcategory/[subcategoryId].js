@@ -68,7 +68,7 @@ const SubcategoryProducts = () => {
       </Layout>
     );
   }
-
+  console.log(products, "products");
   return (
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
@@ -93,7 +93,7 @@ const SubcategoryProducts = () => {
                   <CardMedia
                     component="img"
                     height="300"
-                    image={product?.product_images[0]?.image || ""}
+                    image={product?.productImages[0]?.image || ""}
                     alt={product?.name || "Product Image"}
                   />
                   <CardContent
