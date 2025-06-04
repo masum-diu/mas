@@ -31,7 +31,8 @@ const SingleProduct = () => {
   const { id } = router?.query;
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedColorId, setSelectedColorId] = useState(null);
-  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedSize, setSelectedSize] = useState(null);
+  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [products, setProduct] = useState(null);
@@ -39,40 +40,57 @@ const SingleProduct = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [selectedColorName, setSelectedColorName] = useState("");
   const [sizeGuide, setSizeGuide] = useState([]);
+   const [selectedSizeInfo, setSelectedSizeInfo] = useState(null);
+   console.log(selectedSizeInfo, "selectedSizeInfo");
   const [openSizeGuide, setOpenSizeGuide] = useState(false);
   const handleOpenSizeGuide = () => setOpenSizeGuide(true);
   const handleCloseSizeGuide = () => setOpenSizeGuide(false);
   const { addToCart } = useCart();
 
-  const handleAddToCart = async () => {
-    if (!selectedColorId || !selectedSize) {
-      alert("Please select both color and size");
-      return;
+ const handleSizeChange = (e) => {
+    const selectedSizeId = e.target.value;
+
+    const selected = products?.availability?.find(
+      (item) => item.color === selectedColorId && item.size_id === selectedSizeId
+    );
+
+    if (selected) {
+      setSelectedSizeInfo({
+        color_id: selected.color_id,
+        size_id: selected.size_id,
+      });
     }
+  };
+  
+  const handleAddToCart = async () => {
+    // if (!selectedColorId || !selectedSize) {
+    //   alert("Please select both color and size");
+    //   return;
+    // }
 
     const selectedSizeObj = products?.availability.find(
       (item) => item.color === selectedColorId && item.size === selectedSize
     );
 
-    if (!selectedSizeObj) {
-      console.error("Selected size configuration not found");
-      return;
-    }
+    // if (!selectedSizeObj) {
+    //   console.error("Selected size configuration not found");
+    //   return;
+    // }
 
     const cartData = {
       product_id: products?.id,
-      color_id: selectedColorId,
-      size_id: selectedSize,
+      color_id: selectedSizeInfo.color_id ,
+      size_id: selectedSizeInfo.size_id,
       quantity: 1,
     };
     console.log(cartData, "cartData");
 
     try {
       await addToCart(cartData);
-      alert("Product added to cart successfully!");
+      // alert("Product added to cart successfully!");
     } catch (error) {
       console.error("Failed to add to cart:", error);
-      alert("Failed to add product to cart. Please try again.");
+      // alert("Failed to add product to cart. Please try again.");
     }
   };
 
@@ -207,8 +225,8 @@ const SingleProduct = () => {
               </Typography>
               <Select
                 size="small"
-                value={selectedSize}
-                onChange={(e) => setSelectedSize(e.target.value)}
+                value={selectedSizeInfo?.size_id || ""}
+                onChange={handleSizeChange }
                 sx={{
                   maxWidth: { lg: "100%", xs: "100%" },
                   color: "inherit",
@@ -226,11 +244,13 @@ const SingleProduct = () => {
                 </MenuItem>
                 {products?.availability
                   .filter((item) => item.color === selectedColorId)
-                  .map((v, i) => (
-                    <MenuItem key={i} value={v?.size}>
+                  .map((v, i) => {
+                    console.log(v, "v");
+                    return(
+                    <MenuItem key={i} value={v?.size_id}>
                       {v?.size}
                     </MenuItem>
-                  ))}
+                  )})}
               </Select>
               <Button
                 onClick={handleOpenSizeGuide}
