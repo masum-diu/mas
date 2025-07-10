@@ -35,6 +35,8 @@ const SingleProduct = () => {
   const { id } = router?.query;
   const [selectedValue, setSelectedValue] = useState("");
   const [selectedColorId, setSelectedColorId] = useState(null);
+  const [selectedSize, setSelectedSize] = useState(""); // State to track selected size
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [products, setProduct] = useState(null);
@@ -47,16 +49,60 @@ const SingleProduct = () => {
   const handleCloseSizeGuide = () => setOpenSizeGuide(false);
   const { addToCart } = useCart();
 
-  const handleAddToCart = () => {
+  const handleAddToCart = async () => {
+    const user = localStorage.getItem("user");
+
+    // If not logged in, get or create a guest ID
+    let guestId = null;
+    let userId = null;
+    if (!user) {
+      guestId = localStorage.getItem("guest_id");
+      if (!guestId) {
+        guestId = "guest_" + Math.random().toString(36).substr(2, 16);
+        localStorage.setItem("guest_id", guestId);
+      }
+    } else {
+      // Parse user and get user_id (adjust according to your user object structure)
+      try {
+        userId = JSON.parse(user)?.id;
+      } catch (e) {
+        userId = null;
+      }
+    }
+
+    // Find the selected size object to get its id
+    const selectedSizeObj = products?.availability.find(
+      (item) =>
+        item.color?.id === selectedColorId && item.size?.name === selectedSize
+    );
+
     const cartData = {
       id: products?.id,
       name: products?.name,
       price: products?.price,
       color: selectedColorName,
-      images: imageArray,
+      size: selectedSize,
+      images: products?.product_images?.map((img) => img.image),
       link: router.asPath,
     };
-    addToCart(cartData); // from CartContext
+
+    addToCart(cartData);
+
+    try {
+      await instance.post("https://msb.etherstaging.xyz/api/cart/add", {
+        guest_id: guestId,
+        user_id: userId,
+        product_id: products?.id,
+        color_id: selectedColorId,
+        size_id: selectedSizeObj?.size?.id,
+        quantity: 1,
+        ...(userId ? { user_id: userId } : { guest_id: guestId }), // Send user_id if logged in, else guest_id
+      });
+      // Optionally show a success message or redirect
+      // router.push("/cart");
+    } catch (error) {
+      console.error("Failed to add to backend cart:", error);
+    }
   };
   const fetchProductData = async () => {
     try {
@@ -129,7 +175,7 @@ const SingleProduct = () => {
             />
           </Grid>
 
-          <Grid item lg={6} sm={4}>
+          <Grid item lg={6} sm={12} xs={12}>
             <Stack direction={"column"} spacing={1}>
               <Typography
                 className="Medium"
@@ -150,19 +196,27 @@ const SingleProduct = () => {
                   value={selectedValue}
                   onChange={handleChange}
                 >
-                  <Stack direction="row" spacing={1}>
+                  <Box
+                    display="grid"
+                    gridTemplateColumns={{
+                      xs: "repeat(3, 1fr)", // 2 columns on extra-small (mobile)
+                      sm: "repeat(3, 1fr)", // 3 columns on small screens
+                      md: "repeat(4, 1fr)", // 4 columns on medium screens
+                      lg: "repeat(6, 1fr)", // 6 columns on large screens
+                    }}
+                    gap={1}
+                  >
                     {uniqueColors.map((v, i) => (
                       <Grid
                         key={i}
                         onClick={() => {
-                          setSelectedColorId(v.color?.id); // Update gallery
-                          setSelectedValue(v.color?.id); // Track selected value
-                          setSelectedColorName(v.color?.name); // Update selected color name
+                          setSelectedColorId(v.color?.id);
+                          setSelectedValue(v.color?.id);
+                          setSelectedColorName(v.color?.name);
                         }}
                         sx={{
-                          width: 100,
-                          height: 100,
-
+                          width: "100%",
+                          aspectRatio: "1", // Makes the grid square
                           border:
                             selectedValue === v.color?.id
                               ? "3px solid #9A0E20"
@@ -179,15 +233,13 @@ const SingleProduct = () => {
                           image={v?.image}
                           alt={`Thumbnail`}
                           sx={{
-                            width: "90%",
-                            height: "90%",
-
+                            objectFit: "contain",
                             backgroundColor: v.color?.code,
                           }}
                         />
                       </Grid>
                     ))}
-                  </Stack>
+                  </Box>
                 </RadioGroup>
               </FormControl>
               <Typography className="Regular" fontSize={18}>
@@ -196,6 +248,8 @@ const SingleProduct = () => {
 
               <Select
                 size="small"
+                value={selectedSize} // Bind the selectedSize state
+                onChange={(e) => setSelectedSize(e.target.value)} // Update selectedSize state
                 sx={{
                   maxWidth: { lg: "100%", xs: "100%" },
                   color: "inherit",
@@ -208,8 +262,8 @@ const SingleProduct = () => {
                   "&:hover": { backgroundColor: "inherit" },
                 }}
               >
-                <MenuItem disabled value={10}>
-                  View Size
+                <MenuItem disabled value="">
+                  Select Size
                 </MenuItem>
                 {products?.availability
                   .filter((item) => item.color?.id === selectedColorId) // Filter sizes by selected color
@@ -224,6 +278,7 @@ const SingleProduct = () => {
                 size="small"
                 variant="text"
                 sx={{ textTransform: "none", mt: 1 }}
+                color="inherit"
               >
                 View Size Guide
               </Button>
@@ -242,20 +297,42 @@ const SingleProduct = () => {
                           <TableCell>
                             <strong>Size</strong>
                           </TableCell>
-                          <TableCell>
-                            <strong>Chest (cm)</strong>
-                          </TableCell>
-                          <TableCell>
-                            <strong>Body Length (cm)</strong>
-                          </TableCell>
+                          {products?.name === "Boxer Short" ? (
+                            <>
+                              <TableCell>
+                                <strong>Side Length (cm) </strong>
+                              </TableCell>
+                              <TableCell>
+                                <strong>½ Waist (cm)</strong>
+                              </TableCell>
+                            </>
+                          ) : (
+                            <>
+                              <TableCell>
+                                <strong>Chest (cm)</strong>
+                              </TableCell>
+                              <TableCell>
+                                <strong>Body Length (cm)</strong>
+                              </TableCell>
+                            </>
+                          )}
                         </TableRow>
                       </TableHead>
                       <TableBody>
                         {sizeGuide.map((guide, index) => (
                           <TableRow key={index}>
                             <TableCell>{guide.name}</TableCell>
-                            <TableCell>{guide.chest}</TableCell>
-                            <TableCell>{guide.body}</TableCell>
+                            {products?.name === "Boxer Short" ? (
+                              <>
+                                <TableCell>{guide.chest}</TableCell>
+                                <TableCell>{guide.body}</TableCell>
+                              </>
+                            ) : (
+                              <>
+                                <TableCell>{guide.chest}</TableCell>
+                                <TableCell>{guide.body}</TableCell>
+                              </>
+                            )}
                           </TableRow>
                         ))}
                       </TableBody>
@@ -275,8 +352,8 @@ const SingleProduct = () => {
               )}
               {Number(products?.category_id) === 2 && (
                 <>
-                  <Typography className="Regular" fontSize={20} color="primary">
-                    Price: {products?.price} BDT
+                  <Typography className="Regular" fontSize={20}>
+                    Price: {products?.price} USD
                   </Typography>
 
                   <Button
@@ -296,6 +373,7 @@ const SingleProduct = () => {
                   value={activeTab}
                   onChange={handleTabChange}
                   indicatorColor="primary"
+                  textColor="inherit"
                   variant="scrollable"
                   scrollButtons="auto"
                 >
