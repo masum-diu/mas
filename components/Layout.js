@@ -22,6 +22,7 @@ import {
   Brightness4,
   Brightness7,
   ShoppingCart,
+  AccountCircle,
 } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -90,7 +91,7 @@ const Layout = ({ children }) => {
   const fatchingData = async () => {
     setLoading(true);
     try {
-      const res = await instance.get("/category-list");
+      const res = await instance.get("/categories/2");
       const categories = res?.data?.data || [];
 
       setProducts(categories);
@@ -119,6 +120,8 @@ const Layout = ({ children }) => {
         backgroundColor: darkMode ? "#202020" : "#fff",
         color: darkMode ? "#fff" : "#000",
         minHeight: "100vh",
+        display: "flex",
+        flexDirection: "column",
       }}
     >
       <AppBar
@@ -187,6 +190,13 @@ const Layout = ({ children }) => {
                   RETAIL
                 </Typography>
               </Link>
+              <IconButton
+                color="inherit"
+                onClick={() => router.push("/sign-in")}
+                sx={{ ml: 1 }}
+              >
+                <AccountCircle sx={{ color: darkMode ? "#fff" : "#000" }} />
+              </IconButton>
 
               <Stack
                 direction="row"
@@ -196,6 +206,7 @@ const Layout = ({ children }) => {
                 sx={{ cursor: "pointer" }}
               >
                 <ShoppingCart sx={{ color: darkMode ? "#fff" : "#000" }} />
+
                 <Typography
                   className="Medium"
                   fontSize={16}
@@ -215,11 +226,25 @@ const Layout = ({ children }) => {
                 {darkMode ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
             </Stack>
-
-            <Box sx={{ display: { xs: "flex", md: "none" } }}>
+            <Box
+              sx={{ display: { xs: "flex", md: "none" }, alignItems: "center" }}
+            >
               <IconButton onClick={toggleTheme} color="inherit">
                 {darkMode ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
+
+              {/* Cart icon for mobile */}
+              <IconButton onClick={handleCartClick} color="inherit">
+                <ShoppingCart sx={{ color: darkMode ? "#fff" : "#000" }} />
+                <Typography
+                  className="Medium"
+                  fontSize={14}
+                  sx={{ ml: 0.5, color: darkMode ? "#fff" : "#000" }}
+                >
+                  {cart.length}
+                </Typography>
+              </IconButton>
+
               <IconButton color="inherit" onClick={handleDrawerOpen}>
                 <MenuIcon style={{ fontSize: "33px" }} />
               </IconButton>
@@ -272,7 +297,7 @@ const Layout = ({ children }) => {
             </ListItem>
           </Link>
 
-          <Link href={"/retail"} passHref>
+          <Link href={`/category/${retailCategoryId || 2}`} passHref>
             <ListItem button>
               <ListItemText
                 primary={<Typography className="Medium">RETAIL</Typography>}
@@ -295,6 +320,7 @@ const Layout = ({ children }) => {
         sx={{
           backgroundColor: darkMode ? "#000000" : "#f5f5f5",
           color: darkMode ? "#fff" : "#000",
+          mt: "auto", // Push footer to bottom
         }}
       >
         <Grid
@@ -352,12 +378,12 @@ const Layout = ({ children }) => {
             >
               Canada Address
             </Typography>
-            <Typography className="Regular" fontSize={16}>
+            <Typography className="Regular" fontSize={16} align="justify">
               2010-2200 rue Sauvé Ouest, Montréal,
               <br />
               Québec H4N 0E1, Canada.
             </Typography>
-            <Typography className="Regular" fontSize={16}>
+            <Typography className="Regular" fontSize={16} align="justify">
               Phone no.: +1 (514) 677-7730
             </Typography>
           </Grid>
@@ -371,18 +397,18 @@ const Layout = ({ children }) => {
             >
               Bangladesh Address
             </Typography>
-            <Typography className="Regular" fontSize={16}>
+            <Typography className="Regular" fontSize={16} align="justify">
               Plot: 08, ABM Tower, Level: 08, <br />
               Road: 113/A, Gulshan 2,
               <br />
               Dhaka 1212, Bangladesh.
             </Typography>
-            <Typography className="Regular" fontSize={16}>
+            <Typography className="Regular" fontSize={16} align="justify">
               Phone no.: +88-02-55049698
             </Typography>
           </Grid>
         </Grid>
-        <Grid item lg={12} textAlign={"center"} pb={"10px"}>
+        <Grid item lg={12} textAlign={"center"} pb={"10px"} align="justify">
           <Typography className="Regular" fontSize={13}>
             All rights reserved 2025
           </Typography>

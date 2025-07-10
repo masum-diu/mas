@@ -27,6 +27,7 @@ const contactus = () => {
               className="Regular"
               fontSize={16}
               textTransform={"uppercase"}
+              align="justify"
             >
               If you have any questions, feel free to <br /> email us or reach
               out through our <br /> contact form.
@@ -39,7 +40,7 @@ const contactus = () => {
             >
               Email
             </Typography>
-            <Typography className="Regular" fontSize={18}>
+            <Typography className="Regular" fontSize={18} align="justify">
               Info@masoutfits.com
             </Typography>
           </Grid>

@@ -60,7 +60,7 @@ const About = () => {
             />
           </Grid>
           <Grid item lg={7} sx={{ display: "flex", gap: 1, pt: 4 }}>
-            <Typography className="Regular" fontSize={18}>
+            <Typography className="Regular" fontSize={18} align="justify">
               <div
                 dangerouslySetInnerHTML={{ __html: aboutData?.description }}
               />

@@ -157,6 +157,7 @@ const Home = () => {
             <Typography
               className="Regular"
               fontSize={18}
+              align="justify"
               sx={{ display: "flex", flexDirection: "column" }}
             >
               MAS is your go-to source for high-quality, basic commodity
@@ -176,7 +177,7 @@ const Home = () => {
                 <Typography className="Medium" fontSize={28}>
                   Since 2024
                 </Typography>
-                <Typography className="Regular" fontSize={16}>
+                <Typography className="Regular" fontSize={16} align="justify">
                   Delivering quality goods since 2024 inception.
                 </Typography>
               </Stack>
@@ -184,7 +185,7 @@ const Home = () => {
                 <Typography className="Medium" fontSize={28}>
                   600+ Outlets
                 </Typography>
-                <Typography className="Regular" fontSize={16}>
+                <Typography className="Regular" fontSize={16} align="justify">
                   Available for customers across the regions
                 </Typography>
               </Stack>
@@ -205,6 +206,7 @@ const Home = () => {
             <Typography
               className="Regular"
               fontSize={18}
+              align="justify"
               sx={{ display: "flex", flexDirection: "column", pt: 2 }}
             >
               Our product line includes T-Shirts, Polo Shirts, Boxer Shorts,
@@ -245,7 +247,7 @@ const Home = () => {
               >
                 Competitive pricing
               </Typography>
-              <Typography className="Regular" fontSize={16}>
+              <Typography className="Regular" fontSize={16} align="justify">
                 Get premium clothing at prices that offer great value
               </Typography>
             </Stack>
@@ -282,7 +284,7 @@ const Home = () => {
               >
                 Premium Comfort
               </Typography>
-              <Typography className="Regular" fontSize={16}>
+              <Typography className="Regular" fontSize={16} align="justify">
                 Discover premium, durable, and meticulously crafted apparel
                 built to last, offering unmatched comfort for all-day wear.
               </Typography>
@@ -320,7 +322,7 @@ const Home = () => {
               >
                 Ongoing Innovation
               </Typography>
-              <Typography className="Regular" fontSize={16}>
+              <Typography className="Regular" fontSize={16} align="justify">
                 By seeing areas for development and reacting to changes in the
                 market and consumer demands, we continuously enhance and modify
                 our goods to remain competitive and expand.
@@ -359,7 +361,7 @@ const Home = () => {
               >
                 Strong Distribution
               </Typography>
-              <Typography className="Regular" fontSize={16}>
+              <Typography className="Regular" fontSize={16} align="justify">
                 Reliable distribution network in national and global reach
                 ensures your products are always within arm's reach.
               </Typography>
@@ -397,7 +399,7 @@ const Home = () => {
               >
                 Ethical Manufacturing
               </Typography>
-              <Typography className="Regular" fontSize={16}>
+              <Typography className="Regular" fontSize={16} align="justify">
                 Committed to responsible practices and sustainability in every
                 step.
               </Typography>
@@ -435,7 +437,7 @@ const Home = () => {
               >
                 Support for New Brands
               </Typography>
-              <Typography className="Regular" fontSize={16}>
+              <Typography className="Regular" fontSize={16} align="justify">
                 Partnering with emerging brands to foster growth and innovation.
               </Typography>
             </Stack>
@@ -453,12 +455,13 @@ const Home = () => {
                 className="Medium"
                 textTransform={"uppercase"}
                 fontSize={40}
+                align="justify"
                 sx={{ display: "flex", flexDirection: "column" }}
               >
                 Team of professionals <span>is waiting for you</span>
               </Typography>
 
-              <Typography className="Regular" fontSize={18} textAlign={"left"}>
+              <Typography className="Regular" fontSize={18} align="justify">
                 At MAS, we understand the importance of the basics. That’s why
                 we focus on delivering essential clothing items that form the
                 foundation of any wardrobe. From T-shirts to Tank Tops, our
@@ -489,6 +492,7 @@ const Home = () => {
               className="Regular"
               fontSize={18}
               textTransform={"uppercase"}
+              align="justify"
             >
               If you have any questions, feel free to <br /> email us or reach
               out through our <br /> contact form.

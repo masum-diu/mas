@@ -79,7 +79,7 @@ const SingleProduct = () => {
     const cartData = {
       id: products?.id,
       name: products?.name,
-      price: products?.price,
+      // price: products?.price,
       color: selectedColorName,
       size: selectedSize,
       images: products?.product_images?.map((img) => img.image),
@@ -352,10 +352,6 @@ const SingleProduct = () => {
               )}
               {Number(products?.category_id) === 2 && (
                 <>
-                  <Typography className="Regular" fontSize={20}>
-                    Price: {products?.price} USD
-                  </Typography>
-
                   <Button
                     variant="contained"
                     color="error"
@@ -376,6 +372,7 @@ const SingleProduct = () => {
                   textColor="inherit"
                   variant="scrollable"
                   scrollButtons="auto"
+                  align="justify"
                 >
                   {tags.map((tag, index) => (
                     <Tab key={index} label={tag.name} />
@@ -383,6 +380,7 @@ const SingleProduct = () => {
                 </Tabs>
                 <Box sx={{ mt: 2 }}>
                   <Typography
+                    align="justify"
                     className="Regular"
                     dangerouslySetInnerHTML={{
                       __html: tags[activeTab]?.description || "",
@@ -390,7 +388,12 @@ const SingleProduct = () => {
                   />
                 </Box>
               </Box>
-              <Typography className="Regular" fontSize={18} color={"inherit"}>
+              <Typography
+                className="Regular"
+                fontSize={18}
+                color={"inherit"}
+                align="justify"
+              >
                 Specifications
               </Typography>
             </Stack>
@@ -399,7 +402,7 @@ const SingleProduct = () => {
                 <Typography className="Regular" fontSize={18}>
                   Fit
                 </Typography>
-                <Typography className="Regular" fontSize={16}>
+                <Typography className="Regular" fontSize={16} align="justify">
                   {products?.fit}
                 </Typography>
               </Grid>
@@ -408,7 +411,7 @@ const SingleProduct = () => {
                 <Typography className="Regular" fontSize={18}>
                   Care
                 </Typography>
-                <Typography className="Regular" fontSize={16}>
+                <Typography className="Regular" fontSize={16} align="justify">
                   {products?.care}
                 </Typography>
               </Grid>

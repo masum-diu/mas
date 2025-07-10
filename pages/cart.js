@@ -45,8 +45,8 @@ const Cart = () => {
                 // Handle images properly
                 const imageUrl =
                   item?.images?.length && typeof item.images[0] === "string"
-                    ? `${item?.link}/${item.images[0].replace(/\\/g, "")}`
-                    : Image;
+                    ? item.images[0]
+                    : "/placeholder-image.png"; // Fallback image if none exists
 
                 return (
                   <Box
@@ -60,17 +60,17 @@ const Cart = () => {
                   >
                     <Grid container spacing={2}>
                       <Grid item lg={4} sm={6} xs={12}>
-                        <img src={imageUrl} width="100%" />
+                        <img src={imageUrl} alt={item.name} width="100%" />
                       </Grid>
                       <Grid item lg={8} sm={6} xs={12}>
                         <Typography variant="h6">{item.name}</Typography>
-                        <Typography>Price: BDT {item.price}</Typography>
-                        <Typography>VAT: BDT {item.vat?.toFixed(2)}</Typography>
+                        <Typography>Price: {item.price} USD </Typography>
                         <Typography>
-                          Total: BDT {item.priceWithVAT?.toFixed(2)}
-                        </Typography>
-                        <Typography>Color: {item.color}</Typography>
-                        <Typography>Size: {item.size}</Typography>
+                          Color: {item.color || "N/A"}
+                        </Typography>{" "}
+                        {/* Display color */}
+                        <Typography>Size: {item.size || "N/A"}</Typography>{" "}
+                        {/* Display size */}
                         <Button
                           variant="outlined"
                           color="error"
