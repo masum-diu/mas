@@ -64,7 +64,7 @@ const Cart = () => {
                       </Grid>
                       <Grid item lg={8} sm={6} xs={12}>
                         <Typography variant="h6">{item.name}</Typography>
-                        <Typography>Price: {item.price} USD </Typography>
+                        {/* <Typography>Price: {item.price} USD </Typography>*/}
                         <Typography>
                           Color: {item.color || "N/A"}
                         </Typography>{" "}
