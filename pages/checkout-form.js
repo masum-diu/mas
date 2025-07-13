@@ -14,13 +14,27 @@ import {
 } from "@mui/material";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
+import instance from "./api/api_instance";
+
 const CheckoutForm = () => {
   const { cart, clearCart } = useCart();
   const router = useRouter();
+  const [isPlacingOrder, setIsPlacingOrder] = useState(false);
+
+  // Check for guest_id on component mount
+  useEffect(() => {
+    const guestId = localStorage.getItem("guest_id");
+    if (!guestId) {
+      // Generate a new guest ID if none exists
+      const newGuestId = Math.floor(Math.random() * 1000000) + 1;
+      localStorage.setItem("guest_id", newGuestId.toString());
+    }
+  }, []);
 
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
+    fullName: "",
     country: "",
     town: "",
     thana: "",
@@ -29,8 +43,10 @@ const CheckoutForm = () => {
     streetAddress: "",
     apartmentAddress: "",
     phone: "",
+    phoneNumber: "",
     email: "",
     orderNotes: "",
+    paymentMethod: "",
   });
 
   const [error, setError] = useState("");
@@ -79,10 +95,31 @@ const CheckoutForm = () => {
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    setFormData((prevData) => {
+      const newData = {
+        ...prevData,
+        [name]: value,
+      };
+
+      if (name === "firstName" || name === "lastName") {
+        newData.fullName = `${
+          name === "firstName" ? value : prevData.firstName
+        } ${name === "lastName" ? value : prevData.lastName}`.trim();
+      }
+
+      if (name === "phone") {
+        if (value.length <= 15) {
+          newData.phoneNumber = value;
+          setError("");
+        } else {
+          setError("Phone number must not exceed 15 characters");
+          newData.phoneNumber = value.slice(0, 15);
+        }
+        newData.phone = newData.phoneNumber;
+      }
+
+      return newData;
+    });
   };
 
   const handleCountryChange = (e) => {
@@ -106,26 +143,171 @@ const CheckoutForm = () => {
     }));
   };
 
-  const handlePlaceOrder = () => {
+  const handlePlaceOrder = async () => {
+    const guestId = localStorage.getItem("guest_id");
+
+    if (!guestId) {
+      setError("Session expired. Please try again.");
+      router.push("/");
+      return;
+    }
+
+    // Check all required fields
     if (
       !formData.firstName ||
       !formData.lastName ||
+      !formData.fullName ||
       !formData.country ||
       !formData.town ||
       !formData.thana ||
       !formData.postCode ||
       !formData.area ||
       !formData.streetAddress ||
-      !formData.phone ||
-      !formData.email
+      !formData.phoneNumber ||
+      !formData.email ||
+      !formData.paymentMethod ||
+      !cart.length
     ) {
-      setError("All required fields must be filled.");
+      setError(
+        "Please fill in all required fields and ensure cart is not empty."
+      );
       return;
     }
 
-    console.log("Order placed:", { formData, cart });
-    clearCart();
-    router.push("/order-success");
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+
+    // Validate phone number
+    if (formData.phoneNumber.length > 15) {
+      setError("Phone number must not exceed 15 characters");
+      return;
+    }
+
+    try {
+      setIsPlacingOrder(true);
+      setError("");
+
+      const totalAmount = cart.reduce(
+        (sum, item) => sum + (item.price || 0) * (item.quantity || 1),
+        0
+      );
+
+      const orderData = {
+        user_id: parseInt(guestId), // Convert guest_id to number for user_id
+        guest_id: guestId,
+        full_name: formData.fullName,
+        phone_number: formData.phoneNumber,
+        email: formData.email,
+        country: formData.country,
+        city: formData.town, // Add city field for API compatibility
+        town: formData.town, // Keep town field as well
+        state: formData.thana, // Add state field for API compatibility
+        thana: formData.thana,
+        police_station: formData.thana, // Add police_station field for API compatibility
+        post_code: formData.postCode,
+        area_details: formData.area, // Changed from area to area_details for API compatibility
+        address_type: "home", // Add address_type field for API compatibility
+        street_address: formData.streetAddress,
+        apartment_address: formData.apartmentAddress,
+        order_notes: formData.orderNotes,
+        order_status: "pending",
+        total_amount: totalAmount.toString(),
+        items: cart.map((item) => ({
+          product_id: item.product_id,
+          color_id: item.color_id,
+          size_id: item.size_id,
+          quantity: item.quantity || 1,
+          price: item.price?.toString(),
+        })),
+      };
+
+      // Handle payment based on method
+      switch (formData.paymentMethod) {
+        case "stripe":
+          await handleStripePayment(orderData);
+          break;
+        case "cod":
+          await handleCashOnDelivery(orderData);
+          break;
+        default:
+          setError("Please select a valid payment method");
+          setIsPlacingOrder(false);
+      }
+    } catch (error) {
+      console.error("Error placing order:", error);
+      const errorMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        Object.values(error.response?.data?.errors || {})
+          .flat()
+          .join(", ") ||
+        "Failed to place order. Please try again.";
+      setError(errorMessage);
+      setIsPlacingOrder(false);
+    }
+  };
+
+  const handleCashOnDelivery = async (orderData) => {
+    try {
+      const response = await instance.post("place-order", {
+        ...orderData,
+        payment_method: "cod",
+      });
+
+      if (response.data.success) {
+        clearCart();
+        router.push("/order-success");
+      } else {
+        throw new Error(response.data.message || "Failed to place order");
+      }
+    } catch (error) {
+      console.error("COD order error:", error);
+      throw error; // Let the main error handler deal with it
+    }
+  };
+
+  const handleStripePayment = async (orderData) => {
+    try {
+      const response = await instance.post("place-order", {
+        ...orderData,
+        payment_method: "stripe",
+      });
+
+      // Log the response for debugging
+      console.log("Stripe payment response:", {
+        success: response.data.success,
+        session_url: response.data.session_url,
+        url: response.data.url,
+        message: response.data.message,
+      });
+
+      if (response.data.success) {
+        // Check for session_url in the response
+        if (response.data.session_url) {
+          console.log(
+            "Redirecting to Stripe session URL:",
+            response.data.session_url
+          );
+          // Redirect to Stripe checkout
+          window.location.href = response.data.session_url;
+        } else if (response.data.url) {
+          console.log("Redirecting to fallback URL:", response.data.url);
+          // Fallback to url if session_url is not present
+          window.location.href = response.data.url;
+        } else {
+          throw new Error("Payment URL not received");
+        }
+      } else {
+        throw new Error(response.data.message || "Failed to process payment");
+      }
+    } catch (error) {
+      console.error("Stripe payment error:", error);
+      throw error; // Let the main error handler deal with it
+    }
   };
 
   return (
@@ -573,6 +755,43 @@ const CheckoutForm = () => {
                 }}
               />
 
+              {/* Add Payment Method Selection */}
+              <FormControl
+                fullWidth
+                required
+                sx={{
+                  mt: 2,
+                  "& .MuiInputBase-input": {
+                    color: "#ffffff",
+                  },
+                  "& .MuiInputLabel-root": {
+                    color: "#ffffff",
+                  },
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      borderColor: "#9e9e9e",
+                    },
+                    "&:hover fieldset": {
+                      borderColor: "#9e9e9e",
+                    },
+                    "&.Mui-focused fieldset": {
+                      borderColor: "#9e9e9e",
+                    },
+                  },
+                }}
+              >
+                <InputLabel>Payment Method *</InputLabel>
+                <Select
+                  name="paymentMethod"
+                  value={formData.paymentMethod}
+                  onChange={handleInputChange}
+                  required
+                >
+                  <MenuItem value="cod">Cash on Delivery (COD)</MenuItem>
+                  <MenuItem value="stripe">Card Payment (Stripe)</MenuItem>
+                </Select>
+              </FormControl>
+
               {error && (
                 <Typography color="error" variant="body2" textAlign="center">
                   {error}
@@ -633,9 +852,19 @@ const CheckoutForm = () => {
             variant="contained"
             color="primary"
             onClick={handlePlaceOrder}
+            disabled={isPlacingOrder || formData.phone.length > 15}
           >
-            Place Order
+            {isPlacingOrder
+              ? formData.paymentMethod === "stripe"
+                ? "Redirecting to Payment..."
+                : "Placing Order..."
+              : "Place Order"}
           </Button>
+          {error && (
+            <Typography color="error" variant="body2" sx={{ mt: 2 }}>
+              {error}
+            </Typography>
+          )}
         </Box>
       </Box>
     </Layout>

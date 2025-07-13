@@ -45,7 +45,7 @@ const About = () => {
       >
         <Grid container spacing={1} py={2}>
           <Grid item lg={6}>
-            <Typography className="Medium" fontSize={40}>
+            <Typography className="Medium" fontSize={40} textAlign={"justify"}>
               {aboutData?.title}
             </Typography>
           </Grid>
@@ -60,7 +60,7 @@ const About = () => {
             />
           </Grid>
           <Grid item lg={7} sx={{ display: "flex", gap: 1, pt: 4 }}>
-            <Typography className="Regular" fontSize={18}>
+            <Typography className="Regular" fontSize={18} textAlign={"justify"}>
               <div
                 dangerouslySetInnerHTML={{ __html: aboutData?.description }}
               />

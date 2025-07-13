@@ -24,12 +24,14 @@ const contactus = () => {
         <Grid container spacing={1} py={3}>
           <Grid item lg={4}>
             <Typography
+              textAlign={"justify"}
               className="Regular"
               fontSize={16}
               textTransform={"uppercase"}
             >
-              If you have any questions, feel free to <br /> email us or reach
-              out through our <br /> contact form.
+              If you have any questions, feel free <br />
+              to email us or reach out through <br />
+              our contact form.
             </Typography>
             <Typography
               className="Medium"
@@ -39,7 +41,7 @@ const contactus = () => {
             >
               Email
             </Typography>
-            <Typography className="Regular" fontSize={18}>
+            <Typography className="Regular" fontSize={18} textAlign={"justify"}>
               Info@masoutfits.com
             </Typography>
           </Grid>

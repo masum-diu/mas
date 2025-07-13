@@ -108,7 +108,6 @@ const Cart = () => {
                           Size: {item.size?.name || "N/A"}
                         </Typography>
 
-                        {/* Quantity Controls */}
                         <Box
                           sx={{
                             display: "flex",

@@ -142,6 +142,7 @@ const Home = () => {
             <Typography
               className="Medium"
               fontSize={40}
+              textAlign={"justify"}
               sx={{
                 display: "flex",
                 flexDirection: "column",
@@ -155,6 +156,7 @@ const Home = () => {
 
           <Grid item lg={6}>
             <Typography
+              textAlign={"justify"}
               className="Regular"
               fontSize={18}
               sx={{ display: "flex", flexDirection: "column" }}
@@ -171,6 +173,7 @@ const Home = () => {
               sx={{ maxWidth: 550 }}
               py={5}
               spacing={2}
+              textAlign={"justify"}
             >
               <Stack direction={"column"} spacing={1}>
                 <Typography className="Medium" fontSize={28}>
@@ -203,6 +206,7 @@ const Home = () => {
               WHY CHOOSE MAS
             </Typography>
             <Typography
+              textAlign={"justify"}
               className="Regular"
               fontSize={18}
               sx={{ display: "flex", flexDirection: "column", pt: 2 }}
@@ -259,7 +263,8 @@ const Home = () => {
               display: "flex",
               flexDirection: { xs: "column", sm: "column", lg: "row" },
               alignItems: "flex-start",
-              textAlign: "left",
+              textAlign: "justify",
+
               gap: 1,
               pt: 4,
             }}
@@ -297,7 +302,7 @@ const Home = () => {
               display: "flex",
               flexDirection: { xs: "column", sm: "column", lg: "row" },
               alignItems: "flex-start",
-              textAlign: "left",
+              textAlign: "justify",
               gap: 1,
               pt: 4,
             }}
@@ -336,7 +341,7 @@ const Home = () => {
               display: "flex",
               flexDirection: { xs: "column", sm: "column", lg: "row" },
               alignItems: "flex-start",
-              textAlign: "left",
+              textAlign: "justify",
               gap: 1,
               pt: 4,
             }}
@@ -374,7 +379,7 @@ const Home = () => {
               display: "flex",
               flexDirection: { xs: "column", sm: "column", lg: "row" },
               alignItems: "flex-start",
-              textAlign: "left",
+              textAlign: "justify",
               gap: 1,
               pt: 4,
             }}
@@ -412,7 +417,7 @@ const Home = () => {
               display: "flex",
               flexDirection: { xs: "column", sm: "column", lg: "row" },
               alignItems: "flex-start",
-              textAlign: "left",
+              textAlign: "justify",
               gap: 1,
               pt: 4,
             }}
@@ -453,12 +458,17 @@ const Home = () => {
                 className="Medium"
                 textTransform={"uppercase"}
                 fontSize={40}
+                textAlign={"justify"}
                 sx={{ display: "flex", flexDirection: "column" }}
               >
                 Team of professionals <span>is waiting for you</span>
               </Typography>
 
-              <Typography className="Regular" fontSize={18} textAlign={"left"}>
+              <Typography
+                className="Regular"
+                fontSize={18}
+                textAlign={"justify"}
+              >
                 At MAS, we understand the importance of the basics. That’s why
                 we focus on delivering essential clothing items that form the
                 foundation of any wardrobe. From T-shirts to Tank Tops, our
@@ -490,8 +500,9 @@ const Home = () => {
               fontSize={18}
               textTransform={"uppercase"}
             >
-              If you have any questions, feel free to <br /> email us or reach
-              out through our <br /> contact form.
+              If you have any questions, feel free <br />
+              to email us or reach out through <br />
+              our contact form.
             </Typography>
 
             <Typography
