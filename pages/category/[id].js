@@ -12,7 +12,7 @@ const Products = () => {
   const router = useRouter();
   const { id } = router.query; // Get the dynamic id from the route
 
-  console.log(id, "id");
+  // console.log(id, "id");
 
   useEffect(() => {
     if (!id) return; // Wait until the id is available

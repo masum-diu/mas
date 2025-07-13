@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import Layout from "../components/Layout";
 import { useRouter } from "next/router";
+import { CleaningServices } from "@mui/icons-material";
 
 const Cart = () => {
   const { cart, loading, clearCart, removeFromCart, updateQuantity } =
@@ -65,6 +66,7 @@ const Cart = () => {
     );
   }
 
+  // console.log("Cart items:", cart);
   return (
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto", py: 6 }}>
@@ -100,7 +102,7 @@ const Cart = () => {
                       </Grid>
                       <Grid item lg={8} sm={6} xs={12}>
                         <Typography variant="h6">{product.name}</Typography>
-                        <Typography>Price: {product.price} USD</Typography>
+                        {/* <Typography>Price: {product.price} USD</Typography> */}
                         <Typography>
                           Color: {item.color?.name || "N/A"}
                         </Typography>

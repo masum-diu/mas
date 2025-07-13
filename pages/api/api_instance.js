@@ -15,11 +15,11 @@ const instance = axios.create({
 // Add request interceptor for debugging
 instance.interceptors.request.use(
   (config) => {
-    console.log("API Request:", {
-      url: config.url,
-      method: config.method,
-      data: config.data,
-    });
+    // console.log("API Request:", {
+    //   url: config.url,
+    //   method: config.method,
+    //   data: config.data,
+    // });
     return config;
   },
   (error) => {
@@ -31,11 +31,11 @@ instance.interceptors.request.use(
 // Add response interceptor for better error handling and debugging
 instance.interceptors.response.use(
   (response) => {
-    console.log("API Response:", {
-      url: response.config.url,
-      status: response.status,
-      data: response.data,
-    });
+    // console.log("API Response:", {
+    //   url: response.config.url,
+    //   status: response.status,
+    //   data: response.data,
+    // });
     return response;
   },
   (error) => {
