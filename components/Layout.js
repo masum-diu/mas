@@ -22,6 +22,7 @@ import {
   Brightness7,
   ShoppingCart,
   AccountCircle,
+  LinkedIn,
 } from "@mui/icons-material";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -391,14 +392,17 @@ const Layout = ({ children }) => {
               <img src="/assets/logo.png" alt="" width={132} />
             </Link>
             <Stack direction={"row"} spacing={2} py={2}>
-              <a href="" target="_blank">
+              <a href="https://www.facebook.com/profile.php?id=61577837919461" target="_blank">
                 <Facebook sx={{ color: darkMode ? "#fff" : "#000" }} />
               </a>
-              <a href="" target="_blank">
-                <Twitter sx={{ color: darkMode ? "#fff" : "#000" }} />
+              <a href="https://www.tiktok.com/@masoutfits2025" target="_blank">
+              <img src="/assets/tiktok.png" alt="X" width={21} />
               </a>
-              <a href="" target="_blank">
+              <a href="https://www.instagram.com/masoutfits2025/" target="_blank">
                 <Instagram sx={{ color: darkMode ? "#fff" : "#000" }} />
+              </a>
+              <a href="https://www.linkedin.com/in/mas-outfits-89b90b372/" target="_blank">
+                <LinkedIn sx={{ color: darkMode ? "#fff" : "#000" }} />
               </a>
             </Stack>
           </Grid>
