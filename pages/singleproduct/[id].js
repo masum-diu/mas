@@ -368,7 +368,7 @@ const SingleProduct = () => {
                 <Typography className="Regular" fontSize={18}>
                   Fit
                 </Typography>
-                <Typography className="Regular" fontSize={16}>
+                <Typography className="Regular" fontSize={16} textAlign={"justify"}>
                   {products?.fit}
                 </Typography>
               </Grid>
@@ -376,7 +376,7 @@ const SingleProduct = () => {
                 <Typography className="Regular" fontSize={18}>
                   Care
                 </Typography>
-                <Typography className="Regular" fontSize={16}>
+                <Typography className="Regular" fontSize={16} textAlign={"justify"}>
                   {products?.care}
                 </Typography>
               </Grid>
