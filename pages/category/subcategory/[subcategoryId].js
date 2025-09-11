@@ -74,6 +74,7 @@ const SubcategoryProducts = () => {
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
         <Grid container spacing={2} py={4}>
           {products?.map((product, index) => {
+            console.log(product, "product");
             return (
               <Grid item lg={3} sm={6} key={index} sx={{ cursor: "pointer" }}>
                 <Card
@@ -93,7 +94,7 @@ const SubcategoryProducts = () => {
                   <CardMedia
                     component="img"
                     height="300"
-                    image={product?.productImages[0]?.image || ""}
+                    image={product?.product_images?.[0]?.image || ""}
                     alt={product?.name || "Product Image"}
                   />
                   <CardContent

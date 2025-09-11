@@ -102,21 +102,76 @@ const SingleProduct = () => {
 
       const res = await instance.get(`/product/${id}`);
       const productData = res?.data?.data;
-
       setProduct(productData);
 
       if (productData?.tags) {
         setTags(productData.tags);
       }
 
-      if (productData?.productImages?.length > 0) {
-        setSelectedValue(productData.productImages[0].color);
-        setSelectedColorId(productData.productImages[0].color);
-        setSelectedColorName(productData.productImages[0].color);
+      if (productData?.product_images?.length > 0) {
+        setSelectedValue(productData.product_images[0].color.name);
+        setSelectedColorId(productData.product_images[0].color_id);
+        setSelectedColorName(productData.product_images[0].color.name);
       }
 
+      // Check for size guide data in various possible field names
       if (productData?.sizeGuides) {
+        console.log(
+          "Found size guide in sizeGuides field:",
+          productData.sizeGuides
+        );
         setSizeGuide(productData.sizeGuides);
+      } else if (productData?.size_guide) {
+        console.log(
+          "Found size guide in size_guide field:",
+          productData.size_guide
+        );
+        setSizeGuide(productData.size_guide);
+      } else if (productData?.sizeGuide) {
+        console.log(
+          "Found size guide in sizeGuide field:",
+          productData.sizeGuide
+        );
+        setSizeGuide(productData.sizeGuide);
+      } else if (productData?.category?.size_guide) {
+        console.log(
+          "Found size guide in category.size_guide field:",
+          productData.category.size_guide
+        );
+        setSizeGuide(productData.category.size_guide);
+      } else if (productData?.subcategory?.size_guide) {
+        console.log(
+          "Found size guide in subcategory.size_guide field:",
+          productData.subcategory.size_guide
+        );
+        setSizeGuide(productData.subcategory.size_guide);
+      } else {
+        // Try to fetch size guide separately if not included in product data
+        try {
+          // Try different possible endpoints
+          const endpoints = [
+            `/product/${id}/size-guide`,
+            `/product/${id}/sizeguide`,
+            `/size-guide?product_id=${id}`,
+            `/sizeguide?product_id=${id}`,
+            `/size-guides?product_id=${id}`,
+          ];
+
+          for (const endpoint of endpoints) {
+            try {
+              const sizeGuideRes = await instance.get(endpoint);
+              if (sizeGuideRes?.data?.data) {
+                setSizeGuide(sizeGuideRes.data.data);
+                console.log("Size guide found at:", endpoint);
+                break;
+              }
+            } catch (endpointError) {
+              console.log(`Endpoint ${endpoint} not found`);
+            }
+          }
+        } catch (error) {
+          console.log("No size guide endpoints found:", error);
+        }
       }
 
       setLoading(false);
@@ -133,16 +188,23 @@ const SingleProduct = () => {
     }
   }, [id]);
 
-  const imageArray = products?.productImages || [];
+  const imageArray = products?.product_images || [];
   const uniqueColors = [
     ...new Map(
-      products?.productImages?.map((img) => [img.color, img])
+      products?.product_images?.map((img) => [img.color.name, img])
     ).values(),
   ];
   const filteredImages =
-    selectedValue && products?.productImages
-      ? products.productImages.filter((img) => img.color === selectedValue)
-      : products?.productImages || [];
+    selectedValue && products?.product_images
+      ? products.product_images.filter(
+          (img) => img.color.name === selectedValue
+        )
+      : products?.product_images || [];
+
+  console.log("Product images:", products?.product_images);
+  console.log("Unique colors:", uniqueColors);
+  console.log("Selected value:", selectedValue);
+  console.log("Filtered images:", filteredImages);
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
@@ -173,7 +235,9 @@ const SingleProduct = () => {
                 {products?.name}
               </Typography>
               <Typography className="Regular" fontSize={18}>
-                Color: {selectedColorName || products?.availability[0]?.color}
+                Color:{" "}
+                {selectedColorName ||
+                  products?.product_images?.[0]?.color?.name}
               </Typography>
               <FormControl component="fieldset">
                 <Box
@@ -190,15 +254,15 @@ const SingleProduct = () => {
                     <Grid
                       key={i}
                       onClick={() => {
-                        setSelectedColorId(v.color);
-                        setSelectedValue(v.color);
-                        setSelectedColorName(v.color);
+                        setSelectedColorId(v.color_id);
+                        setSelectedValue(v.color.name);
+                        setSelectedColorName(v.color.name);
                       }}
                       sx={{
                         width: "100%",
                         aspectRatio: "1",
                         border:
-                          selectedValue === v.color
+                          selectedValue === v.color.name
                             ? "3px solid #9A0E20"
                             : "1px solid #ccc",
                         cursor: "pointer",
@@ -368,7 +432,11 @@ const SingleProduct = () => {
                 <Typography className="Regular" fontSize={18}>
                   Fit
                 </Typography>
-                <Typography className="Regular" fontSize={16} textAlign={"justify"}>
+                <Typography
+                  className="Regular"
+                  fontSize={16}
+                  textAlign={"justify"}
+                >
                   {products?.fit}
                 </Typography>
               </Grid>
@@ -376,7 +444,11 @@ const SingleProduct = () => {
                 <Typography className="Regular" fontSize={18}>
                   Care
                 </Typography>
-                <Typography className="Regular" fontSize={16} textAlign={"justify"}>
+                <Typography
+                  className="Regular"
+                  fontSize={16}
+                  textAlign={"justify"}
+                >
                   {products?.care}
                 </Typography>
               </Grid>
