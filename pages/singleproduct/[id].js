@@ -310,7 +310,6 @@ const SingleProduct = () => {
                 {products?.availability
                   .filter((item) => item.color === selectedColorId)
                   .map((v, i) => {
-                    console.log(v, "v");
                     return (
                       <MenuItem key={i} value={v?.size_id}>
                         {v?.size}
