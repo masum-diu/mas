@@ -27,7 +27,7 @@ const SignIn = () => {
     if (signInData.name && signInData.email && signInData.password) {
       try {
         const response = await instance.post(
-          "https://tst.etherstaging.xyz/api/register",
+          "http://localhost:8000/api/register",
           {
             name: signInData.name,
             email: signInData.email,

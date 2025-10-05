@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https://tst.etherstaging.xyz/api",
+  baseURL: "http://localhost:8000/api",
   // "https://msb.etherstaging.xyz/api/",
   // "https://apimas.etherstaging.xyz/public/api"
   // https://masapi.etherstaging.xyz/api

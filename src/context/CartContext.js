@@ -10,7 +10,7 @@ export const CartProvider = ({ children }) => {
   const fetchCartData = async (guestId) => {
     try {
       const response = await fetch(
-        `https://tst.etherstaging.xyz/api/cart?guest_id=${guestId}`
+        `http://localhost:8000/api/cart?guest_id=${guestId}`
       );
       const data = await response.json();
       if (data.data) {
@@ -42,7 +42,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        "https://tst.etherstaging.xyz/api/cart/add",
+        "http://localhost:8000/api/cart/add",
         {
           method: "POST",
           headers: {
@@ -73,7 +73,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        `https://tst.etherstaging.xyz/api/cart/update/${cartItemId}`,
+        `http://localhost:8000/api/cart/update/${cartItemId}`,
         {
           method: "PATCH",
           headers: {
@@ -106,7 +106,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        `https://tst.etherstaging.xyz/api/cart/${cartItemId}`,
+        `http://localhost:8000/api/cart/${cartItemId}`,
         {
           method: "DELETE",
           headers: {
@@ -135,7 +135,7 @@ export const CartProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        `https://tst.etherstaging.xyz/api/cart/clear`,
+        `http://localhost:8000/api/cart/clear`,
         {
           method: "DELETE",
           headers: {

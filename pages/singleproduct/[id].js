@@ -52,7 +52,7 @@ const SingleProduct = () => {
 
     const selected = products?.availability?.find(
       (item) =>
-        item.color === selectedColorId && item.size_id === selectedSizeId
+        item.color_id === selectedColorId && item.size_id === selectedSizeId
     );
 
     if (selected) {
@@ -308,11 +308,11 @@ const SingleProduct = () => {
                   Select Size
                 </MenuItem>
                 {products?.availability
-                  .filter((item) => item.color === selectedColorId)
+                  .filter((item) => item.color_id === selectedColorId)
                   .map((v, i) => {
                     return (
                       <MenuItem key={i} value={v?.size_id}>
-                        {v?.size}
+                        {v?.size?.name}
                       </MenuItem>
                     );
                   })}
