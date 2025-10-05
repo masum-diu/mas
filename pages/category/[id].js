@@ -20,7 +20,7 @@ const Products = () => {
     const fetchSubCategories = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/sub-categories?category=${id}`
+          `https://tst.etherstaging.xyz/api/sub-categories?category=${id}`
         );
         if (!response.ok) {
           throw new Error("Failed to fetch subcategories");

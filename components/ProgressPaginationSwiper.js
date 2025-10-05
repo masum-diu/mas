@@ -16,7 +16,7 @@ function ProgressPaginationSwiper() {
   const fetchingData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("http://localhost:8000/api/sliders");
+      const res = await axios.get("https://tst.etherstaging.xyz/api/sliders");
       setSlides(res?.data?.data);
       setLoading(false);
     } catch (error) {
