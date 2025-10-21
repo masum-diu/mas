@@ -1,37 +1,50 @@
 import nodemailer from "nodemailer";
+import fs from "fs";
+import path from "path";
 
 export default async function handler(req, res) {
   if (req.method === "POST") {
     const { name, email, phone, message, appointmentDate } = req.body;
 
     try {
-      // Log the contact form data
-      console.log("Contact Form Submission:", {
+      // Save contact form data to a file
+      const contactData = {
+        timestamp: new Date().toISOString(),
         name,
         email,
         phone,
         message,
-        appointmentDate,
-      });
+        appointmentDate: appointmentDate || "Not specified",
+      };
 
-      // Try to send email with timeout
-      const emailPromise = sendEmail(
-        name,
-        email,
-        phone,
-        message,
-        appointmentDate
-      );
-      const timeoutPromise = new Promise((_, reject) =>
-        setTimeout(() => reject(new Error("Email timeout")), 5000)
-      );
+      // Create contacts directory if it doesn't exist
+      const contactsDir = path.join(process.cwd(), "contacts");
+      if (!fs.existsSync(contactsDir)) {
+        fs.mkdirSync(contactsDir, { recursive: true });
+      }
 
+      // Save to file
+      const filename = `contact-${Date.now()}.json`;
+      const filepath = path.join(contactsDir, filename);
+      fs.writeFileSync(filepath, JSON.stringify(contactData, null, 2));
+
+      console.log("Contact form data saved to:", filepath);
+
+      // Also log to console for immediate viewing
+      console.log("=== NEW CONTACT FORM SUBMISSION ===");
+      console.log("Name:", name);
+      console.log("Email:", email);
+      console.log("Phone:", phone);
+      console.log("Appointment Date:", appointmentDate || "Not specified");
+      console.log("Message:", message);
+      console.log("===================================");
+
+      // Try to send email
       try {
-        await Promise.race([emailPromise, timeoutPromise]);
+        await sendEmail(name, email, phone, message, appointmentDate);
         console.log("Email sent successfully");
       } catch (emailError) {
-        console.log("Email sending failed or timed out:", emailError.message);
-        // Continue anyway - don't fail the form submission
+        console.log("Email failed but form saved:", emailError.message);
       }
 
       return res.status(200).json({
