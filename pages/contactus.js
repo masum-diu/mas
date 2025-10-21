@@ -46,35 +46,84 @@ const contactus = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/contact", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      // Create mailto link as fallback
+      const subject = `Contact Form Submission from ${formData.name}`;
+      const body = `Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Appointment Date: ${formData.appointmentDate || "Not specified"}
+Message: ${formData.message}`;
 
-      const result = await response.json();
+      // Try Next.js API first, then PHP, then mailto
+      let apiSuccess = false;
 
-      if (response.ok) {
-        setSnackbar({
-          open: true,
-          message: result.message,
-          severity: "success",
+      try {
+        const response = await fetch("/api/contact", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         });
-        // Reset form
+
+        const result = await response.json();
+
+        if (response.ok) {
+          setSnackbar({
+            open: true,
+            message: result.message,
+            severity: "success",
+          });
+          apiSuccess = true;
+        } else {
+          throw new Error(result.message || "API failed");
+        }
+      } catch (apiError) {
+        // Try PHP endpoint as fallback
+        try {
+          const response = await fetch("/contact-handler.php", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            setSnackbar({
+              open: true,
+              message: result.message,
+              severity: "success",
+            });
+            apiSuccess = true;
+          } else {
+            throw new Error(result.message || "PHP API failed");
+          }
+        } catch (phpError) {
+          // Fallback to mailto if both APIs fail
+          const mailtoLink = `mailto:info@masoutfits.com?subject=${encodeURIComponent(
+            subject
+          )}&body=${encodeURIComponent(body)}`;
+          window.open(mailtoLink, "_blank");
+
+          setSnackbar({
+            open: true,
+            message: "Opening email client. Please send the email manually.",
+            severity: "info",
+          });
+        }
+      }
+
+      // Reset form if any method succeeded
+      if (apiSuccess) {
         setFormData({
           name: "",
           email: "",
           phone: "",
           message: "",
           appointmentDate: "",
-        });
-      } else {
-        setSnackbar({
-          open: true,
-          message: result.message || "Failed to send message",
-          severity: "error",
         });
       }
     } catch (error) {
