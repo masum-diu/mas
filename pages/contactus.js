@@ -41,39 +41,50 @@ const contactus = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
 
-    const subject = `Contact Form Submission from ${formData.name}`;
-    const body = `Name: ${formData.name}
-Email: ${formData.email}
-Phone: ${formData.phone}
-Appointment Date: ${formData.appointmentDate || "Not specified"}
-Message: ${formData.message}`;
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    const mailtoLink = `mailto:info@masoutfits.com?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`;
+      const result = await response.json();
 
-    // Use window.location.href instead of window.open for better compatibility
-    window.location.href = mailtoLink;
-
-    setSnackbar({
-      open: true,
-      message: "Email client opened. Please send the email.",
-      severity: "success",
-    });
-
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      message: "",
-      appointmentDate: "",
-    });
-
-    setLoading(false);
+      if (response.ok) {
+        setSnackbar({
+          open: true,
+          message: "Email sent successfully!",
+          severity: "success",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+          appointmentDate: "",
+        });
+      } else {
+        setSnackbar({
+          open: true,
+          message: result.message || "Failed to send email",
+          severity: "error",
+        });
+      }
+    } catch (error) {
+      setSnackbar({
+        open: true,
+        message: "Network error. Please try again.",
+        severity: "error",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCloseSnackbar = () => {

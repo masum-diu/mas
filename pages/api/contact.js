@@ -19,7 +19,7 @@ export default async function handler(req, res) {
     const mailOptions = {
       from: "info@masoutfits.com", // Use your email as sender
       to: "info@masoutfits.com", // Send to your email
-      replyTo: email, // Allow reply to the customer's email
+      replyTo: email, // Allow reply to customer's email
       subject: `New Contact Form Submission from ${name}`,
       html: `
         <h2>New Contact Form Submission</h2>
@@ -37,29 +37,11 @@ export default async function handler(req, res) {
 
     // Send the email
     try {
-      // Test the connection first
-      await transporter.verify();
-      console.log("SMTP connection verified successfully");
-
-      // Send the email
-      const info = await transporter.sendMail(mailOptions);
-      console.log("Email sent successfully:", info.messageId);
+      await transporter.sendMail(mailOptions);
       return res.status(200).json({ message: "Email sent successfully!" });
     } catch (error) {
-      console.error("Detailed error sending email:", error);
-
-      // Fallback: Log the contact form data to console for manual follow-up
-      console.log("=== CONTACT FORM SUBMISSION ===");
-      console.log("Name:", name);
-      console.log("Email:", email);
-      console.log("Phone:", phone);
-      console.log("Appointment Date:", appointmentDate);
-      console.log("Message:", message);
-      console.log("=============================");
-
-      return res.status(500).json({
-        message: `Email service temporarily unavailable. Your message has been logged. Error: ${error.message}`,
-      });
+      console.error("Error sending email:", error);
+      return res.status(500).json({ message: "Failed to send email." });
     }
   } else {
     // If the request is not a POST request, return 405 (Method Not Allowed)
