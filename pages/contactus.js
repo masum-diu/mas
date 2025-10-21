@@ -58,17 +58,6 @@ const contactus = () => {
       const result = await response.json();
 
       if (response.ok) {
-        // Try to send email in background
-        fetch("/send-email.php", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        }).catch(() => {
-          // Email sending failed, but form submission succeeded
-        });
-
         setSnackbar({
           open: true,
           message: result.message,
