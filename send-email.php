@@ -1,4 +1,7 @@
 <?php
+// Set max execution time to 30 seconds for mail operations
+set_time_limit(30);
+
 // Simple email sending script
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $input = json_decode(file_get_contents('php://input'), true);

@@ -1,4 +1,7 @@
 <?php
+// Set max execution time to 30 seconds for mail operations
+set_time_limit(30);
+
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');

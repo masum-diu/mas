@@ -39,17 +39,19 @@ export default async function handler(req, res) {
       console.log("Message:", message);
       console.log("===================================");
 
-      // Try to send email
-      try {
-        await sendEmail(name, email, phone, message, appointmentDate);
-        console.log("Email sent successfully");
-      } catch (emailError) {
-        console.log("Email failed but form saved:", emailError.message);
-      }
-
-      return res.status(200).json({
+      // Send immediate response to prevent 504 timeout
+      res.status(200).json({
         message: "Message received successfully! We'll contact you soon.",
       });
+
+      // Send email asynchronously (don't await to prevent timeout)
+      sendEmail(name, email, phone, message, appointmentDate)
+        .then(() => {
+          console.log("Email sent successfully");
+        })
+        .catch((emailError) => {
+          console.log("Email failed but form saved:", emailError.message);
+        });
     } catch (error) {
       console.error("Error processing contact form:", error);
       return res.status(500).json({ message: "Failed to process request." });
@@ -60,6 +62,8 @@ export default async function handler(req, res) {
 }
 
 async function sendEmail(name, email, phone, message, appointmentDate) {
+  console.log("Starting email send process...");
+
   // Set up the email transporter using environment variables
   const transporter = nodemailer.createTransport({
     host: process.env.EMAIL_HOST || "mail.masoutfits.com",
@@ -69,7 +73,19 @@ async function sendEmail(name, email, phone, message, appointmentDate) {
       user: process.env.EMAIL_USER || "info@masoutfits.com",
       pass: process.env.EMAIL_PASS || "Mas@2015",
     },
+    connectionTimeout: 30000, // 30 seconds connection timeout
+    greetingTimeout: 30000, // 30 seconds greeting timeout
+    socketTimeout: 30000, // 30 seconds socket timeout
   });
+
+  // Verify connection configuration
+  try {
+    await transporter.verify();
+    console.log("SMTP server connection verified successfully");
+  } catch (verifyError) {
+    console.error("SMTP verification failed:", verifyError.message);
+    throw verifyError;
+  }
 
   const mailOptions = {
     from: process.env.EMAIL_USER || "info@masoutfits.com",
@@ -99,5 +115,20 @@ async function sendEmail(name, email, phone, message, appointmentDate) {
     `,
   };
 
-  return transporter.sendMail(mailOptions);
+  try {
+    console.log("Attempting to send email...");
+    const result = await transporter.sendMail(mailOptions);
+    console.log("Email sent successfully:", result.messageId);
+    return result;
+  } catch (sendError) {
+    console.error("Failed to send email:", {
+      error: sendError.message,
+      code: sendError.code,
+      response: sendError.response,
+    });
+    throw sendError;
+  } finally {
+    // Close the transporter connection
+    transporter.close();
+  }
 }

@@ -6,7 +6,7 @@ const instance = axios.create({
   // "https://apimas.etherstaging.xyz/public/api"
   // https://masapi.etherstaging.xyz/api
   // https://apimas.etherstaging.xyz/public/api/
-  timeout: 10000, // 10 seconds timeout
+  timeout: 30000, // 30 seconds timeout
   headers: {
     "Content-Type": "application/json",
   },
