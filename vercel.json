@@ -1,0 +1,16 @@
+{
+  "functions": {
+    "pages/api/contact.js": {
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "EMAIL_HOST": "mail.masoutfits.com",
+    "EMAIL_PORT": "465",
+    "EMAIL_USER": "info@masoutfits.com",
+    "EMAIL_PASS": "Mas@2015",
+    "NEXT_PUBLIC_EMAIL_HOST": "mail.masoutfits.com",
+    "NEXT_PUBLIC_EMAIL_PORT": "465",
+    "NEXT_PUBLIC_EMAIL_USER": "info@masoutfits.com"
+  }
+}

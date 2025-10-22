@@ -4,11 +4,11 @@ import path from "path";
 
 export default async function handler(req, res) {
   // Set CORS headers for live server
-  res.setHeader("Access-Control-Allow-Origin", "*");
-  res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
-  if (req.method === "OPTIONS") {
+  if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
 
@@ -39,21 +39,12 @@ export default async function handler(req, res) {
 
       console.log("Contact form data saved to:", filepath);
 
-      // Also log to console for immediate viewing
-      console.log("=== NEW CONTACT FORM SUBMISSION ===");
-      console.log("Name:", name);
-      console.log("Email:", email);
-      console.log("Phone:", phone);
-      console.log("Appointment Date:", appointmentDate || "Not specified");
-      console.log("Message:", message);
-      console.log("===================================");
-
-      // Send immediate response to prevent 504 timeout
+      // Send immediate response to prevent timeout
       res.status(200).json({
         message: "Message received successfully! We'll contact you soon.",
       });
 
-      // Send email asynchronously (don't await to prevent timeout)
+      // Send email asynchronously
       sendEmail(name, email, phone, message, appointmentDate)
         .then(() => {
           console.log("Email sent successfully");
@@ -75,19 +66,11 @@ async function sendEmail(name, email, phone, message, appointmentDate) {
 
   // Enhanced SMTP configuration for live servers
   const transporter = nodemailer.createTransport({
-    host:
-      process.env.NEXT_PUBLIC_EMAIL_HOST ||
-      process.env.EMAIL_HOST ||
-      "mail.masoutfits.com",
-    port:
-      parseInt(process.env.NEXT_PUBLIC_EMAIL_PORT || process.env.EMAIL_PORT) ||
-      465,
+    host: process.env.NEXT_PUBLIC_EMAIL_HOST || process.env.EMAIL_HOST || "mail.masoutfits.com",
+    port: parseInt(process.env.NEXT_PUBLIC_EMAIL_PORT || process.env.EMAIL_PORT) || 465,
     secure: true, // Use SSL for port 465
     auth: {
-      user:
-        process.env.NEXT_PUBLIC_EMAIL_USER ||
-        process.env.EMAIL_USER ||
-        "info@masoutfits.com",
+      user: process.env.NEXT_PUBLIC_EMAIL_USER || process.env.EMAIL_USER || "info@masoutfits.com",
       pass: process.env.EMAIL_PASS || "Mas@2015",
     },
     connectionTimeout: 30000,
@@ -95,7 +78,7 @@ async function sendEmail(name, email, phone, message, appointmentDate) {
     socketTimeout: 30000,
     // Additional options for live servers
     tls: {
-      rejectUnauthorized: false, // For some hosting providers
+      rejectUnauthorized: false // For some hosting providers
     },
     pool: true, // Use connection pooling
     maxConnections: 1,
@@ -112,14 +95,8 @@ async function sendEmail(name, email, phone, message, appointmentDate) {
   }
 
   const mailOptions = {
-    from:
-      process.env.NEXT_PUBLIC_EMAIL_USER ||
-      process.env.EMAIL_USER ||
-      "info@masoutfits.com",
-    to:
-      process.env.NEXT_PUBLIC_EMAIL_USER ||
-      process.env.EMAIL_USER ||
-      "info@masoutfits.com",
+    from: process.env.NEXT_PUBLIC_EMAIL_USER || process.env.EMAIL_USER || "info@masoutfits.com",
+    to: process.env.NEXT_PUBLIC_EMAIL_USER || process.env.EMAIL_USER || "info@masoutfits.com",
     replyTo: email,
     subject: `New Contact Form Submission from ${name}`,
     html: `
