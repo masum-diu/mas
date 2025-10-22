@@ -12,6 +12,8 @@ import {
   Stack,
   styled,
   TextField,
+  Alert,
+  Snackbar,
 } from "@mui/material";
 import ProgressPaginationSwipersider from "../components/ProgressPaginationSwipersider";
 import instance from "./api/api_instance";
@@ -59,6 +61,19 @@ const Home = () => {
   const [data, setData] = useState([]);
   const [sectionTitle, setSectionTitle] = useState(""); // State to store the title
   const [loading, setLoading] = useState(false); // State to track loading
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: "",
+    appointmentDate: "",
+  });
+  const [formLoading, setFormLoading] = useState(false);
+  const [snackbar, setSnackbar] = useState({
+    open: false,
+    message: "",
+    severity: "success",
+  });
   const fetchData = async () => {
     try {
       setLoading(true);
@@ -95,6 +110,65 @@ const Home = () => {
 
   const handleNavigate = (id) => {
     router.push(`/category/${id}`);
+  };
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setFormLoading(true);
+
+    try {
+      // Try the Resend API
+      const response = await fetch("/api/contact-resend", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        setSnackbar({
+          open: true,
+          message: result.message,
+          severity: "success",
+        });
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          message: "",
+          appointmentDate: "",
+        });
+      } else {
+        setSnackbar({
+          open: true,
+          message: result.message || "Failed to send message",
+          severity: "error",
+        });
+      }
+    } catch (error) {
+      setSnackbar({
+        open: true,
+        message: "Network error. Please try again.",
+        severity: "error",
+      });
+    } finally {
+      setFormLoading(false);
+    }
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbar((prev) => ({ ...prev, open: false }));
   };
   return (
     <Layout>
@@ -491,159 +565,200 @@ const Home = () => {
           pt={2}
           py={7}
         >
-          Let’s talk
+          Let's talk
         </Typography>
-        <Grid container spacing={1} py={2}>
-          <Grid item lg={4}>
-            <Typography
-              className="Regular"
-              fontSize={18}
-              textTransform={"uppercase"}
-            >
-              If you have any questions, feel free <br />
-              to email us or reach out through <br />
-              our contact form.
-            </Typography>
+        <form onSubmit={handleSubmit}>
+          <Grid container spacing={1} py={2}>
+            <Grid item lg={4}>
+              <Typography
+                className="Regular"
+                fontSize={18}
+                textTransform={"uppercase"}
+              >
+                If you have any questions, feel free <br />
+                to email us or reach out through <br />
+                our contact form.
+              </Typography>
 
-            <Typography
-              className="Medium"
-              fontSize={18}
-              textTransform={"uppercase"}
-              pt={3}
-            >
-              Email
-            </Typography>
-            <Typography className="Regular" fontSize={18}>
-              Info@masoutfits.com
-            </Typography>
-          </Grid>
+              <Typography
+                className="Medium"
+                fontSize={18}
+                textTransform={"uppercase"}
+                pt={3}
+              >
+                Email
+              </Typography>
+              <Typography className="Regular" fontSize={18}>
+                Info@masoutfits.com
+              </Typography>
+            </Grid>
 
-          <Grid item lg={4} xs={12} pt={2}>
-            <Stack direction={"column"} spacing={1}>
-              <Typography
-                className="Medium"
-                fontSize={18}
-                textTransform={"uppercase"}
-              >
-                Name <span style={{ color: "#9A0E20" }}>*</span>
-              </Typography>
-              <TextField
-                variant="standard"
-                className="Light"
-                color="primary"
-                placeholder="Enter Your Name"
-                fullWidth
-                focused
-                InputProps={{
-                  sx: {
-                    color: "#bbb",
-                    fontSize: 18,
-                  },
-                }}
-              />
-            </Stack>
-            <Stack direction={"column"} spacing={1} pt={2}>
-              <Typography
-                className="Medium"
-                fontSize={18}
-                textTransform={"uppercase"}
-              >
-                Phone <span style={{ color: "#9A0E20" }}>*</span>
-              </Typography>
-              <TextField
-                variant="standard"
-                color="primary"
-                placeholder="Enter Your Phone"
-                fullWidth
-                focused
-                InputProps={{
-                  sx: {
-                    color: "#bbb",
-                    fontSize: 18,
-                  },
-                }}
-              />
-            </Stack>
+            <Grid item lg={4} xs={12} pt={2}>
+              <Stack direction={"column"} spacing={1}>
+                <Typography
+                  className="Medium"
+                  fontSize={18}
+                  textTransform={"uppercase"}
+                >
+                  Name <span style={{ color: "#9A0E20" }}>*</span>
+                </Typography>
+                <TextField
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  variant="standard"
+                  className="Light"
+                  color="primary"
+                  placeholder="Enter Your Name"
+                  fullWidth
+                  focused
+                  required
+                  InputProps={{
+                    sx: {
+                      color: "#bbb",
+                      fontSize: 18,
+                    },
+                  }}
+                />
+              </Stack>
+              <Stack direction={"column"} spacing={1} pt={2}>
+                <Typography
+                  className="Medium"
+                  fontSize={18}
+                  textTransform={"uppercase"}
+                >
+                  Phone <span style={{ color: "#9A0E20" }}>*</span>
+                </Typography>
+                <TextField
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleInputChange}
+                  variant="standard"
+                  color="primary"
+                  placeholder="Enter Your Phone"
+                  fullWidth
+                  focused
+                  required
+                  InputProps={{
+                    sx: {
+                      color: "#bbb",
+                      fontSize: 18,
+                    },
+                  }}
+                />
+              </Stack>
+            </Grid>
+            <Grid item lg={4} xs={12}>
+              <Stack direction={"column"} spacing={1}>
+                <Typography
+                  className="Medium"
+                  fontSize={18}
+                  textTransform={"uppercase"}
+                >
+                  Email <span style={{ color: "#9A0E20" }}>*</span>
+                </Typography>
+                <TextField
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  variant="standard"
+                  color="primary"
+                  placeholder="Enter Your Email"
+                  fullWidth
+                  focused
+                  required
+                  type="email"
+                  InputProps={{
+                    sx: {
+                      color: "#bbb",
+                      fontSize: 18,
+                    },
+                  }}
+                />
+              </Stack>
+              <Stack direction={"column"} spacing={1} pt={2}>
+                <Typography
+                  className="Medium"
+                  fontSize={18}
+                  textTransform={"uppercase"}
+                >
+                  Choose an appointment date
+                </Typography>
+                <CustomTextField
+                  name="appointmentDate"
+                  value={formData.appointmentDate}
+                  onChange={handleInputChange}
+                  variant="standard"
+                  color="primary"
+                  placeholder="Enter Your Date"
+                  fullWidth
+                  type="date"
+                  focused
+                  InputProps={{
+                    sx: {
+                      color: "#bbb",
+                      fontSize: 18,
+                    },
+                  }}
+                />
+              </Stack>
+            </Grid>
+            <Grid item lg={4} xs={12}></Grid>
+            <Grid item lg={8} xs={12}>
+              <Stack direction={"column"} spacing={1}>
+                <Typography
+                  className="Medium"
+                  fontSize={18}
+                  textTransform={"uppercase"}
+                >
+                  Message
+                </Typography>
+                <TextField
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  variant="standard"
+                  color="primary"
+                  placeholder="Enter Your Message"
+                  multiline
+                  rows={4}
+                  fullWidth
+                  focused
+                  InputProps={{
+                    sx: {
+                      color: "#bbb",
+                      fontSize: 18,
+                    },
+                  }}
+                />
+                <Button
+                  type="submit"
+                  variant="contained"
+                  color="error"
+                  sx={{ maxWidth: 87 }}
+                  disabled={formLoading}
+                >
+                  {formLoading ? "Sending..." : "Submit"}
+                </Button>
+              </Stack>
+            </Grid>
           </Grid>
-          <Grid item lg={4} xs={12}>
-            <Stack direction={"column"} spacing={1}>
-              <Typography
-                className="Medium"
-                fontSize={18}
-                textTransform={"uppercase"}
-              >
-                Email <span style={{ color: "#9A0E20" }}>*</span>
-              </Typography>
-              <TextField
-                variant="standard"
-                color="primary"
-                placeholder="Enter Your Email"
-                fullWidth
-                focused
-                InputProps={{
-                  sx: {
-                    color: "#bbb",
-                    fontSize: 18,
-                  },
-                }}
-              />
-            </Stack>
-            <Stack direction={"column"} spacing={1} pt={2}>
-              <Typography
-                className="Medium"
-                fontSize={18}
-                textTransform={"uppercase"}
-              >
-                Choose an appointment date
-              </Typography>
-              <CustomTextField
-                variant="standard"
-                color="primary"
-                placeholder="Enter Your Date"
-                fullWidth
-                type="date"
-                focused
-                InputProps={{
-                  sx: {
-                    color: "#bbb",
-                    fontSize: 18,
-                  },
-                }}
-              />
-            </Stack>
-          </Grid>
-          <Grid item lg={4} xs={12}></Grid>
-          <Grid item lg={8} xs={12}>
-            <Stack direction={"column"} spacing={1}>
-              <Typography
-                className="Medium"
-                fontSize={18}
-                textTransform={"uppercase"}
-              >
-                Message
-              </Typography>
-              <TextField
-                variant="standard"
-                color="primary"
-                placeholder="Enter Your Message"
-                multiline
-                rows={4}
-                fullWidth
-                focused
-                InputProps={{
-                  sx: {
-                    color: "#bbb",
-                    fontSize: 18,
-                  },
-                }}
-              />
-              <Button variant="contained" color="error" sx={{ maxWidth: 87 }}>
-                submit
-              </Button>
-            </Stack>
-          </Grid>
-        </Grid>
+        </form>
       </Box>
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbar.severity}
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </Layout>
   );
 };
