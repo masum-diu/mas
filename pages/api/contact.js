@@ -66,11 +66,11 @@ async function sendEmail(name, email, phone, message, appointmentDate) {
 
   // Set up the email transporter using environment variables
   const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST || "mail.masoutfits.com",
-    port: parseInt(process.env.EMAIL_PORT) || 465,
-    secure: process.env.EMAIL_PORT === "465" || true,
+    host: process.env.NEXT_PUBLIC_EMAIL_HOST || process.env.EMAIL_HOST || "mail.masoutfits.com",
+    port: parseInt(process.env.NEXT_PUBLIC_EMAIL_PORT || process.env.EMAIL_PORT) || 465,
+    secure: (process.env.NEXT_PUBLIC_EMAIL_PORT || process.env.EMAIL_PORT) === "465" || true,
     auth: {
-      user: process.env.EMAIL_USER || "info@masoutfits.com",
+      user: process.env.NEXT_PUBLIC_EMAIL_USER || process.env.EMAIL_USER || "info@masoutfits.com",
       pass: process.env.EMAIL_PASS || "Mas@2015",
     },
     connectionTimeout: 30000, // 30 seconds connection timeout
@@ -88,8 +88,8 @@ async function sendEmail(name, email, phone, message, appointmentDate) {
   }
 
   const mailOptions = {
-    from: process.env.EMAIL_USER || "info@masoutfits.com",
-    to: process.env.EMAIL_USER || "info@masoutfits.com",
+    from: process.env.NEXT_PUBLIC_EMAIL_USER || process.env.EMAIL_USER || "info@masoutfits.com",
+    to: process.env.NEXT_PUBLIC_EMAIL_USER || process.env.EMAIL_USER || "info@masoutfits.com",
     replyTo: email,
     subject: `New Contact Form Submission from ${name}`,
     html: `
