@@ -46,8 +46,8 @@ const contactus = () => {
     setLoading(true);
 
     try {
-      // Try the main API first
-      const response = await fetch("/api/contact", {
+      // Try the Resend API first
+      const response = await fetch("/api/contact-resend", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
