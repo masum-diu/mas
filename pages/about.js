@@ -54,7 +54,7 @@ const About = () => {
         <Grid container spacing={2} py={2}>
           <Grid item lg={5} sx={{ display: "flex", gap: 1, pt: 4 }}>
             <img
-              src={aboutData?.image}
+              src={"/assets/1744545144_67fba578d2642.jpg"}
               alt="About Image"
               style={{ width: "100%", height: "100%" }}
             />
