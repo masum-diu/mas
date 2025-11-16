@@ -33,7 +33,7 @@ import { useCart } from "../src/context/CartContext";
 import { useRouter } from "next/router";
 import { useAuth } from "../authcontext/AuthContext";
 const useDarkMode = () => {
-  const [darkMode, setDarkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(false);
 
   useEffect(() => {
     const savedTheme = localStorage.getItem("darkMode");
@@ -196,16 +196,34 @@ const Layout = ({ children }) => {
                   HOME
                 </Typography>
               </Link>
+              <Link href={"/worldwide-wardrobe"} passHref>
+                <Typography
+                  className="Medium"
+                  fontSize={16}
+                  sx={{ color: darkMode ? "#fff" : "#000" ,textTransform: "uppercase"}}
+                >
+                   Worldwide Wardrobe
+                </Typography>
+              </Link>
               <Link href={"/about"} passHref>
                 <Typography
                   className="Medium"
                   fontSize={16}
-                  sx={{ color: darkMode ? "#fff" : "#000" }}
+                  sx={{ color: darkMode ? "#fff" : "#000" , textTransform: "uppercase" }}
                 >
-                  ABOUT
+                  Our Story
                 </Typography>
               </Link>
-              <Link href={`/category/${retailCategoryId || 2}`} passHref>
+              <Link href={"/sustainability"} passHref>
+                <Typography
+                  className="Medium"
+                  fontSize={16}
+                  sx={{ color: darkMode ? "#fff" : "#000" , textTransform: "uppercase" }}
+                >
+                  SUSTAINABILITY
+                </Typography>
+              </Link>
+              {/* <Link href={`/category/${retailCategoryId || 2}`} passHref>
                 <Typography
                   className="Medium"
                   fontSize={16}
@@ -213,8 +231,8 @@ const Layout = ({ children }) => {
                 >
                   RETAIL
                 </Typography>
-              </Link>
-              <IconButton
+              </Link> */}
+              {/* <IconButton
                 color="inherit"
                 onClick={handleOpenUserMenu}
                 sx={{ ml: 1 }}
@@ -251,8 +269,8 @@ const Layout = ({ children }) => {
                     <Typography textAlign="center">Login</Typography>
                   </MenuItem>
                 )}
-              </Menu>
-              <Stack
+              </Menu> */}
+              {/* <Stack
                 direction="row"
                 alignItems="center"
                 spacing={1}
@@ -268,7 +286,7 @@ const Layout = ({ children }) => {
                 >
                   {cart.length}
                 </Typography>
-              </Stack>
+              </Stack> */}
 
               <Link href={"/contactus"} passHref>
                 <Button variant="contained" color="error" className="Medium">
@@ -349,14 +367,21 @@ const Layout = ({ children }) => {
               />
             </ListItem>
           </Link>
-
+          <Link href={"/sustainability"} passHref>
+            <ListItem button>
+              <ListItemText
+                primary={<Typography className="Medium">SUSTAINABILITY</Typography>}
+              />
+            </ListItem>
+          </Link>
+{/* 
           <Link href={`/category/${retailCategoryId || 2}`} passHref>
             <ListItem button>
               <ListItemText
                 primary={<Typography className="Medium">RETAIL</Typography>}
               />
             </ListItem>
-          </Link>
+          </Link> */}
           <Link href={"/contactus"} passHref>
             <ListItem button>
               <ListItemText
@@ -366,7 +391,7 @@ const Layout = ({ children }) => {
           </Link>
         </List>
       </Drawer>
-      <Box>{children}</Box>
+      <Box >{children}</Box>
 
       {/* Footer */}
       <Box

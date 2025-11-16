@@ -59,6 +59,8 @@ const Overlay = styled(Box)({
 
 const Home = () => {
   const [data, setData] = useState([]);
+  const [datasectionthree, setDatasectionthree] = useState([]);
+  const [datasectionOne, setDatasectionOne] = useState([]);
   const [sectionTitle, setSectionTitle] = useState(""); // State to store the title
   const [loading, setLoading] = useState(false); // State to track loading
   const [formData, setFormData] = useState({
@@ -68,6 +70,7 @@ const Home = () => {
     message: "",
     appointmentDate: "",
   });
+   console.log(datasectionOne,"datasectionOne")
   const [formLoading, setFormLoading] = useState(false);
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -85,9 +88,32 @@ const Home = () => {
       console.error("Error fetching data:", error);
     }
   };
+  const fetchDataSectionOne = async () => {
+    try {
+      setLoading(true);
+      const response = await instance.get("/section-one");
+      setDatasectionOne(response?.data?.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+  const fetchDataSectionthree = async () => {
+    try {
+      setLoading(true);
+      const response = await instance.get("/section-three");
+
+      setDatasectionthree(response?.data?.data);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
 
   useEffect(() => {
     fetchData();
+    fetchDataSectionthree();
+    fetchDataSectionOne();
   }, []);
   const fetchSectionTitle = async () => {
     try {
@@ -103,7 +129,6 @@ const Home = () => {
     }
   };
   useEffect(() => {
-    fetchData();
     fetchSectionTitle(); // Fetch the title when the component mounts
   }, []);
   const router = useRouter();
@@ -170,11 +195,15 @@ const Home = () => {
   const handleCloseSnackbar = () => {
     setSnackbar((prev) => ({ ...prev, open: false }));
   };
+  if (loading) {
+    return <Typography>Loading...</Typography>;
+  }
+
   return (
     <Layout>
-      <ProgressPaginationSwiper />
+      {/* <ProgressPaginationSwiper /> */}
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
-        <Grid container spacing={4} py={6}>
+        {/* <Grid container spacing={4} py={6}>
           {data?.map((item, index) => (
             <React.Fragment key={index}>
               <Grid
@@ -209,72 +238,11 @@ const Home = () => {
               </Grid>
             </React.Fragment>
           ))}
-        </Grid>
+        </Grid> */}
 
-        <Grid container spacing={4} py={6}>
-          <Grid item lg={6}>
-            <Typography
-              className="Medium"
-              fontSize={40}
-              textAlign={"justify"}
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                zIndex: 2,
-                position: "relative",
-              }}
-            >
-              SIMPLE ESSENTIALS, GLOBAL IMPACT
-            </Typography>
-          </Grid>
+       
 
-          <Grid item lg={6}>
-            <Typography
-              textAlign={"justify"}
-              className="Regular"
-              fontSize={18}
-              sx={{ display: "flex", flexDirection: "column" }}
-            >
-              MAS is your go-to source for high-quality, basic commodity
-              clothing items at an affordable price. We bring simplicity,
-              comfort, and durability together, providing essential apparel that
-              meets the needs of today’s global market.
-            </Typography>
-
-            <Stack
-              direction={"row"}
-              justifyContent={"space-between"}
-              sx={{ maxWidth: 550 }}
-              py={5}
-              spacing={2}
-              textAlign={"justify"}
-            >
-              <Stack direction={"column"} spacing={1}>
-                <Typography className="Medium" fontSize={28}>
-                  Since 2024
-                </Typography>
-                <Typography className="Regular" fontSize={16}>
-                  Delivering quality goods since 2024 inception.
-                </Typography>
-              </Stack>
-              <Stack direction={"column"} spacing={1}>
-                <Typography className="Medium" fontSize={28}>
-                  600+ Outlets
-                </Typography>
-                <Typography className="Regular" fontSize={16}>
-                  Available for customers across the regions.
-                </Typography>
-              </Stack>
-            </Stack>
-            <Link href="/about">
-              <Button variant="contained" color="error">
-                learn more
-              </Button>
-            </Link>
-          </Grid>
-        </Grid>
-
-        <Grid container spacing={4} py={8}>
+        {/* <Grid container spacing={4} py={8}>
           <Grid item lg={12}>
             <Typography className="Medium" fontSize={40}>
               WHY CHOOSE MAS
@@ -329,7 +297,6 @@ const Home = () => {
             </Stack>
           </Grid>
 
-          {/* Premium Comfort */}
           <Grid
             item
             lg={4}
@@ -368,7 +335,7 @@ const Home = () => {
             </Stack>
           </Grid>
 
-          {/* Ongoing Innovation */}
+       
           <Grid
             item
             lg={4}
@@ -407,7 +374,6 @@ const Home = () => {
             </Stack>
           </Grid>
 
-          {/* Strong Distribution */}
           <Grid
             item
             lg={4}
@@ -445,7 +411,7 @@ const Home = () => {
             </Stack>
           </Grid>
 
-          {/* Ethical Manufacturing */}
+         
           <Grid
             item
             lg={4}
@@ -483,7 +449,6 @@ const Home = () => {
             </Stack>
           </Grid>
 
-          {/* Support for New Brands */}
           <Grid
             item
             lg={4}
@@ -519,9 +484,13 @@ const Home = () => {
               </Typography>
             </Stack>
           </Grid>
-        </Grid>
-        <Grid container spacing={2} py={8}>
+        </Grid> */}
+        <Grid container spacing={4} py={8}>
+          
+
           <Grid item lg={6}>
+            <img src={datasectionthree[0]?.image} alt="" width={"100%"} style={{borderRadius:20}}/>
+          </Grid><Grid item lg={6}>
             <Stack
               alignItems={"left"}
               justifyContent={"left"}
@@ -531,34 +500,82 @@ const Home = () => {
               <Typography
                 className="Medium"
                 textTransform={"uppercase"}
-                fontSize={40}
+                fontSize={22}
                 textAlign={"justify"}
-                sx={{ display: "flex", flexDirection: "column" }}
+               
               >
-                Team of professionals <span>is waiting for you</span>
+                {datasectionthree[0]?.title}
               </Typography>
 
               <Typography
                 className="Regular"
                 fontSize={18}
                 textAlign={"justify"}
+                dangerouslySetInnerHTML={{ __html: datasectionthree[0]?.description }}
               >
-                At MAS, we understand the importance of the basics. That’s why
-                we focus on delivering essential clothing items that form the
-                foundation of any wardrobe. From T-shirts to Tank Tops, our
-                products are designed for comfort, quality, and versatility. As
-                a subsidiary of Mishael International Inc., we leverage decades
-                of industry experience to bring you the best in basic apparel.
+                
               </Typography>
             </Stack>
           </Grid>
+        </Grid>
+ <Grid container spacing={4} py={6}>
+          <Grid item lg={6}>
+            <Typography
+              className="bold"
+              fontSize={19}
+              mt={2}
+              textAlign={"center"}
+              
+            >
+             {datasectionOne[0]?.title}
+            </Typography>
+          </Grid>
 
           <Grid item lg={6}>
-            <img src="/assets/team.jpg" alt="" width={"100%"} />
+            <Typography
+              textAlign={"justify"}
+              className="Regular"
+              fontSize={18}
+              sx={{ display: "flex", flexDirection: "column" }}
+              dangerouslySetInnerHTML={{ __html: datasectionOne[0]?.description }}
+            >
+            </Typography>
+
+            {/* <Stack
+              direction={"row"}
+              justifyContent={"space-between"}
+              sx={{ maxWidth: 550 }}
+              py={5}
+              spacing={2}
+              textAlign={"justify"}
+            >
+              <Stack direction={"column"} spacing={1}>
+                <Typography className="Medium" fontSize={28}>
+                  Since 2024
+                </Typography>
+                <Typography className="Regular" fontSize={16}>
+                  Delivering quality goods since 2024 inception.
+                </Typography>
+              </Stack>
+              <Stack direction={"column"} spacing={1}>
+                <Typography className="Medium" fontSize={28}>
+                  600+ Outlets
+                </Typography>
+                <Typography className="Regular" fontSize={16}>
+                  Available for customers across the regions.
+                </Typography>
+              </Stack>
+            </Stack> */}
+            <Stack direction={"row"} alignItems={"flex-end"} justifyContent={"flex-end"}>
+            <Link href="/worldwide-wardrobe">
+              <Button variant="contained" color="error" sx={{textTransform:"capitalize"}}>
+                Worldwide Wardrobe Wholesale Catalog
+              </Button>
+            </Link></Stack>
           </Grid>
         </Grid>
-
-        <Typography
+        
+        {/* <Typography
           className="Medium"
           fontSize={40}
           textTransform={"uppercase"}
@@ -743,7 +760,7 @@ const Home = () => {
               </Stack>
             </Grid>
           </Grid>
-        </form>
+        </form> */}
       </Box>
       <Snackbar
         open={snackbar.open}
