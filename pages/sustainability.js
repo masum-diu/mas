@@ -13,8 +13,9 @@ const sustainability = () => {
   const fetchAboutData = async () => {
     try {
       setLoading(true);
-      const res = await instance.get("/about/1"); // Use your API instance
-      setAboutData(res?.data?.data);
+      const res = await instance.get("/our-story"); 
+      console.log(res,"res")
+      setAboutData(res?.data?.data[0]);
       setLoading(false);
     } catch (error) {
       setLoading(false);
@@ -52,14 +53,14 @@ const sustainability = () => {
         </Grid>
 
         <Grid container spacing={2} py={2}>
-          <Grid item lg={5} sx={{ display: "flex", gap: 1, pt: 4 }}>
-            <img
+         {/* <Grid item lg={5} sx={{ display: "flex", gap: 1, pt: 4 }}>
+             <img
               src={"/assets/1744545144_67fba578d2642.jpg"}
               alt="About Image"
               style={{ width: "100%", height: "100%" }}
-            />
-          </Grid>
-          <Grid item lg={7} sx={{ display: "flex", gap: 1, pt: 4 }}>
+            /> 
+          </Grid>  */}
+          <Grid item lg={12} sx={{ display: "flex", gap: 1, pt: 4 }}>
             <Typography className="Regular" fontSize={18} textAlign={"justify"}>
               <div
                 dangerouslySetInnerHTML={{ __html: aboutData?.description }}
