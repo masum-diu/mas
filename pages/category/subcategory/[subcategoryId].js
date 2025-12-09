@@ -20,7 +20,7 @@ const SubcategoryProducts = () => {
   const router = useRouter();
   const { subcategoryId } = router.query;
 
-  console.log(subcategoryId);
+  // console.log(subcategoryId);
 
   const fetchProducts = async () => {
     setLoading(true);

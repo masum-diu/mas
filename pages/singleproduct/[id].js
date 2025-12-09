@@ -41,7 +41,7 @@ const SingleProduct = () => {
   const [selectedColorName, setSelectedColorName] = useState("");
   const [sizeGuide, setSizeGuide] = useState([]);
   const [selectedSizeInfo, setSelectedSizeInfo] = useState(null);
-  console.log(selectedSizeInfo, "selectedSizeInfo");
+  console.log(products, "selectedSizeInfo");
   const [openSizeGuide, setOpenSizeGuide] = useState(false);
   const handleOpenSizeGuide = () => setOpenSizeGuide(true);
   const handleCloseSizeGuide = () => setOpenSizeGuide(false);
@@ -197,8 +197,8 @@ const SingleProduct = () => {
   const filteredImages =
     selectedValue && products?.product_images
       ? products.product_images.filter(
-          (img) => img.color.name === selectedValue
-        )
+        (img) => img.color.name === selectedValue
+      )
       : products?.product_images || [];
 
   console.log("Product images:", products?.product_images);
@@ -222,6 +222,8 @@ const SingleProduct = () => {
               images={filteredImages}
               selectedColorId={selectedValue}
               setSelectedColorId={setSelectedValue}
+              discount_amount
+              ={products?.discount_amount}
             />
           </Grid>
 
