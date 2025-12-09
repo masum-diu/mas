@@ -223,6 +223,15 @@ const Layout = ({ children }) => {
                   SUSTAINABILITY
                 </Typography>
               </Link>
+              <Link href={"/media-coverage"} passHref>
+                <Typography
+                  className="Medium"
+                  fontSize={16}
+                  sx={{ color: darkMode ? "#fff" : "#000" , textTransform: "uppercase" }}
+                >
+                  MEDIA COVERAGE
+                </Typography>
+              </Link>
               {/* <Link href={`/category/${retailCategoryId || 2}`} passHref>
                 <Typography
                   className="Medium"
