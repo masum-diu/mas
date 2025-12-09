@@ -55,6 +55,7 @@ const ThumbsLoopGallery = ({ images, selectedColorId, setSelectedColorId,discoun
     {/* Absolute text with high zIndex and a visible color */}
    <Typography
   variant="body1"
+  className="bold"
   sx={{
     position: "absolute",
     top: 16,
