@@ -210,6 +210,8 @@ const SingleProduct = () => {
     setActiveTab(newValue);
   };
 
+const isWholesale = products?.category?.name === "Wholesale Wins";
+
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
 
@@ -222,8 +224,7 @@ const SingleProduct = () => {
               images={filteredImages}
               selectedColorId={selectedValue}
               setSelectedColorId={setSelectedValue}
-              discount_amount
-              ={products?.discount_amount}
+              discount_amount={isWholesale ? products?.discount_amount : null}
             />
           </Grid>
 

@@ -53,7 +53,7 @@ const ThumbsLoopGallery = ({ images, selectedColorId, setSelectedColorId,discoun
     }}
   >
     {/* Absolute text with high zIndex and a visible color */}
-   <Typography
+ {discount_amount &&   <Typography
   variant="body1"
   className="bold"
   sx={{
@@ -96,7 +96,7 @@ const ThumbsLoopGallery = ({ images, selectedColorId, setSelectedColorId,discoun
   }}
 >
   {discount_amount ? `${discount_amount}` : "No Discount"}
-</Typography>
+</Typography>}
 
 
     <GlassMagnifier
