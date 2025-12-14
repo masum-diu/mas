@@ -47,57 +47,57 @@ const ImageContainer = styled(Box)(({ theme }) => ({
 }));
 
 const Overlay = styled(Box)({
-    position: "absolute",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "100%",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
-    opacity: 0,
-    transition: "opacity 0.3s ease, transform 0.3s ease",
-    transform: "scale(0.95)",
-    zIndex: 2,
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  backgroundColor: "rgba(0, 0, 0, 0.5)",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "center",
+  alignItems: "center",
+  opacity: 0,
+  transition: "opacity 0.3s ease, transform 0.3s ease",
+  transform: "scale(0.95)",
+  zIndex: 2,
 });
 
 function WorldwideWardrobe() {
-    const [data, setData] = useState([]);
-    const [loading, setLoading] = useState(false);
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-    const fetchData = async () => {
-        try {
-            setLoading(true);
-            const response = await instance.get("/categories");
-            setData(response?.data?.data);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        } finally {
-            setLoading(false);
-        }
-    };
+  const fetchData = async () => {
+    try {
+      setLoading(true);
+      const response = await instance.get("/categories");
+      setData(response?.data?.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    useEffect(() => {
-        fetchData();
-    }, []);
-    const router = useRouter();
-    const handleNavigate = (id) => {
-        router.push(`/category/${id}`);
-    };
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const router = useRouter();
+  const handleNavigate = (id) => {
+    router.push(`/category/${id}`);
+  };
 
-    return (
-        <Layout>
-            <Grid
-                container
-                spacing={4}
-                py={6}
-                sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}
-            >
-                {data?.map((item, index) => (
-                    <React.Fragment key={index}>
-                        {/* <Grid
+  return (
+    <Layout>
+      <Grid
+        container
+        spacing={4}
+        py={6}
+        sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}
+      >
+        {data?.map((item, index) => (
+          <React.Fragment key={index}>
+            {/* <Grid
               item
               lg={2}
               sx={{
@@ -118,24 +118,24 @@ function WorldwideWardrobe() {
               </Button>
             </Grid> */}
 
-                        <Grid item lg={4} sx={{ textAlign: "left" }} >
-                            <ImageContainer onClick={() => handleNavigate(item?.id)}>
-                                <img
-                                    src={item?.image}
-                                    alt="category image"
-                                />
+            <Grid sm={6} md={4} lg={4} item  sx={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+              <ImageContainer onClick={() => handleNavigate(item?.id)}>
+                <img
+                  src={item?.image}
+                  alt="category image"
+                />
 
-                                <Overlay className="overlay" />
-                            </ImageContainer>
-                            <Typography variant="h4" color="white" mt={3} >
-                                {item?.name}
-                            </Typography>
-                        </Grid>
-                    </React.Fragment>
-                ))}
+                <Overlay className="overlay" />
+              </ImageContainer>
+              <Typography variant="h4" color="white" mt={3} align="center"  >
+                {item?.name}
+              </Typography>
             </Grid>
-        </Layout>
-    );
+          </React.Fragment>
+        ))}
+      </Grid>
+    </Layout>
+  );
 }
 
 export default WorldwideWardrobe;
