@@ -1,8 +1,14 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Layout from "../../components/Layout";
-import { Box, Grid } from "@mui/material";
+import {
+  Box,
+  Grid,
+  Typography,
+  CircularProgress,
+} from "@mui/material";
 import ProgressPaginationSwipersider from "../../components/ProgressPaginationSwipersider";
+import instance from "../api/api_instance";
 
 const Products = () => {
   const [subCategories, setSubCategories] = useState([]);
@@ -18,17 +24,14 @@ const Products = () => {
     if (!id) return; // Wait until the id is available
 
     const fetchSubCategories = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        const response = await fetch(
-          `https://tst.etherstaging.xyz/api/sub-categories?category=${id}`
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch subcategories");
-        }
-        const data = await response.json();
-        setSubCategories(data.data);
+        const response = await instance.get(`/sub-categories?category=${id}`);
+        setSubCategories(response?.data?.data || []);
       } catch (err) {
-        setError(err.message);
+        console.error("Error fetching sub-categories:", err);
+        setError("Failed to fetch sub-categories.");
       } finally {
         setLoading(false);
       }
@@ -37,26 +40,50 @@ const Products = () => {
     fetchSubCategories();
   }, [id]); // Re-run the effect when id changes
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
+  if (loading) {
+    return (
+      <Layout>
+        <Box sx={{ display: "flex", justifyContent: "center", py: 10 }}>
+          <CircularProgress />
+        </Box>
+      </Layout>
+    );
+  }
+
+  if (error) {
+    return (
+      <Layout>
+        <Box sx={{ display: "flex", justifyContent: "center", py: 10 }}>
+          <Typography color="error">{error}</Typography>
+        </Box>
+      </Layout>
+    );
+  }
 
   return (
-    // <div>
-    //   <h1>Subcategories</h1>
-    //   <ul>
-    //     {subCategories.map((subCategory) => (
-    //       <li key={subCategory.id}>{subCategory.name}</li>
-    //     ))}
-    //   </ul>
-    // </div>
-
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
-        <Grid container spacing={1} py={4}>
-          <Grid item lg={12} xs={12}>
-            <ProgressPaginationSwipersider subCategories={subCategories} />
+        <Typography variant="h3" component="h1" color="white" align="center" py={4}>
+          Explore Our Collections
+        </Typography>
+        {subCategories.length > 0 ? (
+          <Grid container spacing={1} pb={4}>
+            <Grid item lg={12} xs={12}>
+              <ProgressPaginationSwipersider subCategories={subCategories} />
+            </Grid>
           </Grid>
-        </Grid>
+        ) : (
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              py: 10,
+            }}
+          >
+            <Typography variant="h5" color="text.secondary">No collections found in this category.</Typography>
+          </Box>
+        )}
       </Box>
     </Layout>
   );

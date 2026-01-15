@@ -70,7 +70,7 @@ const Home = () => {
     message: "",
     appointmentDate: "",
   });
-   console.log(datasectionOne,"datasectionOne")
+  console.log(datasectionOne, "datasectionOne")
   const [formLoading, setFormLoading] = useState(false);
   const [snackbar, setSnackbar] = useState({
     open: false,
@@ -240,7 +240,7 @@ const Home = () => {
           ))}
         </Grid> */}
 
-       
+
 
         {/* <Grid container spacing={4} py={8}>
           <Grid item lg={12}>
@@ -485,11 +485,9 @@ const Home = () => {
             </Stack>
           </Grid>
         </Grid> */}
-        <Grid container spacing={4} py={8}>
-          
-
+        <Grid container spacing={4} pt={8} >
           <Grid item lg={6}>
-            <img src={datasectionthree[0]?.image} alt="" width={"100%"} style={{borderRadius:20}}/>
+            <img src={datasectionthree[0]?.image} alt="" width={"100%"} style={{ borderRadius: 20 }} />
           </Grid><Grid item lg={6}>
             <Stack
               alignItems={"left"}
@@ -502,7 +500,7 @@ const Home = () => {
                 textTransform={"uppercase"}
                 fontSize={22}
                 textAlign={"justify"}
-               
+
               >
                 {datasectionthree[0]?.title}
               </Typography>
@@ -513,21 +511,21 @@ const Home = () => {
                 textAlign={"justify"}
                 dangerouslySetInnerHTML={{ __html: datasectionthree[0]?.description }}
               >
-                
+
               </Typography>
             </Stack>
           </Grid>
         </Grid>
- <Grid container spacing={4} py={6}>
+        <Grid container spacing={4} pb={8} pt={2}>
           <Grid item lg={6}>
             <Typography
               className="bold"
               fontSize={19}
               mt={2}
               textAlign={"center"}
-              
+
             >
-             {datasectionOne[0]?.title}
+              {datasectionOne[0]?.title}
             </Typography>
           </Grid>
 
@@ -567,14 +565,14 @@ const Home = () => {
               </Stack>
             </Stack> */}
             <Stack direction={"row"} alignItems={"flex-end"} justifyContent={"flex-end"}>
-            <Link href="/worldwide-wardrobe">
-              <Button variant="contained" color="error" sx={{textTransform:"capitalize"}}>
-                Worldwide Wardrobe Wholesale Catalog
-              </Button>
-            </Link></Stack>
+              <Link href="/worldwide-wardrobe">
+                <Button variant="contained" color="error" sx={{ textTransform: "capitalize" }}>
+                  Worldwide Wardrobe Wholesale Catalog
+                </Button>
+              </Link></Stack>
           </Grid>
         </Grid>
-        
+
         {/* <Typography
           className="Medium"
           fontSize={40}

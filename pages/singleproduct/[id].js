@@ -36,6 +36,7 @@ const SingleProduct = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [products, setProduct] = useState(null);
+  console.log(products,"isnew")
   const [tags, setTags] = useState([]);
   const [activeTab, setActiveTab] = useState(0);
   const [selectedColorName, setSelectedColorName] = useState("");
@@ -210,7 +211,7 @@ const SingleProduct = () => {
     setActiveTab(newValue);
   };
 
-const isWholesale = products?.category?.name === "Wholesale Wins";
+  const isWholesale = products?.category?.name === "Wholesale Wins";
 
   if (loading) return <Typography>Loading...</Typography>;
   if (error) return <Typography color="error">{error}</Typography>;
@@ -344,42 +345,20 @@ const isWholesale = products?.category?.name === "Wholesale Wins";
                           <TableCell>
                             <strong>Size</strong>
                           </TableCell>
-                          {products?.name === "Boxer Short" ? (
-                            <>
-                              <TableCell>
-                                <strong>Side Length (cm) </strong>
-                              </TableCell>
-                              <TableCell>
-                                <strong>½ Waist (cm)</strong>
-                              </TableCell>
-                            </>
-                          ) : (
-                            <>
-                              <TableCell>
-                                <strong>Chest (cm)</strong>
-                              </TableCell>
-                              <TableCell>
-                                <strong>Body Length (cm)</strong>
-                              </TableCell>
-                            </>
-                          )}
+                          <TableCell>
+                            <strong>{products?.size_column_name_one}</strong>
+                          </TableCell>
+                          <TableCell>
+                            <strong>{products?.size_column_name_two}</strong>
+                          </TableCell>
                         </TableRow>
                       </TableHead>
                       <TableBody>
                         {sizeGuide.map((guide, index) => (
                           <TableRow key={index}>
                             <TableCell>{guide.name}</TableCell>
-                            {products?.name === "Boxer Short" ? (
-                              <>
-                                <TableCell>{guide.chest}</TableCell>
-                                <TableCell>{guide.body}</TableCell>
-                              </>
-                            ) : (
-                              <>
-                                <TableCell>{guide.chest}</TableCell>
-                                <TableCell>{guide.body}</TableCell>
-                              </>
-                            )}
+                            <TableCell>{guide.chest}</TableCell>
+                            <TableCell>{guide.body}</TableCell>
                           </TableRow>
                         ))}
                       </TableBody>

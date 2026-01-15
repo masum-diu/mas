@@ -45,14 +45,14 @@ const sustainability = () => {
         }}
       >
         <Grid container spacing={1} py={2}>
-          <Grid item lg={6}>
-            <Typography className="Medium" fontSize={40} textAlign={"justify"}>
+          <Grid item lg={12}>
+            <Typography className="Medium" fontSize={{ xs: 33, md: 36 }} textAlign={"justify"}>
               {aboutData?.title}
             </Typography>
           </Grid>
         </Grid>
 
-        <Grid container spacing={2} py={2}>
+        <Grid container spacing={2} >
          {/* <Grid item lg={5} sx={{ display: "flex", gap: 1, pt: 4 }}>
              <img
               src={"/assets/1744545144_67fba578d2642.jpg"}

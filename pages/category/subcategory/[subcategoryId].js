@@ -68,56 +68,123 @@ const SubcategoryProducts = () => {
       </Layout>
     );
   }
-  console.log(products, "products");
+
   return (
     <Layout>
       <Box sx={{ width: "90%", maxWidth: "1500px", margin: "0 auto" }}>
-        <Grid container spacing={2} py={4}>
-          {products?.map((product, index) => {
-            console.log(product, "product");
-            return (
-              <Grid item lg={3} sm={6} key={index} sx={{ cursor: "pointer" }}>
+        {products?.length > 0 ? (
+          <Grid container spacing={4} py={4}>
+            {products.map((product) => (
+              <Grid
+                item
+                xs={12}
+                sm={6}
+                md={4}
+                lg={3}
+                key={product.id}
+                sx={{ display: "flex", justifyContent: "center" }}
+              >
                 <Card
                   sx={{
-                    maxWidth: 300,
-                    margin: "10px auto",
-                    borderRadius: "12px",
-                    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
-                    transition: "transform 0.3s, box-shadow 0.3s",
+                    width: "100%",
+                    maxWidth: 345,
+                    position: "relative",
+                    borderRadius: "16px",
+                    boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+                    transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                    display: "flex",
+                    flexDirection: "column",
                     "&:hover": {
                       transform: "scale(1.05)",
-                      boxShadow: "0 6px 15px rgba(0, 0, 0, 0.2)",
+                      boxShadow: "0 12px 32px rgba(0,0,0,0.2)",
+                      "& .overlay": {
+                        opacity: 1,
+                      },
+                      "& .card-media": {
+                        opacity: 0.7,
+                      },
                     },
                   }}
-                  onClick={() => handleNavigation(product)}
                 >
+                  <Box
+                    sx={{ position: "relative", cursor: "pointer" }}
+                    onClick={() => handleNavigation(product)}
+                  >
                   <CardMedia
+                    className="card-media"
                     component="img"
-                    height="300"
+                    height="350"
                     image={product?.product_images?.[0]?.image || ""}
                     alt={product?.name || "Product Image"}
                   />
                   <CardContent
                     sx={{
-                      backgroundColor: "#f9f9f9",
-                      textAlign: "center",
-                      padding: "16px",
+                      position: "absolute",
+                      bottom: 0,
+                      left: 0,
+                      width: "100%",
+                      background:
+                        "linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%)",
+                      color: "white",
+                      p: 2,
+                      pt: 4,
                     }}
                   >
                     <Typography
+                      gutterBottom
+                      variant="h6"
                       component="div"
-                      textTransform="uppercase"
                       fontWeight="bold"
-                      color="#333"
+                      color={"#fff"}
+                      sx={{ textTransform: "uppercase" }}
                     >
                       {product?.name || "No Product Name"}
                     </Typography>
                   </CardContent>
+                  </Box>
+                  {/* <CardContent
+                    sx={{
+                      flexGrow: 1,
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      p: 2,
+                    }}
+                  >
+                    <Typography
+                      variant="h5"
+                      color="text.primary"
+                      fontWeight="bold"
+                    >
+                      ${product?.price || "0.00"}
+                    </Typography>
+                    <Button
+                      variant="contained"
+                      size="small"
+                      sx={{
+                        backgroundColor: "#333",
+                        color: "white",
+                        borderRadius: "20px",
+                        px: 2,
+                        "&:hover": {
+                          backgroundColor: "#555",
+                        },
+                      }}
+                    >
+                      Add to Cart
+                    </Button>
+                  </CardContent> */}
                 </Card>
               </Grid>
-            );
-          })}
-        </Grid>
+            ))}
+          </Grid>
+        ) : (
+          <Box sx={{ display: "flex", justifyContent: "center", py: 10 }}>
+            <Typography variant="h5" color="text.secondary">
+              No products found in this collection.
+            </Typography>
+          </Box>
+        )}
       </Box>
     </Layout>
   );
