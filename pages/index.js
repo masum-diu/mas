@@ -486,9 +486,20 @@ const Home = () => {
           </Grid>
         </Grid> */}
         <Grid container spacing={4} pt={8} >
-          <Grid item lg={6}>
+          <Grid sx={{backgroundColor: 'black'}} item lg={6}>
             <img src={datasectionthree[0]?.image} alt="" width={"100%"} style={{ borderRadius: 20 }} />
-          </Grid><Grid item lg={6}>
+            <Typography
+            sx={{fontWeight: 600, }}
+              className=""
+              fontSize={24}
+              mt={2}
+              textAlign={"center"}
+
+            >
+              {datasectionOne[0]?.title}
+            </Typography>
+          </Grid>
+          <Grid item lg={6}>
             <Stack
               alignItems={"left"}
               justifyContent={"left"}
@@ -519,8 +530,9 @@ const Home = () => {
         <Grid container spacing={4} pb={8} pt={2}>
           <Grid item lg={6}>
             <Typography
-              className="bold"
-              fontSize={19}
+            sx={{fontWeight: 600, color: "transparent"}}
+              className=""
+              fontSize={24}
               mt={2}
               textAlign={"center"}
 
@@ -564,7 +576,7 @@ const Home = () => {
                 </Typography>
               </Stack>
             </Stack> */}
-            <Stack direction={"row"} alignItems={"flex-end"} justifyContent={"flex-end"}>
+            <Stack direction={"row"} alignItems={"flex-end"} justifyContent={"flex-start "}>
               <Link href="/worldwide-wardrobe">
                 <Button variant="contained" color="error" sx={{ textTransform: "capitalize" }}>
                   Worldwide Wardrobe Wholesale Catalog

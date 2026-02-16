@@ -14,6 +14,7 @@ import {
   MenuItem,
   Menu,
 } from "@mui/material";
+import { AiFillTikTok } from "react-icons/ai";
 import {
   Facebook,
   Instagram,
@@ -99,7 +100,7 @@ const Layout = ({ children }) => {
 
       //"Retail"
       const retail = categories.find(
-        (cat) => cat.name?.toLowerCase() === "retail"
+        (cat) => cat.name?.toLowerCase() === "retail",
       );
       if (retail) {
         setRetailCategoryId(retail.id);
@@ -200,16 +201,22 @@ const Layout = ({ children }) => {
                 <Typography
                   className="Medium"
                   fontSize={16}
-                  sx={{ color: darkMode ? "#fff" : "#000" ,textTransform: "uppercase"}}
+                  sx={{
+                    color: darkMode ? "#fff" : "#000",
+                    textTransform: "uppercase",
+                  }}
                 >
-                   Worldwide Wardrobe
+                  Worldwide Wardrobe
                 </Typography>
               </Link>
               <Link href={"/about"} passHref>
                 <Typography
                   className="Medium"
                   fontSize={16}
-                  sx={{ color: darkMode ? "#fff" : "#000" , textTransform: "uppercase" }}
+                  sx={{
+                    color: darkMode ? "#fff" : "#000",
+                    textTransform: "uppercase",
+                  }}
                 >
                   Our Story
                 </Typography>
@@ -218,7 +225,10 @@ const Layout = ({ children }) => {
                 <Typography
                   className="Medium"
                   fontSize={16}
-                  sx={{ color: darkMode ? "#fff" : "#000" , textTransform: "uppercase" }}
+                  sx={{
+                    color: darkMode ? "#fff" : "#000",
+                    textTransform: "uppercase",
+                  }}
                 >
                   SUSTAINABILITY
                 </Typography>
@@ -227,7 +237,10 @@ const Layout = ({ children }) => {
                 <Typography
                   className="Medium"
                   fontSize={16}
-                  sx={{ color: darkMode ? "#fff" : "#000" , textTransform: "uppercase" }}
+                  sx={{
+                    color: darkMode ? "#fff" : "#000",
+                    textTransform: "uppercase",
+                  }}
                 >
                   MEDIA COVERAGE
                 </Typography>
@@ -303,14 +316,18 @@ const Layout = ({ children }) => {
                 </Button>
               </Link>
 
-              <IconButton onClick={toggleTheme} color="inherit">
-                {darkMode ? <Brightness7 /> : <Brightness4 />}
+              <IconButton onClick={toggleTheme}>
+                {darkMode ? (
+                  <Brightness7 sx={{ color: "#fff" }} />
+                ) : (
+                  <Brightness4 sx={{ color: "#000" }} />
+                )}
               </IconButton>
             </Stack>
             <Box
               sx={{ display: { xs: "flex", md: "none" }, alignItems: "center" }}
             >
-              <IconButton onClick={toggleTheme} color="inherit">
+              <IconButton onClick={toggleTheme} sx={{ color: "black" }}>
                 {darkMode ? <Brightness7 /> : <Brightness4 />}
               </IconButton>
 
@@ -379,11 +396,13 @@ const Layout = ({ children }) => {
           <Link href={"/sustainability"} passHref>
             <ListItem button>
               <ListItemText
-                primary={<Typography className="Medium">SUSTAINABILITY</Typography>}
+                primary={
+                  <Typography className="Medium">SUSTAINABILITY</Typography>
+                }
               />
             </ListItem>
           </Link>
-{/* 
+          {/* 
           <Link href={`/category/${retailCategoryId || 2}`} passHref>
             <ListItem button>
               <ListItemText
@@ -400,7 +419,7 @@ const Layout = ({ children }) => {
           </Link>
         </List>
       </Drawer>
-      <Box >{children}</Box>
+      <Box>{children}</Box>
 
       {/* Footer */}
       <Box
@@ -426,16 +445,31 @@ const Layout = ({ children }) => {
               <img src="/assets/logo.png" alt="" width={132} />
             </Link>
             <Stack direction={"row"} spacing={2} py={2}>
-              <a href="https://www.facebook.com/profile.php?id=61577837919461" target="_blank">
+              <a
+                href="https://www.facebook.com/profile.php?id=61577837919461"
+                target="_blank"
+              >
                 <Facebook sx={{ color: darkMode ? "#fff" : "#000" }} />
               </a>
-              <a href="https://www.tiktok.com/@masoutfits2025" target="_blank">
-              <img src="/assets/tiktok.png" alt="X" width={21} />
+              <a
+                href="https://www.tiktok.com/@masoutfits2025"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ color: darkMode ? "#fff" : "#000" }}
+              >
+                <AiFillTikTok size={24} />
               </a>
-              <a href="https://www.instagram.com/masoutfits2025/" target="_blank">
+
+              <a
+                href="https://www.instagram.com/masoutfits2025/"
+                target="_blank"
+              >
                 <Instagram sx={{ color: darkMode ? "#fff" : "#000" }} />
               </a>
-              <a href="https://www.linkedin.com/in/mas-outfits-89b90b372/" target="_blank">
+              <a
+                href="https://www.linkedin.com/in/mas-outfits-89b90b372/"
+                target="_blank"
+              >
                 <LinkedIn sx={{ color: darkMode ? "#fff" : "#000" }} />
               </a>
             </Stack>
